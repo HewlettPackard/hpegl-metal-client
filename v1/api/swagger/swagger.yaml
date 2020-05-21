@@ -1,0 +1,2550 @@
+# Copyright (c) 2020 Hewlett Packard Enterprise Development LP
+
+openapi: 3.0.0
+info:
+  title: Quake Project Client API
+  version: "0.9"
+  description: >
+    This Quake client REST API provides access to bare metal as-a-service
+    (BMaaS) within a single project context.  Clients are able to create
+    fully-provisioned hosts, storage volumes, and project-specific private
+    networks in an isolated project environment.  Project-owned resources that
+    can be accessed via this API include... Host, Volume, VolumeAttachment,
+    Network (project private), and SSH Key.  
+
+
+    Each API call is done within a single project context.  The specific
+    Project identifier must be provided within the header of each REST call.
+    The server will validate that the provided authentication credentials
+    (JWTs) are valid for the referenced project before any operation is
+    performed.  If a single credential is valid for multiple projects, the
+    client must still reference a single project in the header each API call.
+
+
+    Clients can also access information about available services and resources
+    through the AvailableResources object.  This object provides detailed 
+    information about the OS imaging options, the machine size options, the
+    storage volume options, data center locations, and such that are needed
+    when creating hosts and volumes.
+
+  contact:
+    email: chuck.hudson@hpe.com
+
+servers:
+  - url: http://localhost:8080/rest/v1
+    description: for testing purposes
+  - url: https://portal.hpedemo.net:3002/rest/v1
+    description: live demo portal 
+
+security:
+  - quake_auth: []
+
+tags:
+  - name: projects
+    description: >
+      Operations related to Projects.  A Project defines an isolated space for 
+      creating Hosts, Volumes, and private Networks. A project is often aligned 
+      to a specific team within an organization or a cluster  
+  - name: sshkeys
+    description: >
+      Operations related to SSH Keys.  Clients may define SSH Keys that can then
+      be referenced by ID when creating a Host.  Particularly useful with
+      a BMaaS client graphical user interface.
+  - name: hosts
+    description: >
+      Operations related to Hosts. A host is a fully-provisioned physical
+      server. Clients may create, view, list, and delete hosts.  
+  - name: volumes
+    description: >
+      Operations related to Volumes.  A Volume is an external storage volume
+      that persists independent of the associated host.
+  - name: volume-attachments
+    description: >
+      Read-only operations related to VolumeAttachments that describe how a
+      host is connected to a volume.
+  - name: networks
+    description: >
+      Operations related to Networks.
+  - name: available-resources
+    description: >
+      Operations related to listing information that is needed to construct
+      create Host and create Volume calls.
+  - name: usage-reports
+    description: >
+      Operations related to retrieving information about resource usage
+      within the project.  
+
+paths:
+  /projects:
+    get:
+      tags:
+        - projects
+      summary: List of all Projects within an organization or cluster
+      description:
+        Returns an array of all Project objects that have been created.
+        This includes profile information for the project and project limits
+        on resouces like hosts, volumes, and volume capacity.
+      operationId: Projects_list
+
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
+    post:
+      tags:
+        - projects
+      summary: Create a new project
+      description: Adds a new Project which creates an isolated space 
+        for creating Hosts, Volumes, and private Networks. A project is often 
+        aligned to a specific team within an organization or a cluster
+      operationId: Project_add
+
+      requestBody:
+        required: true
+        description: NewProject parameters to create a new Project
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/NewProject'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /projects/{projectId}:
+    get:
+      tags:
+        - projects
+      summary: Retrieve a project by its ID
+      description:
+        Returns a single Project object with its matching ID
+        This includes profile information for the project and project limits
+        on resouces like hosts, volumes, and volume capacity.
+      operationId: Project_getByID
+
+      parameters:
+      - name: projectId
+        in: path
+        description: ID of project to return
+        required: true
+        schema:
+          type: string
+    
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Project'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+    put:
+      tags:
+        - projects
+      summary: Update a project by its ID
+      description: Updates a project with a matching ID. Project profile
+        limits can be updated with this operation.
+      operationId: Project_update
+
+      parameters:
+      - name: projectId
+        in: path
+        description: ID of project to return
+        required: true
+        schema:
+          type: string
+
+      requestBody:
+        required: true
+        description: Project parameters to update an existing Project
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Project'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'         
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '405': 
+          description: validation exception
+        '500': 
+          description: internal error          
+
+    delete:
+      tags:
+      - projects
+      summary: Delete a Project
+      description: Deletes the Project with the matching ID
+      operationId: Project_delete
+      
+      parameters:
+      - name: projectId
+        in: path
+        description: ID of project to return
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+  /sshkeys:
+    get:
+      tags:
+        - sshkeys
+      summary: List all sshkeys in project
+      description:
+         Returns an array of all SSHKey objects defined within the project.
+         This does not include any SSH keys that are only defined as part
+         of creating host.
+      operationId: SSHKeys_list
+ 
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSHKey'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
+    post:
+      tags:
+        - sshkeys
+      summary: Add a new SSH Key
+      description: Adds a new SSH Key that can be referenced when creating a Host
+      operationId: SSHKey_add
+
+      requestBody:
+        required: true
+        description: SSH Key that is to be added to the project
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/NewSSHKey'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKey'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /sshkeys/{sshkeyId}:
+    summary: Operations on a single SSH Key
+
+    get:
+      tags:
+        - sshkeys
+      summary: Retrieve SSH Key by ID
+      description: Returns a single SSH key with matching ID
+      operationId: SSHKey_getByID
+
+      parameters:
+      - name: sshkeyId
+        in: path
+        description: ID of sshkey to return
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKey'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+    put:
+      tags:
+      - sshkeys
+      summary: Update an existing SSH Key.  Only the name or key fields can be changed.
+      description: ""
+      operationId: SSHKey_update
+
+      parameters:
+      - name: sshkeyId
+        in: path
+        description: ID of sshkey to update
+        required: true
+        schema:
+          type: string
+
+      requestBody:
+        required: true
+        description: Updated SSH key
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/SSHKey'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKey'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '405': 
+          description: validation exception
+        '500': 
+          description: internal error
+
+    delete:
+      tags:
+      - sshkeys
+      summary: Delete an SSH key
+      description: Deletes the SSH key with the matching ID
+      operationId: SSHKey_delete
+
+      parameters:
+      - name: sshkeyId
+        in: path
+        description: ID of sshkey to delete
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+  /hosts:
+
+    get:
+      tags:
+        - hosts
+      summary: List all Hosts in project
+      description:
+         Returns an array of all Host objects defined within the project.
+         
+      operationId: Hosts_list
+
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Host'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
+    post:
+      tags:
+        - hosts
+      summary: Create a new Host
+      description: 
+        Creates a new host object which kicks off the provisioning of a physical server
+        in accordance to the attributes provided for the Host object.  Most values for
+        these options must be selected from the set of options provided by the get 
+        available-resources API call.
+
+        The SvcFlavor, SvcVersion, LocationID, SSHKeyIDs, and Network 
+        attribute must all be set with appropriate ID values from the 
+        available-resources call.
+      operationId: Host_add
+
+      requestBody:
+        required: true
+        description: Defines the configuration of the desired host. See the schema for descriptions of individual attributes.
+
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/NewHost'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /hosts/{hostId}:
+    summary: Operations associated with a specific host
+
+    get:
+      tags:
+        - hosts
+      summary: Retrieve Host by ID
+      description: Returns a single Host with matching ID
+      operationId: Host_getByID
+
+      parameters:
+      - name: hostId
+        in: path
+        description: ID of Host to return
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+    put:
+      tags:
+      - hosts
+      summary: Update an existing Host -- NOT SUPPORTED
+      description: 
+        NOT CURRENTLY SUPPORTED.  This call will (eventually) allow users to update a limited
+        number of fields associated with the host.  Since most of this information is used
+        when initially provisioning the host, supporting later changes would require careful
+        coordination with host-based agents.
+      operationId: Host_update
+
+      parameters:
+      - name: hostId
+        in: path
+        description: ID of host to update
+        required: true
+        schema:
+          type: string
+
+      requestBody:
+        required: true
+        description: Updated Host
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Host'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '405': 
+          description: validation exception
+        '500': 
+          description: internal error
+
+    delete:
+      tags:
+      - hosts
+      summary: Delete a Host
+      description: 
+        Deletes the Host with the matching ID.  A host in the 'Ready' state must first be powered-off
+        before a delete will be permitted.  Deletes to hosts in other states is permitted regardless
+        of the power state
+      operationId: Host_delete
+
+      parameters:
+      - name: hostId
+        in: path
+        description: ID of Host to delete
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+  /hosts/{hostId}/poweron:
+    summary: Power on a specific host
+        
+    post:
+      tags:
+      - hosts
+      summary: Power on Host by ID
+      description: Powers on a single Host with matching ID
+      operationId: powerOn
+        
+      parameters:
+      - name: hostId
+        in: path
+        description: ID of Host to power on
+        required: true
+        schema:
+          type: string
+        
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+        
+  /hosts/{hostId}/poweroff:
+    summary: Power off a specific host
+                
+    post:
+      tags:
+      - hosts
+      summary: Power off Host by ID
+      description: Powers off a single Host with matching ID
+      operationId: powerOff
+                
+      parameters:
+      - name: hostId
+        in: path
+        description: ID of Host to power off
+        required: true
+        schema:
+          type: string
+                
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+                
+  /available-resources:
+    get:
+      tags:
+        - available-resources
+      operationId: AvailableResources_list
+      summary: Get lists of available resources for creating hosts and volumes
+      description: >
+        Used to get lists of options that are used when creating hosts and volumes.
+        A get /available-resources will return an object that includes the following
+        arrays:
+
+        * Images - A list of image service IDs along with their category (Linux), 
+          flavor (ubuntu), and version (18.04)
+
+        * MachineSizes - A list of machine size IDs along with the machine size 
+          names and detailed descriptions
+
+        * Locations - A list of location IDs along with their country, region, 
+          and data center.
+
+        * Networks - A list of available Network IDs along with the network name,
+          location ID, network kind, and host usage (Required, Default, Optional)
+
+        * MachineInventory - Information about the available inventory of machines 
+          based on location ID and machine size ID.  While this information may 
+          change rapidly, it can be used by GUIs and systems to restrict host
+          creates to locations with the desired machine size.
+
+        * StorageInventory - Information about the current available storage capacity 
+          for a specific volume flavor by site. 
+
+        * VolumeFlavors - A list of volume flavor IDs along with their name and 
+          detailed description.
+
+        * Volumes - A list of current, existing volumes.  If the volume is in the
+          the right state, it could be attached to a new Host.
+      
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableResources'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /volumes:
+    get:
+      tags:
+        - volumes
+      summary: List all volumes in project
+      description:
+         Returns an array of all volumes defined within the project.
+
+      operationId: Volumes_list
+
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volume'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
+    post:
+      tags:
+        - volumes
+      summary: Add a new volume
+      description: >
+        Adds a new volume to the project.  Volumes may be created separately and
+        then referenced in the create Host call; or volumes may be created directly
+        within the create Host call.
+      operationId: Volume_add
+
+      requestBody:
+        required: true
+        description: Volume that is to be added to the project
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/NewVolume'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /volumes/{volumeId}:
+    summary: Operations on a single volume
+
+    get:
+      tags:
+        - volumes
+      summary: Retrieve volume by ID
+      description: Returns a single volume with matching ID
+      operationId: Volume_getByID
+
+      parameters:
+      - name: volumeId
+        in: path
+        description: ID of volume to return
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+    put:
+      tags:
+      - volumes 
+      summary: Update an existing volume.  NOT SUPPORTED!!
+      description: ""
+      operationId: Volume_update
+
+      parameters:
+      - name: volumeId
+        in: path
+        description: ID of volume to update
+        required: true
+        schema:
+          type: string
+
+      requestBody:
+        required: true
+        description: Updated volume
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Volume'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '405': 
+          description: validation exception
+        '500': 
+          description: internal error
+
+    delete:
+      tags:
+      - volumes
+      summary: Delete a volume
+      description: Deletes the volume with the matching ID
+      operationId: Volume_delete
+
+      parameters:
+      - name: volumeId
+        in: path
+        description: ID of volume to delete
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+  /volumes/{volumeId}/attach:
+    post:
+      tags: 
+        - volumes 
+      summary: Attach existing volume to Host
+      description: >
+        Attaches the indicated volume to a host identified in the requestBody.  
+        This attachment will create a VolumeAttachment object that contains 
+        details about the connection of the volume and will update the Host 
+        with iSCSI configuration information.
+      operationId: Volume_attach
+
+      parameters:
+      - name: volumeId
+        in: path
+        description: ID of volume to attach
+        required: true
+        schema:
+          type: string
+
+      requestBody:
+        required: true
+        description: Unique ID of the Host to which the volume will be attached
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolumeAttachHostUUID'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeAttachment'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /volumes/{volumeId}/detach:
+    post:
+      tags: 
+        - volumes 
+      summary: Detach existing volume from Host
+      description: >
+        Detaches the indicated volume from the host identified in the requestBody.  
+        This detachment will delete the VolumeAttachment object that contains 
+        details about the connection of the volume and will update the Host 
+        to remove selected iSCSI configuration information.
+
+        Note that the HostID is required in the body of the request to ensure
+        that the operation is well understood and that a volume is not accidently
+        being removed from the wrong host.
+      operationId: Volume_detach
+
+      parameters:
+      - name: volumeId
+        in: path
+        description: ID of volume to attach
+        required: true
+        schema:
+          type: string
+
+      requestBody:
+        required: true
+        description: Unique ID of the Host from which a volume will be detached
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolumeAttachHostUUID'
+
+      responses:
+        '200':
+          description: success
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /volume-attachments:
+    get:
+      tags:
+        - volume-attachments
+      summary: List all volume attachments in project
+      description:
+         Returns an array of all VolumeAttachments defined within the project.
+      operationId: VolumeAttachments_list
+
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VolumeAttachment'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
+  /volume-attachments/{attachmentId}:
+    summary: Operations on a single volument attachment
+
+    get:
+      tags:
+        - volume-attachments
+      summary: Retrieve volume attachment by ID
+      description: Returns a single volume attachment with matching ID
+      operationId: VolumeAttachment_getByID
+
+      parameters:
+      - name: attachmentId
+        in: path
+        description: ID of volume attachment to return
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VolumeAttachment'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+  /networks:
+    get:
+      tags:
+        - networks
+      summary: List all networks in project
+      description:
+         Returns an array of all network objects defined within the project.
+      operationId: Networks_list
+
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Network'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
+    post:
+      tags:
+        - networks
+      summary: Add a new network
+      description: Adds a new network that can be referenced when creating a Host
+      operationId: Network_add
+
+      requestBody:
+        required: true
+        description: Network that is to be added to the project
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/NewNetwork'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Network'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+  /networks/{networkId}:
+    summary: Operations on a single network
+
+    get:
+      tags:
+        - networks
+      summary: Retrieve network by ID
+      description: Returns a single network with matching ID
+      operationId: Network_getByID
+
+      parameters:
+      - name: networkId
+        in: path
+        description: ID of network to return
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Network'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+    put:
+      tags:
+      - networks
+      summary: Update an existing network.  NOT YET SUPPORTED
+      description: ""
+      operationId: Network_update
+
+      parameters:
+      - name: networkId
+        in: path
+        description: ID of network to update
+        required: true
+        schema:
+          type: string
+
+      requestBody:
+        required: true
+        description: Updated network
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/Network'
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Network'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '405': 
+          description: validation exception
+        '500': 
+          description: internal error
+
+    delete:
+      tags:
+      - networks
+      summary: Delete a network
+      description: Deletes the network with the matching ID
+      operationId: Network_delete
+
+      parameters:
+      - name: networkId
+        in: path
+        description: ID of network to delete
+        required: true
+        schema:
+          type: string
+
+      responses:
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+  # usage-reports             
+  /usage-reports:
+
+    get:
+      tags:
+        - usage-reports
+      summary: Get a usage report
+      description: >
+        Creates and returns a usage report based on the parameters passed in the request body
+      operationId: UsageReport_get
+
+      parameters:
+        - in: query
+          name: start
+          required: true
+          schema:
+            type: string
+          description: "Start of the billing period"
+        - in: query
+          name: end
+          required: false
+          schema:
+            type: string
+          description: "End of the billing period, default to now if omitted"
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageReport'
+        '400':
+          description: invalid content
+        '401':
+          description: unauthorized
+        '405':
+          description: invalid input
+        '500': 
+          description: internal error
+
+
+components:
+  securitySchemes: 
+    quake_auth:
+      description: Uses JWT as a bearer token to validate access
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+
+    # ResourceBase is used in each DB resource
+    ResourceBase:
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+          description:  Unique ID for the resource instance as generated by the Quake service
+        ETag:
+          type: string
+          format: uuid
+          description:  
+            Used to determine whether the DB entry has changed since it was last read.  should
+            be returned unchanged on any update operation.
+        Name:
+          type: string
+          example: My Object Name
+          description: Common name for the resource instance
+        Created:
+          type: string
+          format: date-time
+          example: '2019-06-27T22:59:01.661Z'
+          description: Time when the resource was created in the database
+        Modified:
+          type: string
+          format: date-time
+          example: '2020-02-27T18:28:02.863Z'
+          description: Time when the resource was last modified in the database
+
+    NewProject:
+      type: object
+      required:
+        - Name
+        - Profile
+        - Limits
+      properties:
+        Name:
+          type: string
+          example: "Project foobar"     
+        Profile:
+          description:  
+            Profile is a generalized description of a team
+          $ref: '#/components/schemas/Profile'      
+        Limits:
+          description:  
+            Project Limits place general constraints on a project in terms of
+            server and storage
+          $ref: '#/components/schemas/Limits'  
+
+    Project:
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            # Resource-specific Attributes
+            Profile:
+              description:  
+                Profile is a generalized description of a team
+              $ref: '#/components/schemas/Profile'      
+            Limits:
+              description:  
+                Project Limits place general constraints on a project in terms of
+                server and storage
+              $ref: '#/components/schemas/Limits'  
+
+    Profile:
+      type: object
+      properties:
+        TeamName:
+          type: string
+          example:
+        TeamDesc:
+          type: string
+          example:
+        Company:
+          type: string
+        Address:
+          type: string
+        Email:
+          type: string
+        EmailVerified:
+          type: boolean
+        PhoneNumber:
+          type: string
+        PhoneVerified:
+          type: boolean
+
+    Limits:
+      type: object
+      properties:
+        Hosts:
+          type: uint32
+ #         format: int32
+          description: Maximum number of hosts to allow
+        Volumes:
+          type: uint32
+ #         format: int32
+          description: Maximum number of volumes to allow
+        VolumeCapacity:
+          type: uint64
+ #         format: int64
+          description: Maximum capacity to allow in GiB
+
+    NewSSHKey:
+      type: object
+      properties:
+        Name: 
+          type: string
+          example: "Joe's Laptop"
+        Key:
+          $ref: '#/components/schemas/SSHKeyValue'
+
+    SSHKey:
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            # Resource-specific Attributes
+            Key: 
+              $ref: '#/components/schemas/SSHKeyValue'
+
+    NewHost:
+      type: object
+      required:
+        - Name
+        - ServiceID
+        - LocationID
+        - MachineSizeID
+        - NetworkIDs
+      properties:
+        Name:
+          type: string
+          example: NewHostName
+          description: 
+            The host name used when installing the host operating system.  Note that some
+            OS implementations may require the name to be formatted as a fully qualified
+            domain name.
+        Description:
+          type: string
+          example: Description of new Host
+        ServiceID:
+          type: string
+          format: uuid
+          description:
+            The image service identifier must be identifer of one of the available imaging services 
+            provided by the AvailableImage array returned as part of the get /available-resources call.  
+            Images are typically described by category (e.g. Linux), flavor (e.g. ubuntu) and 
+            version (e.g. 18.04-20190807)
+        LocationID: 
+          type: string
+          format: uuid
+          description:
+            The location ID must be one of those provided by the LocationInfo array returned
+            as part of the get /available-resources call.  The locations are typically 
+            described by country, region, and data center.  
+
+            The location ID must also be one that has sufficient inventory for the selected
+            MachineSize.  See the MachineInventory array as returned by the get /available-resources
+            call to select a location that has machines available with the correct machine size.
+        MachineSizeID:
+          type: string
+          format: uuid
+          description:  
+            The machine size ID must be one of those listed in the MachineSizes array returned
+            as part of the get /available-resources call.  This array provides the name and 
+            detailed description for each machine size.  Use the MachineInventory array provided
+            by the get /available-resources call to find a location with an adequate inventory
+            of machines with the desired machine size.
+        SSHKeyIDs: 
+          type: array
+          description: 
+            These IDs must correspond to the IDs for SSH keys already created within the context
+            of the project.  These SSH keys and those included as SSHAuthorizedKeys will be used
+            together to provision SSH keys when the machine is imaged.
+          items:
+            type: string
+            format: uuid
+        NetworkIDs: 
+          type: array
+          description: 
+            The list of IDs corresponding to the networks that will be provisioned to the host.  
+            These networks must be among those listed in the Networks array returned by the
+            get /available-resources call.  This list must include the ID for any network
+            identified by the HostUseEnum as Required.
+          items:
+            type: string
+            format: uuid
+        VolumeIDs:
+          description:
+            The list of IDs corresponding to existing, unattached volumes that should be 
+            attached to the new host.  The volume must be one of those listed in the Volumes
+            array returned by the get /available-resources call.  In addition, the volume 
+            must be in the visible state and not a part of any current VolumeAttachment
+            (see get volume-attachments)
+          type: array
+          items:
+            type: string
+            format: uuid
+        NewVolumes:
+          type: array
+          description:  
+            New volumes may be created and connected to the Host when the host is provisioned. The
+            information provided here to create a host is the same as required when doing a 
+            post /volumes call
+          items:
+            $ref: '#/components/schemas/AddVolume'
+        UserData:
+          type: string
+          description: User-provided data to be attached to the image configuration data.
+        NodeID:
+          type: string
+          example: "Node21"
+          description: 
+            User-provided data to represent the identity of the host within an application environment.  
+            For example, this could be set to represent the Kubernetes node ID if the host is provisioned
+            as a Kubernetes node.
+
+    Host:
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            # Resource-specific Attributes (many overlap with NewHost)
+            Description:
+              type: string
+              example: Description of Host
+            ServiceID:
+              type: string
+              format: uuid
+              description:
+                The image service identifier used to image the server. ServiceID is one of 
+                those listed by the Images array returned as part of the get /available-resources call.
+            ServiceFlavor:
+              type: string
+              example: ubuntu
+              description: Overall flavor of server image used to image the server
+            ServiceVersion:
+              type: string
+              example: '18.04-20190807'
+              description: Version of the ServiceFlavor used to image the server
+            LocationID: 
+              type: string
+              format: uuid
+              description:
+                The location of the machine assigned to the host.  LocationID is one of 
+                those listed by the LocationInfo array returned as part of the get /available-resources call.  
+            MachineSizeName:
+              type: string
+              example: HPE Large
+              description:  
+                Name of the machine size used to identify and select the machine assigned to the
+                host.  MachineSizes are described by the MachineSize array returned by the
+                get /available-resources call.
+            MachineSizeID:
+              type: string
+              format: uuid
+              description:  
+                UniqueID referring to the machine size used to identify and select the machine assigned to the
+                host.  MachineSizes are described by the MachineSize array returned by the
+                get /available-resources call.
+            SSHKeyIDs: 
+              type: array
+              description: 
+                IDs of SSH Keys used when configuring the Host
+              items:
+                type: string
+                format: uuid
+            SSHAuthorizedKeys: 
+              type: array
+              description: 
+                Specific SSH keys that were when configuring the host.
+              items:
+                $ref: '#/components/schemas/SSHKeyValue'
+            NetworkIDs: 
+              type: array
+              description: 
+                The list of IDs corresponding to the networks that were provisioned to the host.  
+                These networks are among those listed in the Networks array returned by the
+                get /available-resources call.  
+              items:
+                type: string
+                format: uuid
+            UserData:
+              type: string
+              description: User-provided data attached to the image configuration data when the host was provisioned
+            NodeID:
+              type: string
+              example: "Node21"
+              description: 
+                User-provided data to represent the identity of the host within an application environment.  
+                For example, this could be set to represent the Kubernetes node ID if the host is provisioned
+                as a Kubernetes node.
+
+            ISCSIConfig:
+               $ref: '#/components/schemas/HostISCSIConfig'
+
+            Connections:
+              type: array
+              description: Details describing host network connections
+              items: 
+                $ref: '#/components/schemas/HostConnection'
+
+            Deleted:
+              type: boolean
+              description: True if the Host has been deleted.
+
+            PortalCommOkay:
+              type: boolean
+              description: Describes if the portal is in active communication to the device
+
+            PowerStatus:
+              $ref: '#/components/schemas/HostPowerState'
+
+            # Related to Host State 
+
+            State:
+              $ref: '#/components/schemas/HostState'
+            Substate: 
+              $ref: '#/components/schemas/HostSubstate'
+            StateTime:
+              type: string
+              format: date-time
+            SubstateTime:
+              type: string
+              format: date-time
+            Progress:
+              type: uint64
+#              format: uint64
+              minimum: 0
+              maximum: 100
+            Alert:
+              type: boolean
+            AlertInfo:
+              type: array
+              items:
+                $ref: '#/components/schemas/HostAlertInfo'
+
+    NewVolume:
+      type: object
+      properties:
+        Name:
+          type: string
+          example: NewVolumeName
+        Description:
+          type: string
+          example: Description of New Volume
+        FlavorID:
+          type: string
+          format: uuid
+          description:  
+            Adds a new volume to the project.  This object requires the LocationID and is used 
+            when a new volume is created independently from the host creation therefore
+            requiring a specified location.
+        Capacity:
+          type: uint64
+#          format: uint64
+          example: '10000'
+          minimum: 0
+          description: The size of the volume in MB
+        LocationID: 
+          type: string
+          format: uuid
+          description:
+            The location of the volume (and the storage array) LocationID is one of 
+            those listed by the LocationInfo array returned as part of the get /available-resources call. 
+            Any volumes must be in the same location as their attached Host.
+
+    AddVolume:
+      type: object
+      properties:
+        Name:
+          type: string
+          example: NewVolumeName
+        Description:
+          type: string
+          example: Description of New Volume
+        FlavorID:
+          type: string
+          format: uuid
+          description:  
+            This object is used for new volume creation in the host create operation. Since
+            host create already has location ID that field is not provided in this object.
+        Capacity:
+          type: uint64
+#          format: uint64
+          example: '10000'
+          minimum: 0
+          description: The size of the volume in MB
+
+    Volume:
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            # Resource-specific Attributes
+            Description:
+              type: string
+              example: Description of New Volume
+            FlavorID:
+              type: string
+              format: uuid
+              description:  
+                The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the
+                get /available-resources call
+            Capacity:
+              type: uint64
+#              format: uint64
+              example: '10000'
+              minimum: 0
+              description: The size of the volume in MB
+            LocationID: 
+              type: string
+              format: uuid
+              description:
+                The location of the volume (and the storage array) LocationID is one of 
+                those listed by the LocationInfo array returned as part of the get /available-resources call. 
+                Any volumes must be in the same location as their attached Host.
+            State:
+              $ref: '#/components/schemas/VolumeState'
+            Status:
+              $ref: '#/components/schemas/VolumeStatus'
+
+    HostISCSIConfig:
+      type: object
+      properties: 
+        InitiatorName:
+          type: string
+          description:  >
+            Fully qualified iSCSI intiator name of this host. This is generated
+            when a host is created and the information is pushed to the new
+            host
+        CHAPSecret: 
+          type: string 
+          description: > 
+             CHAP secret as generated by the system when attaching a volume.  
+             Visible in VolumeAttachment object.
+        CHAPUser: 
+          type: string 
+          description: >
+            CHAP user as generated by the system when attaching a volume.  
+            Visible in VolumeAttachment object.
+        ISCSIDiscoveryAddress: 
+          type: string
+          
+    HostPowerState:
+      type: string
+      enum: ['ON', 'OFF', 'UNKNOWN']
+      description: Current power status of the underlaying physical server (machine)
+
+    HostAlertInfo:
+      type: object
+      properties:
+        Alert:
+          type: string
+          enum: ['substate-timed-out', 'op-failed', 'unknown-state']
+          description:  Identifies the type of alert
+          example: 'op-failed'
+        State:
+          $ref: '#/components/schemas/HostState'
+        Substate: 
+          $ref: '#/components/schemas/HostSubstate'
+        Message:
+          type: string
+          description: Provides some detailed description about the Alert
+          example: 'Operation XXX completed as failed with status: YYY'
+        Time: 
+          type: string
+          format: date-time
+        Ack:
+          type: boolean
+          description:  Used to acknowledge the alert so that the UI can list only unacknowledged alerts
+
+    HostState:
+      type: string
+      enum: ['New', 'Deleting', 'Deleted', 'Failed', 'Allocating', 'Imaging', 'Connecting', 'Ready']
+      description: Overall host state
+      example: 'Ready'
+
+    HostSubstate:
+      type: string
+      description: Host substate within HostState
+      enum: ['', 'Init', 'Complete','Failed', 'Working', 'Need-Machine', 'Need-IPs', 'Init-Off', 'Setting-PXE', 'Clearing-Log',
+             'Starting-Deploy', 'Blocked', 'Deploy-Poweron', 'Deploying', 'Confirm-Off', 'SnapLog', 'Fail-SnapLog', 'Setting-DiskBoot',
+             'Connect', 'Connect-Poweron', 'Disconnect', 'Abort-Deploy', 'Delete-Poweroff', 'Releasing']
+      example: 'Complete'
+
+    HostConnection:
+      type: object
+      properties:
+        Name: 
+          type: string
+          example: Default
+        Ports: 
+          type: array
+          items:
+            $ref: '#/components/schemas/HostServerPort'
+        HA:
+          type: boolean
+          description: Indicates whether the network connection should be a link aggregation group (LAG)
+        Speed:
+          type: string
+          enum: ['100Mb', '1Gb', '10Gb', '25Gb', '50Gb', '40Gb', '100Gb']
+          description:  The speed of the physical connection from the server to the top of rack switch
+          example: '1Gb'
+        Networks:
+          type: array
+          items:
+            $ref: '#/components/schemas/HostNetworkConnection'
+
+    HostServerPort:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Server port name
+          example: 'lan5'
+        HWAddr:
+          type: string
+          description:  Hardware address for the Ethernet interface (MAC)
+          example: '5c:b9:01:95:64:a0'
+
+    HostNetworkConnection:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Name of the network connection
+          example: HostConn1
+        NetworkID:
+          type: string
+          format: uuid
+          description: Unique ID corresponding to a network in the local data center
+        IP:
+          type: string
+          description: IP address for the network connection
+          example: '10.5.3.4'
+        Subnet:
+          type: string
+          description: The IP subnet address
+          example: '10.5.3.0'
+        Netmask:
+          type: string
+          example: '/24'
+          enum: ['/8', '/9', '/10', '/11', '/12', '/13', '/14', '/15', '/16', '/17', '/18', '/19',
+                 '/20', '/21', '/22', '/23', '/24', '/25', '/26', '/27', '/28', '/29', /'30', /'31']
+                 # Still need to add IPV6 CIDR values
+
+    AvailableResources:
+      type: object
+      properties:
+        Images: 
+          type: array
+          description: Array listing the available host imaging services
+          items:
+            $ref: '#/components/schemas/AvailableImage'
+        Locations:
+          type: array
+          description: Array listing the data center locations with available resources
+          items:
+            $ref: '#/components/schemas/LocationInfo'
+        Networks: 
+          type: array
+          description: Array listing the networks available for host connections
+          items:
+            $ref: '#/components/schemas/AvailableNetwork'
+        MachineSizes:
+          type: array
+          description: Array listing the available machine (server) sizes
+          items:
+            $ref: '#/components/schemas/MachineSize'
+        VolumeFlavors:
+          type: array
+          description: Array listing the available volume flavors 
+          items:
+            $ref: '#/components/schemas/VolumeFlavor'
+        Volumes:
+          type: array
+          description: Array listing the existing project volumes that could be attached to a host
+          items:
+            $ref: '#/components/schemas/VolumeInfo'
+        MachineInventory:
+          type: array
+          description: Array listing the number of machines of each size in each location
+          items:
+            $ref: '#/components/schemas/MachineInventory'
+        StorageInventory:
+          type: array
+          description: Array providing information on the amount of available storage of each flavor in each location
+          items:
+            $ref: '#/components/schemas/StorageInventory'
+        SSHKeys:
+          type: array
+          description: Array listing pre-defined SSH keys that could be referenced when creating a Host
+          items:
+            $ref: '#/components/schemas/SSHKeyEntry'
+
+    AvailableImage:
+      type: object
+      description: Entry describing an available imaging service
+      properties:
+        ID: 
+          type: string
+          format: uuid
+          description: Unique ID for imaging service
+        Category:
+          type: string
+          example: Linux
+          description: Top-level grouping of imaging services that may reference an OS or application type
+        Flavor:
+          type: string
+          example: ubuntu
+          description: Second-level grouping of imaging services.  Typically references a specific OS or application.
+        Version:
+          type: string
+          example: '18.04'
+          description: Specific version of a imaging service flavor.
+        Description:
+          type: string
+          example: ubuntu OS also including Docker runtime
+          description: Additional image information for additional services added to the OS
+
+    LocationInfo:
+      type: object
+      description: Entry on data center with its location ID and country, region, and data center description strings
+      properties:
+        ID: 
+          type: string
+          format: uuid
+          description: Unique ID for data center location
+        Country: 
+          $ref: '#/components/schemas/Country'
+          #type: string
+          #example: USA 
+          #description:  Three-letter country code
+        Region:
+          type: string
+          example: Central
+          description: Region within the indicated country
+        DataCenter:
+          type: string
+          example: FTC1
+          description: Data center descriptor
+
+    AvailableNetwork:
+      type: object
+      description: Entry of a network available within a data center location
+      properties:
+        ID:
+          type: string
+          format: uuid
+          description: ID of the network
+        Name:
+          type: string
+          example: Private
+          description: The name of the network
+        LocationID:
+          $ref: '#/components/schemas/LocationID'
+        Description:
+          type: string
+          example: Private network for intra-cluster communication
+        Kind:
+          $ref: '#/components/schemas/NetworkKind'
+        HostUse:
+          $ref: '#/components/schemas/NetworkHostUse'
+
+    MachineSize:
+      type: object
+      description: Description of a specific machine size offering
+      properties:
+        ID: 
+          type: string
+          format: uuid
+          description: Unique ID for the machine size offering
+        Name:
+          type: string
+          example: HPE-Large
+          description: Typical user-visible name for a machine size offering
+        Details:
+          $ref: '#/components/schemas/FlavorDesc'
+
+    VolumeFlavor:
+      type: object
+      description: >
+        Description of a specific volume flavor offering.  A volume flavor will typically
+        refer to a specific level of performance and durability as defined in the Details
+      properties:
+        ID: 
+          type: string
+          format: uuid
+          description: Volume flavor unique ID
+        Name:
+          type: string
+          example: HighPerfFlash
+          description: Typical user-visible name for a volume flavor
+        Details:
+          $ref: '#/components/schemas/FlavorDesc'
+
+    VolumeInfo:
+        type: object
+        description: Description of the details about a pre-existing volume
+        properties: 
+          ID:
+            type: string
+            format: uuid
+            description: >
+              Unique ID for the volume.  Referenced if the volume is to be attached to a
+              new Host
+          Name:
+            type: string
+            example: MyVolume
+            description: User-provided name for the volume
+          Description:
+            type: string
+            description: User-provided description of the volume
+          FlavorID:
+            type: string
+            format: uuid
+            description: The ID of the volume flavor requested when creating the volume
+          Capacity:
+            type: uint64
+#            format: uint64
+            minimum: 0
+            description: Volume size in MB
+          LocationID:
+            type: string
+            format: uuid
+            description: The location ID of the data center where the volume was created
+          State:
+            $ref: '#/components/schemas/VolumeState'
+          Status:
+            $ref: '#/components/schemas/VolumeStatus'
+
+    VolumeState:
+      description: Current volume state expressed as a string enum value (new, allocated, visible, deleted, failed)
+      type: string
+      enum: ['new', 'allocated', 'visible', 'deleted', 'failed']
+
+    VolumeStatus:
+      description: Current volume status expressed as a string enum values (ok, error, degraded)
+      type: string
+      enum: ['ok', 'error', 'degraded']
+
+    MachineInventory: 
+      type: object
+      description: An entry describing the number of machines of a particular machine size at a specific location
+      properties:
+        LocationID:
+          type: string
+          format: uuid
+          description: Unique ID of the data center location
+        SizeID: 
+          type: string
+          format: uuid
+          description: ID of a MachineSize as listed in the MachineSizes array
+        Number: 
+          type: int32
+          minimum: 0
+          description: The number of machines in inventory with indicated machine size at the indicated location
+
+    StorageInventory:
+      description: An entry describing the amount of storage available to create volumes of a specific flavor
+      type: object
+      properties:
+        FlavorID:
+          type: string
+          format: uuid
+          description: Unique ID of a volume flavor as listed in the the VolumeFlavors array
+        LocationID:
+          type: string
+          format: uuid
+          description: Unique ID of a data center location
+        Capacity:
+          type: uint64
+#          format: uint64
+          description: Total capacity available (in MB) to create new volumes of the indicated flavor at the indicated location
+
+    SSHKeyEntry:
+      type: object
+      description:  An entry listing an SSH key that is available for use when creating HostState
+      properties:
+        ID:
+          type: string
+          format: uuid
+          description: Unique ID of the SSH key entry
+        Name:
+          type: string
+          example: ExampleKey
+          description: Name or description of the stored SSH key
+        Key: 
+          $ref: '#/components/schemas/SSHKeyValue'
+
+    FlavorDesc:
+      type: object
+      description: Describes the details of machine size or volume flavor
+      properties:
+        Collection:
+          type: string
+          description: Groups flavors together to make finding a specific flavor easier
+          example: Collection1
+        Banner1:
+          type: string
+          example: Banner1 value
+        Banner2:
+          type: string
+          example: Banner2 value
+        Bullets: 
+          type: array
+          items:
+            type: string
+        InfoLink:
+          type: string
+          description: URI to more information about the specific machine size or volume flavor
+        Tooltip:
+          type: string
+          description: Supplemental tooltip text to use in GUIs
+
+    SSHKeyValue:
+      type: string
+      description: SSH key value
+      example: >
+        'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxv1C5uOeG9BBjfQbum9GupGthTFcifS4FNYxZ2ZakN9UcpD05L2lKp4OI6mfCfciOhJ9SHduZWJFM0pYfC99hIsPAHhEwWOjh3/rHKxB/U4RYN4VFWM+ShDv92+k0Hse73HhuiHKVtmRj/fltAeCFm/mPlL+McMYFhFYMIK8b/spKpXxdEBCSowHPGIn3yi0ivPWhC4wcIa9jDIela/a0t/oDnYTeIp2WMLDbpZyQsGHmKopAAvb+83JhwytQMVTI/g5pMerbqPyxKtWaWDVDtpQ7O8G877T5U3kkl4jLLOJywxrvLrfHh1UNdNvPmvRFd+ct9Q5ugj5CIMJHqWTj Joe@Laptop.local'
+
+    VolumeAttachHostUUID:
+      type: object
+      properties:
+        HostID:
+          type: string
+          format: uuid
+          description: Unique ID of the Host to which the volume will be attached
+
+    VolumeAttachment:
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            # Resource-specific Attributes
+            VolumeID:
+              type: string
+              format: uuid
+              description: Unique ID of the volume attached to the host
+            HostID:
+              type: string
+              format: uuid
+              description: Unique ID of the host connected to the volume
+            HostIPAddress:
+              type: string
+              format: ipv4
+              description: Host IP address for the network connection that connects to the storage array
+            IQN:
+              type: string
+              description: IQN is the full initiator name used for identification during iSCSI login
+              example: "iqn.yyyy-mm.naming-authority:unique name"
+            CHAPSecret:
+              type: string
+              description: CHAPSecret is the Challenge Authentication Protocol secret to be shared between array and initiator.
+            CHAPUserName:
+              type: string
+              description: CHAPUserName is the CHAP username to use for CHAP authentication
+            LUN:
+              type: uint32
+#              format: uint32
+              description: LUN is the Logical Unit Number to be assigned to the volume on export
+            VolumeTargetIQN:
+              type: string
+              example:  "iqn.yyyy-mm.naming-authority:unique name"
+              description: VolumeTargetIQN is the iQN for the volume, assigned by the array correspnding to the volume
+            VolumeTargetIPAddress:
+              type: string
+              format: ipv4
+              description: VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
+
+    LocationID: 
+      type: string
+      format: uuid
+      description:
+        The location ID is the data center location of the resource.  The LocationID must 
+        be one of those provided by the LocationInfo array returned
+        as part of the get /available-resources call.  The locations are typically 
+        described by country, region, and data center.  
+
+    NetworkKind:
+      type: string
+      enum: ['Shared', 'Private', 'Custom']
+      example: Private
+      description: >
+        Describes the type of network that implies the level of isolation associated 
+        with the network
+
+    NetworkHostUse:
+      type: string
+      enum: ['Required', 'Default', 'Optional']
+      example: Default
+      description: >
+        Indicates whether use of the network is required, default, or optional.  If the 
+        network is required, any new create host request for that location must include
+        this network among the requested networks.  Default and Optional are both optional
+        networks, but imply whether they should show up initially in pre-populated fields
+        in a graphical user interface.
+
+    NewNetwork:
+      type: object
+      properties:
+        Name: 
+          type: string
+          description: Name of the network
+          example: Private2
+        LocationID: 
+          $ref: '#/components/schemas/LocationID'
+        Description:
+          type: string
+          example: Private network for intra-cluster communication
+
+    Network:
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            # Resource-specific Attributes
+            LocationID: 
+              $ref: '#/components/schemas/LocationID'
+            Description:
+              type: string
+              example: Private network for intra-cluster communication
+            Kind:
+              $ref: '#/components/schemas/NetworkKind'
+            HostUse:
+              $ref: '#/components/schemas/NetworkHostUse'
+
+    UsageReportRequest:
+      type: object
+      properties:
+        StartTime: 
+          type: string
+          format: date-time
+          example: '2020-02-10T22:58:26.518Z'
+          description: Timestamp indicating the start of the usage window
+        EndTime:
+          type: string
+          format: date-time
+          example: '2020-03-10T22:58:26.518Z'
+          description: Timestamp indicating the end of the usage window
+        Include: 
+          type: array
+          example: ['hosts', 'volumes']
+          description: >
+            List of what resources should be included in the report. Null will be interpreted as all
+          items:
+            type: string
+            enum: ['hosts', 'volumes']
+
+    UsageReport:
+      type: object
+      description: The composite usage report
+      properties:
+        Hosts:
+          description: list of Host usage entries for the report window
+          type: array
+          items: 
+            $ref: '#/components/schemas/HostUsageEntry'
+        Volumes:
+          description: list of Volume usage entries for the report window
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeUsageEntry'
+
+
+    HostUsageEntry:
+      allOf:
+        - $ref: '#/components/schemas/UsageEntryBase'
+        - type: object
+          properties:
+            MachineSizeName:
+              type: string
+              example: HPE-Large
+              description:  Name of the MachineSize requested when host was created
+            MachineSizeID:
+              type: string
+              format: uuid
+              description:  Unique ID of the MachineSize requested when host was created
+            HostName:
+              type: string
+              description:  Name of the associated Host
+            HostID:
+              type: string
+              format: uuid
+              description:  Unique ID of the associated Host
+
+    VolumeUsageEntry:
+      allOf:
+        - $ref: '#/components/schemas/UsageEntryBase'
+        - type: object
+          properties:
+            VolumeName:
+              type: string
+              description:  Name of the volume
+            VolumeID: 
+              type: string
+              format: uuid
+              description:  Unique ID of the volume
+            FlavorName:
+              type: string
+              description:  Name of the volume flavor used when creating the volume
+            FlavorID:
+              type: string
+              format: uuid
+              description:  Unique ID of the volume flavor used when creating the volume
+            Capacity:
+              type: uint64
+#              format: uint64
+              description: The size of the volume in MB 
+
+    UsageEntryBase:
+      type: object
+      properties:
+        ProjectID:
+          type: string
+          format: uuid
+          description: Project ID that contained the host
+        LocationID:
+          $ref: '#/components/schemas/LocationID'
+        Allocated:
+          type: string
+          format: date-time
+          description: Timestamp of when resource (machine or storage) was allocated 
+        Ready:
+          type: string
+          format: date-time
+          description: Timestamp of when resource (host or volume) was ready for use
+        Freed:
+          type: string
+          format: date-time
+          description: Timestamp of when resource (machine or storage) was freed 
+        UsageStart:
+          type: string
+          format: date-time
+          description:  The start of the usage reporting window or when the resource was allocated
+        UsageEnd:
+          type: string
+          format: date-time
+          description:  The end of the usage reporting window or when the resource was freed
+        UsageHours:
+          type: uint64
+#          format: uint64
+          description: The difference between the UsageEnd and UsageStart rounded up to the UsageHours
+        Error:
+          type: string
+          description: Description of error that affected the usage reporting
+    
+    Netmask:
+      enum:
+        - "/8"
+        - "/9"
+        - "/10"
+        - "/11"
+        - "/12"
+        - "/13"
+        - "/14"
+        - "/15"
+        - "/16"
+        - "/17"
+        - "/18"
+        - "/19"
+        - "/20"
+        - "/21"
+        - "/22"
+        - "/23"
+        - "/24"
+        - "/25"
+        - "/26"
+        - "/27"
+        - "/28"
+        - "/29"
+        - "/30"
+        - "/31"
+
+        - "/104"
+        - "/105"
+        - "/106"
+        - "/107"
+        - "/108"
+        - "/109"
+        - "/110"
+        - "/111"
+        - "/112"
+        - "/113"
+        - "/114"
+        - "/115"
+        - "/116"
+        - "/117"
+        - "/118"
+        - "/119"
+        - "/120"
+        - "/121"
+        - "/122"
+        - "/123"
+        - "/124"
+        - "/125"
+        - "/126"
+        - "/127"
+
+    Country:
+      enum:
+        - "USA"
+        - "AFG"
+        - "ALA"
+        - "ALB"
+        - "DZA"
+        - "ASM"
+        - "AND"
+        - "AGO"
+        - "AIA"
+        - "ATA"
+        - "ATG"
+        - "ARG"
+        - "ARM"
+        - "ABW"
+        - "AUS"
+        - "AUT"
+        - "AZE"
+        - "BHS"
+        - "BHR"
+        - "BGD"
+        - "BRB"
+        - "BLR"
+        - "BEL"
+        - "BLZ"
+        - "BEN"
+        - "BMU"
+        - "BTN"
+        - "BOL"
+        - "BES"
+        - "BIH"
+        - "BWA"
+        - "BVT"
+        - "BRA"
+        - "IOT"
+        - "BRN"
+        - "BGR"
+        - "BFA"
+        - "BDI"
+        - "KHM"
+        - "CMR"
+        - "CAN"
+        - "CPV"
+        - "CYM"
+        - "CAF"
+        - "TCD"
+        - "CHL"
+        - "CHN"
+        - "CXR"
+        - "CCK"
+        - "COL"
+        - "COM"
+        - "COG"
+        - "COD"
+        - "COK"
+        - "CRI"
+        - "CIV"
+        - "HRV"
+        - "CUB"
+        - "CUW"
+        - "CYP"
+        - "CZE"
+        - "DNK"
+        - "DJI"
+        - "DMA"
+        - "DOM"
+        - "ECU"
+        - "EGY"
+        - "SLV"
+        - "GNQ"
+        - "ERI"
+        - "EST"
+        - "ETH"
+        - "FLK"
+        - "FRO"
+        - "FJI"
+        - "FIN"
+        - "FRA"
+        - "GUF"
+        - "PYF"
+        - "ATF"
+        - "GAB"
+        - "GMB"
+        - "GEO"
+        - "DEU"
+        - "GHA"
+        - "GIB"
+        - "GRC"
+        - "GRL"
+        - "GRD"
+        - "GLP"
+        - "GUM"
+        - "GTM"
+        - "GGY"
+        - "GIN"
+        - "GNB"
+        - "GUY"
+        - "HTI"
+        - "HMD"
+        - "VAT"
+        - "HND"
+        - "HKG"
+        - "HUN"
+        - "ISL"
+        - "IND"
+        - "IDN"
+        - "IRN"
+        - "IRQ"
+        - "IRL"
+        - "IMN"
+        - "ISR"
+        - "ITA"
+        - "JAM"
+        - "JPN"
+        - "JEY"
+        - "JOR"
+        - "KAZ"
+        - "KEN"
+        - "KIR"
+        - "PRK"
+        - "KOR"
+        - "KWT"
+        - "KGZ"
+        - "LAO"
+        - "LVA"
+        - "LBN"
+        - "LSO"
+        - "LBR"
+        - "LBY"
+        - "LIE"
+        - "LTU"
+        - "LUX"
+        - "MAC"
+        - "MKD"
+        - "MDG"
+        - "MWI"
+        - "MYS"
+        - "MDV"
+        - "MLI"
+        - "MLT"
+        - "MHL"
+        - "MTQ"
+        - "MRT"
+        - "MUS"
+        - "MYT"
+        - "MEX"
+        - "FSM"
+        - "MDA"
+        - "MCO"
+        - "MNG"
+        - "MNE"
+        - "MSR"
+        - "MAR"
+        - "MOZ"
+        - "MMR"
+        - "NAM"
+        - "NRU"
+        - "NPL"
+        - "NLD"
+        - "NCL"
+        - "NZL"
+        - "NIC"
+        - "NER"
+        - "NGA"
+        - "NIU"
+        - "NFK"
+        - "MNP"
+        - "NOR"
+        - "OMN"
+        - "PAK"
+        - "PLW"
+        - "PSE"
+        - "PAN"
+        - "PNG"
+        - "PRY"
+        - "PER"
+        - "PHL"
+        - "PCN"
+        - "POL"
+        - "PRT"
+        - "PRI"
+        - "QAT"
+        - "REU"
+        - "ROU"
+        - "RUS"
+        - "RWA"
+        - "BLM"
+        - "SHN"
+        - "KNA"
+        - "LCA"
+        - "MAF"
+        - "SPM"
+        - "VCT"
+        - "WSM"
+        - "SMR"
+        - "STP"
+        - "SAU"
+        - "SEN"
+        - "SRB"
+        - "SYC"
+        - "SLE"
+        - "SGP"
+        - "SXM"
+        - "SVK"
+        - "SVN"
+        - "SLB"
+        - "SOM"
+        - "ZAF"
+        - "SGS"
+        - "SSD"
+        - "ESP"
+        - "LKA"
+        - "SDN"
+        - "SUR"
+        - "SJM"
+        - "SWZ"
+        - "SWE"
+        - "CHE"
+        - "SYR"
+        - "TWN"
+        - "TJK"
+        - "TZA"
+        - "THA"
+        - "TLS"
+        - "TGO"
+        - "TKL"
+        - "TON"
+        - "TTO"
+        - "TUN"
+        - "TUR"
+        - "TKM"
+        - "TCA"
+        - "TUV"
+        - "UGA"
+        - "UKR"
+        - "ARE"
+        - "GBR"
+        - "UMI"
+        - "URY"
+        - "UZB"
+        - "VUT"
+        - "VEN"
+        - "VNM"
+        - "VGB"
+        - "VIR"
+        - "WLF"
+        - "ESH"
+        - "YEM"
+        - "ZMB"
+        - "ZWE"
+
+
+
+
