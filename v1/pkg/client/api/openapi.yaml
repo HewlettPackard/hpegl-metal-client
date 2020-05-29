@@ -1050,7 +1050,7 @@ paths:
           description: internal error
       summary: Get a usage report
       tags:
-      - usage
+      - usage-reports
 components:
   schemas:
     ResourceBase:

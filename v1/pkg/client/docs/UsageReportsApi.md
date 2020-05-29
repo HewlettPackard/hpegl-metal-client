@@ -1,10 +1,10 @@
-# \UsageApi
+# \UsageReportsApi
 
 All URIs are relative to *http://localhost:8080/rest/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get**](UsageApi.md#Get) | **Get** /usage-reports | Get a usage report
+[**Get**](UsageReportsApi.md#Get) | **Get** /usage-reports | Get a usage report
 
 
 

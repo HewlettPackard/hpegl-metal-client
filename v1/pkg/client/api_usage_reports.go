@@ -23,8 +23,8 @@ var (
 	_ _context.Context
 )
 
-// UsageApiService UsageApi service
-type UsageApiService service
+// UsageReportsApiService UsageReportsApi service
+type UsageReportsApiService service
 
 // GetOpts Optional parameters for the method 'Get'
 type GetOpts struct {
@@ -40,7 +40,7 @@ Creates and returns a usage report based on the parameters passed in the request
  * @param "End" (optional.String) -  End of the billing period, default to now if omitted
 @return UsageReport
 */
-func (a *UsageApiService) Get(ctx _context.Context, start string, localVarOptionals *GetOpts) (UsageReport, *_nethttp.Response, error) {
+func (a *UsageReportsApiService) Get(ctx _context.Context, start string, localVarOptionals *GetOpts) (UsageReport, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
