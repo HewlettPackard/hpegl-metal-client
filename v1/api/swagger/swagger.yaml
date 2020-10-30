@@ -38,6 +38,10 @@ security:
   - quake_auth: []
 
 tags:
+  - name: portal-build
+    description: >
+      Portal build version number for reference purposes. API version is still
+      provided by the url path /v1
   - name: projects
     description: >
       Operations related to Projects.  A Project defines an isolated space for 
