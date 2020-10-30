@@ -18,12 +18,10 @@ info:
     \ machine size options, the storage volume options, data center locations, and\
     \ such that are needed when creating hosts and volumes.\n"
   title: Quake Project Client API
-  version: "0.9"
+  version: "0.91"
 servers:
-- description: for testing purposes
-  url: http://localhost:8080/rest/v1
-- description: live demo portal
-  url: https://portal.hpedemo.net:3002/rest/v1
+- description: "0.91"
+  url: repurpose for client api version
 security:
 - quake_auth: []
 tags:
@@ -53,6 +51,23 @@ tags:
     \ within the project.  \n"
   name: usage-reports
 paths:
+  /portal-build:
+    get:
+      operationId: PortalBuild_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalBuild'
+          description: success
+        "401":
+          description: unauthorized
+        "500":
+          description: internal error
+      summary: Get portal build version
+      tags:
+      - portal-build
   /projects:
     get:
       description: Returns an array of all Project objects that have been created.
@@ -1080,6 +1095,14 @@ components:
           format: date-time
           type: string
       type: object
+    PortalBuild:
+      example:
+        PortalBuild: 0.8.6-dev-218-g0b3b1ad
+      properties:
+        PortalBuild:
+          example: 0.8.6-dev-218-g0b3b1ad
+          type: string
+      type: object
     NewProject:
       example:
         Limits:
@@ -1174,6 +1197,7 @@ components:
       - $ref: '#/components/schemas/SSHKey_allOf'
     NewHost:
       example:
+        MachineID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Description: Description of new Host
         SSHKeyIDs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1229,6 +1253,10 @@ components:
             the MachineInventory array provided by the get /available-resources call
             to find a location with an adequate inventory of machines with the desired
             machine size.
+          format: uuid
+          type: string
+        MachineID:
+          description: The machine ID is normally not used.
           format: uuid
           type: string
         SSHKeyIDs:
@@ -2510,6 +2538,10 @@ components:
           description: UniqueID referring to the machine size used to identify and
             select the machine assigned to the host.  MachineSizes are described by
             the MachineSize array returned by the get /available-resources call.
+          format: uuid
+          type: string
+        MachineID:
+          description: UniqueID referring to the machine on which this host is running.
           format: uuid
           type: string
         SSHKeyIDs:

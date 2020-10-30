@@ -1,6 +1,6 @@
 # \ProjectsApi
 
-All URIs are relative to *http://localhost:8080/rest/v1*
+All URIs are relative to *http://repurpose for client api version*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

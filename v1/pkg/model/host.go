@@ -18,6 +18,7 @@ type NewHost struct {
 	ServiceID     string      // ID of the imaging service to use   [Images]
 	LocationID    string      // ID of the data center (Pod)        [Locations]
 	MachineSizeID string      // ID of the desired machine size     [MachineSizes]
+	MachineID     string      // ID of the desired machine		    [Machine]
 	SSHKeyIDs     []string    // IDs of SSHKeys to be added         [SSHKeys]
 	NetworkIDs    []string    // IDs of networks connected to host  [Networks]
 	VolumeIDs     []string    // IDs of volumes to attach           [Volumes]
@@ -41,6 +42,7 @@ type Host struct {
 	LocationID        string          // ID of the data center (Pod)        [Locations]
 	MachineSizeName   string          // Name of the machine size     [MachineSizes]
 	MachineSizeID     string          // ID of the machine size     [MachineSizes]
+	MachineID         string          // ID of the desired machine		    [Machine]
 	SSHKeyIDs         []string        // IDs of SSHKeys added when imaged     [SSHKeys]
 	SSHAuthorizedKeys []string        // Direct input of Add'l SSH keys
 	NetworkIDs        []string        // IDs of networks connected to host  [Networks]

@@ -3,7 +3,7 @@
 openapi: 3.0.0
 info:
   title: Quake Project Client API
-  version: "0.9"
+  version: "0.91"
   description: >
     This Quake client REST API provides access to bare metal as-a-service
     (BMaaS) within a single project context.  Clients are able to create
@@ -31,10 +31,8 @@ info:
     email: chuck.hudson@hpe.com
 
 servers:
-  - url: http://localhost:8080/rest/v1
-    description: for testing purposes
-  - url: https://portal.hpedemo.net:3002/rest/v1
-    description: live demo portal 
+  - url: repurpose for client api version
+    description: "0.91"
 
 security:
   - quake_auth: []
@@ -75,6 +73,25 @@ tags:
       within the project.  
 
 paths:
+  /portal-build:
+    get:
+      tags:
+        - portal-build
+      summary: Get portal build version
+      operationId: PortalBuild_get
+
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalBuild'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
   /projects:
     get:
       tags:
@@ -1221,6 +1238,12 @@ components:
           format: date-time
           example: '2020-02-27T18:28:02.863Z'
           description: Time when the resource was last modified in the database
+    PortalBuild:
+      type: object
+      properties:
+        PortalBuild:
+          type: string
+          example: 0.8.6-dev-218-g0b3b1ad
 
     NewProject:
       type: object
@@ -1361,6 +1384,11 @@ components:
             detailed description for each machine size.  Use the MachineInventory array provided
             by the get /available-resources call to find a location with an adequate inventory
             of machines with the desired machine size.
+        MachineID:
+          type: string
+          format: uuid
+          description:
+            The machine ID is normally not used.
         SSHKeyIDs: 
           type: array
           description: 
@@ -1453,6 +1481,11 @@ components:
                 UniqueID referring to the machine size used to identify and select the machine assigned to the
                 host.  MachineSizes are described by the MachineSize array returned by the
                 get /available-resources call.
+            MachineID:
+              type: string
+              format: uuid
+              description:  
+                UniqueID referring to the machine on which this host is running.
             SSHKeyIDs: 
               type: array
               description: 

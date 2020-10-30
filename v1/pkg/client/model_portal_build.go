@@ -9,12 +9,7 @@
  */
 
 package client
-// NetworkHostUse Indicates whether use of the network is required, default, or optional.  If the  network is required, any new create host request for that location must include this network among the requested networks.  Default and Optional are both optional networks, but imply whether they should show up initially in pre-populated fields in a graphical user interface. 
-type NetworkHostUse string
-
-// List of NetworkHostUse
-const (
-	NETWORKHOSTUSE_REQUIRED NetworkHostUse = "Required"
-	NETWORKHOSTUSE_DEFAULT NetworkHostUse = "Default"
-	NETWORKHOSTUSE_OPTIONAL NetworkHostUse = "Optional"
-)
+// PortalBuild struct for PortalBuild
+type PortalBuild struct {
+	PortalBuild string `json:"PortalBuild,omitempty"`
+}
