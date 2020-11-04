@@ -9,7 +9,7 @@
  */
 
 package client
-// PortalBuild struct for PortalBuild
-type PortalBuild struct {
-	PortalBuild string `json:"PortalBuild,omitempty"`
+// Versions struct for Versions
+type Versions struct {
+	Build string `json:"Build,omitempty"`
 }

@@ -25,6 +25,9 @@ servers:
 security:
 - quake_auth: []
 tags:
+- description: |
+    Read-only operation to get api server build version information.
+  name: versions
 - description: "Operations related to Projects.  A Project defines an isolated space\
     \ for  creating Hosts, Volumes, and private Networks. A project is often aligned\
     \  to a specific team within an organization or a cluster  \n"
@@ -51,23 +54,23 @@ tags:
     \ within the project.  \n"
   name: usage-reports
 paths:
-  /portal-build:
+  /versions:
     get:
-      operationId: PortalBuild_get
+      operationId: Versions_get
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PortalBuild'
+                $ref: '#/components/schemas/Versions'
           description: success
         "401":
           description: unauthorized
         "500":
           description: internal error
-      summary: Get portal build version
+      summary: Get api server build version
       tags:
-      - portal-build
+      - versions
   /projects:
     get:
       description: Returns an array of all Project objects that have been created.
@@ -1095,11 +1098,11 @@ components:
           format: date-time
           type: string
       type: object
-    PortalBuild:
+    Versions:
       example:
-        PortalBuild: 0.8.6-dev-218-g0b3b1ad
+        Build: 0.8.6-dev-218-g0b3b1ad
       properties:
-        PortalBuild:
+        Build:
           example: 0.8.6-dev-218-g0b3b1ad
           type: string
       type: object

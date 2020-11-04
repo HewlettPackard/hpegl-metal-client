@@ -1,18 +1,18 @@
-# \PortalBuildApi
+# \VersionsApi
 
 All URIs are relative to *http://repurpose for client api version*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get**](PortalBuildApi.md#Get) | **Get** /portal-build | Get portal build version
+[**Get**](VersionsApi.md#Get) | **Get** /versions | Get api server build version
 
 
 
 ## Get
 
-> PortalBuild Get(ctx, )
+> Versions Get(ctx, )
 
-Get portal build version
+Get api server build version
 
 ### Required Parameters
 
@@ -20,7 +20,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**PortalBuild**](PortalBuild.md)
+[**Versions**](Versions.md)
 
 ### Authorization
 

@@ -38,10 +38,9 @@ security:
   - quake_auth: []
 
 tags:
-  - name: portal-build
+  - name: versions
     description: >
-      Portal build version number for reference purposes. API version is still
-      provided by the url path /v1
+      Read-only operation to get api server build version information.
   - name: projects
     description: >
       Operations related to Projects.  A Project defines an isolated space for 
@@ -77,12 +76,12 @@ tags:
       within the project.  
 
 paths:
-  /portal-build:
+  /versions:
     get:
       tags:
-        - portal-build
-      summary: Get portal build version
-      operationId: PortalBuild_get
+        - versions
+      summary: Get api server build version
+      operationId: Versions_get
 
       responses:
         '200':
@@ -90,7 +89,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PortalBuild'
+                $ref: '#/components/schemas/Versions'
         '401':
           description: unauthorized
         '500': 
@@ -1242,10 +1241,10 @@ components:
           format: date-time
           example: '2020-02-27T18:28:02.863Z'
           description: Time when the resource was last modified in the database
-    PortalBuild:
+    Versions:
       type: object
       properties:
-        PortalBuild:
+        Build:
           type: string
           example: 0.8.6-dev-218-g0b3b1ad
 

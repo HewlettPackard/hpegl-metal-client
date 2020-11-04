@@ -22,26 +22,26 @@ var (
 	_ _context.Context
 )
 
-// PortalBuildApiService PortalBuildApi service
-type PortalBuildApiService service
+// VersionsApiService VersionsApi service
+type VersionsApiService service
 
 /*
-Get Get portal build version
+Get Get api server build version
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return PortalBuild
+@return Versions
 */
-func (a *PortalBuildApiService) Get(ctx _context.Context) (PortalBuild, *_nethttp.Response, error) {
+func (a *VersionsApiService) Get(ctx _context.Context) (Versions, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PortalBuild
+		localVarReturnValue  Versions
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/portal-build"
+	localVarPath := a.client.cfg.BasePath + "/versions"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -85,7 +85,7 @@ func (a *PortalBuildApiService) Get(ctx _context.Context) (PortalBuild, *_nethtt
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v PortalBuild
+			var v Versions
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
