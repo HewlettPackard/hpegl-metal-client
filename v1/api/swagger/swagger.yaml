@@ -3,7 +3,7 @@
 openapi: 3.0.0
 info:
   title: Quake Project Client API
-  version: "0.91"
+  version: "1.00"
   description: >
     This Quake client REST API provides access to bare metal as-a-service
     (BMaaS) within a single project context.  Clients are able to create
@@ -32,13 +32,13 @@ info:
 
 servers:
   - url: repurpose for client api version
-    description: "0.91"
+    description: "1.00"
 
 security:
   - quake_auth: []
 
 tags:
-  - name: versions
+  - name: version
     description: >
       Read-only operation to get api server build version information.
   - name: projects
@@ -76,10 +76,10 @@ tags:
       within the project.  
 
 paths:
-  /versions:
+  /version:
     get:
       tags:
-        - versions
+        - version
       summary: Get api server build version
       operationId: Versions_get
 
@@ -89,7 +89,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Versions'
+                $ref: '#/components/schemas/Version'
         '401':
           description: unauthorized
         '500': 
@@ -1241,7 +1241,7 @@ components:
           format: date-time
           example: '2020-02-27T18:28:02.863Z'
           description: Time when the resource was last modified in the database
-    Versions:
+    Version:
       type: object
       properties:
         Build:

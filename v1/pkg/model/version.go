@@ -2,7 +2,7 @@
 
 package model
 
-// Versions provides the api server build version
-type Versions struct {
+// Version provides the api server build version
+type Version struct {
 	Build string
 }

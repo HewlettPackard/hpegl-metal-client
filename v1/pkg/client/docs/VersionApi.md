@@ -1,16 +1,16 @@
-# \VersionsApi
+# \VersionApi
 
 All URIs are relative to *http://repurpose for client api version*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get**](VersionsApi.md#Get) | **Get** /versions | Get api server build version
+[**Get**](VersionApi.md#Get) | **Get** /version | Get api server build version
 
 
 
 ## Get
 
-> Versions Get(ctx, )
+> Version Get(ctx, )
 
 Get api server build version
 
@@ -20,7 +20,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Versions**](Versions.md)
+[**Version**](Version.md)
 
 ### Authorization
 
