@@ -18,7 +18,7 @@ info:
     \ machine size options, the storage volume options, data center locations, and\
     \ such that are needed when creating hosts and volumes.\n"
   title: Quake Project Client API
-  version: "0.91"
+  version: "1.00"
 servers:
 - description: "1.00"
   url: repurpose for client api version

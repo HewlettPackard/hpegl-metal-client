@@ -3,7 +3,7 @@
 openapi: 3.0.0
 info:
   title: Quake Project Client API
-  version: "0.91"
+  version: "1.00"
   description: >
     This Quake client REST API provides access to bare metal as-a-service
     (BMaaS) within a single project context.  Clients are able to create
