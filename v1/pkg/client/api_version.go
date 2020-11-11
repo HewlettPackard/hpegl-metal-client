@@ -22,26 +22,26 @@ var (
 	_ _context.Context
 )
 
-// VersionsApiService VersionsApi service
-type VersionsApiService service
+// VersionApiService VersionApi service
+type VersionApiService service
 
 /*
 Get Get api server build version
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return Versions
+@return Version
 */
-func (a *VersionsApiService) Get(ctx _context.Context) (Versions, *_nethttp.Response, error) {
+func (a *VersionApiService) Get(ctx _context.Context) (Version, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Versions
+		localVarReturnValue  Version
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/versions"
+	localVarPath := a.client.cfg.BasePath + "/version"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -85,7 +85,7 @@ func (a *VersionsApiService) Get(ctx _context.Context) (Versions, *_nethttp.Resp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v Versions
+			var v Version
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

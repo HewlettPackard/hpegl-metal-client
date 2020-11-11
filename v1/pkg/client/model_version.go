@@ -9,7 +9,7 @@
  */
 
 package client
-// Versions struct for Versions
-type Versions struct {
+// Version struct for Version
+type Version struct {
 	Build string `json:"Build,omitempty"`
 }

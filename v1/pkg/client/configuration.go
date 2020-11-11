@@ -90,7 +90,7 @@ func NewConfiguration() *Configuration {
 		Servers:       []ServerConfiguration{
 			{
 				Url: "repurpose for client api version",
-				Description: "0.91",
+				Description: "1.00",
 			},
 		},
 	}

@@ -20,14 +20,14 @@ info:
   title: Quake Project Client API
   version: "0.91"
 servers:
-- description: "0.91"
+- description: "1.00"
   url: repurpose for client api version
 security:
 - quake_auth: []
 tags:
 - description: |
     Read-only operation to get api server build version information.
-  name: versions
+  name: version
 - description: "Operations related to Projects.  A Project defines an isolated space\
     \ for  creating Hosts, Volumes, and private Networks. A project is often aligned\
     \  to a specific team within an organization or a cluster  \n"
@@ -54,7 +54,7 @@ tags:
     \ within the project.  \n"
   name: usage-reports
 paths:
-  /versions:
+  /version:
     get:
       operationId: Versions_get
       responses:
@@ -62,7 +62,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Versions'
+                $ref: '#/components/schemas/Version'
           description: success
         "401":
           description: unauthorized
@@ -70,7 +70,7 @@ paths:
           description: internal error
       summary: Get api server build version
       tags:
-      - versions
+      - version
   /projects:
     get:
       description: Returns an array of all Project objects that have been created.
@@ -1098,7 +1098,7 @@ components:
           format: date-time
           type: string
       type: object
-    Versions:
+    Version:
       example:
         Build: 0.8.6-dev-218-g0b3b1ad
       properties:
