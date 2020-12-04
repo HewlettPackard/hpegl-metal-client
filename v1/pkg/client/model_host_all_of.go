@@ -1,7 +1,7 @@
 /*
  * Quake Project Client API
  *
- * This Quake client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes. 
+ * This Quake client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.
  *
  * API version: 1.00
  * Contact: chuck.hudson@hpe.com
@@ -9,9 +9,11 @@
  */
 
 package client
+
 import (
 	"time"
 )
+
 // HostAllOf struct for HostAllOf
 type HostAllOf struct {
 	Description string `json:"Description,omitempty"`
@@ -38,20 +40,20 @@ type HostAllOf struct {
 	// User-provided data attached to the image configuration data when the host was provisioned
 	UserData string `json:"UserData,omitempty"`
 	// User-provided data to represent the identity of the host within an application environment. For example, this could be set to represent the Kubernetes node ID if the host is provisioned as a Kubernetes node.
-	NodeID string `json:"NodeID,omitempty"`
+	NodeID      string          `json:"NodeID,omitempty"`
 	ISCSIConfig HostIscsiConfig `json:"ISCSIConfig,omitempty"`
 	// Details describing host network connections
 	Connections []HostConnection `json:"Connections,omitempty"`
 	// True if the Host has been deleted.
 	Deleted bool `json:"Deleted,omitempty"`
 	// Describes if the portal is in active communication to the device
-	PortalCommOkay bool `json:"PortalCommOkay,omitempty"`
-	PowerStatus HostPowerState `json:"PowerStatus,omitempty"`
-	State HostState `json:"State,omitempty"`
-	Substate HostSubstate `json:"Substate,omitempty"`
-	StateTime time.Time `json:"StateTime,omitempty"`
-	SubstateTime time.Time `json:"SubstateTime,omitempty"`
-	Progress uint64 `json:"Progress,omitempty"`
-	Alert bool `json:"Alert,omitempty"`
-	AlertInfo []HostAlertInfo `json:"AlertInfo,omitempty"`
+	PortalCommOkay bool            `json:"PortalCommOkay,omitempty"`
+	PowerStatus    HostPowerState  `json:"PowerStatus,omitempty"`
+	State          HostState       `json:"State,omitempty"`
+	Substate       HostSubstate    `json:"Substate,omitempty"`
+	StateTime      time.Time       `json:"StateTime,omitempty"`
+	SubstateTime   time.Time       `json:"SubstateTime,omitempty"`
+	Progress       uint64          `json:"Progress,omitempty"`
+	Alert          bool            `json:"Alert,omitempty"`
+	AlertInfo      []HostAlertInfo `json:"AlertInfo,omitempty"`
 }

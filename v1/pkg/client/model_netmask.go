@@ -1,7 +1,7 @@
 /*
  * Quake Project Client API
  *
- * This Quake client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes. 
+ * This Quake client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.
  *
  * API version: 1.00
  * Contact: chuck.hudson@hpe.com
@@ -9,35 +9,36 @@
  */
 
 package client
+
 // Netmask the model 'Netmask'
 type Netmask string
 
 // List of Netmask
 const (
-	NETMASK__8 Netmask = "/8"
-	NETMASK__9 Netmask = "/9"
-	NETMASK__10 Netmask = "/10"
-	NETMASK__11 Netmask = "/11"
-	NETMASK__12 Netmask = "/12"
-	NETMASK__13 Netmask = "/13"
-	NETMASK__14 Netmask = "/14"
-	NETMASK__15 Netmask = "/15"
-	NETMASK__16 Netmask = "/16"
-	NETMASK__17 Netmask = "/17"
-	NETMASK__18 Netmask = "/18"
-	NETMASK__19 Netmask = "/19"
-	NETMASK__20 Netmask = "/20"
-	NETMASK__21 Netmask = "/21"
-	NETMASK__22 Netmask = "/22"
-	NETMASK__23 Netmask = "/23"
-	NETMASK__24 Netmask = "/24"
-	NETMASK__25 Netmask = "/25"
-	NETMASK__26 Netmask = "/26"
-	NETMASK__27 Netmask = "/27"
-	NETMASK__28 Netmask = "/28"
-	NETMASK__29 Netmask = "/29"
-	NETMASK__30 Netmask = "/30"
-	NETMASK__31 Netmask = "/31"
+	NETMASK__8   Netmask = "/8"
+	NETMASK__9   Netmask = "/9"
+	NETMASK__10  Netmask = "/10"
+	NETMASK__11  Netmask = "/11"
+	NETMASK__12  Netmask = "/12"
+	NETMASK__13  Netmask = "/13"
+	NETMASK__14  Netmask = "/14"
+	NETMASK__15  Netmask = "/15"
+	NETMASK__16  Netmask = "/16"
+	NETMASK__17  Netmask = "/17"
+	NETMASK__18  Netmask = "/18"
+	NETMASK__19  Netmask = "/19"
+	NETMASK__20  Netmask = "/20"
+	NETMASK__21  Netmask = "/21"
+	NETMASK__22  Netmask = "/22"
+	NETMASK__23  Netmask = "/23"
+	NETMASK__24  Netmask = "/24"
+	NETMASK__25  Netmask = "/25"
+	NETMASK__26  Netmask = "/26"
+	NETMASK__27  Netmask = "/27"
+	NETMASK__28  Netmask = "/28"
+	NETMASK__29  Netmask = "/29"
+	NETMASK__30  Netmask = "/30"
+	NETMASK__31  Netmask = "/31"
 	NETMASK__104 Netmask = "/104"
 	NETMASK__105 Netmask = "/105"
 	NETMASK__106 Netmask = "/106"

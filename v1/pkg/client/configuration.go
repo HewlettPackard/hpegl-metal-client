@@ -1,7 +1,7 @@
 /*
  * Quake Project Client API
  *
- * This Quake client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes. 
+ * This Quake client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.
  *
  * API version: 1.00
  * Contact: chuck.hudson@hpe.com
@@ -38,7 +38,6 @@ var (
 
 	// ContextAPIKey takes an APIKey as authentication for the request
 	ContextAPIKey = contextKey("apikey")
-
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
@@ -53,7 +52,6 @@ type APIKey struct {
 	Prefix string
 }
 
-
 // ServerVariable stores the information about a server variable
 type ServerVariable struct {
 	Description  string
@@ -63,9 +61,9 @@ type ServerVariable struct {
 
 // ServerConfiguration stores the information about a server
 type ServerConfiguration struct {
-	Url string
+	Url         string
 	Description string
-	Variables map[string]ServerVariable
+	Variables   map[string]ServerVariable
 }
 
 // Configuration stores the configuration of the API client
@@ -87,9 +85,9 @@ func NewConfiguration() *Configuration {
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "OpenAPI-Generator/1.0.0/go",
 		Debug:         false,
-		Servers:       []ServerConfiguration{
+		Servers: []ServerConfiguration{
 			{
-				Url: "repurpose for client api version",
+				Url:         "repurpose for client api version",
 				Description: "1.00",
 			},
 		},
@@ -105,7 +103,7 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 // ServerUrl returns URL based on server settings
 func (c *Configuration) ServerUrl(index int, variables map[string]string) (string, error) {
 	if index < 0 || len(c.Servers) <= index {
-		return "", fmt.Errorf("Index %v out of range %v", index, len(c.Servers) - 1)
+		return "", fmt.Errorf("Index %v out of range %v", index, len(c.Servers)-1)
 	}
 	server := c.Servers[index]
 	url := server.Url
