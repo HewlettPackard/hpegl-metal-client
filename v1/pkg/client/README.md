@@ -50,6 +50,7 @@ Class | Method | HTTP request | Description
 *NetworksApi* | [**GetByID**](docs/NetworksApi.md#getbyid) | **Get** /networks/{networkId} | Retrieve network by ID
 *NetworksApi* | [**List**](docs/NetworksApi.md#list) | **Get** /networks | List all networks in project
 *NetworksApi* | [**Update**](docs/NetworksApi.md#update) | **Put** /networks/{networkId} | Update an existing network.  NOT YET SUPPORTED
+*ProjectInfoApi* | [**List**](docs/ProjectInfoApi.md#list) | **Get** /project-info | List of all Projects info within an organization or cluster for which user is authorized.
 *ProjectsApi* | [**Add**](docs/ProjectsApi.md#add) | **Post** /projects | Create a new project
 *ProjectsApi* | [**Delete**](docs/ProjectsApi.md#delete) | **Delete** /projects/{projectId} | Delete a Project
 *ProjectsApi* | [**GetByID**](docs/ProjectsApi.md#getbyid) | **Get** /projects/{projectId} | Retrieve a project by its ID
@@ -97,6 +98,7 @@ Class | Method | HTTP request | Description
  - [LocationInfo](docs/LocationInfo.md)
  - [MachineInventory](docs/MachineInventory.md)
  - [MachineSize](docs/MachineSize.md)
+ - [MachineSizeInfo](docs/MachineSizeInfo.md)
  - [Netmask](docs/Netmask.md)
  - [Network](docs/Network.md)
  - [NetworkAllOf](docs/NetworkAllOf.md)
@@ -110,6 +112,8 @@ Class | Method | HTTP request | Description
  - [Profile](docs/Profile.md)
  - [Project](docs/Project.md)
  - [ProjectAllOf](docs/ProjectAllOf.md)
+ - [ProjectInfo](docs/ProjectInfo.md)
+ - [ProjectsInfo](docs/ProjectsInfo.md)
  - [ResourceBase](docs/ResourceBase.md)
  - [SshKey](docs/SshKey.md)
  - [SshKeyAllOf](docs/SshKeyAllOf.md)
@@ -125,6 +129,7 @@ Class | Method | HTTP request | Description
  - [VolumeAttachment](docs/VolumeAttachment.md)
  - [VolumeAttachmentAllOf](docs/VolumeAttachmentAllOf.md)
  - [VolumeFlavor](docs/VolumeFlavor.md)
+ - [VolumeFlavorsInfo](docs/VolumeFlavorsInfo.md)
  - [VolumeInfo](docs/VolumeInfo.md)
  - [VolumeState](docs/VolumeState.md)
  - [VolumeStatus](docs/VolumeStatus.md)

@@ -37,3 +37,48 @@ type Profile struct {
 	PhoneNumber   string
 	PhoneVerified bool
 }
+
+// ProjectsInfo for information about projects
+type ProjectsInfo struct {
+	Projects      []ProjectInfo      `json:"projects"`
+	MachineSizes  []MachineSizeInfo  `json:"machine_sizes"`
+	VolumeFlavors []VolumeFlavorInfo `json:"volume_flavors"`
+}
+
+// ProjectInfo for inforamtino about a project.
+type ProjectInfo struct {
+	ID             string            `json:"id"`
+	Name           string            `json:"name"`
+	Description    string            `json:"description"`
+	NumHosts       int               `json:"num_hosts"`
+	NumVolumes     int               `json:"num_volumes"`
+	TotalStorageGB int               `json:"total_storage"` //GiB
+	Status         ProjectStatusEnum `json:"status"`
+}
+
+// ProjectStatusEnum indicates the status of a project
+// TODO Needs to be refined once the project status is finalized.
+type ProjectStatusEnum string
+
+const (
+	// StatusEnabled indicates that the function or resource is enabled.
+	StatusEnabled ProjectStatusEnum = "Enabled"
+	// StatusDisabled indicates that the function or resource is enabled.
+	StatusDisabled ProjectStatusEnum = "Disabled"
+)
+
+// MachineSizeInfo for information about machine sizes
+type MachineSizeInfo struct {
+	Name         string `json:"name"`
+	ProjectsUsed int    `json:"projects_used"`
+	OtherUsed    int    `json:"other_used"`
+	Available    int    `json:"available"`
+}
+
+// VolumeFlavorInfo for information about volume flavor
+type VolumeFlavorInfo struct {
+	Name         string `json:"name"`
+	ProjectsUsed int    `json:"projects_used"` //GiB
+	OtherUsed    int    `json:"other_used"`    //GiB
+	Available    int    `json:"available"`     //GiB
+}
