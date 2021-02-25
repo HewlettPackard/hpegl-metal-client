@@ -56,6 +56,8 @@ type APIClient struct {
 
 	ProjectsApi *ProjectsApiService
 
+	ProjectsInfoApi *ProjectsInfoApiService
+
 	SshkeysApi *SshkeysApiService
 
 	UsageReportsApi *UsageReportsApiService
@@ -87,6 +89,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.HostsApi = (*HostsApiService)(&c.common)
 	c.NetworksApi = (*NetworksApiService)(&c.common)
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
+	c.ProjectsInfoApi = (*ProjectsInfoApiService)(&c.common)
 	c.SshkeysApi = (*SshkeysApiService)(&c.common)
 	c.UsageReportsApi = (*UsageReportsApiService)(&c.common)
 	c.VersionApi = (*VersionApiService)(&c.common)

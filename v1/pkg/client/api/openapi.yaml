@@ -220,6 +220,29 @@ paths:
       summary: Update a project by its ID
       tags:
       - projects
+  /projects-info:
+    get:
+      description: Returns an object with info on projects that have been created.
+        This includes information on machine sizes and volumes falvors used by the
+        projects.
+      operationId: ProjectsInfo_list
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProjectsInfo'
+                type: array
+          description: success
+        "401":
+          description: unauthorized
+        "500":
+          description: internal error
+      summary: List of all projects info within an organization or cluster for which
+        user is authorized.
+      tags:
+      - projects-info
   /sshkeys:
     get:
       description: Returns an array of all SSHKey objects defined within the project.
@@ -1139,6 +1162,115 @@ components:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/Project_allOf'
+    ProjectsInfo:
+      example:
+        MachineSizes:
+        - ProjectsUsed: ""
+          Available: ""
+          OtherUsed: ""
+          Name: Name
+        - ProjectsUsed: ""
+          Available: ""
+          OtherUsed: ""
+          Name: Name
+        VolumeFlavors:
+        - ProjectsUsed: ""
+          Available: ""
+          OtherUsed: ""
+          Name: Name
+        - ProjectsUsed: ""
+          Available: ""
+          OtherUsed: ""
+          Name: Name
+        Projects:
+        - Status: Enable
+          NumVolumes: ""
+          Description: Description
+          TotalStorageGB: ""
+          NumHosts: ""
+          ID: ID
+          Name: Name
+        - Status: Enable
+          NumVolumes: ""
+          Description: Description
+          TotalStorageGB: ""
+          NumHosts: ""
+          ID: ID
+          Name: Name
+      properties:
+        Projects:
+          items:
+            $ref: '#/components/schemas/ProjectInfo'
+          type: array
+        MachineSizes:
+          items:
+            $ref: '#/components/schemas/MachineSizeInfo'
+          type: array
+        VolumeFlavors:
+          items:
+            $ref: '#/components/schemas/VolumeFlavorsInfo'
+          type: array
+      type: object
+    ProjectInfo:
+      example:
+        Status: Enable
+        NumVolumes: ""
+        Description: Description
+        TotalStorageGB: ""
+        NumHosts: ""
+        ID: ID
+        Name: Name
+      properties:
+        ID:
+          type: string
+        Name:
+          type: string
+        Description:
+          type: string
+        NumHosts:
+          type: int32
+        NumVolumes:
+          type: int32
+        TotalStorageGB:
+          type: int32
+        Status:
+          enum:
+          - Enable
+          - Disable
+          type: string
+      type: object
+    MachineSizeInfo:
+      example:
+        ProjectsUsed: ""
+        Available: ""
+        OtherUsed: ""
+        Name: Name
+      properties:
+        Name:
+          type: string
+        ProjectsUsed:
+          type: int32
+        OtherUsed:
+          type: int32
+        Available:
+          type: int32
+      type: object
+    VolumeFlavorsInfo:
+      example:
+        ProjectsUsed: ""
+        Available: ""
+        OtherUsed: ""
+        Name: Name
+      properties:
+        Name:
+          type: string
+        ProjectsUsed:
+          type: int32
+        OtherUsed:
+          type: int32
+        Available:
+          type: int32
+      type: object
     Profile:
       example:
         TeamDesc: TeamDesc

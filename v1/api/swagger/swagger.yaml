@@ -254,6 +254,29 @@ paths:
           description: id not found
         '500': 
           description: internal error
+  
+  /projects-info:
+    get:
+      tags: 
+        - projects-info
+      summary: List of all projects info within an organization or cluster for which user is authorized.
+      description:
+        Returns an object with info on projects that have been created.
+        This includes information on machine sizes and volumes falvors used by the projects.
+      operationId: ProjectsInfo_list
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectsInfo'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
 
   /sshkeys:
     get:
@@ -1284,15 +1307,72 @@ components:
                 server and storage
               $ref: '#/components/schemas/Limits'  
 
+    ProjectsInfo:
+      type: object
+      properties:
+        Projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectInfo'
+        MachineSizes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachineSizeInfo'
+        VolumeFlavors:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolumeFlavorsInfo'
+
+    ProjectInfo:
+      type: object
+      properties:
+        ID:
+          type: string
+        Name:
+          type: string
+        Description:
+          type: string
+        NumHosts:
+          type: int32
+        NumVolumes:
+          type: int32
+        TotalStorageGB:
+          type: int32
+        Status:
+          type: string
+          enum: ['Enable', 'Disable']
+
+    MachineSizeInfo:
+      type: object
+      properties:
+        Name: 
+          type: string
+        ProjectsUsed:
+          type: int32
+        OtherUsed:
+          type: int32
+        Available:
+          type: int32
+          
+    VolumeFlavorsInfo:
+      type: object
+      properties:
+        Name: 
+          type: string
+        ProjectsUsed:
+          type: int32
+        OtherUsed:
+          type: int32
+        Available:
+          type: int32
+
     Profile:
       type: object
       properties:
         TeamName:
           type: string
-          example:
         TeamDesc:
           type: string
-          example:
         Company:
           type: string
         Address:

@@ -55,6 +55,7 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**GetByID**](docs/ProjectsApi.md#getbyid) | **Get** /projects/{projectId} | Retrieve a project by its ID
 *ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
+*ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
 *SshkeysApi* | [**Add**](docs/SshkeysApi.md#add) | **Post** /sshkeys | Add a new SSH Key
 *SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID
@@ -97,6 +98,7 @@ Class | Method | HTTP request | Description
  - [LocationInfo](docs/LocationInfo.md)
  - [MachineInventory](docs/MachineInventory.md)
  - [MachineSize](docs/MachineSize.md)
+ - [MachineSizeInfo](docs/MachineSizeInfo.md)
  - [Netmask](docs/Netmask.md)
  - [Network](docs/Network.md)
  - [NetworkAllOf](docs/NetworkAllOf.md)
@@ -110,6 +112,8 @@ Class | Method | HTTP request | Description
  - [Profile](docs/Profile.md)
  - [Project](docs/Project.md)
  - [ProjectAllOf](docs/ProjectAllOf.md)
+ - [ProjectInfo](docs/ProjectInfo.md)
+ - [ProjectsInfo](docs/ProjectsInfo.md)
  - [ResourceBase](docs/ResourceBase.md)
  - [SshKey](docs/SshKey.md)
  - [SshKeyAllOf](docs/SshKeyAllOf.md)
@@ -125,6 +129,7 @@ Class | Method | HTTP request | Description
  - [VolumeAttachment](docs/VolumeAttachment.md)
  - [VolumeAttachmentAllOf](docs/VolumeAttachmentAllOf.md)
  - [VolumeFlavor](docs/VolumeFlavor.md)
+ - [VolumeFlavorsInfo](docs/VolumeFlavorsInfo.md)
  - [VolumeInfo](docs/VolumeInfo.md)
  - [VolumeState](docs/VolumeState.md)
  - [VolumeStatus](docs/VolumeStatus.md)
