@@ -220,7 +220,7 @@ paths:
       summary: Update a project by its ID
       tags:
       - projects
-  /project-info:
+  /projects-info:
     get:
       description: Returns an object with info on projects that have been created.
         This includes information on machine sizes and volumes falvors used by the
@@ -239,10 +239,10 @@ paths:
           description: unauthorized
         "500":
           description: internal error
-      summary: List of all Projects info within an organization or cluster for which
+      summary: List of all projects info within an organization or cluster for which
         user is authorized.
       tags:
-      - project-info
+      - projects-info
   /sshkeys:
     get:
       description: Returns an array of all SSHKey objects defined within the project.

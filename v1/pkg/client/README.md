@@ -50,12 +50,12 @@ Class | Method | HTTP request | Description
 *NetworksApi* | [**GetByID**](docs/NetworksApi.md#getbyid) | **Get** /networks/{networkId} | Retrieve network by ID
 *NetworksApi* | [**List**](docs/NetworksApi.md#list) | **Get** /networks | List all networks in project
 *NetworksApi* | [**Update**](docs/NetworksApi.md#update) | **Put** /networks/{networkId} | Update an existing network.  NOT YET SUPPORTED
-*ProjectInfoApi* | [**List**](docs/ProjectInfoApi.md#list) | **Get** /project-info | List of all Projects info within an organization or cluster for which user is authorized.
 *ProjectsApi* | [**Add**](docs/ProjectsApi.md#add) | **Post** /projects | Create a new project
 *ProjectsApi* | [**Delete**](docs/ProjectsApi.md#delete) | **Delete** /projects/{projectId} | Delete a Project
 *ProjectsApi* | [**GetByID**](docs/ProjectsApi.md#getbyid) | **Get** /projects/{projectId} | Retrieve a project by its ID
 *ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
+*ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
 *SshkeysApi* | [**Add**](docs/SshkeysApi.md#add) | **Post** /sshkeys | Add a new SSH Key
 *SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID

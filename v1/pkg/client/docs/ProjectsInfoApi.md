@@ -1,10 +1,10 @@
-# \ProjectInfoApi
+# \ProjectsInfoApi
 
 All URIs are relative to *http://repurpose for client api version*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**List**](ProjectInfoApi.md#List) | **Get** /project-info | List of all Projects info within an organization or cluster for which user is authorized.
+[**List**](ProjectsInfoApi.md#List) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > []ProjectsInfo List(ctx, )
 
-List of all Projects info within an organization or cluster for which user is authorized.
+List of all projects info within an organization or cluster for which user is authorized.
 
 Returns an object with info on projects that have been created. This includes information on machine sizes and volumes falvors used by the projects.
 

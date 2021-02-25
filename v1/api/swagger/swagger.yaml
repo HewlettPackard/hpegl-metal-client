@@ -255,11 +255,11 @@ paths:
         '500': 
           description: internal error
   
-  /project-info:
+  /projects-info:
     get:
       tags: 
-        - project-info
-      summary: List of all Projects info within an organization or cluster for which user is authorized.
+        - projects-info
+      summary: List of all projects info within an organization or cluster for which user is authorized.
       description:
         Returns an object with info on projects that have been created.
         This includes information on machine sizes and volumes falvors used by the projects.
