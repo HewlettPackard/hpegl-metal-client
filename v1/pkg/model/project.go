@@ -40,20 +40,20 @@ type Profile struct {
 
 // ProjectsInfo for information about projects.
 type ProjectsInfo struct {
-	Projects      []ProjectInfo      `json:"projects"`
-	MachineSizes  []MachineSizeInfo  `json:"machine_sizes"`
-	VolumeFlavors []VolumeFlavorInfo `json:"volume_flavors"`
+	Projects      []ProjectInfo
+	MachineSizes  []MachineSizeInfo
+	VolumeFlavors []VolumeFlavorInfo
 }
 
 // ProjectInfo for information about a project.
 type ProjectInfo struct {
-	ID             string            `json:"id"`
-	Name           string            `json:"name"`
-	Description    string            `json:"description"`
-	NumHosts       int               `json:"num_hosts"`
-	NumVolumes     int               `json:"num_volumes"`
-	TotalStorageGB int               `json:"total_storage"` //GiB
-	Status         ProjectStatusEnum `json:"status"`
+	ID             string
+	Name           string
+	Description    string
+	NumHosts       int
+	NumVolumes     int
+	TotalStorageGB int
+	Status         ProjectStatusEnum
 }
 
 // ProjectStatusEnum indicates the status of a project.
@@ -69,16 +69,16 @@ const (
 
 // MachineSizeInfo for information about machine sizes.
 type MachineSizeInfo struct {
-	Name         string `json:"name"`
-	ProjectsUsed int    `json:"projects_used"`
-	OtherUsed    int    `json:"other_used"`
-	Available    int    `json:"available"`
+	Name         string
+	ProjectsUsed int
+	OtherUsed    int
+	Available    int
 }
 
 // VolumeFlavorInfo for information about volume flavor.
 type VolumeFlavorInfo struct {
-	Name         string `json:"name"`
-	ProjectsUsed int    `json:"projects_used"` //GiB
-	OtherUsed    int    `json:"other_used"`    //GiB
-	Available    int    `json:"available"`     //GiB
+	Name         string
+	ProjectsUsed int //GiB
+	OtherUsed    int //GiB
+	Available    int //GiB
 }
