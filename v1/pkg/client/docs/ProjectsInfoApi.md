@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## List
 
-> []ProjectsInfo List(ctx, )
+> ProjectsInfo List(ctx, )
 
 List of all projects info within an organization or cluster for which user is authorized.
 
@@ -22,7 +22,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**[]ProjectsInfo**](ProjectsInfo.md)
+[**ProjectsInfo**](ProjectsInfo.md)
 
 ### Authorization
 

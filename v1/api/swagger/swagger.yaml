@@ -270,9 +270,8 @@ paths:
           content: 
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ProjectsInfo'
+                type: object
+                $ref: '#/components/schemas/ProjectsInfo'
         '401':
           description: unauthorized
         '500': 

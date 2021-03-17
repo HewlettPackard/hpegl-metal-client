@@ -231,9 +231,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/ProjectsInfo'
-                type: array
+                $ref: '#/components/schemas/ProjectsInfo'
           description: success
         "401":
           description: unauthorized

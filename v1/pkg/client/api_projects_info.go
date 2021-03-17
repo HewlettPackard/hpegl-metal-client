@@ -29,16 +29,16 @@ type ProjectsInfoApiService service
 List List of all projects info within an organization or cluster for which user is authorized.
 Returns an object with info on projects that have been created. This includes information on machine sizes and volumes falvors used by the projects.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []ProjectsInfo
+@return ProjectsInfo
 */
-func (a *ProjectsInfoApiService) List(ctx _context.Context) ([]ProjectsInfo, *_nethttp.Response, error) {
+func (a *ProjectsInfoApiService) List(ctx _context.Context) (ProjectsInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []ProjectsInfo
+		localVarReturnValue  ProjectsInfo
 	)
 
 	// create path and map variables
@@ -86,7 +86,7 @@ func (a *ProjectsInfoApiService) List(ctx _context.Context) ([]ProjectsInfo, *_n
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v []ProjectsInfo
+			var v ProjectsInfo
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
