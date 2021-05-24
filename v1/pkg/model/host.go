@@ -1,11 +1,11 @@
-// Copyright (c) 2016-2020 Hewlett Packard Enterprise Development LP.
+// Copyright (c) 2016-2021 Hewlett Packard Enterprise Development LP.
 
 package model
 
 import (
 	"time"
 
-	"github.com/quattronetworks/quake-client/v1/pkg/model/enums/netmask"
+	"github.com/hpe-hcss/quake-client/v1/pkg/model/enums/netmask"
 )
 
 // NewHost defines the "post /hosts" body when creating a Host.  Field IDs
