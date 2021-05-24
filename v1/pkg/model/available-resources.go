@@ -1,9 +1,9 @@
-// Copyright (c) 2016-2020 Hewlett Packard Enterprise Development LP.
+// Copyright (c) 2016-2021 Hewlett Packard Enterprise Development LP.
 
 package model
 
 import (
-	"github.com/quattronetworks/quake-client/v1/pkg/model/enums/country"
+	"github.com/hpe-hcss/quake-client/v1/pkg/model/enums/country"
 )
 
 // AvailableResources Lists the information needed for client to create host
