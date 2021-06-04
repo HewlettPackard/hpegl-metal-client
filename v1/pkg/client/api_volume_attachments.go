@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -25,6 +27,9 @@ var (
 
 // VolumeAttachmentsApiService VolumeAttachmentsApi service
 type VolumeAttachmentsApiService service
+
+// Ensure that the service implements the API.
+var _ VolumeAttachmentsAPI = (*VolumeAttachmentsApiService)(nil)
 
 /*
 GetByID Retrieve volume attachment by ID

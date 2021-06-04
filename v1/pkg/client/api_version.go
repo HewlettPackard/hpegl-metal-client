@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -24,6 +26,9 @@ var (
 
 // VersionApiService VersionApi service
 type VersionApiService service
+
+// Ensure that the service implements the API.
+var _ VersionAPI = (*VersionApiService)(nil)
 
 /*
 Get Get api server build version

@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -24,6 +26,9 @@ var (
 
 // ProjectsInfoApiService ProjectsInfoApi service
 type ProjectsInfoApiService service
+
+// Ensure that the service implements the API.
+var _ ProjectsInfoAPI = (*ProjectsInfoApiService)(nil)
 
 /*
 List List of all projects info within an organization or cluster for which user is authorized.

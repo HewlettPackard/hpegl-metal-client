@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -25,6 +27,9 @@ var (
 
 // VolumesApiService VolumesApi service
 type VolumesApiService service
+
+// Ensure that the service implements the API.
+var _ VolumesAPI = (*VolumesApiService)(nil)
 
 /*
 Add Add a new volume

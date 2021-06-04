@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -25,6 +27,9 @@ var (
 
 // UsageReportsApiService UsageReportsApi service
 type UsageReportsApiService service
+
+// Ensure that the service implements the API.
+var _ UsageReportsAPI = (*UsageReportsApiService)(nil)
 
 // GetOpts Optional parameters for the method 'Get'
 type GetOpts struct {

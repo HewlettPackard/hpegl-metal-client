@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -24,6 +26,9 @@ var (
 
 // AvailableResourcesApiService AvailableResourcesApi service
 type AvailableResourcesApiService service
+
+// Ensure that the service implements the API.
+var _ AvailableResourcesAPI = (*AvailableResourcesApiService)(nil)
 
 /*
 List Get lists of available resources for creating hosts and volumes

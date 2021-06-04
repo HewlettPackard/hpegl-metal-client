@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -25,6 +27,9 @@ var (
 
 // NetworksApiService NetworksApi service
 type NetworksApiService service
+
+// Ensure that the service implements the API.
+var _ NetworksAPI = (*NetworksApiService)(nil)
 
 /*
 Add Add a new network

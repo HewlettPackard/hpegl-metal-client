@@ -1,3 +1,5 @@
+// (C) Copyright 2021 Hewlett Packard Enterprise Development LP
+
 /*
  * Quake Project Client API
  *
@@ -25,6 +27,9 @@ var (
 
 // HostsApiService HostsApi service
 type HostsApiService service
+
+// Ensure that the service implements the API.
+var _ HostsAPI = (*HostsApiService)(nil)
 
 /*
 Add Create a new Host
