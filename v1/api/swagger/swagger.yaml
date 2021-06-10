@@ -3,7 +3,7 @@
 openapi: 3.0.0
 info:
   title: Quake Project Client API
-  version: "1.00"
+  version: "1.2.1"
   description: >
     This Quake client REST API provides access to bare metal as-a-service
     (BMaaS) within a single project context.  Clients are able to create
@@ -74,6 +74,12 @@ tags:
     description: >
       Operations related to retrieving information about resource usage
       within the project.  
+  - name: projects-info
+    description: >
+      Operations related to listing information related to projects.
+  - name: ippools
+    description: >
+      Operations related to IP pools.  
 
 paths:
   /version:
@@ -1185,7 +1191,6 @@ paths:
 
   # usage-reports             
   /usage-reports:
-
     get:
       tags:
         - usage-reports
@@ -1224,6 +1229,179 @@ paths:
         '500': 
           description: internal error
 
+  /ippools:
+    get:
+      tags:
+        - ippools
+      summary: List all ip pools in project
+      description:
+         Returns an array of all ip pool objects defined within the project.
+      operationId: IPPool_list
+
+      responses:
+        '200':
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IPPool'
+        '401':
+          description: unauthorized
+        '500': 
+          description: internal error
+
+  /ippools/{ippoolId}:
+    summary: Operations on a single IP pool
+
+    get:
+      tags:
+        - ippools
+      summary: Retrieve IP pool by ID
+      description: Returns a single ip pool with matching ID
+      operationId: IPPool_getByID
+      parameters:
+      - name: ippoolId
+        in: path
+        description: ID of IP pool to return
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPPool'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+    put:
+      tags:
+        - ippools
+      summary: Update IP pool by ID
+      description: Update a single ip pool with matching ID
+      operationId: IPPool_update
+      parameters:
+      - name: ippoolId
+        in: path
+        description: ID of IP pool to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        description: Update IPPool
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/IPPoolUpdate'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPPool'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+
+  /ippools/{ippoolId}/allocation:
+    summary: Operations on a single IP pool
+
+    post:
+      tags:
+        - ippools
+      summary: Allocate IPs from the pool
+      description: Allocate IPs from the pool
+      operationId: IPPool_allocateIPs
+      parameters:
+      - name: ippoolId
+        in: path
+        description: ID of IP pool to allocate IPs
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        description: IPs being requested starting from an optional base IP and their usage
+        content:
+          application/json:
+            schema:
+               type: array
+               items:
+                $ref: '#/components/schemas/IPAllocation'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPPool'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
+
+  /ippools/{ippoolId}/return:
+    summary: Operations on a single IP pool
+
+    post:
+      tags:
+        - ippools
+      summary: Return IPs to the pool
+      description: Return IPs to the pool
+      operationId: IPPool_returnIPs
+      parameters:
+      - name: ippoolId
+        in: path
+        description: ID of IP pool to return IPs
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        description: IP returned to the pool
+        content:
+          application/json:
+            schema:
+               type: array
+               items:
+                type: string
+                example: "15.0.0.1"
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPPool'
+        '400':
+          description: invalid id
+        '401':
+          description: unauthorized
+        '404':
+          description: id not found
+        '500': 
+          description: internal error
 
 components:
   securitySchemes: 
@@ -1234,7 +1412,6 @@ components:
       bearerFormat: JWT
 
   schemas:
-
     # ResourceBase is used in each DB resource
     ResourceBase:
       type: object
@@ -1263,13 +1440,14 @@ components:
           format: date-time
           example: '2020-02-27T18:28:02.863Z'
           description: Time when the resource was last modified in the database
+          
     Version:
       type: object
       properties:
         Build:
           type: string
           example: 0.8.6-dev-218-g0b3b1ad
-
+          
     NewProject:
       type: object
       required:
@@ -2357,6 +2535,7 @@ components:
           description: Description of error that affected the usage reporting
     
     Netmask:
+      type: string
       enum:
         - "/8"
         - "/9"
@@ -2660,6 +2839,213 @@ components:
         - "ZMB"
         - "ZWE"
 
+    IPPool: 
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            # Resource-specific Attributes
+            Description:
+              type: string
+              example: Description of IP pool
+            IPVersion:
+              $ref: '#/components/schemas/IPVer'
+            NetworkID:
+              type: string
+              format: uuid
+              description:  Unique ID of the network associated with the IP pool
+            BaseIP:
+              type: string
+              example: "10.128.0.0"
+              description:  Base address of the IP pool
+            Netmask:
+              $ref: '#/components/schemas/Netmask'
+            DefaultRoute: 
+              type: string
+              example: "10.128.0.1"
+              description:  Default route associated with the IP pool
+            Sources:
+              type: array
+              items: 
+                $ref: '#/components/schemas/IPSource'
+            UseRecords:
+              type: array
+              items: 
+                $ref: '#/components/schemas/UseRecord'
+            DNS:
+              type: array
+              items:
+                type: string
+                example: "8.8.8.8"
+              description: List of DNS servers for the IP pool
+            Proxy:
+              type: string
+              example: "15.10.0.1"
+              description: Optional web-proxy for external internet access should the pool actually be behind a firewall
+            NoProxy:
+              type: string
+              example: "15.10.0.1"
+              description: Addresses or CIDRs for which proxy requests are not made
+            NTP:
+              type: array
+              items:
+                type: string
+                example: "15.0.0.1"
+              description: List of NTP servers for the IP pool
+            Pool:
+              $ref: '#/components/schemas/Pool'
+              
+    IPVer:
+      type: string
+      enum: ['IPv4', 'IPv6']
+      example: IPv4
+      description: >
+        Describes the IP version
+    
+    IPSource:
+      type: object
+      properties:
+        Base:
+          type: string
+          example: "10.128.0.2"
+          description: Base address for the IP source
+        Count:
+          type: number
+          format: uint32
+          example: 1
+          description: Number of IPs to count from the base
+    
+    UseRecord:
+      type: object
+      properties:
+        Base:
+          type: string
+          example: "10.128.0.2"
+          description: Address of the record
+        HostID:
+          type: string
+          format: uuid
+          description: Unique ID of the host associated with the record
+        RackID:
+          type: string
+          format: uuid
+          description: Unique ID of the rack associated with the record
+        DeviceID:
+          type: string
+          format: uuid
+          description: Unique ID of the device associated with the record
+        External:
+          type: boolean
+          example: true
+          description: Indicates if the record is used for non Quake scope
+        Usage:
+          type: string
+          description: Usage of the record 
+        AllocatedBy:
+          type: string
+          description: User which performed the allocation of the record
 
+    Pool:
+      type: object
+      properties:
+        Fragments: 
+          type: array
+          items:
+             $ref: '#/components/schemas/IPRange'
+          description: List of fragments for the IP pool
+        Stats:
+          type: array
+          items: 
+             $ref: '#/components/schemas/IPPoolStats'
+          description: Statistics for the IP pool
 
+    IPRange:
+      type: object
+      properties:
+        Base:
+          type: string
+          example: "10.128.0.2"
+          description: Base address for the IP range
+        Count:
+          type: number
+          format: uint32
+          example: 1
+          description: Number of IPs to count from the base
+        DefaultRoute:
+          type: string
+          example: "10.128.0.1"
+          description: Default route for the IP range
+        Netmask:
+          $ref: '#/components/schemas/Netmask'
+        SourceBase:
+          type: string
+          example: "10.128.0.0"
+          description: Base address of the Source the IPRange was allocated from
+    
+    IPPoolStats:
+      type: object
+      properties:
+        Total:
+          type: number
+          format: uint32
+          description: Total number of IPs (pool capacity)
+        Available:
+          type: number
+          format: uint32
+          description: Number of non allocated IPs
+        InUse:
+          type: number
+          format: uint32
+          description: Number of allocated IPs
 
+    IPPoolUpdate:
+      allOf: 
+        - $ref: '#/components/schemas/ResourceBase'
+        - type: object
+          properties:
+            Description:
+              type: string
+              description: Description for the IP pool
+            DefaultRoute:
+              type: string
+              example: "10.128.0.1"
+              description: Default route for the IP pool
+            DNS:
+              type: array
+              items:
+                type: string
+                example: "8.8.8.8"
+              description: List of DNS servers for the IP pool
+            Proxy:
+              type: string
+              example: "15.10.0.1"
+              description: Optional web-proxy for external internet access should the pool actually be behind a firewall
+            NoProxy:
+              type: string
+              example: "15.10.0.1"
+              description: Addresses or CIDRs for which proxy requests are not made
+            NTP:
+              type: array
+              items:
+                type: string
+                example: "15.0.0.1"
+              description: List of NTP servers for the IP pool
+
+    IPAllocation:
+      type: object
+      properties:
+        Base: 
+          type: string
+          example: "10.128.0.1"
+          description: An optional base address for the allocation, if not specified first available address from the pool will be the base
+        Count:
+          type: number
+          format: uint32
+          example: 2
+          description: Number of addresses to allocate starting from the base 
+        Usage:
+          type: string
+          example: "Allocated IP for external storage"
+          description: A short description for the allocation
+        
+          
