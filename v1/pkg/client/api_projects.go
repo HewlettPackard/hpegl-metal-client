@@ -28,9 +28,6 @@ var (
 // ProjectsApiService ProjectsApi service
 type ProjectsApiService service
 
-// Ensure that the service implements the API.
-var _ ProjectsAPI = (*ProjectsApiService)(nil)
-
 /*
 Add Create a new project
 Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster

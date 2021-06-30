@@ -27,9 +27,6 @@ var (
 // VersionApiService VersionApi service
 type VersionApiService service
 
-// Ensure that the service implements the API.
-var _ VersionAPI = (*VersionApiService)(nil)
-
 /*
 Get Get api server build version
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

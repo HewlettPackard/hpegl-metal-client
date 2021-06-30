@@ -28,9 +28,6 @@ var (
 // NetworksApiService NetworksApi service
 type NetworksApiService service
 
-// Ensure that the service implements the API.
-var _ NetworksAPI = (*NetworksApiService)(nil)
-
 /*
 Add Add a new network
 Adds a new network that can be referenced when creating a Host

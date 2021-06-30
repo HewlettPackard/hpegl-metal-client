@@ -28,9 +28,6 @@ var (
 // UsageReportsApiService UsageReportsApi service
 type UsageReportsApiService service
 
-// Ensure that the service implements the API.
-var _ UsageReportsAPI = (*UsageReportsApiService)(nil)
-
 // GetOpts Optional parameters for the method 'Get'
 type GetOpts struct {
     End optional.String

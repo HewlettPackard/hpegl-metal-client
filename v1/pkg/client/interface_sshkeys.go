@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,7 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// SshkeysAPI defines the functions provided by the client for Sshkeys.
+// SshkeysAPI defines the client functions provided for Sshkeys.
 type SshkeysAPI interface {
 	/*
 	   Add Add a new SSH Key

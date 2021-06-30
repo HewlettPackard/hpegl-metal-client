@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,8 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// ProjectsInfoAPI defines the functions provided by the client for
-// ProjectsInfo.
+// ProjectsInfoAPI defines the client functions provided for ProjectsInfo.
 type ProjectsInfoAPI interface {
 	/*
 	   List List of all projects info within an organization or cluster for which user is authorized.

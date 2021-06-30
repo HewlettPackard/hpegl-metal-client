@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,7 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// IPPoolsAPI defines the functions provided by the client for IP Pools.
+// IPPoolsAPI defines the client functions provided for Ippools.
 type IPPoolsAPI interface {
 	/*
 	   AllocateIPs Allocate IPs from the pool

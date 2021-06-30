@@ -28,9 +28,6 @@ var (
 // VolumeAttachmentsApiService VolumeAttachmentsApi service
 type VolumeAttachmentsApiService service
 
-// Ensure that the service implements the API.
-var _ VolumeAttachmentsAPI = (*VolumeAttachmentsApiService)(nil)
-
 /*
 GetByID Retrieve volume attachment by ID
 Returns a single volume attachment with matching ID

@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,8 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// UsageReportsAPI defines the functions provided by the client for
-// UsageReports.
+// UsageReportsAPI defines the client functions provided for UsageReports.
 type UsageReportsAPI interface {
 	/*
 	   Get Get a usage report

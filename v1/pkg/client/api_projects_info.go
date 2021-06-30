@@ -27,9 +27,6 @@ var (
 // ProjectsInfoApiService ProjectsInfoApi service
 type ProjectsInfoApiService service
 
-// Ensure that the service implements the API.
-var _ ProjectsInfoAPI = (*ProjectsInfoApiService)(nil)
-
 /*
 List List of all projects info within an organization or cluster for which user is authorized.
 Returns an object with info on projects that have been created. This includes information on machine sizes and volumes falvors used by the projects.

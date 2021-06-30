@@ -28,9 +28,6 @@ var (
 // HostsApiService HostsApi service
 type HostsApiService service
 
-// Ensure that the service implements the API.
-var _ HostsAPI = (*HostsApiService)(nil)
-
 /*
 Add Create a new Host
 Creates a new host object which kicks off the provisioning of a physical server in accordance to the attributes provided for the Host object.  Most values for these options must be selected from the set of options provided by the get available-resources API call. The SvcFlavor, SvcVersion, LocationID, SSHKeyIDs, and Network attribute must all be set with appropriate ID values from the available-resources call.

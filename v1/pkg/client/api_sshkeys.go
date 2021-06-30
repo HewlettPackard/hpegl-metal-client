@@ -28,9 +28,6 @@ var (
 // SshkeysApiService SshkeysApi service
 type SshkeysApiService service
 
-// Ensure that the service implements the API.
-var _ SshkeysAPI = (*SshkeysApiService)(nil)
-
 /*
 Add Add a new SSH Key
 Adds a new SSH Key that can be referenced when creating a Host

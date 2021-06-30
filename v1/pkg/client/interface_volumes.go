@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,7 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// VolumesAPI defines the functions provided by the client for Volumes.
+// VolumesAPI defines the client functions provided for Volumes.
 type VolumesAPI interface {
 	/*
 	   Add Add a new volume

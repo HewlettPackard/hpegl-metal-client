@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,8 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// AvailableResourcesAPI defines the functions provided by the client for
-// AvailableResources.
+// AvailableResourcesAPI defines the client functions provided for AvailableResources.
 type AvailableResourcesAPI interface {
 	/*
 	   List Get lists of available resources for creating hosts and volumes

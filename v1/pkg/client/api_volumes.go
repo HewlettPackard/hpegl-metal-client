@@ -28,9 +28,6 @@ var (
 // VolumesApiService VolumesApi service
 type VolumesApiService service
 
-// Ensure that the service implements the API.
-var _ VolumesAPI = (*VolumesApiService)(nil)
-
 /*
 Add Add a new volume
 Adds a new volume to the project.  Volumes may be created separately and then referenced in the create Host call; or volumes may be created directly within the create Host call. 

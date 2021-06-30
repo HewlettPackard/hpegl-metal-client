@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,7 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// ProjectsAPI defines the functions provided by the client for Projects.
+// ProjectsAPI defines the client functions provided for Projects.
 type ProjectsAPI interface {
 	/*
 	   Add Create a new project

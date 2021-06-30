@@ -1,5 +1,7 @@
 // (C) Copyright 2021 Hewlett Packard Enterprise Development LP
 
+//
+
 package client
 
 import (
@@ -7,7 +9,7 @@ import (
 	_nethttp "net/http"
 )
 
-// VersionAPI defines the functions provided by the client for Versions.
+// VersionAPI defines the client functions provided for Version.
 type VersionAPI interface {
 	/*
 	   Get Get api server build version
