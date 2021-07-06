@@ -69,6 +69,7 @@ Class | Method | HTTP request | Description
 *UsageReportsApi* | [**Get**](docs/UsageReportsApi.md#get) | **Get** /usage-reports | Get a usage report
 *VersionApi* | [**Get**](docs/VersionApi.md#get) | **Get** /version | Get api server build version
 *VolumeAttachmentsApi* | [**Add**](docs/VolumeAttachmentsApi.md#add) | **Post** /volume-attachments | Create a new VolumeAttachment
+*VolumeAttachmentsApi* | [**Delete**](docs/VolumeAttachmentsApi.md#delete) | **Delete** /volume-attachments/{attachmentId} | Delete a VolumeAttachment
 *VolumeAttachmentsApi* | [**GetByID**](docs/VolumeAttachmentsApi.md#getbyid) | **Get** /volume-attachments/{attachmentId} | Retrieve volume attachment by ID
 *VolumeAttachmentsApi* | [**List**](docs/VolumeAttachmentsApi.md#list) | **Get** /volume-attachments | List all volume attachments in project
 *VolumesApi* | [**Add**](docs/VolumesApi.md#add) | **Post** /volumes | Add a new volume

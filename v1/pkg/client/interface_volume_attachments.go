@@ -20,6 +20,13 @@ type VolumeAttachmentsAPI interface {
 	*/
 	Add(ctx _context.Context, newVolumeAttachment NewVolumeAttachment) (VolumeAttachment, *_nethttp.Response, error)
 	/*
+	   Delete Delete a VolumeAttachment
+	   Deletes the VolumeAttachment with the matching ID
+	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param attachmentId ID of VolumeAttachment to delete
+	*/
+	Delete(ctx _context.Context, attachmentId string) (*_nethttp.Response, error)
+	/*
 	   GetByID Retrieve volume attachment by ID
 	   Returns a single volume attachment with matching ID
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

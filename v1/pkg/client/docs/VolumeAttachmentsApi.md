@@ -5,6 +5,7 @@ All URIs are relative to *http://repurpose for client api version*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Add**](VolumeAttachmentsApi.md#Add) | **Post** /volume-attachments | Create a new VolumeAttachment
+[**Delete**](VolumeAttachmentsApi.md#Delete) | **Delete** /volume-attachments/{attachmentId} | Delete a VolumeAttachment
 [**GetByID**](VolumeAttachmentsApi.md#GetByID) | **Get** /volume-attachments/{attachmentId} | Retrieve volume attachment by ID
 [**List**](VolumeAttachmentsApi.md#List) | **Get** /volume-attachments | List all volume attachments in project
 
@@ -38,6 +39,40 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Delete
+
+> Delete(ctx, attachmentId)
+
+Delete a VolumeAttachment
+
+Deletes the VolumeAttachment with the matching ID
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**attachmentId** | **string**| ID of VolumeAttachment to delete | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[quake_auth](../README.md#quake_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

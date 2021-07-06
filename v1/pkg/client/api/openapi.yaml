@@ -910,6 +910,30 @@ paths:
       tags:
       - volume-attachments
   /volume-attachments/{attachmentId}:
+    delete:
+      description: Deletes the VolumeAttachment with the matching ID
+      operationId: VolumeAttachment_delete
+      parameters:
+      - description: ID of VolumeAttachment to delete
+        explode: false
+        in: path
+        name: attachmentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "400":
+          description: invalid id
+        "401":
+          description: unauthorized
+        "404":
+          description: id not found
+        "500":
+          description: internal error
+      summary: Delete a VolumeAttachment
+      tags:
+      - volume-attachments
     get:
       description: Returns a single volume attachment with matching ID
       operationId: VolumeAttachment_getByID
