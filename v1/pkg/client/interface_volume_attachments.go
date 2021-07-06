@@ -12,6 +12,14 @@ import (
 // VolumeAttachmentsAPI defines the client functions provided for VolumeAttachments.
 type VolumeAttachmentsAPI interface {
 	/*
+	   Add Create a new VolumeAttachment
+	   Adds a new VolumeAttachment which enables a machine to use a volume.
+	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param newVolumeAttachment NewVolumeAttachement parameters to create a new VolumeAttachment.
+	   @return VolumeAttachment
+	*/
+	Add(ctx _context.Context, newVolumeAttachment NewVolumeAttachment) (VolumeAttachment, *_nethttp.Response, error)
+	/*
 	   GetByID Retrieve volume attachment by ID
 	   Returns a single volume attachment with matching ID
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

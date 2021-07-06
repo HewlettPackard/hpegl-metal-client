@@ -68,6 +68,7 @@ Class | Method | HTTP request | Description
 *SshkeysApi* | [**Update**](docs/SshkeysApi.md#update) | **Put** /sshkeys/{sshkeyId} | Update an existing SSH Key.  Only the name or key fields can be changed.
 *UsageReportsApi* | [**Get**](docs/UsageReportsApi.md#get) | **Get** /usage-reports | Get a usage report
 *VersionApi* | [**Get**](docs/VersionApi.md#get) | **Get** /version | Get api server build version
+*VolumeAttachmentsApi* | [**Add**](docs/VolumeAttachmentsApi.md#add) | **Post** /volume-attachments | Create a new VolumeAttachment
 *VolumeAttachmentsApi* | [**GetByID**](docs/VolumeAttachmentsApi.md#getbyid) | **Get** /volume-attachments/{attachmentId} | Retrieve volume attachment by ID
 *VolumeAttachmentsApi* | [**List**](docs/VolumeAttachmentsApi.md#list) | **Get** /volume-attachments | List all volume attachments in project
 *VolumesApi* | [**Add**](docs/VolumesApi.md#add) | **Post** /volumes | Add a new volume
@@ -108,6 +109,7 @@ Class | Method | HTTP request | Description
  - [IpRange](docs/IpRange.md)
  - [IpSource](docs/IpSource.md)
  - [IpVer](docs/IpVer.md)
+ - [IscsiParameters](docs/IscsiParameters.md)
  - [Limits](docs/Limits.md)
  - [LocationInfo](docs/LocationInfo.md)
  - [MachineInventory](docs/MachineInventory.md)
@@ -123,12 +125,16 @@ Class | Method | HTTP request | Description
  - [NewProject](docs/NewProject.md)
  - [NewSshKey](docs/NewSshKey.md)
  - [NewVolume](docs/NewVolume.md)
+ - [NewVolumeAttachment](docs/NewVolumeAttachment.md)
+ - [NewVolumeAttachmentAllOf](docs/NewVolumeAttachmentAllOf.md)
  - [Pool](docs/Pool.md)
  - [Profile](docs/Profile.md)
  - [Project](docs/Project.md)
  - [ProjectAllOf](docs/ProjectAllOf.md)
  - [ProjectInfo](docs/ProjectInfo.md)
  - [ProjectsInfo](docs/ProjectsInfo.md)
+ - [ProtocolKind](docs/ProtocolKind.md)
+ - [ProtocolParameters](docs/ProtocolParameters.md)
  - [ResourceBase](docs/ResourceBase.md)
  - [SshKey](docs/SshKey.md)
  - [SshKeyAllOf](docs/SshKeyAllOf.md)
