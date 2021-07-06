@@ -964,7 +964,7 @@ paths:
       summary: Retrieve volume attachment by ID
       tags:
       - volume-attachments
-    summary: Operations on a single volument attachment
+    summary: Operations on a single volume attachment
   /networks:
     get:
       description: Returns an array of all network objects defined within the project.

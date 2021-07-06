@@ -1034,7 +1034,7 @@ paths:
 
 
   /volume-attachments/{attachmentId}:
-    summary: Operations on a single volument attachment
+    summary: Operations on a single volume attachment
 
     get:
       tags:
