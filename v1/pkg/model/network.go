@@ -1,13 +1,14 @@
-// Copyright (c) 2016-2020 Hewlett Packard Enterprise Development LP.
+// (C) Copyright 2016-2021 Hewlett Packard Enterprise Development LP
 
 package model
 
 // NewNetwork is used with the create network REST call to
-// create a new project private network
+// create a new private network
 type NewNetwork struct {
 	Name        string
 	LocationID  string
 	Description string
+	NewIPPool   *NewIPPool
 }
 
 // Network is used to describe the return value for get, list, create, or update
@@ -18,6 +19,7 @@ type Network struct {
 	Description  string
 	Kind         NetworkKindEnum
 	HostUse      HostUseEnum
+	IPPoolID     string
 }
 
 // AvailableNetwork lists information about available networks as part of
@@ -29,6 +31,7 @@ type AvailableNetwork struct {
 	Description string
 	Kind        NetworkKindEnum
 	HostUse     HostUseEnum
+	IPPoolID    string
 }
 
 // NetworkKindEnum describes the basic types of network

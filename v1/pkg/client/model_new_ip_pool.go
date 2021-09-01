@@ -11,8 +11,25 @@
  */
 
 package client
-// ProtocolParameters struct for ProtocolParameters
-type ProtocolParameters struct {
-	Protocol ProtocolKind `json:"Protocol,omitempty"`
-	ISCSI IscsiParameters `json:"ISCSI,omitempty"`
+// NewIpPool struct for NewIpPool
+type NewIpPool struct {
+	// Name for the IP pool
+	Name string `json:"Name,omitempty"`
+	// Description for the IP pool
+	Description string `json:"Description,omitempty"`
+	IPVersion IpVer `json:"IPVersion,omitempty"`
+	// Base address of the IP pool
+	BaseIP string `json:"BaseIP,omitempty"`
+	Netmask Netmask `json:"Netmask,omitempty"`
+	// Default route associated with the IP pool
+	DefaultRoute string `json:"DefaultRoute,omitempty"`
+	Sources []IpSource `json:"Sources,omitempty"`
+	// List of DNS servers for the IP pool
+	DNS []string `json:"DNS,omitempty"`
+	// Optional web-proxy for external internet access should the pool actually be behind a firewall
+	Proxy string `json:"Proxy,omitempty"`
+	// Addresses or CIDRs for which proxy requests are not made
+	NoProxy string `json:"NoProxy,omitempty"`
+	// List of NTP servers for the IP pool
+	NTP []string `json:"NTP,omitempty"`
 }

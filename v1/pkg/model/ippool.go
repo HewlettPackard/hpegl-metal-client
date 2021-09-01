@@ -35,6 +35,21 @@ type IPPoolUpdate struct {
 	DNS          []string
 }
 
+// NewIPPool defines the request body to create a new IP pool.
+type NewIPPool struct {
+	Name         string
+	Description  string
+	IPVersion    IPVer
+	BaseIP       string
+	Netmask      Netmask
+	DefaultRoute string
+	Sources      []IPSource
+	DNS          []string
+	Proxy        string
+	NoProxy      string
+	NTP          []string
+}
+
 // IPVer defines IP versions.
 type IPVer string
 

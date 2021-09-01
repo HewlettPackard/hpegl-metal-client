@@ -18,7 +18,7 @@ info:
     \ machine size options, the storage volume options, data center locations, and\
     \ such that are needed when creating hosts and volumes.\n"
   title: Quake Project Client API
-  version: 1.2.1
+  version: 1.3.1
 servers:
 - description: "1.00"
   url: repurpose for client api version
@@ -1925,13 +1925,15 @@ components:
     AvailableResources:
       example:
         Networks:
-        - Description: Private network for intra-cluster communication
+        - IPPoolID: IPPoolID
+          Description: Private network for intra-cluster communication
           Kind: Private
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Private
-        - Description: Private network for intra-cluster communication
+        - IPPoolID: IPPoolID
+          Description: Private network for intra-cluster communication
           Kind: Private
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
@@ -2146,6 +2148,7 @@ components:
     AvailableNetwork:
       description: Entry of a network available within a data center location
       example:
+        IPPoolID: IPPoolID
         Description: Private network for intra-cluster communication
         Kind: Private
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2175,6 +2178,8 @@ components:
           $ref: '#/components/schemas/NetworkKind'
         HostUse:
           $ref: '#/components/schemas/NetworkHostUse'
+        IPPoolID:
+          type: string
       type: object
     MachineSize:
       description: Description of a specific machine size offering
@@ -2472,6 +2477,25 @@ components:
     NewNetwork:
       example:
         Description: Private network for intra-cluster communication
+        NewIPPool:
+          NoProxy: 15.10.0.10
+          Proxy: 15.10.0.1
+          Description: Description
+          BaseIP: 10.128.0.0
+          DefaultRoute: 10.128.0.1
+          DNS:
+          - 8.8.8.8
+          - 8.8.8.8
+          NTP:
+          - 15.0.0.11
+          - 15.0.0.11
+          Sources:
+          - Count: 1
+            Base: 10.128.0.2
+          - Count: 1
+            Base: 10.128.0.2
+          IPVersion: IPv4
+          Name: Name
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: Private2
       properties:
@@ -2489,6 +2513,8 @@ components:
         Description:
           example: Private network for intra-cluster communication
           type: string
+        NewIPPool:
+          $ref: '#/components/schemas/NewIPPool'
       type: object
     Network:
       allOf:
@@ -2907,6 +2933,9 @@ components:
       example: IPv4
       type: string
     IPSource:
+      example:
+        Count: 1
+        Base: 10.128.0.2
       properties:
         Base:
           description: Base address for the IP source
@@ -2915,8 +2944,7 @@ components:
         Count:
           description: Number of IPs to count from the base
           example: 1
-          format: uint32
-          type: number
+          type: integer
       type: object
     UseRecord:
       properties:
@@ -2955,10 +2983,7 @@ components:
             $ref: '#/components/schemas/IPRange'
           type: array
         Stats:
-          description: Statistics for the IP pool
-          items:
-            $ref: '#/components/schemas/IPPoolStats'
-          type: array
+          $ref: '#/components/schemas/IPPoolStats'
       type: object
     IPRange:
       properties:
@@ -3001,6 +3026,72 @@ components:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/IPPoolUpdate_allOf'
+    NewIPPool:
+      example:
+        NoProxy: 15.10.0.10
+        Proxy: 15.10.0.1
+        Description: Description
+        BaseIP: 10.128.0.0
+        DefaultRoute: 10.128.0.1
+        DNS:
+        - 8.8.8.8
+        - 8.8.8.8
+        NTP:
+        - 15.0.0.11
+        - 15.0.0.11
+        Sources:
+        - Count: 1
+          Base: 10.128.0.2
+        - Count: 1
+          Base: 10.128.0.2
+        IPVersion: IPv4
+        Name: Name
+      nullable: true
+      properties:
+        Name:
+          description: Name for the IP pool
+          type: string
+        Description:
+          description: Description for the IP pool
+          type: string
+        IPVersion:
+          $ref: '#/components/schemas/IPVer'
+        BaseIP:
+          description: Base address of the IP pool
+          example: 10.128.0.0
+          type: string
+        Netmask:
+          $ref: '#/components/schemas/Netmask'
+        DefaultRoute:
+          description: Default route associated with the IP pool
+          example: 10.128.0.1
+          type: string
+        Sources:
+          items:
+            $ref: '#/components/schemas/IPSource'
+          type: array
+        DNS:
+          description: List of DNS servers for the IP pool
+          items:
+            example: 8.8.8.8
+            type: string
+          type: array
+        Proxy:
+          description: Optional web-proxy for external internet access should the
+            pool actually be behind a firewall
+          example: 15.10.0.1
+          type: string
+        NoProxy:
+          description: Addresses or CIDRs for which proxy requests are not made
+          example: 15.10.0.10
+          type: string
+        NTP:
+          description: List of NTP servers for the IP pool
+          items:
+            example: 15.0.0.11
+            type: string
+          type: array
+      type: object
     IPAllocation:
       example:
         Usage: Allocated IP for external storage
@@ -3015,8 +3106,7 @@ components:
         Count:
           description: Number of addresses to allocate starting from the base
           example: 2
-          format: uint32
-          type: number
+          type: integer
         Usage:
           description: A short description for the allocation
           example: Allocated IP for external storage
@@ -3234,6 +3324,8 @@ components:
           $ref: '#/components/schemas/NetworkKind'
         HostUse:
           $ref: '#/components/schemas/NetworkHostUse'
+        IPPoolID:
+          type: string
     HostUsageEntry_allOf:
       properties:
         MachineSizeName:
