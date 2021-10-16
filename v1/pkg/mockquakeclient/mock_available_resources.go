@@ -8,36 +8,37 @@ package mockquakeclient
 
 import (
 	context "context"
-	gomock "github.com/golang/mock/gomock"
-	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 	http "net/http"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
+	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 )
 
-// MockAvailableResourcesAPI is a mock of AvailableResourcesAPI interface
+// MockAvailableResourcesAPI is a mock of AvailableResourcesAPI interface.
 type MockAvailableResourcesAPI struct {
 	ctrl     *gomock.Controller
 	recorder *MockAvailableResourcesAPIMockRecorder
 }
 
-// MockAvailableResourcesAPIMockRecorder is the mock recorder for MockAvailableResourcesAPI
+// MockAvailableResourcesAPIMockRecorder is the mock recorder for MockAvailableResourcesAPI.
 type MockAvailableResourcesAPIMockRecorder struct {
 	mock *MockAvailableResourcesAPI
 }
 
-// NewMockAvailableResourcesAPI creates a new mock instance
+// NewMockAvailableResourcesAPI creates a new mock instance.
 func NewMockAvailableResourcesAPI(ctrl *gomock.Controller) *MockAvailableResourcesAPI {
 	mock := &MockAvailableResourcesAPI{ctrl: ctrl}
 	mock.recorder = &MockAvailableResourcesAPIMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockAvailableResourcesAPI) EXPECT() *MockAvailableResourcesAPIMockRecorder {
 	return m.recorder
 }
 
-// List mocks base method
+// List mocks base method.
 func (m *MockAvailableResourcesAPI) List(ctx context.Context) (client.AvailableResources, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "List", ctx)
@@ -47,7 +48,7 @@ func (m *MockAvailableResourcesAPI) List(ctx context.Context) (client.AvailableR
 	return ret0, ret1, ret2
 }
 
-// List indicates an expected call of List
+// List indicates an expected call of List.
 func (mr *MockAvailableResourcesAPIMockRecorder) List(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockAvailableResourcesAPI)(nil).List), ctx)

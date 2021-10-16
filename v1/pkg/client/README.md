@@ -33,7 +33,7 @@ import "./client"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://repurpose for client api version*
+All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -183,5 +183,5 @@ r, err := client.Service.Operation(auth, args)
 
 ## Author
 
-chuck.hudson@hpe.com
+quake-core@hpe.com
 

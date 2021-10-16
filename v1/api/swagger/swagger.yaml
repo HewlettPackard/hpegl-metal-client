@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Hewlett Packard Enterprise Development LP
+# Copyright (c) 2020-2021 Hewlett Packard Enterprise Development LP
 
 openapi: 3.0.0
 info:
@@ -28,11 +28,28 @@ info:
     when creating hosts and volumes.
 
   contact:
-    email: chuck.hudson@hpe.com
+    email: quake-core@hpe.com
 
-servers:
-  - url: repurpose for client api version
-    description: "1.00"
+servers:  
+  - url: https://quake.dev.hpehcss.net{basePath}
+    description: "Metal Service - Development Environment"
+    variables:
+      basePath:
+        default: "/rest/v1"
+        description: "URL prefix for endpoints"
+  - url: https://quake.intg.hpedevops.net{basePath}
+    description: "Metal Service - Integration Environment"
+    variables:
+      basePath:
+        default: "/rest/v1"
+        description: "URL prefix for endpoints"
+  - url: https://client.greenlake.hpe-gl-intg.com{basePath}
+    description: "HPE GreenLake Central - Integration Environment"
+    variables:
+      basePath:
+        default: "/api/metal/rest/v1"
+        description: "URL prefix for endpoints" 
+ 
 
 security:
   - quake_auth: []

@@ -8,36 +8,37 @@ package mockquakeclient
 
 import (
 	context "context"
-	gomock "github.com/golang/mock/gomock"
-	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 	http "net/http"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
+	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 )
 
-// MockProjectsAPI is a mock of ProjectsAPI interface
+// MockProjectsAPI is a mock of ProjectsAPI interface.
 type MockProjectsAPI struct {
 	ctrl     *gomock.Controller
 	recorder *MockProjectsAPIMockRecorder
 }
 
-// MockProjectsAPIMockRecorder is the mock recorder for MockProjectsAPI
+// MockProjectsAPIMockRecorder is the mock recorder for MockProjectsAPI.
 type MockProjectsAPIMockRecorder struct {
 	mock *MockProjectsAPI
 }
 
-// NewMockProjectsAPI creates a new mock instance
+// NewMockProjectsAPI creates a new mock instance.
 func NewMockProjectsAPI(ctrl *gomock.Controller) *MockProjectsAPI {
 	mock := &MockProjectsAPI{ctrl: ctrl}
 	mock.recorder = &MockProjectsAPIMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockProjectsAPI) EXPECT() *MockProjectsAPIMockRecorder {
 	return m.recorder
 }
 
-// Add mocks base method
+// Add mocks base method.
 func (m *MockProjectsAPI) Add(ctx context.Context, newProject client.NewProject) (client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Add", ctx, newProject)
@@ -47,13 +48,13 @@ func (m *MockProjectsAPI) Add(ctx context.Context, newProject client.NewProject)
 	return ret0, ret1, ret2
 }
 
-// Add indicates an expected call of Add
+// Add indicates an expected call of Add.
 func (mr *MockProjectsAPIMockRecorder) Add(ctx, newProject interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockProjectsAPI)(nil).Add), ctx, newProject)
 }
 
-// Delete mocks base method
+// Delete mocks base method.
 func (m *MockProjectsAPI) Delete(ctx context.Context, projectId string) (*http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", ctx, projectId)
@@ -62,13 +63,13 @@ func (m *MockProjectsAPI) Delete(ctx context.Context, projectId string) (*http.R
 	return ret0, ret1
 }
 
-// Delete indicates an expected call of Delete
+// Delete indicates an expected call of Delete.
 func (mr *MockProjectsAPIMockRecorder) Delete(ctx, projectId interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockProjectsAPI)(nil).Delete), ctx, projectId)
 }
 
-// GetByID mocks base method
+// GetByID mocks base method.
 func (m *MockProjectsAPI) GetByID(ctx context.Context, projectId string) (client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetByID", ctx, projectId)
@@ -78,13 +79,13 @@ func (m *MockProjectsAPI) GetByID(ctx context.Context, projectId string) (client
 	return ret0, ret1, ret2
 }
 
-// GetByID indicates an expected call of GetByID
+// GetByID indicates an expected call of GetByID.
 func (mr *MockProjectsAPIMockRecorder) GetByID(ctx, projectId interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockProjectsAPI)(nil).GetByID), ctx, projectId)
 }
 
-// List mocks base method
+// List mocks base method.
 func (m *MockProjectsAPI) List(ctx context.Context) ([]client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "List", ctx)
@@ -94,13 +95,13 @@ func (m *MockProjectsAPI) List(ctx context.Context) ([]client.Project, *http.Res
 	return ret0, ret1, ret2
 }
 
-// List indicates an expected call of List
+// List indicates an expected call of List.
 func (mr *MockProjectsAPIMockRecorder) List(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockProjectsAPI)(nil).List), ctx)
 }
 
-// Update mocks base method
+// Update mocks base method.
 func (m *MockProjectsAPI) Update(ctx context.Context, projectId string, project client.Project) (client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Update", ctx, projectId, project)
@@ -110,7 +111,7 @@ func (m *MockProjectsAPI) Update(ctx context.Context, projectId string, project 
 	return ret0, ret1, ret2
 }
 
-// Update indicates an expected call of Update
+// Update indicates an expected call of Update.
 func (mr *MockProjectsAPIMockRecorder) Update(ctx, projectId, project interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockProjectsAPI)(nil).Update), ctx, projectId, project)

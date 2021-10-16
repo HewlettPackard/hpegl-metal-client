@@ -8,36 +8,37 @@ package mockquakeclient
 
 import (
 	context "context"
-	gomock "github.com/golang/mock/gomock"
-	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 	http "net/http"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
+	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 )
 
-// MockVolumeAttachmentsAPI is a mock of VolumeAttachmentsAPI interface
+// MockVolumeAttachmentsAPI is a mock of VolumeAttachmentsAPI interface.
 type MockVolumeAttachmentsAPI struct {
 	ctrl     *gomock.Controller
 	recorder *MockVolumeAttachmentsAPIMockRecorder
 }
 
-// MockVolumeAttachmentsAPIMockRecorder is the mock recorder for MockVolumeAttachmentsAPI
+// MockVolumeAttachmentsAPIMockRecorder is the mock recorder for MockVolumeAttachmentsAPI.
 type MockVolumeAttachmentsAPIMockRecorder struct {
 	mock *MockVolumeAttachmentsAPI
 }
 
-// NewMockVolumeAttachmentsAPI creates a new mock instance
+// NewMockVolumeAttachmentsAPI creates a new mock instance.
 func NewMockVolumeAttachmentsAPI(ctrl *gomock.Controller) *MockVolumeAttachmentsAPI {
 	mock := &MockVolumeAttachmentsAPI{ctrl: ctrl}
 	mock.recorder = &MockVolumeAttachmentsAPIMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockVolumeAttachmentsAPI) EXPECT() *MockVolumeAttachmentsAPIMockRecorder {
 	return m.recorder
 }
 
-// Add mocks base method
+// Add mocks base method.
 func (m *MockVolumeAttachmentsAPI) Add(ctx context.Context, newVolumeAttachment client.NewVolumeAttachment) (client.VolumeAttachment, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Add", ctx, newVolumeAttachment)
@@ -47,13 +48,13 @@ func (m *MockVolumeAttachmentsAPI) Add(ctx context.Context, newVolumeAttachment 
 	return ret0, ret1, ret2
 }
 
-// Add indicates an expected call of Add
+// Add indicates an expected call of Add.
 func (mr *MockVolumeAttachmentsAPIMockRecorder) Add(ctx, newVolumeAttachment interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockVolumeAttachmentsAPI)(nil).Add), ctx, newVolumeAttachment)
 }
 
-// Delete mocks base method
+// Delete mocks base method.
 func (m *MockVolumeAttachmentsAPI) Delete(ctx context.Context, attachmentId string) (*http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", ctx, attachmentId)
@@ -62,13 +63,13 @@ func (m *MockVolumeAttachmentsAPI) Delete(ctx context.Context, attachmentId stri
 	return ret0, ret1
 }
 
-// Delete indicates an expected call of Delete
+// Delete indicates an expected call of Delete.
 func (mr *MockVolumeAttachmentsAPIMockRecorder) Delete(ctx, attachmentId interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockVolumeAttachmentsAPI)(nil).Delete), ctx, attachmentId)
 }
 
-// GetByID mocks base method
+// GetByID mocks base method.
 func (m *MockVolumeAttachmentsAPI) GetByID(ctx context.Context, attachmentId string) (client.VolumeAttachment, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetByID", ctx, attachmentId)
@@ -78,13 +79,13 @@ func (m *MockVolumeAttachmentsAPI) GetByID(ctx context.Context, attachmentId str
 	return ret0, ret1, ret2
 }
 
-// GetByID indicates an expected call of GetByID
+// GetByID indicates an expected call of GetByID.
 func (mr *MockVolumeAttachmentsAPIMockRecorder) GetByID(ctx, attachmentId interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockVolumeAttachmentsAPI)(nil).GetByID), ctx, attachmentId)
 }
 
-// List mocks base method
+// List mocks base method.
 func (m *MockVolumeAttachmentsAPI) List(ctx context.Context) ([]client.VolumeAttachment, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "List", ctx)
@@ -94,7 +95,7 @@ func (m *MockVolumeAttachmentsAPI) List(ctx context.Context) ([]client.VolumeAtt
 	return ret0, ret1, ret2
 }
 
-// List indicates an expected call of List
+// List indicates an expected call of List.
 func (mr *MockVolumeAttachmentsAPIMockRecorder) List(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockVolumeAttachmentsAPI)(nil).List), ctx)

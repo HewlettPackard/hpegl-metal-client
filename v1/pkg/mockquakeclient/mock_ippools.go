@@ -8,36 +8,37 @@ package mockquakeclient
 
 import (
 	context "context"
-	gomock "github.com/golang/mock/gomock"
-	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 	http "net/http"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
+	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 )
 
-// MockIPPoolsAPI is a mock of IPPoolsAPI interface
+// MockIPPoolsAPI is a mock of IPPoolsAPI interface.
 type MockIPPoolsAPI struct {
 	ctrl     *gomock.Controller
 	recorder *MockIPPoolsAPIMockRecorder
 }
 
-// MockIPPoolsAPIMockRecorder is the mock recorder for MockIPPoolsAPI
+// MockIPPoolsAPIMockRecorder is the mock recorder for MockIPPoolsAPI.
 type MockIPPoolsAPIMockRecorder struct {
 	mock *MockIPPoolsAPI
 }
 
-// NewMockIPPoolsAPI creates a new mock instance
+// NewMockIPPoolsAPI creates a new mock instance.
 func NewMockIPPoolsAPI(ctrl *gomock.Controller) *MockIPPoolsAPI {
 	mock := &MockIPPoolsAPI{ctrl: ctrl}
 	mock.recorder = &MockIPPoolsAPIMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockIPPoolsAPI) EXPECT() *MockIPPoolsAPIMockRecorder {
 	return m.recorder
 }
 
-// AllocateIPs mocks base method
+// AllocateIPs mocks base method.
 func (m *MockIPPoolsAPI) AllocateIPs(ctx context.Context, ippoolId string, iPAllocation []client.IpAllocation) (client.IpPool, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AllocateIPs", ctx, ippoolId, iPAllocation)
@@ -47,13 +48,13 @@ func (m *MockIPPoolsAPI) AllocateIPs(ctx context.Context, ippoolId string, iPAll
 	return ret0, ret1, ret2
 }
 
-// AllocateIPs indicates an expected call of AllocateIPs
+// AllocateIPs indicates an expected call of AllocateIPs.
 func (mr *MockIPPoolsAPIMockRecorder) AllocateIPs(ctx, ippoolId, iPAllocation interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AllocateIPs", reflect.TypeOf((*MockIPPoolsAPI)(nil).AllocateIPs), ctx, ippoolId, iPAllocation)
 }
 
-// GetByID mocks base method
+// GetByID mocks base method.
 func (m *MockIPPoolsAPI) GetByID(ctx context.Context, ippoolId string) (client.IpPool, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetByID", ctx, ippoolId)
@@ -63,13 +64,13 @@ func (m *MockIPPoolsAPI) GetByID(ctx context.Context, ippoolId string) (client.I
 	return ret0, ret1, ret2
 }
 
-// GetByID indicates an expected call of GetByID
+// GetByID indicates an expected call of GetByID.
 func (mr *MockIPPoolsAPIMockRecorder) GetByID(ctx, ippoolId interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockIPPoolsAPI)(nil).GetByID), ctx, ippoolId)
 }
 
-// List mocks base method
+// List mocks base method.
 func (m *MockIPPoolsAPI) List(ctx context.Context) ([]client.IpPool, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "List", ctx)
@@ -79,13 +80,13 @@ func (m *MockIPPoolsAPI) List(ctx context.Context) ([]client.IpPool, *http.Respo
 	return ret0, ret1, ret2
 }
 
-// List indicates an expected call of List
+// List indicates an expected call of List.
 func (mr *MockIPPoolsAPIMockRecorder) List(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockIPPoolsAPI)(nil).List), ctx)
 }
 
-// ReturnIPs mocks base method
+// ReturnIPs mocks base method.
 func (m *MockIPPoolsAPI) ReturnIPs(ctx context.Context, ippoolId string, requestBody []string) (client.IpPool, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "ReturnIPs", ctx, ippoolId, requestBody)
@@ -95,13 +96,13 @@ func (m *MockIPPoolsAPI) ReturnIPs(ctx context.Context, ippoolId string, request
 	return ret0, ret1, ret2
 }
 
-// ReturnIPs indicates an expected call of ReturnIPs
+// ReturnIPs indicates an expected call of ReturnIPs.
 func (mr *MockIPPoolsAPIMockRecorder) ReturnIPs(ctx, ippoolId, requestBody interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReturnIPs", reflect.TypeOf((*MockIPPoolsAPI)(nil).ReturnIPs), ctx, ippoolId, requestBody)
 }
 
-// Update mocks base method
+// Update mocks base method.
 func (m *MockIPPoolsAPI) Update(ctx context.Context, ippoolId string, ipPoolUpdate client.IpPoolUpdate) (client.IpPool, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Update", ctx, ippoolId, ipPoolUpdate)
@@ -111,7 +112,7 @@ func (m *MockIPPoolsAPI) Update(ctx context.Context, ippoolId string, ipPoolUpda
 	return ret0, ret1, ret2
 }
 
-// Update indicates an expected call of Update
+// Update indicates an expected call of Update.
 func (mr *MockIPPoolsAPIMockRecorder) Update(ctx, ippoolId, ipPoolUpdate interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockIPPoolsAPI)(nil).Update), ctx, ippoolId, ipPoolUpdate)

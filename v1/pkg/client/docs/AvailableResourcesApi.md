@@ -1,6 +1,6 @@
 # \AvailableResourcesApi
 
-All URIs are relative to *http://repurpose for client api version*
+All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
