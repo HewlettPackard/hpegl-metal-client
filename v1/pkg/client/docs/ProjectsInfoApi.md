@@ -26,7 +26,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 

@@ -41,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 

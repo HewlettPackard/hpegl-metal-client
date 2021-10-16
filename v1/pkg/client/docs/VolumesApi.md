@@ -36,7 +36,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -204,7 +204,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[quake_auth](../README.md#quake_auth)
+[BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **HostID** | **string** | Unique ID of the host associated with the record | [optional] 
 **RackID** | **string** | Unique ID of the rack associated with the record | [optional] 
 **DeviceID** | **string** | Unique ID of the device associated with the record | [optional] 
-**External** | **bool** | Indicates if the record is used for non Quake scope | [optional] 
+**External** | **bool** | Indicates if the record is used for non Metal scope | [optional] 
 **Usage** | **string** | Usage of the record | [optional] 
 **AllocatedBy** | **string** | User which performed the allocation of the record | [optional] 
 
