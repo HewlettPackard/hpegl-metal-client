@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **IQN** | **string** | IQN is the full initiator name used for identification during iSCSI login | [optional] 
 **CHAPSecret** | **string** | CHAPSecret is the Challenge Authentication Protocol secret to be shared between array and initiator. | [optional] 
 **CHAPUserName** | **string** | CHAPUserName is the CHAP username to use for CHAP authentication | [optional] 
-**LUN** | **uint32** | LUN is the Logical Unit Number to be assigned to the volume on export | [optional] 
+**LUN** | **float32** | LUN is the Logical Unit Number to be assigned to the volume on export | [optional] 
 **VolumeTargetIQN** | **string** | VolumeTargetIQN is the iQN for the volume, assigned by the array correspnding to the volume | [optional] 
 **VolumeTargetIPAddress** | **string** | VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export | [optional] 
 

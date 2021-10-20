@@ -58,8 +58,8 @@ type HostsAPI interface {
 	*/
 	PowerOn(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
 	/*
-	   Update Update an existing Host -- NOT SUPPORTED
-	   NOT CURRENTLY SUPPORTED.  This call will (eventually) allow users to update a limited number of fields associated with the host.  Since most of this information is used when initially provisioning the host, supporting later changes would require careful coordination with host-based agents.
+	   Update Update an existing Host
+	   Updates the Host with the matching ID.  Update is permitted only if the host is in the &#39;Ready&#39; or &#39;Connection Updating Failed&#39; state.  Only the Host &#39;Description&#39;, &#39;Networks&#39;, and &#39;NetworkForDefaultRoute&#39; can be updated.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param hostId ID of host to update
 	    * @param host Updated Host

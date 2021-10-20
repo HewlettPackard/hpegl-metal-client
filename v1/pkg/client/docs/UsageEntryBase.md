@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Freed** | [**time.Time**](time.Time.md) | Timestamp of when resource (machine or storage) was freed | [optional] 
 **UsageStart** | [**time.Time**](time.Time.md) | The start of the usage reporting window or when the resource was allocated | [optional] 
 **UsageEnd** | [**time.Time**](time.Time.md) | The end of the usage reporting window or when the resource was freed | [optional] 
-**UsageHours** | **uint64** | The difference between the UsageEnd and UsageStart rounded up to the UsageHours | [optional] 
+**UsageHours** | **int32** | The difference between the UsageEnd and UsageStart rounded up to the UsageHours | [optional] 
 **Error** | **string** | Description of error that affected the usage reporting | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,7 +3,7 @@
 openapi: 3.0.0
 info:
   title: HPE GreenLake Metal Client API
-  version: "1.3.2"
+  version: "1.3.3"
   description: >
     This Metal Client REST API provides access to bare metal as-a-service
     (BMaaS) within a single project context.  Clients are able to create
@@ -269,6 +269,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -447,6 +449,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -558,12 +562,11 @@ paths:
     put:
       tags:
       - hosts
-      summary: Update an existing Host -- NOT SUPPORTED
+      summary: Update an existing Host
       description: 
-        NOT CURRENTLY SUPPORTED.  This call will (eventually) allow users to update a limited
-        number of fields associated with the host.  Since most of this information is used
-        when initially provisioning the host, supporting later changes would require careful
-        coordination with host-based agents.
+        Updates the Host with the matching ID.  Update is permitted only if the host is in the 'Ready'
+        or 'Connection Updating Failed' state.  Only the Host 'Description', 'Networks', and
+        'NetworkForDefaultRoute' can be updated. 
       operationId: Host_update
 
       parameters:
@@ -619,6 +622,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -898,6 +903,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -1099,6 +1106,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -1253,6 +1262,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -1583,11 +1594,11 @@ components:
         Description:
           type: string
         NumHosts:
-          type: int32
+          type: integer
         NumVolumes:
-          type: int32
+          type: integer
         TotalStorageGB:
-          type: int32
+          type: integer
         Status:
           type: string
           enum: ['Enable', 'Disable']
@@ -1598,11 +1609,11 @@ components:
         Name: 
           type: string
         ProjectsUsed:
-          type: int32
+          type: integer
         OtherUsed:
-          type: int32
+          type: integer
         Available:
-          type: int32
+          type: integer
           
     VolumeFlavorsInfo:
       type: object
@@ -1610,11 +1621,11 @@ components:
         Name: 
           type: string
         ProjectsUsed:
-          type: int32
+          type: integer
         OtherUsed:
-          type: int32
+          type: integer
         Available:
-          type: int32
+          type: integer
 
     Profile:
       type: object
@@ -1640,16 +1651,13 @@ components:
       type: object
       properties:
         Hosts:
-          type: uint32
- #         format: int32
+          type: integer
           description: Maximum number of hosts to allow
         Volumes:
-          type: uint32
- #         format: int32
+          type: integer
           description: Maximum number of volumes to allow
         VolumeCapacity:
-          type: uint64
- #         format: int64
+          type: integer
           description: Maximum capacity to allow in GiB
 
     NewSSHKey:
@@ -1678,6 +1686,7 @@ components:
         - LocationID
         - MachineSizeID
         - NetworkIDs
+        - NetworkForDefaultRoute
       properties:
         Name:
           type: string
@@ -1741,6 +1750,10 @@ components:
           items:
             type: string
             format: uuid
+        NetworkForDefaultRoute: 
+              type: string
+              format: uuid
+              description: The host default network ID
         VolumeIDs:
           description:
             The list of IDs corresponding to existing, unattached volumes that should be 
@@ -1841,6 +1854,11 @@ components:
               items:
                 type: string
                 format: uuid
+            NetworkForDefaultRoute: 
+              type: string
+              format: uuid
+              description: 
+                The host default network ID
             UserData:
               type: string
               description: User-provided data attached to the image configuration data when the host was provisioned
@@ -1885,8 +1903,7 @@ components:
               type: string
               format: date-time
             Progress:
-              type: uint64
-#              format: uint64
+              type: integer
               minimum: 0
               maximum: 100
             Alert:
@@ -1913,8 +1930,7 @@ components:
             when a new volume is created independently from the host creation therefore
             requiring a specified location.
         Capacity:
-          type: uint64
-#          format: uint64
+          type: integer
           example: '10000'
           minimum: 0
           description: The size of the volume in MB
@@ -1942,8 +1958,7 @@ components:
             This object is used for new volume creation in the host create operation. Since
             host create already has location ID that field is not provided in this object.
         Capacity:
-          type: uint64
-#          format: uint64
+          type: integer
           example: '10000'
           minimum: 0
           description: The size of the volume in MB
@@ -1964,8 +1979,7 @@ components:
                 The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the
                 get /available-resources call
             Capacity:
-              type: uint64
-#              format: uint64
+              type: integer
               example: '10000'
               minimum: 0
               description: The size of the volume in MB
@@ -2280,8 +2294,7 @@ components:
             format: uuid
             description: The ID of the volume flavor requested when creating the volume
           Capacity:
-            type: uint64
-#            format: uint64
+            type: integer
             minimum: 0
             description: Volume size in MB
           LocationID:
@@ -2316,7 +2329,7 @@ components:
           format: uuid
           description: ID of a MachineSize as listed in the MachineSizes array
         Number: 
-          type: int32
+          type: integer
           minimum: 0
           description: The number of machines in inventory with indicated machine size at the indicated location
 
@@ -2333,8 +2346,7 @@ components:
           format: uuid
           description: Unique ID of a data center location
         Capacity:
-          type: uint64
-#          format: uint64
+          type: integer
           description: Total capacity available (in MB) to create new volumes of the indicated flavor at the indicated location
 
     SSHKeyEntry:
@@ -2420,8 +2432,7 @@ components:
               type: string
               description: CHAPUserName is the CHAP username to use for CHAP authentication
             LUN:
-              type: uint32
-#              format: uint32
+              type: number
               description: LUN is the Logical Unit Number to be assigned to the volume on export
             VolumeTargetIQN:
               type: string
@@ -2552,28 +2563,6 @@ components:
             IPPoolID:
               type: string
 
-    UsageReportRequest:
-      type: object
-      properties:
-        StartTime: 
-          type: string
-          format: date-time
-          example: '2020-02-10T22:58:26.518Z'
-          description: Timestamp indicating the start of the usage window
-        EndTime:
-          type: string
-          format: date-time
-          example: '2020-03-10T22:58:26.518Z'
-          description: Timestamp indicating the end of the usage window
-        Include: 
-          type: array
-          example: ['hosts', 'volumes']
-          description: >
-            List of what resources should be included in the report. Null will be interpreted as all
-          items:
-            type: string
-            enum: ['hosts', 'volumes']
-
     UsageReport:
       type: object
       description: The composite usage report
@@ -2631,8 +2620,7 @@ components:
               format: uuid
               description:  Unique ID of the volume flavor used when creating the volume
             Capacity:
-              type: uint64
-#              format: uint64
+              type: integer
               description: The size of the volume in MB 
 
     UsageEntryBase:
@@ -2665,8 +2653,7 @@ components:
           format: date-time
           description:  The end of the usage reporting window or when the resource was freed
         UsageHours:
-          type: uint64
-#          format: uint64
+          type: integer
           description: The difference between the UsageEnd and UsageStart rounded up to the UsageHours
         Error:
           type: string
@@ -3102,8 +3089,8 @@ components:
           example: "10.128.0.2"
           description: Base address for the IP range
         Count:
-          type: number
-          format: uint32
+          type: integer
+          format: int32
           example: 1
           description: Number of IPs to count from the base
         DefaultRoute:
@@ -3121,16 +3108,16 @@ components:
       type: object
       properties:
         Total:
-          type: number
-          format: uint32
+          type: integer
+          format: int32
           description: Total number of IPs (pool capacity)
         Available:
-          type: number
-          format: uint32
+          type: integer
+          format: int32
           description: Number of non allocated IPs
         InUse:
-          type: number
-          format: uint32
+          type: integer
+          format: int32
           description: Number of allocated IPs
 
     IPPoolUpdate:

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**List**](HostsApi.md#List) | **Get** /hosts | List all Hosts in project
 [**PowerOff**](HostsApi.md#PowerOff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 [**PowerOn**](HostsApi.md#PowerOn) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
-[**Update**](HostsApi.md#Update) | **Put** /hosts/{hostId} | Update an existing Host -- NOT SUPPORTED
+[**Update**](HostsApi.md#Update) | **Put** /hosts/{hostId} | Update an existing Host
 
 
 
@@ -218,9 +218,9 @@ Name | Type | Description  | Notes
 
 > Host Update(ctx, hostId, host)
 
-Update an existing Host -- NOT SUPPORTED
+Update an existing Host
 
-NOT CURRENTLY SUPPORTED.  This call will (eventually) allow users to update a limited number of fields associated with the host.  Since most of this information is used when initially provisioning the host, supporting later changes would require careful coordination with host-based agents.
+Updates the Host with the matching ID.  Update is permitted only if the host is in the 'Ready' or 'Connection Updating Failed' state.  Only the Host 'Description', 'Networks', and 'NetworkForDefaultRoute' can be updated.
 
 ### Required Parameters
 

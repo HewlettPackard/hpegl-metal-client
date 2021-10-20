@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Base** | **string** | Base address for the IP range | [optional] 
-**Count** | **float32** | Number of IPs to count from the base | [optional] 
+**Count** | **int32** | Number of IPs to count from the base | [optional] 
 **DefaultRoute** | **string** | Default route for the IP range | [optional] 
 **Netmask** | [**Netmask**](Netmask.md) |  | [optional] 
 **SourceBase** | **string** | Base address of the Source the IPRange was allocated from | [optional] 
