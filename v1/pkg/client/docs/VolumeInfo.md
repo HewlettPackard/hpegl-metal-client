@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** | User-provided name for the volume | [optional] 
 **Description** | **string** | User-provided description of the volume | [optional] 
 **FlavorID** | **string** | The ID of the volume flavor requested when creating the volume | [optional] 
-**Capacity** | **int32** | Volume size in MB | [optional] 
+**Capacity** | **uint64** | Volume size in MB | [optional] 
 **LocationID** | **string** | The location ID of the data center where the volume was created | [optional] 
 **State** | [**VolumeState**](VolumeState.md) |  | [optional] 
 **Status** | [**VolumeStatus**](VolumeStatus.md) |  | [optional] 

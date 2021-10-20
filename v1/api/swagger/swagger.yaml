@@ -269,8 +269,6 @@ paths:
           type: string
 
       responses:
-        '200':
-          description: success
         '400':
           description: invalid id
         '401':
@@ -449,8 +447,6 @@ paths:
           type: string
 
       responses:
-        '200':
-          description: success
         '400':
           description: invalid id
         '401':
@@ -622,8 +618,6 @@ paths:
           type: string
 
       responses:
-        '200':
-          description: success
         '400':
           description: invalid id
         '401':
@@ -903,8 +897,6 @@ paths:
           type: string
 
       responses:
-        '200':
-          description: success
         '400':
           description: invalid id
         '401':
@@ -1106,8 +1098,6 @@ paths:
           type: string
 
       responses:
-        '200':
-          description: success
         '400':
           description: invalid id
         '401':
@@ -1262,8 +1252,6 @@ paths:
           type: string
 
       responses:
-        '200':
-          description: success
         '400':
           description: invalid id
         '401':
@@ -1594,11 +1582,11 @@ components:
         Description:
           type: string
         NumHosts:
-          type: integer
+          type: int32
         NumVolumes:
-          type: integer
+          type: int32
         TotalStorageGB:
-          type: integer
+          type: int32
         Status:
           type: string
           enum: ['Enable', 'Disable']
@@ -1609,11 +1597,11 @@ components:
         Name: 
           type: string
         ProjectsUsed:
-          type: integer
+          type: int32
         OtherUsed:
-          type: integer
+          type: int32
         Available:
-          type: integer
+          type: int32
           
     VolumeFlavorsInfo:
       type: object
@@ -1621,11 +1609,11 @@ components:
         Name: 
           type: string
         ProjectsUsed:
-          type: integer
+          type: int32
         OtherUsed:
-          type: integer
+          type: int32
         Available:
-          type: integer
+          type: int32
 
     Profile:
       type: object
@@ -1651,13 +1639,16 @@ components:
       type: object
       properties:
         Hosts:
-          type: integer
+          type: uint32
+ #         format: int32
           description: Maximum number of hosts to allow
         Volumes:
-          type: integer
+          type: uint32
+ #         format: int32
           description: Maximum number of volumes to allow
         VolumeCapacity:
-          type: integer
+          type: uint64
+ #         format: int64
           description: Maximum capacity to allow in GiB
 
     NewSSHKey:
@@ -1903,7 +1894,8 @@ components:
               type: string
               format: date-time
             Progress:
-              type: integer
+              type: uint64
+#              format: uint64
               minimum: 0
               maximum: 100
             Alert:
@@ -1930,7 +1922,8 @@ components:
             when a new volume is created independently from the host creation therefore
             requiring a specified location.
         Capacity:
-          type: integer
+          type: uint64
+#          format: uint64
           example: '10000'
           minimum: 0
           description: The size of the volume in MB
@@ -1958,7 +1951,8 @@ components:
             This object is used for new volume creation in the host create operation. Since
             host create already has location ID that field is not provided in this object.
         Capacity:
-          type: integer
+          type: uint64
+#          format: uint64
           example: '10000'
           minimum: 0
           description: The size of the volume in MB
@@ -1979,7 +1973,8 @@ components:
                 The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the
                 get /available-resources call
             Capacity:
-              type: integer
+              type: uint64
+#              format: uint64
               example: '10000'
               minimum: 0
               description: The size of the volume in MB
@@ -2294,7 +2289,8 @@ components:
             format: uuid
             description: The ID of the volume flavor requested when creating the volume
           Capacity:
-            type: integer
+            type: uint64
+#            format: uint64
             minimum: 0
             description: Volume size in MB
           LocationID:
@@ -2329,7 +2325,7 @@ components:
           format: uuid
           description: ID of a MachineSize as listed in the MachineSizes array
         Number: 
-          type: integer
+          type: int32
           minimum: 0
           description: The number of machines in inventory with indicated machine size at the indicated location
 
@@ -2346,7 +2342,8 @@ components:
           format: uuid
           description: Unique ID of a data center location
         Capacity:
-          type: integer
+          type: uint64
+#          format: uint64
           description: Total capacity available (in MB) to create new volumes of the indicated flavor at the indicated location
 
     SSHKeyEntry:
@@ -2432,7 +2429,8 @@ components:
               type: string
               description: CHAPUserName is the CHAP username to use for CHAP authentication
             LUN:
-              type: number
+              type: uint32
+#              format: uint32
               description: LUN is the Logical Unit Number to be assigned to the volume on export
             VolumeTargetIQN:
               type: string
@@ -2563,6 +2561,28 @@ components:
             IPPoolID:
               type: string
 
+    UsageReportRequest:
+      type: object
+      properties:
+        StartTime: 
+          type: string
+          format: date-time
+          example: '2020-02-10T22:58:26.518Z'
+          description: Timestamp indicating the start of the usage window
+        EndTime:
+          type: string
+          format: date-time
+          example: '2020-03-10T22:58:26.518Z'
+          description: Timestamp indicating the end of the usage window
+        Include: 
+          type: array
+          example: ['hosts', 'volumes']
+          description: >
+            List of what resources should be included in the report. Null will be interpreted as all
+          items:
+            type: string
+            enum: ['hosts', 'volumes']
+
     UsageReport:
       type: object
       description: The composite usage report
@@ -2620,7 +2640,8 @@ components:
               format: uuid
               description:  Unique ID of the volume flavor used when creating the volume
             Capacity:
-              type: integer
+              type: uint64
+#              format: uint64
               description: The size of the volume in MB 
 
     UsageEntryBase:
@@ -2653,7 +2674,8 @@ components:
           format: date-time
           description:  The end of the usage reporting window or when the resource was freed
         UsageHours:
-          type: integer
+          type: uint64
+#          format: uint64
           description: The difference between the UsageEnd and UsageStart rounded up to the UsageHours
         Error:
           type: string
@@ -3089,8 +3111,8 @@ components:
           example: "10.128.0.2"
           description: Base address for the IP range
         Count:
-          type: integer
-          format: int32
+          type: number
+          format: uint32
           example: 1
           description: Number of IPs to count from the base
         DefaultRoute:
@@ -3108,16 +3130,16 @@ components:
       type: object
       properties:
         Total:
-          type: integer
-          format: int32
+          type: number
+          format: uint32
           description: Total number of IPs (pool capacity)
         Available:
-          type: integer
-          format: int32
+          type: number
+          format: uint32
           description: Number of non allocated IPs
         InUse:
-          type: integer
-          format: int32
+          type: number
+          format: uint32
           description: Number of allocated IPs
 
     IPPoolUpdate:

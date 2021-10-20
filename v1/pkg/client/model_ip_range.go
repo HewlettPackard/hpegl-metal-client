@@ -16,7 +16,7 @@ type IpRange struct {
 	// Base address for the IP range
 	Base string `json:"Base,omitempty"`
 	// Number of IPs to count from the base
-	Count int32 `json:"Count,omitempty"`
+	Count float32 `json:"Count,omitempty"`
 	// Default route for the IP range
 	DefaultRoute string `json:"DefaultRoute,omitempty"`
 	Netmask Netmask `json:"Netmask,omitempty"`

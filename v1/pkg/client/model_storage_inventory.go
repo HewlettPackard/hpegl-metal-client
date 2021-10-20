@@ -18,5 +18,5 @@ type StorageInventory struct {
 	// Unique ID of a data center location
 	LocationID string `json:"LocationID,omitempty"`
 	// Total capacity available (in MB) to create new volumes of the indicated flavor at the indicated location
-	Capacity int32 `json:"Capacity,omitempty"`
+	Capacity uint64 `json:"Capacity,omitempty"`
 }

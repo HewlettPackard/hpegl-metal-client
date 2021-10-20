@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **Substate** | [**HostSubstate**](HostSubstate.md) |  | [optional] 
 **StateTime** | [**time.Time**](time.Time.md) |  | [optional] 
 **SubstateTime** | [**time.Time**](time.Time.md) |  | [optional] 
-**Progress** | **int32** |  | [optional] 
+**Progress** | **uint64** |  | [optional] 
 **Alert** | **bool** |  | [optional] 
 **AlertInfo** | [**[]HostAlertInfo**](HostAlertInfo.md) |  | [optional] 
 

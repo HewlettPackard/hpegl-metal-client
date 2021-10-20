@@ -31,7 +31,7 @@ type VolumeUsageEntry struct {
 	// The end of the usage reporting window or when the resource was freed
 	UsageEnd time.Time `json:"UsageEnd,omitempty"`
 	// The difference between the UsageEnd and UsageStart rounded up to the UsageHours
-	UsageHours int32 `json:"UsageHours,omitempty"`
+	UsageHours uint64 `json:"UsageHours,omitempty"`
 	// Description of error that affected the usage reporting
 	Error string `json:"Error,omitempty"`
 	// Name of the volume
@@ -43,5 +43,5 @@ type VolumeUsageEntry struct {
 	// Unique ID of the volume flavor used when creating the volume
 	FlavorID string `json:"FlavorID,omitempty"`
 	// The size of the volume in MB
-	Capacity int32 `json:"Capacity,omitempty"`
+	Capacity uint64 `json:"Capacity,omitempty"`
 }

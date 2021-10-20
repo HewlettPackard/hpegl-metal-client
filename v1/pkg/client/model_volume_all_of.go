@@ -17,7 +17,7 @@ type VolumeAllOf struct {
 	// The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the get /available-resources call
 	FlavorID string `json:"FlavorID,omitempty"`
 	// The size of the volume in MB
-	Capacity int32 `json:"Capacity,omitempty"`
+	Capacity uint64 `json:"Capacity,omitempty"`
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
 	LocationID string `json:"LocationID,omitempty"`
 	State VolumeState `json:"State,omitempty"`

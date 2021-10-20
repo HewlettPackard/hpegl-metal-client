@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [optional] 
 **Description** | **string** |  | [optional] 
 **FlavorID** | **string** | This object is used for new volume creation in the host create operation. Since host create already has location ID that field is not provided in this object. | [optional] 
-**Capacity** | **int32** | The size of the volume in MB | [optional] 
+**Capacity** | **uint64** | The size of the volume in MB | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
