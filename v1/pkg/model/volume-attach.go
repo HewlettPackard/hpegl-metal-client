@@ -1,38 +1,61 @@
-// Copyright 2016-2021 Hewlett Packard Enterprise Development LP.
+// Copyright 2016-2021 Hewlett Packard Enterprise Development LP
 
 package model
 
 // VolumeAttachment represents an attachment between a host and an external volume.
 type VolumeAttachment struct {
 	ResourceBase
-	VolumeID              string
-	HostID                string //
-	HostIPAddress         string // HostIPAddress is the IPV4 IPAddress of the iSCSI initiator (host) in dot notation or FQN.
-	IQN                   string // IQN is the full initiator name used for identification during iSCSI login.
-	CHAPSecret            string // CHAPSecret is the Challenge Authentication Protocol secret to be shared between array and initiator. If empty, no CHAP // login is enabled; if set it must be a string between 12 and 16 characters.
-	CHAPUserName          string // CHAPUserName is the CHAP username to use for CHAP authentication
-	LUN                   int32  // LUN is the Logical Unit Number to be assigned to the volume on export.
-	VolumeTargetIQN       string // VolumeTargetIQN is the iQN for the volume, assigned by the array correspnding to the volume.
-	VolumeTargetIPAddress string // VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export.
+	VolumeID string
+	HostID   string
+	// IPV4 address of the iSCSI initiator (host) in dot notation or FQN.
+	HostIPAddress string
+	// IQN of the iSCSI initiator used for identification during iSCSI login.
+	IQN string
+	// Challenge Authentication Protocol secret to be shared between array and initiator.
+	// If empty, no CHAP login is enabled; if set, it must be a string between 12 and 16 characters.
+	CHAPSecret string
+	// CHAP username to use for CHAP authentication
+	CHAPUserName string
+	// Logical Unit Number to be assigned to the volume on export.
+	LUN int32
+	// IQN of the iSCSI target managing the volume.
+	VolumeTargetIQN string
+	// IPV4 address of the iSCSI target managing the volume.
+	VolumeTargetIPAddress string
+	// State of the volumeattachment, managed by the portal volmon bot.
+	State VaStateEnum
 	// VolumeGroupID           string // VolumeGroupID may be empty of this volume is not part of a group.
 	// ArrayNetworkInterfaceID string // ArrayNetworkInterfaceID this must be initialized at creation time; it must correspond to an arry netoworkID that is reported in // StorageNetwork.ArrayNetworkInterfaceID
 	// ArrayVolumeAttachmentID string // Array parameters that may be passed to the driver with casts. These fields are populated by the storagemon bot and should be // unintialized at point of creation.
 	// ArrayHostID             string // ArrayHostID is a reference to the array-side host entry.
 }
 
-// ISCSIParameters contains the parameters required to attach a volume using
-// ISCSI.
+// VaStateEnum defines the posible VolumeAttachment states.
+type VaStateEnum string
+
+// VaStateEnum values.
+const (
+	VaStateNull        VaStateEnum = ""            // Unknown state coming from previous schema versions.
+	VaStateNew         VaStateEnum = "new"         // VA is created in the portal/database.
+	VaStateExporting   VaStateEnum = "exporting"   // Volume is being exported on target.
+	VaStateAttaching   VaStateEnum = "attaching"   // Volume is being attached on initiator: only for v2 lifecycle.
+	VaStateReady       VaStateEnum = "ready"       // Volume is ready for traffic between initiator and target.
+	VaStateDetaching   VaStateEnum = "detaching"   // Volume is being detached on initiator: only for v2 lifecycle.
+	VaStateUnexporting VaStateEnum = "unexporting" // Volume is being unexported on target.
+	VaStateDeleted     VaStateEnum = "deleted"     // VA has been deleted (might not be needed if object is removed from DB).
+	VaStateFailed      VaStateEnum = "failed"      // VA has run into a problem.
+)
+
+// ISCSIParameters contains the parameters required to attach a volume using iSCSI.
 type ISCSIParameters struct {
-	// HostIPAddress is the IPV4 IP Address of the iSCSI initiator (host) in dot
-	// notation or FQN.
+	// IPV4 address of the iSCSI initiator (host) in dot notation or FQN.
 	HostIPAddress string
-	// IQN is the full initiator name used for identification during iSCSI login.
+	// IQN of the iSCSI initiator used for identification during iSCSI login.
 	InitiatorName string
-	// CHAPSecret is the Challenge Authentication Protocol secret to be shared
-	// between array and initiator. If empty, no CHAP login is enabled; if set it
-	// must be a string between 12 and 16 characters.
+	// Challenge Authentication Protocol secret to be shared between array and initiator.
+	// If empty, no CHAP login is enabled; if set, it must be a string between 12 and 16 characters.
 	CHAPSecret string
-	// CHAPUserName is the CHAP username to use for CHAP authentication.
+	// CHAP username to use for CHAP authentication.
 	CHAPUserName string
 }
 

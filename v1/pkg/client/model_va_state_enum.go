@@ -11,16 +11,17 @@
  */
 
 package client
-// VolumeState Current volume state expressed as a string enum value (new, allocating, allocated, visible, deleting, deleted, failed)
-type VolumeState string
+// VaStateEnum Current volume attachment state expressed as a string enum value (new, exporting, attaching, ready, detaching, unexporting, deleted, failed)
+type VaStateEnum string
 
-// List of VolumeState
+// List of VaStateEnum
 const (
-	VOLUMESTATE_NEW VolumeState = "new"
-	VOLUMESTATE_ALLOCATING VolumeState = "allocating"
-	VOLUMESTATE_ALLOCATED VolumeState = "allocated"
-	VOLUMESTATE_VISIBLE VolumeState = "visible"
-	VOLUMESTATE_DELETING VolumeState = "deleting"
-	VOLUMESTATE_DELETED VolumeState = "deleted"
-	VOLUMESTATE_FAILED VolumeState = "failed"
+	VASTATEENUM_NEW VaStateEnum = "new"
+	VASTATEENUM_EXPORTING VaStateEnum = "exporting"
+	VASTATEENUM_ATTACHING VaStateEnum = "attaching"
+	VASTATEENUM_READY VaStateEnum = "ready"
+	VASTATEENUM_DETACHING VaStateEnum = "detaching"
+	VASTATEENUM_UNEXPORTING VaStateEnum = "unexporting"
+	VASTATEENUM_DELETED VaStateEnum = "deleted"
+	VASTATEENUM_FAILED VaStateEnum = "failed"
 )

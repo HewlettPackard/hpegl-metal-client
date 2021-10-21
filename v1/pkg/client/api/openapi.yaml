@@ -58,7 +58,7 @@ tags:
     Operations related to Volumes.  A Volume is an external storage volume that persists independent of the associated host.
   name: volumes
 - description: |
-    Read-only operations related to VolumeAttachments that describe how a host is connected to a volume.
+    Operations related to VolumeAttachments that describe how a host is connected to a volume.
   name: volume-attachments
 - description: |
     Operations related to Networks.
@@ -2327,12 +2327,14 @@ components:
           $ref: '#/components/schemas/VolumeStatus'
       type: object
     VolumeState:
-      description: Current volume state expressed as a string enum value (new, allocated,
-        visible, deleted, failed)
+      description: Current volume state expressed as a string enum value (new, allocating,
+        allocated, visible, deleting, deleted, failed)
       enum:
       - new
+      - allocating
       - allocated
       - visible
+      - deleting
       - deleted
       - failed
       type: string
@@ -2462,6 +2464,19 @@ components:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/VolumeAttachment_allOf'
+    VaStateEnum:
+      description: Current volume attachment state expressed as a string enum value
+        (new, exporting, attaching, ready, detaching, unexporting, deleted, failed)
+      enum:
+      - new
+      - exporting
+      - attaching
+      - ready
+      - detaching
+      - unexporting
+      - deleted
+      - failed
+      type: string
     NewVolumeAttachment:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
@@ -3332,6 +3347,8 @@ components:
             export
           format: ipv4
           type: string
+        State:
+          $ref: '#/components/schemas/VaStateEnum'
     NewVolumeAttachment_allOf:
       properties:
         VolumeID:

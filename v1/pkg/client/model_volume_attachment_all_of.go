@@ -31,4 +31,5 @@ type VolumeAttachmentAllOf struct {
 	VolumeTargetIQN string `json:"VolumeTargetIQN,omitempty"`
 	// VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
 	VolumeTargetIPAddress string `json:"VolumeTargetIPAddress,omitempty"`
+	State VaStateEnum `json:"State,omitempty"`
 }

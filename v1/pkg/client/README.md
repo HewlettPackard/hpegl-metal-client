@@ -145,6 +145,7 @@ Class | Method | HTTP request | Description
  - [UsageEntryBase](docs/UsageEntryBase.md)
  - [UsageReport](docs/UsageReport.md)
  - [UseRecord](docs/UseRecord.md)
+ - [VaStateEnum](docs/VaStateEnum.md)
  - [Version](docs/Version.md)
  - [Volume](docs/Volume.md)
  - [VolumeAllOf](docs/VolumeAllOf.md)

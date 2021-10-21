@@ -78,7 +78,7 @@ tags:
       that persists independent of the associated host.
   - name: volume-attachments
     description: >
-      Read-only operations related to VolumeAttachments that describe how a
+      Operations related to VolumeAttachments that describe how a
       host is connected to a volume.
   - name: networks
     description: >
@@ -2326,9 +2326,9 @@ components:
             $ref: '#/components/schemas/VolumeStatus'
 
     VolumeState:
-      description: Current volume state expressed as a string enum value (new, allocated, visible, deleted, failed)
+      description: Current volume state expressed as a string enum value (new, allocating, allocated, visible, deleting, deleted, failed)
       type: string
-      enum: ['new', 'allocated', 'visible', 'deleted', 'failed']
+      enum: ['new', 'allocating', 'allocated', 'visible', 'deleting', 'deleted', 'failed']
 
     VolumeStatus:
       description: Current volume status expressed as a string enum values (ok, error, degraded)
@@ -2462,6 +2462,13 @@ components:
               type: string
               format: ipv4
               description: VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
+            State:
+              $ref: '#/components/schemas/VaStateEnum'
+
+    VaStateEnum:
+      description: Current volume attachment state expressed as a string enum value (new, exporting, attaching, ready, detaching, unexporting, deleted, failed)
+      type: string
+      enum: ['new', 'exporting', 'attaching', 'ready', 'detaching', 'unexporting', 'deleted', 'failed']
 
     NewVolumeAttachment:
       allOf:
