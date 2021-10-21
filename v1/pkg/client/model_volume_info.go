@@ -22,7 +22,7 @@ type VolumeInfo struct {
 	// The ID of the volume flavor requested when creating the volume
 	FlavorID string `json:"FlavorID,omitempty"`
 	// Volume size in MB
-	Capacity uint64 `json:"Capacity,omitempty"`
+	Capacity int64 `json:"Capacity,omitempty"`
 	// The location ID of the data center where the volume was created
 	LocationID string `json:"LocationID,omitempty"`
 	State VolumeState `json:"State,omitempty"`

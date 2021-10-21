@@ -26,7 +26,7 @@ type VolumeAttachmentAllOf struct {
 	// CHAPUserName is the CHAP username to use for CHAP authentication
 	CHAPUserName string `json:"CHAPUserName,omitempty"`
 	// LUN is the Logical Unit Number to be assigned to the volume on export
-	LUN uint32 `json:"LUN,omitempty"`
+	LUN int32 `json:"LUN,omitempty"`
 	// VolumeTargetIQN is the iQN for the volume, assigned by the array correspnding to the volume
 	VolumeTargetIQN string `json:"VolumeTargetIQN,omitempty"`
 	// VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export

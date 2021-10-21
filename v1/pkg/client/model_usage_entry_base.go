@@ -31,7 +31,7 @@ type UsageEntryBase struct {
 	// The end of the usage reporting window or when the resource was freed
 	UsageEnd time.Time `json:"UsageEnd,omitempty"`
 	// The difference between the UsageEnd and UsageStart rounded up to the UsageHours
-	UsageHours uint64 `json:"UsageHours,omitempty"`
+	UsageHours int64 `json:"UsageHours,omitempty"`
 	// Description of error that affected the usage reporting
 	Error string `json:"Error,omitempty"`
 }

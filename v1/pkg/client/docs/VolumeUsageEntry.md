@@ -11,13 +11,13 @@ Name | Type | Description | Notes
 **Freed** | [**time.Time**](time.Time.md) | Timestamp of when resource (machine or storage) was freed | [optional] 
 **UsageStart** | [**time.Time**](time.Time.md) | The start of the usage reporting window or when the resource was allocated | [optional] 
 **UsageEnd** | [**time.Time**](time.Time.md) | The end of the usage reporting window or when the resource was freed | [optional] 
-**UsageHours** | **uint64** | The difference between the UsageEnd and UsageStart rounded up to the UsageHours | [optional] 
+**UsageHours** | **int64** | The difference between the UsageEnd and UsageStart rounded up to the UsageHours | [optional] 
 **Error** | **string** | Description of error that affected the usage reporting | [optional] 
 **VolumeName** | **string** | Name of the volume | [optional] 
 **VolumeID** | **string** | Unique ID of the volume | [optional] 
 **FlavorName** | **string** | Name of the volume flavor used when creating the volume | [optional] 
 **FlavorID** | **string** | Unique ID of the volume flavor used when creating the volume | [optional] 
-**Capacity** | **uint64** | The size of the volume in MB | [optional] 
+**Capacity** | **int64** | The size of the volume in MB | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,5 +22,5 @@ type VolumeUsageEntryAllOf struct {
 	// Unique ID of the volume flavor used when creating the volume
 	FlavorID string `json:"FlavorID,omitempty"`
 	// The size of the volume in MB
-	Capacity uint64 `json:"Capacity,omitempty"`
+	Capacity int64 `json:"Capacity,omitempty"`
 }

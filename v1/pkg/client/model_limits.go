@@ -14,9 +14,9 @@ package client
 // Limits struct for Limits
 type Limits struct {
 	// Maximum number of hosts to allow
-	Hosts uint32 `json:"Hosts,omitempty"`
+	Hosts int32 `json:"Hosts,omitempty"`
 	// Maximum number of volumes to allow
-	Volumes uint32 `json:"Volumes,omitempty"`
+	Volumes int32 `json:"Volumes,omitempty"`
 	// Maximum capacity to allow in GiB
-	VolumeCapacity uint64 `json:"VolumeCapacity,omitempty"`
+	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
 }

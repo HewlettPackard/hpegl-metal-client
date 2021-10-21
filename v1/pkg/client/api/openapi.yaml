@@ -1375,9 +1375,9 @@ components:
     NewProject:
       example:
         Limits:
-          Hosts: ""
-          Volumes: ""
-          VolumeCapacity: ""
+          Hosts: 0
+          Volumes: 0
+          VolumeCapacity: 0
         Profile:
           TeamDesc: TeamDesc
           EmailVerified: true
@@ -1408,36 +1408,36 @@ components:
     ProjectsInfo:
       example:
         MachineSizes:
-        - ProjectsUsed: ""
-          Available: ""
-          OtherUsed: ""
+        - ProjectsUsed: 5
+          Available: 2
+          OtherUsed: 5
           Name: Name
-        - ProjectsUsed: ""
-          Available: ""
-          OtherUsed: ""
+        - ProjectsUsed: 5
+          Available: 2
+          OtherUsed: 5
           Name: Name
         VolumeFlavors:
-        - ProjectsUsed: ""
-          Available: ""
-          OtherUsed: ""
+        - ProjectsUsed: 7
+          Available: 3
+          OtherUsed: 9
           Name: Name
-        - ProjectsUsed: ""
-          Available: ""
-          OtherUsed: ""
+        - ProjectsUsed: 7
+          Available: 3
+          OtherUsed: 9
           Name: Name
         Projects:
         - Status: Enable
-          NumVolumes: ""
+          NumVolumes: 6
           Description: Description
-          TotalStorageGB: ""
-          NumHosts: ""
+          TotalStorageGB: 1
+          NumHosts: 0
           ID: ID
           Name: Name
         - Status: Enable
-          NumVolumes: ""
+          NumVolumes: 6
           Description: Description
-          TotalStorageGB: ""
-          NumHosts: ""
+          TotalStorageGB: 1
+          NumHosts: 0
           ID: ID
           Name: Name
       properties:
@@ -1457,10 +1457,10 @@ components:
     ProjectInfo:
       example:
         Status: Enable
-        NumVolumes: ""
+        NumVolumes: 6
         Description: Description
-        TotalStorageGB: ""
-        NumHosts: ""
+        TotalStorageGB: 1
+        NumHosts: 0
         ID: ID
         Name: Name
       properties:
@@ -1471,11 +1471,11 @@ components:
         Description:
           type: string
         NumHosts:
-          type: int32
+          type: integer
         NumVolumes:
-          type: int32
+          type: integer
         TotalStorageGB:
-          type: int32
+          type: integer
         Status:
           enum:
           - Enable
@@ -1484,35 +1484,35 @@ components:
       type: object
     MachineSizeInfo:
       example:
-        ProjectsUsed: ""
-        Available: ""
-        OtherUsed: ""
+        ProjectsUsed: 5
+        Available: 2
+        OtherUsed: 5
         Name: Name
       properties:
         Name:
           type: string
         ProjectsUsed:
-          type: int32
+          type: integer
         OtherUsed:
-          type: int32
+          type: integer
         Available:
-          type: int32
+          type: integer
       type: object
     VolumeFlavorsInfo:
       example:
-        ProjectsUsed: ""
-        Available: ""
-        OtherUsed: ""
+        ProjectsUsed: 7
+        Available: 3
+        OtherUsed: 9
         Name: Name
       properties:
         Name:
           type: string
         ProjectsUsed:
-          type: int32
+          type: integer
         OtherUsed:
-          type: int32
+          type: integer
         Available:
-          type: int32
+          type: integer
       type: object
     Profile:
       example:
@@ -1544,19 +1544,23 @@ components:
       type: object
     Limits:
       example:
-        Hosts: ""
-        Volumes: ""
-        VolumeCapacity: ""
+        Hosts: 0
+        Volumes: 0
+        VolumeCapacity: 0
       properties:
         Hosts:
           description: Maximum number of hosts to allow
-          type: uint32
+          minimum: 0
+          type: integer
         Volumes:
           description: Maximum number of volumes to allow
-          type: uint32
+          minimum: 0
+          type: integer
         VolumeCapacity:
           description: Maximum capacity to allow in GiB
-          type: uint64
+          format: int64
+          minimum: 0
+          type: integer
       type: object
     NewSSHKey:
       properties:
@@ -1588,11 +1592,11 @@ components:
         NewVolumes:
         - Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: "10000"
+          Capacity: 10000
           Name: NewVolumeName
         - Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: "10000"
+          Capacity: 10000
           Name: NewVolumeName
         NetworkForDefaultRoute: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         SSHKeyIDs:
@@ -1704,7 +1708,7 @@ components:
       example:
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: "10000"
+        Capacity: 10000
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: NewVolumeName
       properties:
@@ -1722,9 +1726,10 @@ components:
           type: string
         Capacity:
           description: The size of the volume in MB
-          example: "10000"
+          example: 10000
+          format: int64
           minimum: 0
-          type: uint64
+          type: integer
         LocationID:
           description: The location of the volume (and the storage array) LocationID
             is one of those listed by the LocationInfo array returned as part of the
@@ -1737,7 +1742,7 @@ components:
       example:
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: "10000"
+        Capacity: 10000
         Name: NewVolumeName
       properties:
         Name:
@@ -1754,9 +1759,10 @@ components:
           type: string
         Capacity:
           description: The size of the volume in MB
-          example: "10000"
+          example: 10000
+          format: int64
           minimum: 0
-          type: uint64
+          type: integer
       type: object
     Volume:
       allOf:
@@ -1963,13 +1969,13 @@ components:
         Volumes:
         - Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: ""
+          Capacity: 0
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: MyVolume
         - Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: ""
+          Capacity: 0
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: MyVolume
@@ -2020,10 +2026,10 @@ components:
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: HighPerfFlash
         MachineInventory:
-        - Number: ""
+        - Number: 0
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           SizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - Number: ""
+        - Number: 0
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           SizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Images:
@@ -2046,10 +2052,10 @@ components:
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         StorageInventory:
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: ""
+          Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: ""
+          Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         SSHKeys:
         - ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2260,7 +2266,7 @@ components:
       example:
         Description: Description
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: ""
+        Capacity: 0
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: MyVolume
@@ -2283,8 +2289,9 @@ components:
           type: string
         Capacity:
           description: Volume size in MB
+          format: int64
           minimum: 0
-          type: uint64
+          type: integer
         LocationID:
           description: The location ID of the data center where the volume was created
           format: uuid
@@ -2316,7 +2323,7 @@ components:
       description: An entry describing the number of machines of a particular machine
         size at a specific location
       example:
-        Number: ""
+        Number: 0
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         SizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -2332,14 +2339,14 @@ components:
           description: The number of machines in inventory with indicated machine
             size at the indicated location
           minimum: 0
-          type: int32
+          type: integer
       type: object
     StorageInventory:
       description: An entry describing the amount of storage available to create volumes
         of a specific flavor
       example:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: ""
+        Capacity: 1
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         FlavorID:
@@ -2354,7 +2361,8 @@ components:
         Capacity:
           description: Total capacity available (in MB) to create new volumes of the
             indicated flavor at the indicated location
-          type: uint64
+          format: int64
+          type: integer
       type: object
     SSHKeyEntry:
       description: An entry listing an SSH key that is available for use when creating
@@ -2633,7 +2641,8 @@ components:
         UsageHours:
           description: The difference between the UsageEnd and UsageStart rounded
             up to the UsageHours
-          type: uint64
+          format: int64
+          type: integer
         Error:
           description: Description of error that affected the usage reporting
           type: string
@@ -3015,8 +3024,7 @@ components:
         Count:
           description: Number of IPs to count from the base
           example: 1
-          format: uint32
-          type: number
+          type: integer
         DefaultRoute:
           description: Default route for the IP range
           example: 10.128.0.1
@@ -3032,16 +3040,16 @@ components:
       properties:
         Total:
           description: Total number of IPs (pool capacity)
-          format: uint32
-          type: number
+          format: int32
+          type: integer
         Available:
           description: Number of non allocated IPs
-          format: uint32
-          type: number
+          format: int32
+          type: integer
         InUse:
           description: Number of allocated IPs
-          format: uint32
-          type: number
+          format: int32
+          type: integer
       type: object
     IPPoolUpdate:
       allOf:
@@ -3246,9 +3254,10 @@ components:
           format: date-time
           type: string
         Progress:
+          format: int64
           maximum: 100
           minimum: 0
-          type: uint64
+          type: integer
         Alert:
           type: boolean
         AlertInfo:
@@ -3267,9 +3276,10 @@ components:
           type: string
         Capacity:
           description: The size of the volume in MB
-          example: "10000"
+          example: 10000
+          format: int64
           minimum: 0
-          type: uint64
+          type: integer
         LocationID:
           description: The location of the volume (and the storage array) LocationID
             is one of those listed by the LocationInfo array returned as part of the
@@ -3311,7 +3321,7 @@ components:
         LUN:
           description: LUN is the Logical Unit Number to be assigned to the volume
             on export
-          type: uint32
+          type: integer
         VolumeTargetIQN:
           description: VolumeTargetIQN is the iQN for the volume, assigned by the
             array correspnding to the volume
@@ -3386,7 +3396,8 @@ components:
           type: string
         Capacity:
           description: The size of the volume in MB
-          type: uint64
+          format: int64
+          type: integer
     IPPool_allOf:
       properties:
         Description:

@@ -65,7 +65,7 @@ type Host struct {
 	Substate HostSubstate `json:"Substate,omitempty"`
 	StateTime time.Time `json:"StateTime,omitempty"`
 	SubstateTime time.Time `json:"SubstateTime,omitempty"`
-	Progress uint64 `json:"Progress,omitempty"`
+	Progress int64 `json:"Progress,omitempty"`
 	Alert bool `json:"Alert,omitempty"`
 	AlertInfo []HostAlertInfo `json:"AlertInfo,omitempty"`
 }

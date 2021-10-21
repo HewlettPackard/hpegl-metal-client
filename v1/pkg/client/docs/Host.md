@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **Substate** | [**HostSubstate**](HostSubstate.md) |  | [optional] 
 **StateTime** | [**time.Time**](time.Time.md) |  | [optional] 
 **SubstateTime** | [**time.Time**](time.Time.md) |  | [optional] 
-**Progress** | **uint64** |  | [optional] 
+**Progress** | **int64** |  | [optional] 
 **Alert** | **bool** |  | [optional] 
 **AlertInfo** | [**[]HostAlertInfo**](HostAlertInfo.md) |  | [optional] 
 
