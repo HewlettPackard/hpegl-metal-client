@@ -144,7 +144,6 @@ Class | Method | HTTP request | Description
  - [StorageInventory](docs/StorageInventory.md)
  - [UsageEntryBase](docs/UsageEntryBase.md)
  - [UsageReport](docs/UsageReport.md)
- - [UsageReportRequest](docs/UsageReportRequest.md)
  - [UseRecord](docs/UseRecord.md)
  - [Version](docs/Version.md)
  - [Volume](docs/Volume.md)

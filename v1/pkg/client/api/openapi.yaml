@@ -2574,31 +2574,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/Network_allOf'
-    UsageReportRequest:
-      properties:
-        StartTime:
-          description: Timestamp indicating the start of the usage window
-          example: 2020-02-10T22:58:26.518Z
-          format: date-time
-          type: string
-        EndTime:
-          description: Timestamp indicating the end of the usage window
-          example: 2020-03-10T22:58:26.518Z
-          format: date-time
-          type: string
-        Include:
-          description: |
-            List of what resources should be included in the report. Null will be interpreted as all
-          example:
-          - hosts
-          - volumes
-          items:
-            enum:
-            - hosts
-            - volumes
-            type: string
-          type: array
-      type: object
     UsageReport:
       description: The composite usage report
       example:
