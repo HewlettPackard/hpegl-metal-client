@@ -161,8 +161,8 @@ paths:
                $ref: '#/components/schemas/NewProject'
 
       responses:
-        '200':
-          description: success
+        '201':
+          description: created
           content:
             application/json:
               schema:
@@ -269,6 +269,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -341,8 +343,8 @@ paths:
                $ref: '#/components/schemas/NewSSHKey'
 
       responses:
-        '200':
-          description: success
+        '201':
+          description: created         
           content:
             application/json:
               schema:
@@ -447,6 +449,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -506,8 +510,8 @@ paths:
                $ref: '#/components/schemas/NewHost'
 
       responses:
-        '200':
-          description: success
+        '201':
+          description: created
           content:
             application/json:
               schema:
@@ -618,6 +622,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -791,8 +797,8 @@ paths:
                $ref: '#/components/schemas/NewVolume'
 
       responses:
-        '200':
-          description: success
+        '201':
+          description: created
           content:
             application/json:
               schema:
@@ -897,6 +903,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -1033,8 +1041,8 @@ paths:
                $ref: '#/components/schemas/NewVolumeAttachment'
 
       responses:
-        '200':
-          description: success
+        '201':          
+          description: created
           content:
             application/json:
               schema:
@@ -1098,6 +1106,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':
@@ -1146,8 +1156,8 @@ paths:
                $ref: '#/components/schemas/NewNetwork'
 
       responses:
-        '200':
-          description: success
+        '201':
+          description: created
           content:
             application/json:
               schema:
@@ -1252,6 +1262,8 @@ paths:
           type: string
 
       responses:
+        '200':
+          description: success
         '400':
           description: invalid id
         '401':

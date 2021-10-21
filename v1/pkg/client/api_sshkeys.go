@@ -91,7 +91,7 @@ func (a *SshkeysApiService) Add(ctx _context.Context, newSshKey NewSshKey) (SshK
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
+		if localVarHTTPResponse.StatusCode == 201 {
 			var v SshKey
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

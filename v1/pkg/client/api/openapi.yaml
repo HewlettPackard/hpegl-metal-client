@@ -127,12 +127,12 @@ paths:
         description: NewProject parameters to create a new Project
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
-          description: success
+          description: created
         "400":
           description: invalid content
         "401":
@@ -158,6 +158,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: success
         "400":
           description: invalid id
         "401":
@@ -295,12 +297,12 @@ paths:
         description: SSH Key that is to be added to the project
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SSHKey'
-          description: success
+          description: created
         "400":
           description: invalid content
         "401":
@@ -326,6 +328,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: success
         "400":
           description: invalid id
         "401":
@@ -440,12 +444,12 @@ paths:
           for descriptions of individual attributes.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Host'
-          description: success
+          description: created
         "400":
           description: invalid content
         "401":
@@ -473,6 +477,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: success
         "400":
           description: invalid id
         "401":
@@ -690,12 +696,12 @@ paths:
         description: Volume that is to be added to the project
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Volume'
-          description: success
+          description: created
         "400":
           description: invalid content
         "401":
@@ -721,6 +727,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: success
         "400":
           description: invalid id
         "401":
@@ -907,12 +915,12 @@ paths:
         description: NewVolumeAttachement parameters to create a new VolumeAttachment.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VolumeAttachment'
-          description: success
+          description: created
         "400":
           description: invalid content
         "401":
@@ -938,6 +946,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: success
         "400":
           description: invalid id
         "401":
@@ -1011,12 +1021,12 @@ paths:
         description: Network that is to be added to the project
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Network'
-          description: success
+          description: created
         "400":
           description: invalid content
         "401":
@@ -1042,6 +1052,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: success
         "400":
           description: invalid id
         "401":

@@ -91,7 +91,7 @@ func (a *ProjectsApiService) Add(ctx _context.Context, newProject NewProject) (P
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 200 {
+		if localVarHTTPResponse.StatusCode == 201 {
 			var v Project
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
