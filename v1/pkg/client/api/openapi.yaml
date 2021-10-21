@@ -1599,6 +1599,9 @@ components:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         MachineSizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        PreAllocatedIPs:
+        - 10.0.0.4
+        - 10.0.0.8
         Name: NewHostName
         ServiceID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         NewVolumes:
@@ -1671,6 +1674,16 @@ components:
             as Required.
           items:
             format: uuid
+            type: string
+          type: array
+        PreAllocatedIPs:
+          description: A list of pre-allocated IP addresses to be used for corresponding
+            networks. This array of IP addresses, if present, is in one-to-one correspondence
+            with Networks.
+          example:
+          - 10.0.0.4
+          - 10.0.0.8
+          items:
             type: string
           type: array
         NetworkForDefaultRoute:

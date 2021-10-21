@@ -1754,6 +1754,16 @@ components:
           items:
             type: string
             format: uuid
+        PreAllocatedIPs:
+          type: array
+          description: 
+            A list of pre-allocated IP addresses to be used for corresponding networks. This array
+            of IP addresses, if present, is in one-to-one correspondence with Networks.
+          items:
+            type: string
+          example:
+          - 10.0.0.4
+          - 10.0.0.8
         NetworkForDefaultRoute: 
               type: string
               format: uuid

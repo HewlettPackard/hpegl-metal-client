@@ -21,6 +21,7 @@ type NewHost struct {
 	MachineID              string      // ID of the desired machine		    [Machine]
 	SSHKeyIDs              []string    // IDs of SSHKeys to be added         [SSHKeys]
 	NetworkIDs             []string    // IDs of networks connected to host  [Networks]
+	PreAllocatedIPs        []string    // List df pre-allocated IP addresses.
 	NetworkForDefaultRoute string      // ID of the network used for the default route
 	VolumeIDs              []string    // IDs of volumes to attach           [Volumes]
 	NewVolumes             []AddVolume // Information on any new volumes to be created

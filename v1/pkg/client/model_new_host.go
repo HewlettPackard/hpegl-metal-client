@@ -28,6 +28,8 @@ type NewHost struct {
 	SSHKeyIDs []string `json:"SSHKeyIDs,omitempty"`
 	// The list of IDs corresponding to the networks that will be provisioned to the host. These networks must be among those listed in the Networks array returned by the get /available-resources call.  This list must include the ID for any network identified by the HostUseEnum as Required.
 	NetworkIDs []string `json:"NetworkIDs"`
+	// A list of pre-allocated IP addresses to be used for corresponding networks. This array of IP addresses, if present, is in one-to-one correspondence with Networks.
+	PreAllocatedIPs []string `json:"PreAllocatedIPs,omitempty"`
 	// The host default network ID
 	NetworkForDefaultRoute string `json:"NetworkForDefaultRoute"`
 	// The list of IDs corresponding to existing, unattached volumes that should be attached to the new host.  The volume must be one of those listed in the Volumes array returned by the get /available-resources call.  In addition, the volume must be in the visible state and not a part of any current VolumeAttachment (see get volume-attachments)
