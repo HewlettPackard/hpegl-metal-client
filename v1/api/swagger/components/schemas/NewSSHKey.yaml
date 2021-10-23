@@ -1,0 +1,7 @@
+type: object
+properties:
+  Name:
+    type: string
+    example: Joe's Laptop
+  Key:
+    $ref: ./SSHKeyValue.yaml

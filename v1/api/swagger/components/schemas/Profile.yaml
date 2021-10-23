@@ -1,0 +1,18 @@
+type: object
+properties:
+  TeamName:
+    type: string
+  TeamDesc:
+    type: string
+  Company:
+    type: string
+  Address:
+    type: string
+  Email:
+    type: string
+  EmailVerified:
+    type: boolean
+  PhoneNumber:
+    type: string
+  PhoneVerified:
+    type: boolean

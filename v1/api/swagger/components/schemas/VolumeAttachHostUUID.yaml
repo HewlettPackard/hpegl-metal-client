@@ -1,0 +1,6 @@
+type: object
+properties:
+  HostID:
+    type: string
+    format: uuid
+    description: Unique ID of the Host to which the volume will be attached

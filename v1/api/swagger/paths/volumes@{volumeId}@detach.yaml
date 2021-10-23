@@ -1,0 +1,39 @@
+post:
+  tags:
+    - volumes
+  summary: Detach existing volume from Host
+  description: >
+    Detaches the indicated volume from the host identified in the requestBody.  
+    This detachment will delete the VolumeAttachment object that contains 
+    details about the connection of the volume and will update the Host  to
+    remove selected iSCSI configuration information.
+
+    Note that the HostID is required in the body of the request to ensure that
+    the operation is well understood and that a volume is not accidently being
+    removed from the wrong host.
+  operationId: Volume_detach
+  parameters:
+    - name: volumeId
+      in: path
+      description: ID of volume to attach
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Unique ID of the Host from which a volume will be detached
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/VolumeAttachHostUUID.yaml
+  responses:
+    '200':
+      description: success
+    '400':
+      description: invalid content
+    '401':
+      description: unauthorized
+    '405':
+      description: invalid input
+    '500':
+      description: internal error

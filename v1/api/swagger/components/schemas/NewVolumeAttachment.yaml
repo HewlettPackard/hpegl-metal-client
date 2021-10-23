@@ -1,0 +1,13 @@
+allOf:
+  - $ref: ./ResourceBase.yaml
+  - type: object
+    required:
+      - VolumeID
+      - Protocol
+    properties:
+      VolumeID:
+        type: string
+        format: uuid
+        description: Unique ID of the volume attached to the host
+      Protocol:
+        $ref: ./ProtocolParameters.yaml

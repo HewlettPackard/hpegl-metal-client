@@ -1,0 +1,9 @@
+type: object
+properties:
+  Protocol:
+    $ref: ./ProtocolKind.yaml
+  ISCSI:
+    $ref: ./ISCSIParameters.yaml
+    description: >-
+      The ISCSI parameters for this attachment. This value must be specified if
+      Protocol is iscsi

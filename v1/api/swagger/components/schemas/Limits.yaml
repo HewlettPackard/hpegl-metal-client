@@ -1,0 +1,15 @@
+type: object
+properties:
+  Hosts:
+    type: integer
+    description: Maximum number of hosts to allow
+    minimum: 0
+  Volumes:
+    type: integer
+    description: Maximum number of volumes to allow
+    minimum: 0
+  VolumeCapacity:
+    type: integer
+    format: int64
+    description: Maximum capacity to allow in GiB
+    minimum: 0

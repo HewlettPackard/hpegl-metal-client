@@ -60,6 +60,7 @@ type VolumesAPI interface {
 	List(ctx _context.Context) ([]Volume, *_nethttp.Response, error)
 	/*
 	   Update Update an existing volume.  NOT SUPPORTED!!
+
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param volumeId ID of volume to update
 	    * @param volume Updated volume

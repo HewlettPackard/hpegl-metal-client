@@ -1,0 +1,33 @@
+type: object
+description: Description of the details about a pre-existing volume
+properties:
+  ID:
+    type: string
+    format: uuid
+    description: >
+      Unique ID for the volume.  Referenced if the volume is to be attached to a
+      new Host
+  Name:
+    type: string
+    example: MyVolume
+    description: User-provided name for the volume
+  Description:
+    type: string
+    description: User-provided description of the volume
+  FlavorID:
+    type: string
+    format: uuid
+    description: The ID of the volume flavor requested when creating the volume
+  Capacity:
+    type: integer
+    format: int64
+    minimum: 0
+    description: Volume size in MB
+  LocationID:
+    type: string
+    format: uuid
+    description: The location ID of the data center where the volume was created
+  State:
+    $ref: ./VolumeState.yaml
+  Status:
+    $ref: ./VolumeStatus.yaml

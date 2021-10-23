@@ -1,0 +1,12 @@
+allOf:
+  - $ref: ./ResourceBase.yaml
+  - type: object
+    properties:
+      Profile:
+        description: Profile is a generalized description of a team
+        $ref: ./Profile.yaml
+      Limits:
+        description: >-
+          Project Limits place general constraints on a project in terms of
+          server and storage
+        $ref: ./Limits.yaml

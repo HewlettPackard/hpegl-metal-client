@@ -1,0 +1,39 @@
+summary: Operations on a single IP pool
+post:
+  tags:
+    - ippools
+  summary: Return IPs to the pool
+  description: Return IPs to the pool
+  operationId: IPPool_returnIPs
+  parameters:
+    - name: ippoolId
+      in: path
+      description: ID of IP pool to return IPs
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: IP returned to the pool
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: string
+            example: 15.0.0.1
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/IPPool.yaml
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '500':
+      description: internal error

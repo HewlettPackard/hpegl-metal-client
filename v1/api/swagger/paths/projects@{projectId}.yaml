@@ -1,0 +1,94 @@
+get:
+  tags:
+    - projects
+  summary: Retrieve a project by its ID
+  description: >-
+    Returns a single Project object with its matching ID This includes profile
+    information for the project and project limits on resouces like hosts,
+    volumes, and volume capacity.
+  operationId: Project_getByID
+  parameters:
+    - name: projectId
+      in: path
+      description: ID of project to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Project.yaml
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '500':
+      description: internal error
+put:
+  tags:
+    - projects
+  summary: Update a project by its ID
+  description: >-
+    Updates a project with a matching ID. Project profile limits can be updated
+    with this operation.
+  operationId: Project_update
+  parameters:
+    - name: projectId
+      in: path
+      description: ID of project to return
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Project parameters to update an existing Project
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Project.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Project.yaml
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '405':
+      description: validation exception
+    '500':
+      description: internal error
+delete:
+  tags:
+    - projects
+  summary: Delete a Project
+  description: Deletes the Project with the matching ID
+  operationId: Project_delete
+  parameters:
+    - name: projectId
+      in: path
+      description: ID of project to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '500':
+      description: internal error

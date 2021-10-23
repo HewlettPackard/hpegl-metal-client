@@ -1,0 +1,47 @@
+type: object
+nullable: true
+properties:
+  Name:
+    type: string
+    description: Name for the IP pool
+  Description:
+    type: string
+    description: Description for the IP pool
+  IPVersion:
+    $ref: ./IPVer.yaml
+  BaseIP:
+    type: string
+    example: 10.128.0.0
+    description: Base address of the IP pool
+  Netmask:
+    $ref: ./Netmask.yaml
+  DefaultRoute:
+    type: string
+    example: 10.128.0.1
+    description: Default route associated with the IP pool
+  Sources:
+    type: array
+    items:
+      $ref: ./IPSource.yaml
+  DNS:
+    type: array
+    items:
+      type: string
+      example: 8.8.8.8
+    description: List of DNS servers for the IP pool
+  Proxy:
+    type: string
+    example: 15.10.0.1
+    description: >-
+      Optional web-proxy for external internet access should the pool actually
+      be behind a firewall
+  NoProxy:
+    type: string
+    example: 15.10.0.10
+    description: Addresses or CIDRs for which proxy requests are not made
+  NTP:
+    type: array
+    items:
+      type: string
+      example: 15.0.0.11
+    description: List of NTP servers for the IP pool

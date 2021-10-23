@@ -1,0 +1,53 @@
+get:
+  tags:
+    - projects
+  summary: List of all Projects within an organization or cluster
+  description: >-
+    Returns an array of all Project objects that have been created. This
+    includes profile information for the project and project limits on resouces
+    like hosts, volumes, and volume capacity.
+  operationId: Projects_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Project.yaml
+    '401':
+      description: unauthorized
+    '500':
+      description: internal error
+post:
+  tags:
+    - projects
+  summary: Create a new project
+  description: >-
+    Adds a new Project which creates an isolated space for creating Hosts,
+    Volumes, and private Networks. A project is often aligned to a specific team
+    within an organization or a cluster
+  operationId: Project_add
+  requestBody:
+    required: true
+    description: NewProject parameters to create a new Project
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewProject.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Project.yaml
+    '400':
+      description: invalid content
+    '401':
+      description: unauthorized
+    '405':
+      description: invalid input
+    '500':
+      description: internal error

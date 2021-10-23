@@ -1,0 +1,23 @@
+get:
+  tags:
+    - projects-info
+  summary: >-
+    List of all projects info within an organization or cluster for which user
+    is authorized.
+  description: >-
+    Returns an object with info on projects that have been created. This
+    includes information on machine sizes and volumes falvors used by the
+    projects.
+  operationId: ProjectsInfo_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: ../components/schemas/ProjectsInfo.yaml
+    '401':
+      description: unauthorized
+    '500':
+      description: internal error

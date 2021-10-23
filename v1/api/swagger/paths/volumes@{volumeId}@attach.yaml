@@ -1,0 +1,39 @@
+post:
+  tags:
+    - volumes
+  summary: Attach existing volume to Host
+  description: >
+    Attaches the indicated volume to a host identified in the requestBody.  
+    This attachment will create a VolumeAttachment object that contains  details
+    about the connection of the volume and will update the Host  with iSCSI
+    configuration information.
+  operationId: Volume_attach
+  parameters:
+    - name: volumeId
+      in: path
+      description: ID of volume to attach
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Unique ID of the Host to which the volume will be attached
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/VolumeAttachHostUUID.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/VolumeAttachment.yaml
+    '400':
+      description: invalid content
+    '401':
+      description: unauthorized
+    '405':
+      description: invalid input
+    '500':
+      description: internal error

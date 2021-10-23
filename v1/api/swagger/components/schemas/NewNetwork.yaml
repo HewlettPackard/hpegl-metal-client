@@ -1,0 +1,16 @@
+type: object
+properties:
+  Name:
+    type: string
+    description: Name of the network
+    example: Private2
+  LocationID:
+    $ref: ./LocationID.yaml
+  Description:
+    type: string
+    example: Private network for intra-cluster communication
+  NewIPPool:
+    $ref: ./NewIPPool.yaml
+    description: >-
+      Indicates if the network uses the default IP pool allocated from the
+      hoster/project IP Pool factory or a custom IP Pool

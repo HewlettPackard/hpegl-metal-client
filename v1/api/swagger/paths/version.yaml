@@ -1,0 +1,16 @@
+get:
+  tags:
+    - version
+  summary: Get api server build version
+  operationId: Versions_get
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Version.yaml
+    '401':
+      description: unauthorized
+    '500':
+      description: internal error

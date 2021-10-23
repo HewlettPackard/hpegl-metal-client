@@ -1,0 +1,21 @@
+type: object
+properties:
+  Name:
+    type: string
+    example: NewVolumeName
+  Description:
+    type: string
+    example: Description of New Volume
+  FlavorID:
+    type: string
+    format: uuid
+    description: >-
+      This object is used for new volume creation in the host create operation.
+      Since host create already has location ID that field is not provided in
+      this object.
+  Capacity:
+    type: integer
+    format: int64
+    example: 10000
+    minimum: 0
+    description: The size of the volume in MB

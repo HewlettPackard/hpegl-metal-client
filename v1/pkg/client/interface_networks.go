@@ -43,6 +43,7 @@ type NetworksAPI interface {
 	List(ctx _context.Context) ([]Network, *_nethttp.Response, error)
 	/*
 	   Update Update an existing network.  NOT YET SUPPORTED
+
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param networkId ID of network to update
 	    * @param network Updated network

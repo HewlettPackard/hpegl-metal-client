@@ -1,0 +1,90 @@
+summary: Operations on a single SSH Key
+get:
+  tags:
+    - sshkeys
+  summary: Retrieve SSH Key by ID
+  description: Returns a single SSH key with matching ID
+  operationId: SSHKey_getByID
+  parameters:
+    - name: sshkeyId
+      in: path
+      description: ID of sshkey to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/SSHKey.yaml
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '500':
+      description: internal error
+put:
+  tags:
+    - sshkeys
+  summary: Update an existing SSH Key.  Only the name or key fields can be changed.
+  description: ''
+  operationId: SSHKey_update
+  parameters:
+    - name: sshkeyId
+      in: path
+      description: ID of sshkey to update
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Updated SSH key
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/SSHKey.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/SSHKey.yaml
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '405':
+      description: validation exception
+    '500':
+      description: internal error
+delete:
+  tags:
+    - sshkeys
+  summary: Delete an SSH key
+  description: Deletes the SSH key with the matching ID
+  operationId: SSHKey_delete
+  parameters:
+    - name: sshkeyId
+      in: path
+      description: ID of sshkey to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '500':
+      description: internal error

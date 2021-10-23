@@ -1,0 +1,28 @@
+type: string
+description: Host substate within HostState
+enum:
+  - ''
+  - Init
+  - Complete
+  - Failed
+  - Working
+  - Need-Machine
+  - Need-IPs
+  - Init-Off
+  - Setting-PXE
+  - Clearing-Log
+  - Starting-Deploy
+  - Blocked
+  - Deploy-Poweron
+  - Deploying
+  - Confirm-Off
+  - SnapLog
+  - Fail-SnapLog
+  - Setting-DiskBoot
+  - Connect
+  - Connect-Poweron
+  - Disconnect
+  - Abort-Deploy
+  - Delete-Poweroff
+  - Releasing
+example: Complete

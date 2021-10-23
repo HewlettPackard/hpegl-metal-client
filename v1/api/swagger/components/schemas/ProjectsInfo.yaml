@@ -1,0 +1,14 @@
+type: object
+properties:
+  Projects:
+    type: array
+    items:
+      $ref: ./ProjectInfo.yaml
+  MachineSizes:
+    type: array
+    items:
+      $ref: ./MachineSizeInfo.yaml
+  VolumeFlavors:
+    type: array
+    items:
+      $ref: ./VolumeFlavorsInfo.yaml

@@ -1,0 +1,49 @@
+get:
+  tags:
+    - sshkeys
+  summary: List all sshkeys in project
+  description: >-
+    Returns an array of all SSHKey objects defined within the project. This does
+    not include any SSH keys that are only defined as part of creating host.
+  operationId: SSHKeys_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/SSHKey.yaml
+    '401':
+      description: unauthorized
+    '500':
+      description: internal error
+post:
+  tags:
+    - sshkeys
+  summary: Add a new SSH Key
+  description: Adds a new SSH Key that can be referenced when creating a Host
+  operationId: SSHKey_add
+  requestBody:
+    required: true
+    description: SSH Key that is to be added to the project
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewSSHKey.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/SSHKey.yaml
+    '400':
+      description: invalid content
+    '401':
+      description: unauthorized
+    '405':
+      description: invalid input
+    '500':
+      description: internal error

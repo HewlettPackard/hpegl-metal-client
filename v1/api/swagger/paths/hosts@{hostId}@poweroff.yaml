@@ -1,0 +1,29 @@
+summary: Power off a specific host
+post:
+  tags:
+    - hosts
+  summary: Power off Host by ID
+  description: Powers off a single Host with matching ID
+  operationId: powerOff
+  parameters:
+    - name: hostId
+      in: path
+      description: ID of Host to power off
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Host.yaml
+    '400':
+      description: invalid id
+    '401':
+      description: unauthorized
+    '404':
+      description: id not found
+    '500':
+      description: internal error

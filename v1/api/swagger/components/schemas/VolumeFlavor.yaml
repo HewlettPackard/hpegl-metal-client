@@ -1,0 +1,16 @@
+type: object
+description: >
+  Description of a specific volume flavor offering.  A volume flavor will
+  typically refer to a specific level of performance and durability as defined
+  in the Details
+properties:
+  ID:
+    type: string
+    format: uuid
+    description: Volume flavor unique ID
+  Name:
+    type: string
+    example: HighPerfFlash
+    description: Typical user-visible name for a volume flavor
+  Details:
+    $ref: ./FlavorDesc.yaml

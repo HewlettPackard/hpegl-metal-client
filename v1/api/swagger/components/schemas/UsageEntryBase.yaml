@@ -1,0 +1,37 @@
+type: object
+properties:
+  ProjectID:
+    type: string
+    format: uuid
+    description: Project ID that contained the host
+  LocationID:
+    $ref: ./LocationID.yaml
+  Allocated:
+    type: string
+    format: date-time
+    description: Timestamp of when resource (machine or storage) was allocated
+  Ready:
+    type: string
+    format: date-time
+    description: Timestamp of when resource (host or volume) was ready for use
+  Freed:
+    type: string
+    format: date-time
+    description: Timestamp of when resource (machine or storage) was freed
+  UsageStart:
+    type: string
+    format: date-time
+    description: The start of the usage reporting window or when the resource was allocated
+  UsageEnd:
+    type: string
+    format: date-time
+    description: The end of the usage reporting window or when the resource was freed
+  UsageHours:
+    type: integer
+    format: int64
+    description: >-
+      The difference between the UsageEnd and UsageStart rounded up to the
+      UsageHours
+  Error:
+    type: string
+    description: Description of error that affected the usage reporting

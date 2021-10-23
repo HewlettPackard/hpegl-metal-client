@@ -1,0 +1,19 @@
+description: >-
+  An entry describing the amount of storage available to create volumes of a
+  specific flavor
+type: object
+properties:
+  FlavorID:
+    type: string
+    format: uuid
+    description: Unique ID of a volume flavor as listed in the the VolumeFlavors array
+  LocationID:
+    type: string
+    format: uuid
+    description: Unique ID of a data center location
+  Capacity:
+    type: integer
+    format: int64
+    description: >-
+      Total capacity available (in MB) to create new volumes of the indicated
+      flavor at the indicated location

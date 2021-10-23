@@ -1,0 +1,7 @@
+type: string
+enum:
+  - IPv4
+  - IPv6
+example: IPv4
+description: |
+  Describes the IP version

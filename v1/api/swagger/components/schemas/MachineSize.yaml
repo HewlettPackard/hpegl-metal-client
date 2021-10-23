@@ -1,0 +1,13 @@
+type: object
+description: Description of a specific machine size offering
+properties:
+  ID:
+    type: string
+    format: uuid
+    description: Unique ID for the machine size offering
+  Name:
+    type: string
+    example: HPE-Large
+    description: Typical user-visible name for a machine size offering
+  Details:
+    $ref: ./FlavorDesc.yaml

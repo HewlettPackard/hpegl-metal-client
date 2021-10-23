@@ -1,0 +1,47 @@
+get:
+  tags:
+    - volume-attachments
+  summary: List all volume attachments in project
+  description: Returns an array of all VolumeAttachments defined within the project.
+  operationId: VolumeAttachments_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/VolumeAttachment.yaml
+    '401':
+      description: unauthorized
+    '500':
+      description: internal error
+post:
+  tags:
+    - volume-attachments
+  summary: Create a new VolumeAttachment
+  description: Adds a new VolumeAttachment which enables a machine to use a volume.
+  operationId: VolumeAttachments_add
+  requestBody:
+    required: true
+    description: NewVolumeAttachement parameters to create a new VolumeAttachment.
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewVolumeAttachment.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/VolumeAttachment.yaml
+    '400':
+      description: invalid content
+    '401':
+      description: unauthorized
+    '405':
+      description: invalid input
+    '500':
+      description: internal error

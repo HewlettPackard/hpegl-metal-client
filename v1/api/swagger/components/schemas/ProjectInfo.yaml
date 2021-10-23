@@ -1,0 +1,19 @@
+type: object
+properties:
+  ID:
+    type: string
+  Name:
+    type: string
+  Description:
+    type: string
+  NumHosts:
+    type: integer
+  NumVolumes:
+    type: integer
+  TotalStorageGB:
+    type: integer
+  Status:
+    type: string
+    enum:
+      - Enable
+      - Disable
