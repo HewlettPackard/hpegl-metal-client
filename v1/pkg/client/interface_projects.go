@@ -28,7 +28,7 @@ type ProjectsAPI interface {
 	Delete(ctx _context.Context, projectId string) (*_nethttp.Response, error)
 	/*
 	   GetByID Retrieve a project by its ID
-	   Returns a single Project object with its matching ID This includes profile information for the project and project limits on resouces like hosts, volumes, and volume capacity.
+	   Returns a single Project object with its matching ID This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param projectId ID of project to return
 	   @return Project
@@ -36,7 +36,7 @@ type ProjectsAPI interface {
 	GetByID(ctx _context.Context, projectId string) (Project, *_nethttp.Response, error)
 	/*
 	   List List of all Projects within an organization or cluster
-	   Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, volumes, and volume capacity.
+	   Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	   @return []Project
 	*/

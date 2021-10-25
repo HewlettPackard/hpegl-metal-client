@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2020 Hewlett Packard Enterprise Development LP.
+// (C) Copyright 2016-2021 Hewlett Packard Enterprise Development LP
 
 package model
 
@@ -21,9 +21,10 @@ type Project struct {
 // ProjectLimits place general constraints on a project in terms of
 // server and storage.
 type ProjectLimits struct {
-	Hosts          uint32
-	Volumes        uint32
-	VolumeCapacity uint64
+	Hosts           uint32
+	Volumes         uint32
+	VolumeCapacity  uint64
+	PrivateNetworks uint32
 }
 
 // Profile is a generalized description of a team.

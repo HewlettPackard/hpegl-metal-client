@@ -13,3 +13,7 @@ properties:
     format: int64
     description: Maximum capacity to allow in GiB
     minimum: 0
+  PrivateNetworks:
+    type: integer
+    description: Maximum number of private networks to allow
+    minimum: 0

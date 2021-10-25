@@ -5,7 +5,7 @@ get:
   description: >-
     Returns an array of all Project objects that have been created. This
     includes profile information for the project and project limits on resouces
-    like hosts, volumes, and volume capacity.
+    like hosts, private networks, volumes, and volume capacity.
   operationId: Projects_list
   responses:
     '200':

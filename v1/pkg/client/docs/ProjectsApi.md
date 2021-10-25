@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 Retrieve a project by its ID
 
-Returns a single Project object with its matching ID This includes profile information for the project and project limits on resouces like hosts, volumes, and volume capacity.
+Returns a single Project object with its matching ID This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity.
 
 ### Required Parameters
 
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 
 List of all Projects within an organization or cluster
 
-Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, volumes, and volume capacity.
+Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity.
 
 ### Required Parameters
 

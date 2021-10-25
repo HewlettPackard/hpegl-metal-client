@@ -18,7 +18,7 @@ info:
     \ machine size options, the storage volume options, data center locations, and\
     \ such that are needed when creating hosts and volumes.\n"
   title: HPE GreenLake Metal Client API
-  version: 1.3.3
+  version: 1.3.5
 servers:
 - description: Metal Service - Development Environment
   url: https://quake.dev.hpehcss.net{basePath}
@@ -96,7 +96,7 @@ paths:
     get:
       description: Returns an array of all Project objects that have been created.
         This includes profile information for the project and project limits on resouces
-        like hosts, volumes, and volume capacity.
+        like hosts, private networks, volumes, and volume capacity.
       operationId: Projects_list
       responses:
         "200":
@@ -172,7 +172,7 @@ paths:
     get:
       description: Returns a single Project object with its matching ID This includes
         profile information for the project and project limits on resouces like hosts,
-        volumes, and volume capacity.
+        private networks, volumes, and volume capacity.
       operationId: Project_getByID
       parameters:
       - description: ID of project to return
@@ -1316,6 +1316,7 @@ components:
           Hosts: 0
           Volumes: 0
           VolumeCapacity: 0
+          PrivateNetworks: 0
         Profile:
           TeamDesc: TeamDesc
           EmailVerified: true
@@ -1918,6 +1919,7 @@ components:
         Hosts: 0
         Volumes: 0
         VolumeCapacity: 0
+        PrivateNetworks: 0
       properties:
         Hosts:
           description: Maximum number of hosts to allow
@@ -1930,6 +1932,10 @@ components:
         VolumeCapacity:
           description: Maximum capacity to allow in GiB
           format: int64
+          minimum: 0
+          type: integer
+        PrivateNetworks:
+          description: Maximum number of private networks to allow
           minimum: 0
           type: integer
       type: object
