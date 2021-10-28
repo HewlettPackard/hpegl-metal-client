@@ -13,12 +13,20 @@
 package client
 // Profile struct for Profile
 type Profile struct {
+	// Name of the Project Team. Must not be empty, maximum 128 printable characters
 	TeamName string `json:"TeamName,omitempty"`
+	// Optional description of the Project Team, maximum 256 printable characters
 	TeamDesc string `json:"TeamDesc,omitempty"`
+	// Optional name of the company, maximum 256 printable characters
 	Company string `json:"Company,omitempty"`
+	// Optional address of the company, maximum 256 printable characters
 	Address string `json:"Address,omitempty"`
+	// Optional email address of the contact person for the team, maximum 256 printable characters
 	Email string `json:"Email,omitempty"`
+	// Currently always false
 	EmailVerified bool `json:"EmailVerified,omitempty"`
+	// Optional phone number of the contact person for the team, maximum 32 printable characters
 	PhoneNumber string `json:"PhoneNumber,omitempty"`
+	// Currently always false
 	PhoneVerified bool `json:"PhoneVerified,omitempty"`
 }

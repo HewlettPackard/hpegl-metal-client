@@ -1872,7 +1872,8 @@ components:
           format: uuid
           type: string
         Name:
-          description: Common name for the resource instance
+          description: Common name for the resource instance. Must be 128 or fewer
+            printable characters
           example: My Object Name
           type: string
         Created:
@@ -1898,20 +1899,32 @@ components:
         TeamName: TeamName
       properties:
         TeamName:
+          description: Name of the Project Team. Must not be empty, maximum 128 printable
+            characters
           type: string
         TeamDesc:
+          description: Optional description of the Project Team, maximum 256 printable
+            characters
           type: string
         Company:
+          description: Optional name of the company, maximum 256 printable characters
           type: string
         Address:
+          description: Optional address of the company, maximum 256 printable characters
           type: string
         Email:
+          description: Optional email address of the contact person for the team,
+            maximum 256 printable characters
           type: string
         EmailVerified:
+          description: Currently always false
           type: boolean
         PhoneNumber:
+          description: Optional phone number of the contact person for the team, maximum
+            32 printable characters
           type: string
         PhoneVerified:
+          description: Currently always false
           type: boolean
       type: object
     Limits:

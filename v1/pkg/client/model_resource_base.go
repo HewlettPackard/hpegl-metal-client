@@ -20,7 +20,7 @@ type ResourceBase struct {
 	ID string `json:"ID,omitempty"`
 	// Used to determine whether the DB entry has changed since it was last read.  should be returned unchanged on any update operation.
 	ETag string `json:"ETag,omitempty"`
-	// Common name for the resource instance
+	// Common name for the resource instance. Must be 128 or fewer printable characters
 	Name string `json:"Name,omitempty"`
 	// Time when the resource was created in the database
 	Created time.Time `json:"Created,omitempty"`
