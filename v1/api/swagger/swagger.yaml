@@ -23,7 +23,11 @@ info:
     through the AvailableResources object.  This object provides detailed 
     information about the OS imaging options, the machine size options, the
     storage volume options, data center locations, and such that are needed when
-    creating hosts and volumes.
+    creating hosts and volumes.  
+
+
+    Note: All URIs are relative to https://<metal_service_url>/rest/v1
+
   contact:
     email: quake-core@hpe.com
 
@@ -58,7 +62,7 @@ tags:
     description: >
       Operations related to Projects.  A Project defines an isolated space for 
       creating Hosts, Volumes, and private Networks. A project is often aligned 
-      to a specific team within an organization or a cluster  
+      to a specific team within an organization or a cluster
   - name: sshkeys
     description: >
       Operations related to SSH Keys.  Clients may define SSH Keys that can then
@@ -67,7 +71,7 @@ tags:
   - name: hosts
     description: >
       Operations related to Hosts. A host is a fully-provisioned physical
-      server. Clients may create, view, list, and delete hosts.  
+      server. Clients may create, view, list, and delete hosts.
   - name: volumes
     description: >
       Operations related to Volumes.  A Volume is an external storage volume
@@ -86,13 +90,13 @@ tags:
   - name: usage-reports
     description: >
       Operations related to retrieving information about resource usage within
-      the project.  
+      the project.
   - name: projects-info
     description: |
       Operations related to listing information related to projects.
   - name: ippools
     description: |
-      Operations related to IP pools.  
+      Operations related to IP pools.
 
 paths:
   /version:

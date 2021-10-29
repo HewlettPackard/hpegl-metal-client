@@ -16,7 +16,8 @@ info:
     \ about available services and resources through the AvailableResources object.\
     \  This object provides detailed  information about the OS imaging options, the\
     \ machine size options, the storage volume options, data center locations, and\
-    \ such that are needed when creating hosts and volumes.\n"
+    \ such that are needed when creating hosts and volumes.  \n\nNote: All URIs are\
+    \ relative to https://<metal_service_url>/rest/v1\n"
   title: HPE GreenLake Metal Client API
   version: 1.3.5
 servers:
@@ -44,15 +45,14 @@ tags:
 - description: |
     Read-only operation to get api server build version information.
   name: version
-- description: "Operations related to Projects.  A Project defines an isolated space\
-    \ for  creating Hosts, Volumes, and private Networks. A project is often aligned\
-    \  to a specific team within an organization or a cluster  \n"
+- description: |
+    Operations related to Projects.  A Project defines an isolated space for  creating Hosts, Volumes, and private Networks. A project is often aligned  to a specific team within an organization or a cluster
   name: projects
 - description: |
     Operations related to SSH Keys.  Clients may define SSH Keys that can then be referenced by ID when creating a Host.  Particularly useful with a BMaaS client graphical user interface.
   name: sshkeys
-- description: "Operations related to Hosts. A host is a fully-provisioned physical\
-    \ server. Clients may create, view, list, and delete hosts.  \n"
+- description: |
+    Operations related to Hosts. A host is a fully-provisioned physical server. Clients may create, view, list, and delete hosts.
   name: hosts
 - description: |
     Operations related to Volumes.  A Volume is an external storage volume that persists independent of the associated host.
@@ -66,13 +66,14 @@ tags:
 - description: |
     Operations related to listing information that is needed to construct create Host and create Volume calls.
   name: available-resources
-- description: "Operations related to retrieving information about resource usage\
-    \ within the project.  \n"
+- description: |
+    Operations related to retrieving information about resource usage within the project.
   name: usage-reports
 - description: |
     Operations related to listing information related to projects.
   name: projects-info
-- description: "Operations related to IP pools.  \n"
+- description: |
+    Operations related to IP pools.
   name: ippools
 paths:
   /version:
