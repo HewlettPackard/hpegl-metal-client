@@ -39,7 +39,7 @@ func (m *MockUsageReportsAPI) EXPECT() *MockUsageReportsAPIMockRecorder {
 }
 
 // Get mocks base method.
-func (m *MockUsageReportsAPI) Get(ctx context.Context, start string, localVarOptionals *client.GetOpts) (client.UsageReport, *http.Response, error) {
+func (m *MockUsageReportsAPI) Get(ctx context.Context, start string, localVarOptionals *client.UsageReportsApiGetOpts) (client.UsageReport, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Get", ctx, start, localVarOptionals)
 	ret0, _ := ret[0].(client.UsageReport)

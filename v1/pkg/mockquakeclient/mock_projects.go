@@ -39,9 +39,9 @@ func (m *MockProjectsAPI) EXPECT() *MockProjectsAPIMockRecorder {
 }
 
 // Add mocks base method.
-func (m *MockProjectsAPI) Add(ctx context.Context, newProject client.NewProject) (client.Project, *http.Response, error) {
+func (m *MockProjectsAPI) Add(ctx context.Context, newProject client.NewProject, localVarOptionals *client.ProjectsApiAddOpts) (client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Add", ctx, newProject)
+	ret := m.ctrl.Call(m, "Add", ctx, newProject, localVarOptionals)
 	ret0, _ := ret[0].(client.Project)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -49,9 +49,9 @@ func (m *MockProjectsAPI) Add(ctx context.Context, newProject client.NewProject)
 }
 
 // Add indicates an expected call of Add.
-func (mr *MockProjectsAPIMockRecorder) Add(ctx, newProject interface{}) *gomock.Call {
+func (mr *MockProjectsAPIMockRecorder) Add(ctx, newProject, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockProjectsAPI)(nil).Add), ctx, newProject)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockProjectsAPI)(nil).Add), ctx, newProject, localVarOptionals)
 }
 
 // Delete mocks base method.
@@ -86,9 +86,9 @@ func (mr *MockProjectsAPIMockRecorder) GetByID(ctx, projectId interface{}) *gomo
 }
 
 // List mocks base method.
-func (m *MockProjectsAPI) List(ctx context.Context) ([]client.Project, *http.Response, error) {
+func (m *MockProjectsAPI) List(ctx context.Context, localVarOptionals *client.ProjectsApiListOpts) ([]client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List", ctx)
+	ret := m.ctrl.Call(m, "List", ctx, localVarOptionals)
 	ret0, _ := ret[0].([]client.Project)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -96,9 +96,9 @@ func (m *MockProjectsAPI) List(ctx context.Context) ([]client.Project, *http.Res
 }
 
 // List indicates an expected call of List.
-func (mr *MockProjectsAPIMockRecorder) List(ctx interface{}) *gomock.Call {
+func (mr *MockProjectsAPIMockRecorder) List(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockProjectsAPI)(nil).List), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockProjectsAPI)(nil).List), ctx, localVarOptionals)
 }
 
 // Update mocks base method.

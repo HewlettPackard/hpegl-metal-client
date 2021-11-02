@@ -7,6 +7,10 @@ get:
     information for the project and project limits on resouces like hosts,
     private networks, volumes, and volume capacity.
   operationId: Project_getByID
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
   parameters:
     - name: projectId
       in: path
@@ -37,6 +41,10 @@ put:
     Updates a project with a matching ID. Project profile limits can be updated
     with this operation.
   operationId: Project_update
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
   parameters:
     - name: projectId
       in: path
@@ -74,6 +82,10 @@ delete:
   summary: Delete a Project
   description: Deletes the Project with the matching ID
   operationId: Project_delete
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
   parameters:
     - name: projectId
       in: path

@@ -39,9 +39,9 @@ func (m *MockProjectsInfoAPI) EXPECT() *MockProjectsInfoAPIMockRecorder {
 }
 
 // List mocks base method.
-func (m *MockProjectsInfoAPI) List(ctx context.Context) (client.ProjectsInfo, *http.Response, error) {
+func (m *MockProjectsInfoAPI) List(ctx context.Context, localVarOptionals *client.ProjectsInfoApiListOpts) (client.ProjectsInfo, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List", ctx)
+	ret := m.ctrl.Call(m, "List", ctx, localVarOptionals)
 	ret0, _ := ret[0].(client.ProjectsInfo)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -49,7 +49,7 @@ func (m *MockProjectsInfoAPI) List(ctx context.Context) (client.ProjectsInfo, *h
 }
 
 // List indicates an expected call of List.
-func (mr *MockProjectsInfoAPIMockRecorder) List(ctx interface{}) *gomock.Call {
+func (mr *MockProjectsInfoAPIMockRecorder) List(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockProjectsInfoAPI)(nil).List), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockProjectsInfoAPI)(nil).List), ctx, localVarOptionals)
 }

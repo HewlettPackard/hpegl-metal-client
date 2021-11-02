@@ -6,7 +6,7 @@ Each API call is done within a single project context.  The specific Project ide
 
 Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.  
 
-Note: All URIs are relative to https://<metal_service_url>/rest/v1
+Note: All URIs are relative to metal_service_url/rest/v1
 
 
 ## Overview
@@ -177,6 +177,36 @@ Example
 auth := context.WithValue(context.Background(), sw.ContextBasicAuth, sw.BasicAuth{
     UserName: "username",
     Password: "password",
+})
+r, err := client.Service.Operation(auth, args)
+```
+
+
+## Membership
+
+- **Type**: API key
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+    Key: "APIKEY",
+    Prefix: "Bearer", // Omit if not necessary.
+})
+r, err := client.Service.Operation(auth, args)
+```
+
+
+## Project
+
+- **Type**: API key
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
+    Key: "APIKEY",
+    Prefix: "Bearer", // Omit if not necessary.
 })
 r, err := client.Service.Operation(auth, args)
 ```

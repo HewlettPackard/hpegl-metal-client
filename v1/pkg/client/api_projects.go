@@ -3,7 +3,7 @@
 /*
  * HPE GreenLake Metal Client API
  *
- * This Metal Client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.    Note: All URIs are relative to https://<metal_service_url>/rest/v1 
+ * This Metal Client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.    Note: All URIs are relative to metal_service_url/rest/v1 
  *
  * API version: 1.3.5
  * Contact: quake-core@hpe.com
@@ -18,6 +18,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -28,14 +29,23 @@ var (
 // ProjectsApiService ProjectsApi service
 type ProjectsApiService service
 
+// ProjectsApiAddOpts Optional parameters for the method 'Add'
+type ProjectsApiAddOpts struct {
+    Space optional.String
+    Spaceid optional.String
+}
+
 /*
 Add Create a new project
-Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster
+Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster. If GreenLake IAM issued token is used for authentication, then it is required to pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newProject NewProject parameters to create a new Project
+ * @param optional nil or *ProjectsApiAddOpts - Optional Parameters:
+ * @param "Space" (optional.String) -  GreenLake space name
+ * @param "Spaceid" (optional.String) -  GreenLake space ID
 @return Project
 */
-func (a *ProjectsApiService) Add(ctx _context.Context, newProject NewProject) (Project, *_nethttp.Response, error) {
+func (a *ProjectsApiService) Add(ctx _context.Context, newProject NewProject, localVarOptionals *ProjectsApiAddOpts) (Project, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -68,8 +78,26 @@ func (a *ProjectsApiService) Add(ctx _context.Context, newProject NewProject) (P
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.Space.IsSet() {
+		localVarHeaderParams["Space"] = parameterToString(localVarOptionals.Space.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.Spaceid.IsSet() {
+		localVarHeaderParams["spaceid"] = parameterToString(localVarOptionals.Spaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &newProject
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Membership"] = key
+		}
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -156,6 +184,18 @@ func (a *ProjectsApiService) Delete(ctx _context.Context, projectId string) (*_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Membership"] = key
+		}
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -225,6 +265,18 @@ func (a *ProjectsApiService) GetByID(ctx _context.Context, projectId string) (Pr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Membership"] = key
+		}
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -271,13 +323,22 @@ func (a *ProjectsApiService) GetByID(ctx _context.Context, projectId string) (Pr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ProjectsApiListOpts Optional parameters for the method 'List'
+type ProjectsApiListOpts struct {
+    Spaceid optional.String
+    Space optional.String
+}
+
 /*
 List List of all Projects within an organization or cluster
-Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity.
+Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity. If GreenLake IAM issued token is used for authentication, then it is required to pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *ProjectsApiListOpts - Optional Parameters:
+ * @param "Spaceid" (optional.String) -  GreenLake space ID
+ * @param "Space" (optional.String) -  GreenLake space name
 @return []Project
 */
-func (a *ProjectsApiService) List(ctx _context.Context) ([]Project, *_nethttp.Response, error) {
+func (a *ProjectsApiService) List(ctx _context.Context, localVarOptionals *ProjectsApiListOpts) ([]Project, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -309,6 +370,24 @@ func (a *ProjectsApiService) List(ctx _context.Context) ([]Project, *_nethttp.Re
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.Spaceid.IsSet() {
+		localVarHeaderParams["spaceid"] = parameterToString(localVarOptionals.Spaceid.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.Space.IsSet() {
+		localVarHeaderParams["Space"] = parameterToString(localVarOptionals.Space.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Membership"] = key
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -401,6 +480,18 @@ func (a *ProjectsApiService) Update(ctx _context.Context, projectId string, proj
 	}
 	// body params
 	localVarPostBody = &project
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Membership"] = key
+		}
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

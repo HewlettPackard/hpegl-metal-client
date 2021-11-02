@@ -6,9 +6,19 @@ get:
     is authorized.
   description: >-
     Returns an object with info on projects that have been created. This
-    includes information on machine sizes and volumes falvors used by the
-    projects.
+    includes information on machine sizes and volumes flavors used by the
+    projects. If GreenLake IAM issued token is used for authentication, then it
+    is required to pass either 'Space' or 'spaceid' header. When both are set,
+    'Space' header is ignored.
   operationId: ProjectsInfo_list
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+
+  parameters:
+    - $ref: ../components/parameters/Space.yaml
+    - $ref: ../components/parameters/SpaceID.yaml
   responses:
     '200':
       description: success

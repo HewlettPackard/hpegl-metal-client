@@ -10,15 +10,29 @@ Method | HTTP request | Description
 
 ## List
 
-> ProjectsInfo List(ctx, )
+> ProjectsInfo List(ctx, optional)
 
 List of all projects info within an organization or cluster for which user is authorized.
 
-Returns an object with info on projects that have been created. This includes information on machine sizes and volumes falvors used by the projects.
+Returns an object with info on projects that have been created. This includes information on machine sizes and volumes flavors used by the projects. If GreenLake IAM issued token is used for authentication, then it is required to pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **space** | **optional.String**| GreenLake space name | 
+ **spaceid** | **optional.String**| GreenLake space ID | 
 
 ### Return type
 
@@ -26,7 +40,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 

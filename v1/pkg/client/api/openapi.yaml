@@ -17,7 +17,7 @@ info:
     \  This object provides detailed  information about the OS imaging options, the\
     \ machine size options, the storage volume options, data center locations, and\
     \ such that are needed when creating hosts and volumes.  \n\nNote: All URIs are\
-    \ relative to https://<metal_service_url>/rest/v1\n"
+    \ relative to metal_service_url/rest/v1\n"
   title: HPE GreenLake Metal Client API
   version: 1.3.5
 servers:
@@ -41,6 +41,9 @@ servers:
       description: URL prefix for endpoints
 security:
 - BearerAuth: []
+  Project: []
+- BearerAuth: []
+  Membership: []
 tags:
 - description: |
     Read-only operation to get api server build version information.
@@ -97,8 +100,23 @@ paths:
     get:
       description: Returns an array of all Project objects that have been created.
         This includes profile information for the project and project limits on resouces
-        like hosts, private networks, volumes, and volume capacity.
+        like hosts, private networks, volumes, and volume capacity. If GreenLake IAM
+        issued token is used for authentication, then it is required to pass either
+        'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
       operationId: Projects_list
+      parameters:
+      - description: GreenLake space ID
+        example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
+        in: header
+        name: spaceid
+        schema:
+          type: string
+      - description: GreenLake space name
+        example: Default
+        in: header
+        name: Space
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -112,14 +130,33 @@ paths:
           description: unauthorized
         "500":
           description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
       summary: List of all Projects within an organization or cluster
       tags:
       - projects
     post:
       description: Adds a new Project which creates an isolated space for creating
         Hosts, Volumes, and private Networks. A project is often aligned to a specific
-        team within an organization or a cluster
+        team within an organization or a cluster. If GreenLake IAM issued token is
+        used for authentication, then it is required to pass either 'Space' or 'spaceid'
+        header. When both are set, 'Space' header is ignored.
       operationId: Project_add
+      parameters:
+      - description: GreenLake space name
+        example: Default
+        in: header
+        name: Space
+        schema:
+          type: string
+      - description: GreenLake space ID
+        example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
+        in: header
+        name: spaceid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -142,6 +179,10 @@ paths:
           description: invalid input
         "500":
           description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
       summary: Create a new project
       tags:
       - projects
@@ -167,6 +208,10 @@ paths:
           description: id not found
         "500":
           description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
       summary: Delete a Project
       tags:
       - projects
@@ -197,6 +242,10 @@ paths:
           description: id not found
         "500":
           description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
       summary: Retrieve a project by its ID
       tags:
       - projects
@@ -235,15 +284,34 @@ paths:
           description: validation exception
         "500":
           description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
       summary: Update a project by its ID
       tags:
       - projects
   /projects-info:
     get:
       description: Returns an object with info on projects that have been created.
-        This includes information on machine sizes and volumes falvors used by the
-        projects.
+        This includes information on machine sizes and volumes flavors used by the
+        projects. If GreenLake IAM issued token is used for authentication, then it
+        is required to pass either 'Space' or 'spaceid' header. When both are set,
+        'Space' header is ignored.
       operationId: ProjectsInfo_list
+      parameters:
+      - description: GreenLake space name
+        example: Default
+        in: header
+        name: Space
+        schema:
+          type: string
+      - description: GreenLake space ID
+        example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
+        in: header
+        name: spaceid
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -255,6 +323,10 @@ paths:
           description: unauthorized
         "500":
           description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
       summary: List of all projects info within an organization or cluster for which
         user is authorized.
       tags:
@@ -3472,3 +3544,15 @@ components:
       description: Uses JWT as a bearer token to validate access
       scheme: bearer
       type: http
+    Project:
+      description: The project ID. Required only when using GreenLake IAM issued JWT
+        for authentication
+      in: header
+      name: Project
+      type: apiKey
+    Membership:
+      description: The Metal membership ID. Required only when using Metal service
+        issued JWT for authentication
+      in: header
+      name: Membership
+      type: apiKey

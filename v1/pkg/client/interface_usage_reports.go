@@ -16,9 +16,9 @@ type UsageReportsAPI interface {
 	   Creates and returns a usage report based on the parameters passed in the request body
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param start Start of the billing period
-	    * @param optional nil or *GetOpts - Optional Parameters:
+	    * @param optional nil or *UsageReportsApiGetOpts - Optional Parameters:
 	    * @param "End" (optional.String) -  End of the billing period, default to now if omitted
 	   @return UsageReport
 	*/
-	Get(ctx _context.Context, start string, localVarOptionals *GetOpts) (UsageReport, *_nethttp.Response, error)
+	Get(ctx _context.Context, start string, localVarOptionals *UsageReportsApiGetOpts) (UsageReport, *_nethttp.Response, error)
 }

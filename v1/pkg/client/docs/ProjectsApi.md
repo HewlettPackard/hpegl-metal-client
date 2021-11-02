@@ -14,11 +14,11 @@ Method | HTTP request | Description
 
 ## Add
 
-> Project Add(ctx, newProject)
+> Project Add(ctx, newProject, optional)
 
 Create a new project
 
-Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster
+Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster. If GreenLake IAM issued token is used for authentication, then it is required to pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
 
 ### Required Parameters
 
@@ -27,6 +27,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **newProject** | [**NewProject**](NewProject.md)| NewProject parameters to create a new Project | 
+ **optional** | ***AddOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a AddOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **space** | **optional.String**| GreenLake space name | 
+ **spaceid** | **optional.String**| GreenLake space ID | 
 
 ### Return type
 
@@ -34,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 
@@ -68,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 
@@ -102,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 
@@ -116,15 +128,29 @@ Name | Type | Description  | Notes
 
 ## List
 
-> []Project List(ctx, )
+> []Project List(ctx, optional)
 
 List of all Projects within an organization or cluster
 
-Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity.
+Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity. If GreenLake IAM issued token is used for authentication, then it is required to pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **spaceid** | **optional.String**| GreenLake space ID | 
+ **space** | **optional.String**| GreenLake space name | 
 
 ### Return type
 
@@ -132,7 +158,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 
@@ -167,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 
