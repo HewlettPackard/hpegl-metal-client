@@ -90,6 +90,7 @@ Class | Method | HTTP request | Description
  - [AvailableNetwork](docs/AvailableNetwork.md)
  - [AvailableResources](docs/AvailableResources.md)
  - [Country](docs/Country.md)
+ - [ErrorResponse](docs/ErrorResponse.md)
  - [FlavorDesc](docs/FlavorDesc.md)
  - [Host](docs/Host.md)
  - [HostAlertInfo](docs/HostAlertInfo.md)

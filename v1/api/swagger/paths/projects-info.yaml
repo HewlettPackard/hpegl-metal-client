@@ -30,6 +30,6 @@ get:
             type: object
             $ref: ../components/schemas/ProjectsInfo.yaml
     '401':
-      description: unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
     '500':
-      description: internal error
+      $ref: ../components/responses/InternalError.yaml

@@ -1,0 +1,5 @@
+description: invalid content
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ErrorResponse.yaml

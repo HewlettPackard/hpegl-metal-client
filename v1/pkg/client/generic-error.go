@@ -11,3 +11,19 @@ func NewGenericOpenAPIError(body []byte, error string, model interface{}) Generi
 		model: model,
 	}
 }
+
+// Message returns the short error message for display purpose
+// If e.model is set and is of type ErrorResponse, then returns the value in ErrorResponse.Message,
+// otherwise, returns the entire response body in string format.  
+func (e GenericOpenAPIError) Message() string {
+	msg := string(e.Body())
+
+	model := e.Model()
+	if model != nil {
+		res, ok := model.(ErrorResponse)
+		if ok {
+			msg = res.Message
+		}
+	}
+	return msg
+}

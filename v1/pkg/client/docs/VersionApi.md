@@ -24,7 +24,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 

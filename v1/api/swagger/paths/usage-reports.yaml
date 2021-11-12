@@ -27,10 +27,10 @@ get:
           schema:
             $ref: ../components/schemas/UsageReport.yaml
     '400':
-      description: invalid content
+      $ref: ../components/responses/InvalidContent.yaml
     '401':
-      description: unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
     '405':
-      description: invalid input
+      $ref: ../components/responses/InvalidInput.yaml
     '500':
-      description: internal error
+      $ref: ../components/responses/InternalError.yaml

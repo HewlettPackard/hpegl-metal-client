@@ -30,10 +30,10 @@ post:
           schema:
             $ref: ../components/schemas/IPPool.yaml
     '400':
-      description: invalid id
+      $ref: ../components/responses/InvalidContent.yaml
     '401':
-      description: unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
     '404':
-      description: id not found
+      $ref: ../components/responses/NotFound.yaml
     '500':
-      description: internal error
+      $ref: ../components/responses/InternalError.yaml

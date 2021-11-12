@@ -90,9 +90,21 @@ paths:
                 $ref: '#/components/schemas/Version'
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
       summary: Get api server build version
       tags:
       - version
@@ -172,12 +184,28 @@ paths:
                 $ref: '#/components/schemas/Project'
           description: created
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       security:
       - BearerAuth: []
@@ -201,12 +229,28 @@ paths:
         "200":
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       security:
       - BearerAuth: []
@@ -235,12 +279,28 @@ paths:
                 $ref: '#/components/schemas/Project'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       security:
       - BearerAuth: []
@@ -275,14 +335,34 @@ paths:
                 $ref: '#/components/schemas/Project'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "405":
-          description: validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       security:
       - BearerAuth: []
@@ -319,8 +399,16 @@ paths:
                 $ref: '#/components/schemas/ProjectsInfo'
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       security:
       - BearerAuth: []
@@ -344,8 +432,16 @@ paths:
                 type: array
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: List all sshkeys in project
       tags:
@@ -368,12 +464,28 @@ paths:
                 $ref: '#/components/schemas/SSHKey'
           description: created
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Add a new SSH Key
       tags:
@@ -393,12 +505,28 @@ paths:
         "200":
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Delete an SSH key
       tags:
@@ -421,12 +549,28 @@ paths:
                 $ref: '#/components/schemas/SSHKey'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Retrieve SSH Key by ID
       tags:
@@ -456,14 +600,34 @@ paths:
                 $ref: '#/components/schemas/SSHKey'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "405":
-          description: validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
       tags:
@@ -483,8 +647,16 @@ paths:
                 type: array
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: List all Hosts in project
       tags:
@@ -510,12 +682,28 @@ paths:
                 $ref: '#/components/schemas/Host'
           description: created
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Create a new Host
       tags:
@@ -537,12 +725,28 @@ paths:
         "200":
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Delete a Host
       tags:
@@ -565,12 +769,28 @@ paths:
                 $ref: '#/components/schemas/Host'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Retrieve Host by ID
       tags:
@@ -602,14 +822,34 @@ paths:
                 $ref: '#/components/schemas/Host'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "405":
-          description: validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Update an existing Host
       tags:
@@ -634,12 +874,28 @@ paths:
                 $ref: '#/components/schemas/Host'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Power on Host by ID
       tags:
@@ -664,12 +920,28 @@ paths:
                 $ref: '#/components/schemas/Host'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Power off Host by ID
       tags:
@@ -703,12 +975,28 @@ paths:
                 $ref: '#/components/schemas/AvailableResources'
           description: success
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Get lists of available resources for creating hosts and volumes
       tags:
@@ -727,8 +1015,16 @@ paths:
                 type: array
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: List all volumes in project
       tags:
@@ -752,12 +1048,28 @@ paths:
                 $ref: '#/components/schemas/Volume'
           description: created
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Add a new volume
       tags:
@@ -777,12 +1089,28 @@ paths:
         "200":
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Delete a volume
       tags:
@@ -805,12 +1133,28 @@ paths:
                 $ref: '#/components/schemas/Volume'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Retrieve volume by ID
       tags:
@@ -840,14 +1184,34 @@ paths:
                 $ref: '#/components/schemas/Volume'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "405":
-          description: validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Update an existing volume.  NOT SUPPORTED!!
       tags:
@@ -880,12 +1244,28 @@ paths:
                 $ref: '#/components/schemas/VolumeAttachment'
           description: success
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Attach existing volume to Host
       tags:
@@ -914,12 +1294,28 @@ paths:
         "200":
           description: success
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Detach existing volume from Host
       tags:
@@ -938,8 +1334,16 @@ paths:
                 type: array
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: List all volume attachments in project
       tags:
@@ -962,12 +1366,28 @@ paths:
                 $ref: '#/components/schemas/VolumeAttachment'
           description: created
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Create a new VolumeAttachment
       tags:
@@ -987,12 +1407,28 @@ paths:
         "200":
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Delete a VolumeAttachment
       tags:
@@ -1015,12 +1451,28 @@ paths:
                 $ref: '#/components/schemas/VolumeAttachment'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Retrieve volume attachment by ID
       tags:
@@ -1040,8 +1492,16 @@ paths:
                 type: array
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: List all networks in project
       tags:
@@ -1064,12 +1524,28 @@ paths:
                 $ref: '#/components/schemas/Network'
           description: created
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Add a new network
       tags:
@@ -1089,12 +1565,28 @@ paths:
         "200":
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Delete a network
       tags:
@@ -1117,12 +1609,28 @@ paths:
                 $ref: '#/components/schemas/Network'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Retrieve network by ID
       tags:
@@ -1152,14 +1660,34 @@ paths:
                 $ref: '#/components/schemas/Network'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "405":
-          description: validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Update an existing network.  NOT YET SUPPORTED
       tags:
@@ -1191,12 +1719,28 @@ paths:
                 $ref: '#/components/schemas/UsageReport'
           description: success
         "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Get a usage report
       tags:
@@ -1215,8 +1759,16 @@ paths:
                 type: array
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: List all ip pools in project
       tags:
@@ -1240,12 +1792,28 @@ paths:
                 $ref: '#/components/schemas/IPPool'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Retrieve IP pool by ID
       tags:
@@ -1276,12 +1844,28 @@ paths:
                 $ref: '#/components/schemas/IPPool'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Update IP pool by ID
       tags:
@@ -1316,12 +1900,28 @@ paths:
                 $ref: '#/components/schemas/IPPool'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Allocate IPs from the pool
       tags:
@@ -1356,12 +1956,28 @@ paths:
                 $ref: '#/components/schemas/IPPool'
           description: success
         "400":
-          description: invalid id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "404":
-          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       summary: Return IPs to the pool
       tags:
@@ -1376,6 +1992,17 @@ components:
         Build:
           example: 0.8.6-dev-218-g0b3b1ad
           type: string
+      type: object
+    ErrorResponse:
+      properties:
+        message:
+          description: Description of the error condition
+          type: string
+        details:
+          description: Optional verbose description of the error condition
+          type: string
+      required:
+      - message
       type: object
     Project:
       allOf:

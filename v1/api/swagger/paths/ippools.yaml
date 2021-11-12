@@ -14,6 +14,6 @@ get:
             items:
               $ref: ../components/schemas/IPPool.yaml
     '401':
-      description: unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
     '500':
-      description: internal error
+      $ref: ../components/responses/InternalError.yaml

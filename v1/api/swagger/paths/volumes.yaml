@@ -13,10 +13,11 @@ get:
             type: array
             items:
               $ref: ../components/schemas/Volume.yaml
+
     '401':
-      description: unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
     '500':
-      description: internal error
+      $ref: ../components/responses/InternalError.yaml
 post:
   tags:
     - volumes
@@ -41,10 +42,10 @@ post:
           schema:
             $ref: ../components/schemas/Volume.yaml
     '400':
-      description: invalid content
+      $ref: ../components/responses/InvalidContent.yaml
     '401':
-      description: unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
     '405':
-      description: invalid input
+      $ref: ../components/responses/InvalidInput.yaml
     '500':
-      description: internal error
+      $ref: ../components/responses/InternalError.yaml
