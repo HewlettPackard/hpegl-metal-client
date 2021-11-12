@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**Delete**](SshkeysApi.md#Delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key
 [**GetByID**](SshkeysApi.md#GetByID) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID
 [**List**](SshkeysApi.md#List) | **Get** /sshkeys | List all sshkeys in project
-[**Update**](SshkeysApi.md#Update) | **Put** /sshkeys/{sshkeyId} | Update an existing SSH Key.  Only the name or key fields can be changed.
+[**Update**](SshkeysApi.md#Update) | **Put** /sshkeys/{sshkeyId} | Update an existing SSH Key.  Only &#39;Name&#39; or &#39;Key&#39; fields can be changed.
 
 
 
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 
 List all sshkeys in project
 
-Returns an array of all SSHKey objects defined within the project. This does not include any SSH keys that are only defined as part of creating host.
+Returns an array of all SSHKey objects defined within the project.
 
 ### Required Parameters
 
@@ -148,7 +148,7 @@ This endpoint does not need any parameter.
 
 > SshKey Update(ctx, sshkeyId, sshKey)
 
-Update an existing SSH Key.  Only the name or key fields can be changed.
+Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
 
 
 

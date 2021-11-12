@@ -1,4 +1,7 @@
 type: object
+required:
+  - Name
+  - LocationID
 properties:
   Name:
     type: string
@@ -12,5 +15,7 @@ properties:
   NewIPPool:
     $ref: ./NewIPPool.yaml
     description: >-
-      Indicates if the network uses the default IP pool allocated from the
-      hoster/project IP Pool factory or a custom IP Pool
+      IP pool for the network. It is optional while creating new private network.
+      If not specified, the network uses the default IP pool allocated from the 
+      hoster/project IP Pool factory and if specified, a new custom IP Pool will 
+      be created and used for IP allocations.

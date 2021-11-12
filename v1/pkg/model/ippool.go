@@ -24,17 +24,6 @@ type IPPool struct {
 	Pool Pool
 }
 
-// IPPoolUpdate defines the request body to update an IP pool.
-type IPPoolUpdate struct {
-	ResourceBase
-	Description  string
-	DefaultRoute string
-	Proxy        string
-	NoProxy      string
-	NTP          []string
-	DNS          []string
-}
-
 // NewIPPool defines the request body to create a new IP pool.
 type NewIPPool struct {
 	Name         string

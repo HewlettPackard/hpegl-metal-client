@@ -1,4 +1,8 @@
 type: object
+required:
+  - ID
+  - ETag
+  - Name
 properties:
   ID:
     type: string

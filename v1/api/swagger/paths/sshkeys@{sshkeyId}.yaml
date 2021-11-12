@@ -30,7 +30,7 @@ get:
 put:
   tags:
     - sshkeys
-  summary: Update an existing SSH Key.  Only the name or key fields can be changed.
+  summary: Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
   description: ''
   operationId: SSHKey_update
   parameters:

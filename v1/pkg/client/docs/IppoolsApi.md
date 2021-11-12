@@ -148,11 +148,11 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> IpPool Update(ctx, ippoolId, ipPoolUpdate)
+> IpPool Update(ctx, ippoolId, ipPool)
 
 Update IP pool by ID
 
-Update a single ip pool with matching ID
+Update a single ip pool with matching ID. 'DefaultRoute' can only be updated if ip pool is not currently in-use.
 
 ### Required Parameters
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ippoolId** | **string**| ID of IP pool to update | 
-**ipPoolUpdate** | [**IpPoolUpdate**](IpPoolUpdate.md)| Update IPPool | 
+**ipPool** | [**IpPool**](IpPool.md)| Update IPPool | 
 
 ### Return type
 

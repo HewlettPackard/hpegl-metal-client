@@ -4,6 +4,7 @@ required:
   - ServiceID
   - LocationID
   - MachineSizeID
+  - SSHKeyIDs
   - NetworkIDs
   - NetworkForDefaultRoute
 properties:

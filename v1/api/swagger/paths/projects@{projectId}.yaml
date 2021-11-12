@@ -38,7 +38,7 @@ put:
     - projects
   summary: Update a project by its ID
   description: >-
-    Updates a project with a matching ID. Project profile limits can be updated
+    Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated
     with this operation.
   operationId: Project_update
   security:
@@ -48,7 +48,7 @@ put:
   parameters:
     - name: projectId
       in: path
-      description: ID of project to return
+      description: ID of project to update
       required: true
       schema:
         type: string
@@ -89,7 +89,7 @@ delete:
   parameters:
     - name: projectId
       in: path
-      description: ID of project to return
+      description: ID of project to delete
       required: true
       schema:
         type: string

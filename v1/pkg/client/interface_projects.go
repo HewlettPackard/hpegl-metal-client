@@ -26,7 +26,7 @@ type ProjectsAPI interface {
 	   Delete Delete a Project
 	   Deletes the Project with the matching ID
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	    * @param projectId ID of project to return
+	    * @param projectId ID of project to delete
 	*/
 	Delete(ctx _context.Context, projectId string) (*_nethttp.Response, error)
 	/*
@@ -49,9 +49,9 @@ type ProjectsAPI interface {
 	List(ctx _context.Context, localVarOptionals *ProjectsApiListOpts) ([]Project, *_nethttp.Response, error)
 	/*
 	   Update Update a project by its ID
-	   Updates a project with a matching ID. Project profile limits can be updated with this operation.
+	   Updates a project with a matching ID. Only Project &#39;Name&#39;, &#39;Profile&#39; and &#39;Limits&#39; can be updated with this operation.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	    * @param projectId ID of project to return
+	    * @param projectId ID of project to update
 	    * @param project Project parameters to update an existing Project
 	   @return Project
 	*/

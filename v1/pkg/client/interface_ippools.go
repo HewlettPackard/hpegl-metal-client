@@ -46,11 +46,11 @@ type IPPoolsAPI interface {
 	ReturnIPs(ctx _context.Context, ippoolId string, requestBody []string) (IpPool, *_nethttp.Response, error)
 	/*
 	   Update Update IP pool by ID
-	   Update a single ip pool with matching ID
+	   Update a single ip pool with matching ID. &#39;DefaultRoute&#39; can only be updated if ip pool is not currently in-use.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param ippoolId ID of IP pool to update
-	    * @param ipPoolUpdate Update IPPool
+	    * @param ipPool Update IPPool
 	   @return IpPool
 	*/
-	Update(ctx _context.Context, ippoolId string, ipPoolUpdate IpPoolUpdate) (IpPool, *_nethttp.Response, error)
+	Update(ctx _context.Context, ippoolId string, ipPool IpPool) (IpPool, *_nethttp.Response, error)
 }

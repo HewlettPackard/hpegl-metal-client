@@ -3,8 +3,7 @@ get:
     - sshkeys
   summary: List all sshkeys in project
   description: >-
-    Returns an array of all SSHKey objects defined within the project. This does
-    not include any SSH keys that are only defined as part of creating host.
+    Returns an array of all SSHKey objects defined within the project.
   operationId: SSHKeys_list
   responses:
     '200':

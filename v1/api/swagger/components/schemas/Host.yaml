@@ -1,6 +1,10 @@
 allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
+    required:
+      - Description
+      - NetworkIDs
+      - NetworkForDefaultRoute
     properties:
       Description:
         type: string

@@ -1,6 +1,13 @@
 allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
+    required:
+      - Description
+      - DefaultRoute
+      - DNS
+      - Proxy
+      - NoProxy
+      - NTP
     properties:
       Description:
         type: string

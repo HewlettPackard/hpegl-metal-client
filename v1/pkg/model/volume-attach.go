@@ -1,4 +1,4 @@
-// Copyright 2016-2021 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2016-2021 Hewlett Packard Enterprise Development LP
 
 package model
 
@@ -82,9 +82,8 @@ type ProtocolParameters struct {
 // NewVolumeAttachment is used to create an attachment between a non-Quake
 // controlled machine (i.e. a machine that does not have a HostID) and a volume.
 type NewVolumeAttachment struct {
-	// ResourceBase contains common elements of Quake Objects. The caller must set
-	// Name and should set Description.
-	ResourceBase
+	// Name for the volume attachment. Must be 128 or fewer printable characters
+	Name string
 	// VolumeID identifies the volume attach.
 	VolumeID string
 	// Protocol specifies the protocol specific information for this attachment.

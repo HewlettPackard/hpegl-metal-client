@@ -1,5 +1,9 @@
 type: object
 nullable: true
+required:
+  - IPVersion
+  - BaseIP
+  - Netmask
 properties:
   Name:
     type: string

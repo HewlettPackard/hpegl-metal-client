@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Name for the IP pool | [optional] 
 **Description** | **string** | Description for the IP pool | [optional] 
-**IPVersion** | [**IpVer**](IPVer.md) |  | [optional] 
-**BaseIP** | **string** | Base address of the IP pool | [optional] 
-**Netmask** | [**Netmask**](Netmask.md) |  | [optional] 
+**IPVersion** | [**IpVer**](IPVer.md) |  | 
+**BaseIP** | **string** | Base address of the IP pool | 
+**Netmask** | [**Netmask**](Netmask.md) |  | 
 **DefaultRoute** | **string** | Default route associated with the IP pool | [optional] 
 **Sources** | [**[]IpSource**](IPSource.md) |  | [optional] 
 **DNS** | **[]string** | List of DNS servers for the IP pool | [optional] 

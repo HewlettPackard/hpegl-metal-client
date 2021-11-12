@@ -36,13 +36,13 @@ type SshkeysAPI interface {
 	GetByID(ctx _context.Context, sshkeyId string) (SshKey, *_nethttp.Response, error)
 	/*
 	   List List all sshkeys in project
-	   Returns an array of all SSHKey objects defined within the project. This does not include any SSH keys that are only defined as part of creating host.
+	   Returns an array of all SSHKey objects defined within the project.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	   @return []SshKey
 	*/
 	List(ctx _context.Context) ([]SshKey, *_nethttp.Response, error)
 	/*
-	   Update Update an existing SSH Key.  Only the name or key fields can be changed.
+	   Update Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
 
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param sshkeyId ID of sshkey to update

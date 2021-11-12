@@ -1,4 +1,8 @@
 type: object
+required:
+  - Base
+  - Count
+  - Usage
 properties:
   Base:
     type: string

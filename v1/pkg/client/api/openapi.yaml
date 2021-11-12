@@ -19,7 +19,7 @@ info:
     \ such that are needed when creating hosts and volumes.  \n\nNote: All URIs are\
     \ relative to metal_service_url/rest/v1\n"
   title: HPE GreenLake Metal Client API
-  version: 1.3.5
+  version: 1.3.6
 servers:
 - description: Metal Service - Development Environment
   url: https://quake.dev.hpehcss.net{basePath}
@@ -191,7 +191,7 @@ paths:
       description: Deletes the Project with the matching ID
       operationId: Project_delete
       parameters:
-      - description: ID of project to return
+      - description: ID of project to delete
         in: path
         name: projectId
         required: true
@@ -250,11 +250,11 @@ paths:
       tags:
       - projects
     put:
-      description: Updates a project with a matching ID. Project profile limits can
-        be updated with this operation.
+      description: Updates a project with a matching ID. Only Project 'Name', 'Profile'
+        and 'Limits' can be updated with this operation.
       operationId: Project_update
       parameters:
-      - description: ID of project to return
+      - description: ID of project to update
         in: path
         name: projectId
         required: true
@@ -293,11 +293,10 @@ paths:
       - projects
   /projects-info:
     get:
-      description: Returns an object with info on projects that have been created.
-        This includes information on machine sizes and volumes flavors used by the
-        projects. If GreenLake IAM issued token is used for authentication, then it
-        is required to pass either 'Space' or 'spaceid' header. When both are set,
-        'Space' header is ignored.
+      description: |-
+        Returns an object with information on projects, machine sizes, and volume flavors.  The 'Projects' list includes projects authorized for a user, and the 'MachineSizes' and  'VolumeFlavors' list include only those machine sizes and volume flavors permitted for projects.
+
+        When GreenLake IAM issued token is used for authentication, it is required to  pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
       operationId: ProjectsInfo_list
       parameters:
       - description: GreenLake space name
@@ -334,8 +333,6 @@ paths:
   /sshkeys:
     get:
       description: Returns an array of all SSHKey objects defined within the project.
-        This does not include any SSH keys that are only defined as part of creating
-        host.
       operationId: SSHKeys_list
       responses:
         "200":
@@ -468,7 +465,7 @@ paths:
           description: validation exception
         "500":
           description: internal error
-      summary: Update an existing SSH Key.  Only the name or key fields can be changed.
+      summary: Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
       tags:
       - sshkeys
     summary: Operations on a single SSH Key
@@ -1254,7 +1251,8 @@ paths:
       tags:
       - ippools
     put:
-      description: Update a single ip pool with matching ID
+      description: Update a single ip pool with matching ID. 'DefaultRoute' can only
+        be updated if ip pool is not currently in-use.
       operationId: IPPool_update
       parameters:
       - description: ID of IP pool to update
@@ -1267,7 +1265,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IPPoolUpdate'
+              $ref: '#/components/schemas/IPPool'
         description: Update IPPool
         required: true
       responses:
@@ -1476,6 +1474,9 @@ components:
           example: |
             'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxv1C5uOeG9BBjfQbum9GupGthTFcifS4FNYxZ2ZakN9UcpD05L2lKp4OI6mfCfciOhJ9SHduZWJFM0pYfC99hIsPAHhEwWOjh3/rHKxB/U4RYN4VFWM+ShDv92+k0Hse73HhuiHKVtmRj/fltAeCFm/mPlL+McMYFhFYMIK8b/spKpXxdEBCSowHPGIn3yi0ivPWhC4wcIa9jDIela/a0t/oDnYTeIp2WMLDbpZyQsGHmKopAAvb+83JhwytQMVTI/g5pMerbqPyxKtWaWDVDtpQ7O8G877T5U3kkl4jLLOJywxrvLrfHh1UNdNvPmvRFd+ct9Q5ugj5CIMJHqWTj Joe@Laptop.local'
           type: string
+      required:
+      - Key
+      - Name
       type: object
     Host:
       allOf:
@@ -1615,6 +1616,7 @@ components:
       - Name
       - NetworkForDefaultRoute
       - NetworkIDs
+      - SSHKeyIDs
       - ServiceID
       type: object
     AvailableResources:
@@ -1821,22 +1823,51 @@ components:
             as their attached Host.
           format: uuid
           type: string
+      required:
+      - Capacity
+      - FlavorID
+      - LocationID
+      - Name
       type: object
     VolumeAttachHostUUID:
       properties:
         HostID:
-          description: Unique ID of the Host to which the volume will be attached
+          description: Unique ID of the Host to attach or detach volume
           format: uuid
           type: string
+      required:
+      - HostID
       type: object
     VolumeAttachment:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/VolumeAttachment_allOf'
     NewVolumeAttachment:
-      allOf:
-      - $ref: '#/components/schemas/ResourceBase'
-      - $ref: '#/components/schemas/NewVolumeAttachment_allOf'
+      example:
+        VolumeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Protocol:
+          ISCSI:
+            HostIPAddress: 10.1.2.3
+            CHAPSecret: CHAPSecret
+            CHAPUserName: CHAPUserName
+            InitiatorName: iqn.1234.com.hpe-initiator
+        Name: My Object Name
+      properties:
+        Name:
+          description: Name for the volume attachment. Must be 128 or fewer printable
+            characters
+          example: My Object Name
+          type: string
+        VolumeID:
+          description: Unique ID of the volume attached to the host
+          format: uuid
+          type: string
+        Protocol:
+          $ref: '#/components/schemas/ProtocolParameters'
+      required:
+      - Protocol
+      - VolumeID
+      type: object
     Network:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
@@ -1882,6 +1913,9 @@ components:
           type: string
         NewIPPool:
           $ref: '#/components/schemas/NewIPPool'
+      required:
+      - LocationID
+      - Name
       type: object
     UsageReport:
       description: The composite usage report
@@ -1908,10 +1942,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/IPPool_allOf'
-    IPPoolUpdate:
-      allOf:
-      - $ref: '#/components/schemas/ResourceBase'
-      - $ref: '#/components/schemas/IPPoolUpdate_allOf'
     IPAllocation:
       example:
         Usage: Allocated IP for external storage
@@ -1931,6 +1961,10 @@ components:
           description: A short description for the allocation
           example: Allocated IP for external storage
           type: string
+      required:
+      - Base
+      - Count
+      - Usage
       type: object
     ResourceBase:
       properties:
@@ -1959,6 +1993,10 @@ components:
           example: 2020-02-27T18:28:02.863Z
           format: date-time
           type: string
+      required:
+      - ETag
+      - ID
+      - Name
       type: object
     Profile:
       example:
@@ -2526,6 +2564,12 @@ components:
       - failed
       type: string
     ProtocolParameters:
+      example:
+        ISCSI:
+          HostIPAddress: 10.1.2.3
+          CHAPSecret: CHAPSecret
+          CHAPUserName: CHAPUserName
+          InitiatorName: iqn.1234.com.hpe-initiator
       properties:
         Protocol:
           $ref: '#/components/schemas/ProtocolKind'
@@ -2622,6 +2666,10 @@ components:
             example: 15.0.0.11
             type: string
           type: array
+      required:
+      - BaseIP
+      - IPVersion
+      - Netmask
       type: object
     HostUsageEntry:
       allOf:
@@ -3094,6 +3142,11 @@ components:
       - iscsi
       type: string
     ISCSIParameters:
+      example:
+        HostIPAddress: 10.1.2.3
+        CHAPSecret: CHAPSecret
+        CHAPUserName: CHAPUserName
+        InitiatorName: iqn.1234.com.hpe-initiator
       properties:
         HostIPAddress:
           description: The IP address of the host in dotted notation.
@@ -3203,6 +3256,9 @@ components:
           $ref: '#/components/schemas/Profile'
         Limits:
           $ref: '#/components/schemas/Limits'
+      required:
+      - Limits
+      - Profile
     SSHKey_allOf:
       properties:
         Key:
@@ -3210,6 +3266,8 @@ components:
           example: |
             'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxv1C5uOeG9BBjfQbum9GupGthTFcifS4FNYxZ2ZakN9UcpD05L2lKp4OI6mfCfciOhJ9SHduZWJFM0pYfC99hIsPAHhEwWOjh3/rHKxB/U4RYN4VFWM+ShDv92+k0Hse73HhuiHKVtmRj/fltAeCFm/mPlL+McMYFhFYMIK8b/spKpXxdEBCSowHPGIn3yi0ivPWhC4wcIa9jDIela/a0t/oDnYTeIp2WMLDbpZyQsGHmKopAAvb+83JhwytQMVTI/g5pMerbqPyxKtWaWDVDtpQ7O8G877T5U3kkl4jLLOJywxrvLrfHh1UNdNvPmvRFd+ct9Q5ugj5CIMJHqWTj Joe@Laptop.local'
           type: string
+      required:
+      - Key
     Host_allOf:
       properties:
         Description:
@@ -3320,6 +3378,10 @@ components:
           items:
             $ref: '#/components/schemas/HostAlertInfo'
           type: array
+      required:
+      - Description
+      - NetworkForDefaultRoute
+      - NetworkIDs
     Volume_allOf:
       properties:
         Description:
@@ -3390,17 +3452,6 @@ components:
           type: string
         State:
           $ref: '#/components/schemas/VaStateEnum'
-    NewVolumeAttachment_allOf:
-      properties:
-        VolumeID:
-          description: Unique ID of the volume attached to the host
-          format: uuid
-          type: string
-        Protocol:
-          $ref: '#/components/schemas/ProtocolParameters'
-      required:
-      - Protocol
-      - VolumeID
     Network_allOf:
       properties:
         LocationID:
@@ -3471,36 +3522,13 @@ components:
           type: array
         Pool:
           $ref: '#/components/schemas/Pool'
-    IPPoolUpdate_allOf:
-      properties:
-        Description:
-          description: Description for the IP pool
-          type: string
-        DefaultRoute:
-          description: Default route for the IP pool
-          example: 10.128.0.1
-          type: string
-        DNS:
-          description: List of DNS servers for the IP pool
-          items:
-            example: 8.8.8.8
-            type: string
-          type: array
-        Proxy:
-          description: Optional web-proxy for external internet access should the
-            pool actually be behind a firewall
-          example: 15.10.0.1
-          type: string
-        NoProxy:
-          description: Addresses or CIDRs for which proxy requests are not made
-          example: 15.10.0.1
-          type: string
-        NTP:
-          description: List of NTP servers for the IP pool
-          items:
-            example: 15.0.0.1
-            type: string
-          type: array
+      required:
+      - DNS
+      - DefaultRoute
+      - Description
+      - NTP
+      - NoProxy
+      - Proxy
     HostUsageEntry_allOf:
       properties:
         MachineSizeName:

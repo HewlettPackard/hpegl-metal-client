@@ -1,4 +1,9 @@
 type: object
+required:
+  - Name
+  - FlavorID
+  - Capacity
+  - LocationID
 properties:
   Name:
     type: string

@@ -72,7 +72,7 @@ Deletes the Project with the matching ID
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string**| ID of project to return | 
+**projectId** | **string**| ID of project to delete | 
 
 ### Return type
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 Update a project by its ID
 
-Updates a project with a matching ID. Project profile limits can be updated with this operation.
+Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated with this operation.
 
 ### Required Parameters
 
@@ -184,7 +184,7 @@ Updates a project with a matching ID. Project profile limits can be updated with
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string**| ID of project to return | 
+**projectId** | **string**| ID of project to update | 
 **project** | [**Project**](Project.md)| Project parameters to update an existing Project | 
 
 ### Return type

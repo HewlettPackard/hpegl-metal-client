@@ -1,6 +1,9 @@
 allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
+    required:
+      - Profile
+      - Limits
     properties:
       Profile:
         description: Profile is a generalized description of a team
