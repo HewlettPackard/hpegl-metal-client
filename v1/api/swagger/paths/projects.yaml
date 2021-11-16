@@ -26,9 +26,10 @@ get:
             items:
               $ref: ../components/schemas/Project.yaml
     '401':
-      description: unauthorized
+      $ref: ../components/responses/Unauthorized.yaml
     '500':
-      description: internal error
+      $ref: ../components/responses/InternalError.yaml
+
 post:
   tags:
     - projects

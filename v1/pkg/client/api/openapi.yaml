@@ -139,8 +139,16 @@ paths:
                 type: array
           description: success
         "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: unauthorized
         "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
           description: internal error
       security:
       - BearerAuth: []
