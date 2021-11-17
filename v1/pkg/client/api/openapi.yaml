@@ -3967,6 +3967,12 @@ components:
           description: The host default network ID
           format: uuid
           type: string
+        PreAllocatedIPs:
+          description: 'The list of pre-allocated IP addresses corresponding to the
+            list of NetworkIDs. '
+          items:
+            type: string
+          type: array
         UserData:
           description: User-provided data attached to the image configuration data
             when the host was provisioned

@@ -49,6 +49,8 @@ type Host struct {
 	NetworkIDs []string `json:"NetworkIDs"`
 	// The host default network ID
 	NetworkForDefaultRoute string `json:"NetworkForDefaultRoute"`
+	// The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. 
+	PreAllocatedIPs []string `json:"PreAllocatedIPs,omitempty"`
 	// User-provided data attached to the image configuration data when the host was provisioned
 	UserData string `json:"UserData,omitempty"`
 	// User-provided data to represent the identity of the host within an application environment. For example, this could be set to represent the Kubernetes node ID if the host is provisioned as a Kubernetes node.

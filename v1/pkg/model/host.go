@@ -21,7 +21,7 @@ type NewHost struct {
 	MachineID              string      // ID of the desired machine		    [Machine]
 	SSHKeyIDs              []string    // IDs of SSHKeys to be added         [SSHKeys]
 	NetworkIDs             []string    // IDs of networks connected to host  [Networks]
-	PreAllocatedIPs        []string    // List df pre-allocated IP addresses.
+	PreAllocatedIPs        []string    // List of pre-allocated IP addresses.
 	NetworkForDefaultRoute string      // ID of the network used for the default route
 	VolumeIDs              []string    // IDs of volumes to attach           [Volumes]
 	NewVolumes             []AddVolume // Information on any new volumes to be created
@@ -49,6 +49,7 @@ type Host struct {
 	SSHAuthorizedKeys      []string        // Direct input of Add'l SSH keys
 	NetworkIDs             []string        // IDs of networks connected to host  [Networks]
 	NetworkForDefaultRoute string          // ID of the network used for the default route
+	PreAllocatedIPs        []string        // List of pre-allocated IP addresses.
 	UserData               string          // UserData is copied directly to CloudInit
 	NodeID                 string          // Optional reference ID for application software
 	ISCSIConfig            ISCSIConfig     // TODO: Is this needed?  iSCSI related information; shared with any external volumes

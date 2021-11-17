@@ -73,6 +73,12 @@ allOf:
         type: string
         format: uuid
         description: The host default network ID
+      PreAllocatedIPs:
+        type: array
+        description: >-
+          The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. 
+        items:
+          type: string
       UserData:
         type: string
         description: >-
