@@ -4023,6 +4023,7 @@ components:
       - Description
       - NetworkForDefaultRoute
       - NetworkIDs
+      - PreAllocatedIPs
     Volume_allOf:
       properties:
         Description:

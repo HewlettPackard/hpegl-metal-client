@@ -5,6 +5,7 @@ allOf:
       - Description
       - NetworkIDs
       - NetworkForDefaultRoute
+      - PreAllocatedIPs
     properties:
       Description:
         type: string
