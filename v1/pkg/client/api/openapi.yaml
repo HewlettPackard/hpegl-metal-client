@@ -2610,7 +2610,8 @@ components:
           type: string
         ETag:
           description: Used to determine whether the DB entry has changed since it
-            was last read.  should be returned unchanged on any update operation.
+            was last read. This value is updated each time the resource is updated.  Client
+            must send this value unchanged for any update operation.
           format: uuid
           type: string
         Name:
@@ -3959,17 +3960,22 @@ components:
           description: The list of IDs corresponding to the networks that were provisioned
             to the host. These networks are among those listed in the Networks array
             returned by the get /available-resources call.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
           items:
             format: uuid
             type: string
           type: array
         NetworkForDefaultRoute:
-          description: The host default network ID
+          description: The host's default network ID. This needs to be one of the
+            values in the  "NetworkIDs" list.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           format: uuid
           type: string
         PreAllocatedIPs:
-          description: 'The list of pre-allocated IP addresses corresponding to the
-            list of NetworkIDs. '
+          description: The list of pre-allocated IP addresses corresponding to the
+            list of NetworkIDs.
           items:
             type: string
           type: array

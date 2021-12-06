@@ -37,9 +37,9 @@ type HostAllOf struct {
 	SSHAuthorizedKeys []string `json:"SSHAuthorizedKeys,omitempty"`
 	// The list of IDs corresponding to the networks that were provisioned to the host. These networks are among those listed in the Networks array returned by the get /available-resources call.
 	NetworkIDs []string `json:"NetworkIDs"`
-	// The host default network ID
+	// The host's default network ID. This needs to be one of the values in the  \"NetworkIDs\" list.
 	NetworkForDefaultRoute string `json:"NetworkForDefaultRoute"`
-	// The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. 
+	// The list of pre-allocated IP addresses corresponding to the list of NetworkIDs.
 	PreAllocatedIPs []string `json:"PreAllocatedIPs"`
 	// User-provided data attached to the image configuration data when the host was provisioned
 	UserData string `json:"UserData,omitempty"`

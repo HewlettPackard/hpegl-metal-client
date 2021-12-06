@@ -70,14 +70,20 @@ allOf:
         items:
           type: string
           format: uuid
+        example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
       NetworkForDefaultRoute:
         type: string
         format: uuid
-        description: The host default network ID
+        description: >-
+          The host's default network ID. This needs to be one of the values in the 
+          "NetworkIDs" list.
+        example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       PreAllocatedIPs:
         type: array
         description: >-
-          The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. 
+          The list of pre-allocated IP addresses corresponding to the list of NetworkIDs.
         items:
           type: string
       UserData:
