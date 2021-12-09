@@ -20,8 +20,10 @@ const (
 	HOSTSTATE_DELETING HostState = "Deleting"
 	HOSTSTATE_DELETED HostState = "Deleted"
 	HOSTSTATE_FAILED HostState = "Failed"
+	HOSTSTATE_UPDATING_CONNECTIONS HostState = "Updating Connections"
 	HOSTSTATE_ALLOCATING HostState = "Allocating"
 	HOSTSTATE_IMAGING HostState = "Imaging"
 	HOSTSTATE_CONNECTING HostState = "Connecting"
+	HOSTSTATE_DEPLOY_COMPLETE HostState = "Deploy Complete"
 	HOSTSTATE_READY HostState = "Ready"
 )

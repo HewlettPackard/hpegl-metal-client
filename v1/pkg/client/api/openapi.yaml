@@ -2826,9 +2826,11 @@ components:
       - Deleting
       - Deleted
       - Failed
+      - Updating Connections
       - Allocating
       - Imaging
       - Connecting
+      - Deploy Complete
       - Ready
       example: Ready
       type: string
@@ -2839,26 +2841,28 @@ components:
       - Init
       - Complete
       - Failed
-      - Working
-      - Need-Machine
-      - Need-IPs
       - Init-Off
-      - Setting-PXE
       - Clearing-Log
-      - Starting-Deploy
-      - Blocked
       - Deploy-Poweron
       - Deploying
-      - Confirm-Off
       - SnapLog
       - Fail-SnapLog
       - Setting-DiskBoot
+      - Boot-Service-OS
       - Connect
-      - Connect-Poweron
-      - Disconnect
+      - Power-on
+      - Confirm-on
+      - Isolate
+      - Connect-Provisioning
       - Abort-Deploy
       - Delete-Poweroff
+      - Confirm-off
       - Releasing
+      - Detaching-Volumes
+      - Problem-Releasing
+      - Updating
+      - Cleaning
+      - Connection Error Recovery
       example: Complete
       type: string
     HostAlertInfo:
