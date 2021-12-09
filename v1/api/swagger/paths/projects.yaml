@@ -40,6 +40,7 @@ post:
     within an organization or a cluster. If GreenLake IAM issued token is used
     for authentication, then it is required to pass either 'Space' or 'spaceid'
     header. When both are set, 'Space' header is ignored.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
   operationId: Project_add
   security:
     - BearerAuth: []

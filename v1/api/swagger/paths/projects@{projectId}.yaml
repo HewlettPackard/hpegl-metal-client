@@ -40,6 +40,7 @@ put:
   description: >-
     Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated
     with this operation.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
   operationId: Project_update
   security:
     - BearerAuth: []
@@ -80,7 +81,9 @@ delete:
   tags:
     - projects
   summary: Delete a Project
-  description: Deletes the Project with the matching ID
+  description: >-
+    Deletes the Project with the matching ID.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
   operationId: Project_delete
   security:
     - BearerAuth: []

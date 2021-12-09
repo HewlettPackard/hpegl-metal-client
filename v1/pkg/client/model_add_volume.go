@@ -17,6 +17,6 @@ type AddVolume struct {
 	Description string `json:"Description,omitempty"`
 	// This object is used for new volume creation in the host create operation. Since host create already has location ID that field is not provided in this object.
 	FlavorID string `json:"FlavorID,omitempty"`
-	// The size of the volume in MB
+	// The size of the volume in GiB
 	Capacity int64 `json:"Capacity,omitempty"`
 }

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Create a new project
 
-Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster. If GreenLake IAM issued token is used for authentication, then it is required to pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster. If GreenLake IAM issued token is used for authentication, then it is required to pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored. Note that Hoster or BMaaS Access Owner role is required for this operation.
 
 ### Required Parameters
 
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 Delete a Project
 
-Deletes the Project with the matching ID
+Deletes the Project with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
 
 ### Required Parameters
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 Update a project by its ID
 
-Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated with this operation.
+Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated with this operation. Note that Hoster or BMaaS Access Owner role is required for this operation.
 
 ### Required Parameters
 

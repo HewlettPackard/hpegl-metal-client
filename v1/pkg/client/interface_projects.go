@@ -13,7 +13,7 @@ import (
 type ProjectsAPI interface {
 	/*
 	   Add Create a new project
-	   Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster. If GreenLake IAM issued token is used for authentication, then it is required to pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored.
+	   Adds a new Project which creates an isolated space for creating Hosts, Volumes, and private Networks. A project is often aligned to a specific team within an organization or a cluster. If GreenLake IAM issued token is used for authentication, then it is required to pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored. Note that Hoster or BMaaS Access Owner role is required for this operation.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param newProject NewProject parameters to create a new Project
 	    * @param optional nil or *ProjectsApiAddOpts - Optional Parameters:
@@ -24,7 +24,7 @@ type ProjectsAPI interface {
 	Add(ctx _context.Context, newProject NewProject, localVarOptionals *ProjectsApiAddOpts) (Project, *_nethttp.Response, error)
 	/*
 	   Delete Delete a Project
-	   Deletes the Project with the matching ID
+	   Deletes the Project with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param projectId ID of project to delete
 	*/
@@ -49,7 +49,7 @@ type ProjectsAPI interface {
 	List(ctx _context.Context, localVarOptionals *ProjectsApiListOpts) ([]Project, *_nethttp.Response, error)
 	/*
 	   Update Update a project by its ID
-	   Updates a project with a matching ID. Only Project &#39;Name&#39;, &#39;Profile&#39; and &#39;Limits&#39; can be updated with this operation.
+	   Updates a project with a matching ID. Only Project &#39;Name&#39;, &#39;Profile&#39; and &#39;Limits&#39; can be updated with this operation. Note that Hoster or BMaaS Access Owner role is required for this operation.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param projectId ID of project to update
 	    * @param project Project parameters to update an existing Project

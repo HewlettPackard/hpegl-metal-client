@@ -17,7 +17,7 @@ type NewVolume struct {
 	Description string `json:"Description,omitempty"`
 	// Adds a new volume to the project.  This object requires the LocationID and is used when a new volume is created independently from the host creation therefore requiring a specified location.
 	FlavorID string `json:"FlavorID"`
-	// The size of the volume in MB
+	// The size of the volume in GiB
 	Capacity int64 `json:"Capacity"`
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
 	LocationID string `json:"LocationID"`

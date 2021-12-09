@@ -162,7 +162,8 @@ paths:
         Hosts, Volumes, and private Networks. A project is often aligned to a specific
         team within an organization or a cluster. If GreenLake IAM issued token is
         used for authentication, then it is required to pass either 'Space' or 'spaceid'
-        header. When both are set, 'Space' header is ignored.
+        header. When both are set, 'Space' header is ignored. Note that Hoster or
+        BMaaS Access Owner role is required for this operation.
       operationId: Project_add
       parameters:
       - description: GreenLake space name
@@ -224,7 +225,8 @@ paths:
       - projects
   /projects/{projectId}:
     delete:
-      description: Deletes the Project with the matching ID
+      description: Deletes the Project with the matching ID. Note that Hoster or BMaaS
+        Access Owner role is required for this operation.
       operationId: Project_delete
       parameters:
       - description: ID of project to delete
@@ -319,7 +321,8 @@ paths:
       - projects
     put:
       description: Updates a project with a matching ID. Only Project 'Name', 'Profile'
-        and 'Limits' can be updated with this operation.
+        and 'Limits' can be updated with this operation. Note that Hoster or BMaaS
+        Access Owner role is required for this operation.
       operationId: Project_update
       parameters:
       - description: ID of project to update
@@ -2135,11 +2138,11 @@ components:
         NewVolumes:
         - Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: 10000
+          Capacity: 10
           Name: NewVolumeName
         - Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: 10000
+          Capacity: 10
           Name: NewVolumeName
         NetworkForDefaultRoute: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         SSHKeyIDs:
@@ -2429,7 +2432,7 @@ components:
       example:
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: 10000
+        Capacity: 10
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: NewVolumeName
       properties:
@@ -2446,8 +2449,8 @@ components:
           format: uuid
           type: string
         Capacity:
-          description: The size of the volume in MB
-          example: 10000
+          description: The size of the volume in GiB
+          example: 10
           format: int64
           minimum: 0
           type: integer
@@ -2690,7 +2693,7 @@ components:
           minimum: 0
           type: integer
         VolumeCapacity:
-          description: Maximum capacity to allow in GiB
+          description: Maximum capacity to allow in TiB
           format: int64
           minimum: 0
           type: integer
@@ -2895,7 +2898,7 @@ components:
       example:
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: 10000
+        Capacity: 10
         Name: NewVolumeName
       properties:
         Name:
@@ -2911,8 +2914,8 @@ components:
           format: uuid
           type: string
         Capacity:
-          description: The size of the volume in MB
-          example: 10000
+          description: The size of the volume in GiB
+          example: 10
           format: int64
           minimum: 0
           type: integer

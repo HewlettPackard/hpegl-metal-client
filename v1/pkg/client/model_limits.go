@@ -17,7 +17,7 @@ type Limits struct {
 	Hosts int32 `json:"Hosts,omitempty"`
 	// Maximum number of volumes to allow
 	Volumes int32 `json:"Volumes,omitempty"`
-	// Maximum capacity to allow in GiB
+	// Maximum capacity to allow in TiB
 	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
 	// Maximum number of private networks to allow
 	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`

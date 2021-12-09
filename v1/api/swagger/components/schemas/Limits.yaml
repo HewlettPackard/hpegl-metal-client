@@ -11,7 +11,7 @@ properties:
   VolumeCapacity:
     type: integer
     format: int64
-    description: Maximum capacity to allow in GiB
+    description: Maximum capacity to allow in TiB
     minimum: 0
   PrivateNetworks:
     type: integer

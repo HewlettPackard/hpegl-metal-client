@@ -21,9 +21,9 @@ properties:
   Capacity:
     type: integer
     format: int64
-    example: 10000
+    example: 10
     minimum: 0
-    description: The size of the volume in MB
+    description: The size of the volume in GiB
   LocationID:
     type: string
     format: uuid
