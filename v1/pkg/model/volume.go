@@ -1,4 +1,4 @@
-// Copyright 2016-2021 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2016-2021 Hewlett Packard Enterprise Development LP
 
 package model
 
@@ -6,9 +6,10 @@ package model
 type NewVolume struct {
 	Name        string
 	Description string // Description is some human readable information.
-	FlavorID    string // Flavor of volume created
-	Capacity    uint64 // Requested size of the volume in MB.
-	LocationID  string // ID of the associated pod / data center
+	FlavorID    string // Flavor of volume requested.
+	Capacity    uint64 // Requested size of the volume in GiB.
+	Shareable   bool   // Indicates if the volume can be attached to multiple hosts.
+	LocationID  string // ID of the associated pod / data center.
 }
 
 // AddVolume is used as part of NewHost to allow creation of Volumes
@@ -16,8 +17,9 @@ type NewVolume struct {
 type AddVolume struct {
 	Name        string
 	Description string // Description is some human readable information.
-	FlavorID    string // Flavor of volume created
-	Capacity    uint64 // Requested size of the volume in MB.
+	FlavorID    string // Flavor of volume requested.
+	Capacity    uint64 // Requested size of the volume in GiB.
+	Shareable   bool   // Indicates if the volume can be attached to multiple hosts.
 }
 
 // Volume represents an external array-based disk volume.
@@ -25,9 +27,10 @@ type AddVolume struct {
 type Volume struct {
 	ResourceBase
 	Description string       // Description is some human readable information.
-	LocationID  string       // PodID is the ID of the associated pod
-	Capacity    uint64       // Capacity is the requested size of the volume in MB.
-	FlavorID    string       // Flavor of volume created
+	FlavorID    string       // Flavor of volume created.
+	Capacity    uint64       // Size of the volume in KiB.
+	Shareable   bool         // Indicates if the volume can be attached to multiple hosts.
+	LocationID  string       // ID of the associated pod / data center.
 	State       VolumeState  // State of the volume, managed by the portal volmon bot.
 	Status      VolumeStatus // Status of the volume, updated by the storage controller.
 }
@@ -38,10 +41,11 @@ type Volume struct {
 type VolumeInfo struct {
 	ID          string
 	Name        string
-	Description string
-	FlavorID    string
-	Capacity    uint64 // Volume size in MB
-	LocationID  string
+	Description string       // Description is some human readable information.
+	FlavorID    string       // Flavor of volume created.
+	Capacity    uint64       // Size of the volume in KiB.
+	Shareable   bool         // Indicates if the volume can be attached to multiple hosts.
+	LocationID  string       // ID of the associated pod / data center.
 	State       VolumeState  // State of the volume, managed by the portal volmon bot.
 	Status      VolumeStatus // Status of the volume, updated by the storage controller.
 }

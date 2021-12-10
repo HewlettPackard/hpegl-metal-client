@@ -24,6 +24,9 @@ properties:
     example: 10
     minimum: 0
     description: The size of the volume in GiB
+  Shareable:
+    type: boolean
+    description: Indicates if the volume can be attached to multiple hosts
   LocationID:
     type: string
     format: uuid

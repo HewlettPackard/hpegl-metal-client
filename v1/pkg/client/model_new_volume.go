@@ -19,6 +19,8 @@ type NewVolume struct {
 	FlavorID string `json:"FlavorID"`
 	// The size of the volume in GiB
 	Capacity int64 `json:"Capacity"`
+	// Indicates if the volume can be attached to multiple hosts
+	Shareable bool `json:"Shareable,omitempty"`
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
 	LocationID string `json:"LocationID"`
 }

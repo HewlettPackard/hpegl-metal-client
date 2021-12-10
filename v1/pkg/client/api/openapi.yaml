@@ -2136,11 +2136,13 @@ components:
         Name: NewHostName
         ServiceID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         NewVolumes:
-        - Description: Description of New Volume
+        - Shareable: true
+          Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 10
           Name: NewVolumeName
-        - Description: Description of New Volume
+        - Shareable: true
+          Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 10
           Name: NewVolumeName
@@ -2275,13 +2277,15 @@ components:
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Private
         Volumes:
-        - Description: Description
+        - Shareable: true
+          Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: MyVolume
-        - Description: Description
+        - Shareable: true
+          Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2430,6 +2434,7 @@ components:
       - $ref: '#/components/schemas/Volume_allOf'
     NewVolume:
       example:
+        Shareable: true
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
@@ -2454,6 +2459,9 @@ components:
           format: int64
           minimum: 0
           type: integer
+        Shareable:
+          description: Indicates if the volume can be attached to multiple hosts
+          type: boolean
         LocationID:
           description: The location of the volume (and the storage array) LocationID
             is one of those listed by the LocationInfo array returned as part of the
@@ -2896,6 +2904,7 @@ components:
       type: object
     AddVolume:
       example:
+        Shareable: true
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
@@ -2919,6 +2928,9 @@ components:
           format: int64
           minimum: 0
           type: integer
+        Shareable:
+          description: Indicates if the volume can be attached to multiple hosts
+          type: boolean
       type: object
     AvailableImage:
       description: Entry describing an available imaging service
@@ -3068,6 +3080,7 @@ components:
     VolumeInfo:
       description: Description of the details about a pre-existing volume
       example:
+        Shareable: true
         Description: Description
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 0
@@ -3092,10 +3105,13 @@ components:
           format: uuid
           type: string
         Capacity:
-          description: Volume size in MB
+          description: The size of the volume in KiB
           format: int64
           minimum: 0
           type: integer
+        Shareable:
+          description: Indicates if the volume can be attached to multiple hosts
+          type: boolean
         LocationID:
           description: The location ID of the data center where the volume was created
           format: uuid
@@ -4048,11 +4064,14 @@ components:
           format: uuid
           type: string
         Capacity:
-          description: The size of the volume in MB
-          example: 10000
+          description: The size of the volume in KiB
+          example: 10485760
           format: int64
           minimum: 0
           type: integer
+        Shareable:
+          description: Indicates if the volume can be attached to multiple hosts
+          type: boolean
         LocationID:
           description: The location of the volume (and the storage array) LocationID
             is one of those listed by the LocationInfo array returned as part of the

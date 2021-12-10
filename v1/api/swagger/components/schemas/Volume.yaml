@@ -14,9 +14,12 @@ allOf:
       Capacity:
         type: integer
         format: int64
-        example: 10000
+        example: 10485760
         minimum: 0
-        description: The size of the volume in MB
+        description: The size of the volume in KiB
+      Shareable:
+        type: boolean
+        description: Indicates if the volume can be attached to multiple hosts
       LocationID:
         type: string
         format: uuid

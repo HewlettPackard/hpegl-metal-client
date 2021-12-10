@@ -19,4 +19,6 @@ type AddVolume struct {
 	FlavorID string `json:"FlavorID,omitempty"`
 	// The size of the volume in GiB
 	Capacity int64 `json:"Capacity,omitempty"`
+	// Indicates if the volume can be attached to multiple hosts
+	Shareable bool `json:"Shareable,omitempty"`
 }
