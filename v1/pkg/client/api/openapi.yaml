@@ -369,6 +369,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: conflict
         "500":
           content:
             application/json:
@@ -634,6 +640,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: conflict
         "500":
           content:
             application/json:
@@ -856,6 +868,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: conflict
         "500":
           content:
             application/json:
@@ -1218,6 +1236,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: conflict
         "500":
           content:
             application/json:
@@ -1694,6 +1718,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: invalid input
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: conflict
         "500":
           content:
             application/json:
@@ -1872,6 +1902,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: conflict
         "500":
           content:
             application/json:

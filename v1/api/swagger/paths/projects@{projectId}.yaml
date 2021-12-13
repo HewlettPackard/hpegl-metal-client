@@ -75,6 +75,8 @@ put:
       $ref: ../components/responses/NotFound.yaml
     '405':
       $ref: ../components/responses/InvalidInput.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
     '500':
       $ref: ../components/responses/InternalError.yaml
 delete:

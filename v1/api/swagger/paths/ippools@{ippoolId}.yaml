@@ -60,5 +60,7 @@ put:
       $ref: ../components/responses/Unauthorized.yaml
     '404':
       $ref: ../components/responses/NotFound.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
     '500':
       $ref: ../components/responses/InternalError.yaml
