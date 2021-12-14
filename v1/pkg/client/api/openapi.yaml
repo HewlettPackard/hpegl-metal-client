@@ -4034,7 +4034,8 @@ components:
           type: string
         PreAllocatedIPs:
           description: The list of pre-allocated IP addresses corresponding to the
-            list of NetworkIDs.
+            list of NetworkIDs. Pre-allocated IP addresses are optional, but required
+            when updating a host containing Pre-allocated IP addresses.
           items:
             type: string
           type: array
@@ -4088,7 +4089,6 @@ components:
       - Description
       - NetworkForDefaultRoute
       - NetworkIDs
-      - PreAllocatedIPs
     Volume_allOf:
       properties:
         Description:
