@@ -2558,8 +2558,8 @@ components:
       example:
         Description: Private network for intra-cluster communication
         NewIPPool:
-          NoProxy: 15.10.0.10
-          Proxy: 15.10.0.1
+          NoProxy: localhost,15.10.0.10,test.com
+          Proxy: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
           Description: Description
           BaseIP: 10.128.0.0
           DefaultRoute: 10.128.0.1
@@ -3298,8 +3298,8 @@ components:
       type: string
     NewIPPool:
       example:
-        NoProxy: 15.10.0.10
-        Proxy: 15.10.0.1
+        NoProxy: localhost,15.10.0.10,test.com
+        Proxy: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
         Description: Description
         BaseIP: 10.128.0.0
         DefaultRoute: 10.128.0.1
@@ -3349,11 +3349,11 @@ components:
         Proxy:
           description: Optional web-proxy for external internet access should the
             pool actually be behind a firewall
-          example: 15.10.0.1
+          example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
           type: string
         NoProxy:
           description: Addresses or CIDRs for which proxy requests are not made
-          example: 15.10.0.10
+          example: localhost,15.10.0.10,test.com
           type: string
         NTP:
           description: List of NTP servers for the IP pool
@@ -4218,11 +4218,11 @@ components:
         Proxy:
           description: Optional web-proxy for external internet access should the
             pool actually be behind a firewall
-          example: 15.10.0.1
+          example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
           type: string
         NoProxy:
           description: Addresses or CIDRs for which proxy requests are not made
-          example: 15.10.0.1
+          example: localhost,15.10.0.10,test.com
           type: string
         NTP:
           description: List of NTP servers for the IP pool

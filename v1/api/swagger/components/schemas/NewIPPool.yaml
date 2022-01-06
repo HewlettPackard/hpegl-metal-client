@@ -35,13 +35,13 @@ properties:
     description: List of DNS servers for the IP pool
   Proxy:
     type: string
-    example: 15.10.0.1
+    example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
     description: >-
       Optional web-proxy for external internet access should the pool actually
       be behind a firewall
   NoProxy:
     type: string
-    example: 15.10.0.10
+    example: localhost,15.10.0.10,test.com
     description: Addresses or CIDRs for which proxy requests are not made
   NTP:
     type: array
