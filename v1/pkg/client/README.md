@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
  - [UsageReport](docs/UsageReport.md)
  - [UseRecord](docs/UseRecord.md)
  - [VaStateEnum](docs/VaStateEnum.md)
+ - [VafsConfig](docs/VafsConfig.md)
  - [Version](docs/Version.md)
  - [Volume](docs/Volume.md)
  - [VolumeAllOf](docs/VolumeAllOf.md)

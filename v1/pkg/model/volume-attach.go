@@ -1,4 +1,4 @@
-// (C) Copyright 2016-2021 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2016-2022 Hewlett Packard Enterprise Development LP
 
 package model
 
@@ -24,10 +24,24 @@ type VolumeAttachment struct {
 	VolumeTargetIPAddress string
 	// State of the volumeattachment, managed by the portal volmon bot.
 	State VaStateEnum
+	// FSConfig contains file-share specific information when using the FUSE attach protocol
+	FSConfig *VAFSConfig
 	// VolumeGroupID           string // VolumeGroupID may be empty of this volume is not part of a group.
 	// ArrayNetworkInterfaceID string // ArrayNetworkInterfaceID this must be initialized at creation time; it must correspond to an arry netoworkID that is reported in // StorageNetwork.ArrayNetworkInterfaceID
 	// ArrayVolumeAttachmentID string // Array parameters that may be passed to the driver with casts. These fields are populated by the storagemon bot and should be // unintialized at point of creation.
 	// ArrayHostID             string // ArrayHostID is a reference to the array-side host entry.
+}
+
+// VAFSConfig contains volume attachment parameters specific to Software Defined Storage (SDS)
+type VAFSConfig struct {
+	// UserName user used to generate the ticket
+	UserName string
+	// Ticket token generated at the storage cluster which is eventually required to mount volume on host
+	Ticket string
+	// TicketExpiryTime is the expiry time of the ticket
+	TicketExpiryTime string
+	// ID of the storage array
+	StorageID string
 }
 
 // VaStateEnum defines the posible VolumeAttachment states.
@@ -66,6 +80,7 @@ type ProtocolEnum string
 const (
 	ProtocolKindUnknown = "unknown"
 	ProtocolKindISCSI   = "iscsi"
+	ProtocolKindFUSE    = "fuse"
 )
 
 // ProtocolParameters contains the information to attach a volume using the

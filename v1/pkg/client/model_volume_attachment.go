@@ -45,4 +45,6 @@ type VolumeAttachment struct {
 	// VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
 	VolumeTargetIPAddress string `json:"VolumeTargetIPAddress,omitempty"`
 	State VaStateEnum `json:"State,omitempty"`
+	// File share specific configuration parameters
+	FSConfig *VafsConfig `json:"FSConfig,omitempty"`
 }

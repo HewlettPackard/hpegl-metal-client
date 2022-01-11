@@ -3258,6 +3258,22 @@ components:
       - deleted
       - failed
       type: string
+    VAFSConfig:
+      properties:
+        StorageID:
+          description: Storage identifier for an array or a SDS
+          type: string
+        UserName:
+          description: Storage array or SDS user
+          type: string
+        Ticket:
+          description: SDS token acquired by login into the SDS for a given user.
+            This is required by the FUSE client to mount volumes on host.
+          type: string
+        TicketExpiryTime:
+          description: Ticket expiry time to help client to refresh the ticket.
+          type: string
+      type: object
     ProtocolParameters:
       example:
         ISCSI:
@@ -4162,6 +4178,11 @@ components:
           type: string
         State:
           $ref: '#/components/schemas/VaStateEnum'
+        FSConfig:
+          allOf:
+          - $ref: '#/components/schemas/VAFSConfig'
+          description: File share specific configuration parameters
+          nullable: true
     Network_allOf:
       properties:
         LocationID:

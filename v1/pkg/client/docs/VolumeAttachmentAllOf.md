@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **VolumeTargetIQN** | **string** | VolumeTargetIQN is the iQN for the volume, assigned by the array correspnding to the volume | [optional] 
 **VolumeTargetIPAddress** | **string** | VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export | [optional] 
 **State** | [**VaStateEnum**](VaStateEnum.md) |  | [optional] 
+**FSConfig** | Pointer to [**VafsConfig**](VAFSConfig.md) | File share specific configuration parameters | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

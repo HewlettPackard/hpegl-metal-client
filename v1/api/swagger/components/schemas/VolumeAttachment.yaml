@@ -45,3 +45,9 @@ allOf:
         description: VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
       State:
         $ref: ./VaStateEnum.yaml
+      FSConfig:
+        description: File share specific configuration parameters 
+        nullable: true
+        allOf:
+        - $ref: ./VAFSConfig.yaml
+
