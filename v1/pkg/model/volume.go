@@ -1,4 +1,4 @@
-// (C) Copyright 2016-2021 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2016-2022 Hewlett Packard Enterprise Development LP
 
 package model
 
@@ -48,6 +48,8 @@ type VolumeInfo struct {
 	LocationID  string       // ID of the associated pod / data center.
 	State       VolumeState  // State of the volume, managed by the portal volmon bot.
 	Status      VolumeStatus // Status of the volume, updated by the storage controller.
+	DiscoveryIP string       // Discivery IP for the iscsi volume
+	TargetIQN   string       // TargetIQN for the iscsi volume
 }
 
 // VolumeState all posible volume states stored in the  model.

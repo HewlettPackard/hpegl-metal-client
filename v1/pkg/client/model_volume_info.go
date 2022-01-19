@@ -25,8 +25,12 @@ type VolumeInfo struct {
 	Capacity int64 `json:"Capacity,omitempty"`
 	// Indicates if the volume can be attached to multiple hosts
 	Shareable bool `json:"Shareable,omitempty"`
-	// The location ID of the data center where the volume was created
+	// The location ID of the data center where the volume exists
 	LocationID string `json:"LocationID,omitempty"`
+	// The discovery IP for the iSCSI volume
+	DiscoveryIP string `json:"DiscoveryIP,omitempty"`
+	// The target IQN for the iSCSI volume
+	TargetIQN string `json:"TargetIQN,omitempty"`
 	State VolumeState `json:"State,omitempty"`
 	Status VolumeStatus `json:"Status,omitempty"`
 }

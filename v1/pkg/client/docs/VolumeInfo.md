@@ -10,7 +10,9 @@ Name | Type | Description | Notes
 **FlavorID** | **string** | The ID of the volume flavor requested when creating the volume | [optional] 
 **Capacity** | **int64** | The size of the volume in KiB | [optional] 
 **Shareable** | **bool** | Indicates if the volume can be attached to multiple hosts | [optional] 
-**LocationID** | **string** | The location ID of the data center where the volume was created | [optional] 
+**LocationID** | **string** | The location ID of the data center where the volume exists | [optional] 
+**DiscoveryIP** | **string** | The discovery IP for the iSCSI volume | [optional] 
+**TargetIQN** | **string** | The target IQN for the iSCSI volume | [optional] 
 **State** | [**VolumeState**](VolumeState.md) |  | [optional] 
 **Status** | [**VolumeStatus**](VolumeStatus.md) |  | [optional] 
 

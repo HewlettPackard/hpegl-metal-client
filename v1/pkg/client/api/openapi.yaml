@@ -2313,14 +2313,18 @@ components:
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Private
         Volumes:
-        - Shareable: true
+        - TargetIQN: TargetIQN
+          Shareable: true
+          DiscoveryIP: DiscoveryIP
           Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: MyVolume
-        - Shareable: true
+        - TargetIQN: TargetIQN
+          Shareable: true
+          DiscoveryIP: DiscoveryIP
           Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
@@ -3116,7 +3120,9 @@ components:
     VolumeInfo:
       description: Description of the details about a pre-existing volume
       example:
+        TargetIQN: TargetIQN
         Shareable: true
+        DiscoveryIP: DiscoveryIP
         Description: Description
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 0
@@ -3149,8 +3155,14 @@ components:
           description: Indicates if the volume can be attached to multiple hosts
           type: boolean
         LocationID:
-          description: The location ID of the data center where the volume was created
+          description: The location ID of the data center where the volume exists
           format: uuid
+          type: string
+        DiscoveryIP:
+          description: The discovery IP for the iSCSI volume
+          type: string
+        TargetIQN:
+          description: The target IQN for the iSCSI volume
           type: string
         State:
           $ref: '#/components/schemas/VolumeState'

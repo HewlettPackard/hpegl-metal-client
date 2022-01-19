@@ -29,7 +29,13 @@ properties:
   LocationID:
     type: string
     format: uuid
-    description: The location ID of the data center where the volume was created
+    description: The location ID of the data center where the volume exists
+  DiscoveryIP:
+    type: string
+    description: The discovery IP for the iSCSI volume
+  TargetIQN:
+    type: string
+    description: The target IQN for the iSCSI volume
   State:
     $ref: ./VolumeState.yaml
   Status:
