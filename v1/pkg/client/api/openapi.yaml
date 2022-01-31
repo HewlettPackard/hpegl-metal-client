@@ -1385,6 +1385,10 @@ paths:
       - volume-attachments
     post:
       description: Adds a new VolumeAttachment which enables a machine to use a volume.
+        Note that this API is for creation of a VolumeAttachment for non-Hosts. A
+        VolumeAttachment resource must be deleted using the 'DELETE /volume-attachments/{attachmentId}'
+        API. For regular hosts, a VolumeAttachment is created via the 'POST /volumes/{volumeId}/attach'
+        API.
       operationId: VolumeAttachments_add
       requestBody:
         content:
@@ -3209,8 +3213,8 @@ components:
           format: uuid
           type: string
         Capacity:
-          description: Total capacity available (in MB) to create new volumes of the
-            indicated flavor at the indicated location
+          description: Total capacity available (in GiB) to create new volumes of
+            the indicated flavor at the indicated location
           format: int64
           type: integer
       type: object

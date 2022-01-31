@@ -30,7 +30,7 @@ type VolumeAttachmentsApiService service
 
 /*
 Add Create a new VolumeAttachment
-Adds a new VolumeAttachment which enables a machine to use a volume.
+Adds a new VolumeAttachment which enables a machine to use a volume. Note that this API is for creation of a VolumeAttachment for non-Hosts. A VolumeAttachment resource must be deleted using the &#39;DELETE /volume-attachments/{attachmentId}&#39; API. For regular hosts, a VolumeAttachment is created via the &#39;POST /volumes/{volumeId}/attach&#39; API.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newVolumeAttachment NewVolumeAttachement parameters to create a new VolumeAttachment.
 @return VolumeAttachment

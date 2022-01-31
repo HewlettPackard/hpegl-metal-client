@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Create a new VolumeAttachment
 
-Adds a new VolumeAttachment which enables a machine to use a volume.
+Adds a new VolumeAttachment which enables a machine to use a volume. Note that this API is for creation of a VolumeAttachment for non-Hosts. A VolumeAttachment resource must be deleted using the 'DELETE /volume-attachments/{attachmentId}' API. For regular hosts, a VolumeAttachment is created via the 'POST /volumes/{volumeId}/attach' API.
 
 ### Required Parameters
 
