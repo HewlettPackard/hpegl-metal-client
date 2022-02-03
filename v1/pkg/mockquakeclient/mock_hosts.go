@@ -86,9 +86,9 @@ func (mr *MockHostsAPIMockRecorder) GetByID(ctx, hostId interface{}) *gomock.Cal
 }
 
 // List mocks base method.
-func (m *MockHostsAPI) List(ctx context.Context) ([]client.Host, *http.Response, error) {
+func (m *MockHostsAPI) List(ctx context.Context, localVarOptionals *client.HostsApiListOpts) ([]client.Host, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List", ctx)
+	ret := m.ctrl.Call(m, "List", ctx, localVarOptionals)
 	ret0, _ := ret[0].([]client.Host)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -96,9 +96,9 @@ func (m *MockHostsAPI) List(ctx context.Context) ([]client.Host, *http.Response,
 }
 
 // List indicates an expected call of List.
-func (mr *MockHostsAPIMockRecorder) List(ctx interface{}) *gomock.Call {
+func (mr *MockHostsAPIMockRecorder) List(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockHostsAPI)(nil).List), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockHostsAPI)(nil).List), ctx, localVarOptionals)
 }
 
 // PowerOff mocks base method.

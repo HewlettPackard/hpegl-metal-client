@@ -660,6 +660,15 @@ paths:
     get:
       description: Returns an array of all Host objects defined within the project.
       operationId: Hosts_list
+      parameters:
+      - description: Includes deleted Host objects in the response when set to "true".
+        in: query
+        name: all
+        required: false
+        schema:
+          enum:
+          - "true"
+          type: string
       responses:
         "200":
           content:

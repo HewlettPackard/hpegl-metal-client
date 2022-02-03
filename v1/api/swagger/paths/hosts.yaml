@@ -4,6 +4,14 @@ get:
   summary: List all Hosts in project
   description: Returns an array of all Host objects defined within the project.
   operationId: Hosts_list
+  parameters:
+    - in: query
+      name: all
+      required: false
+      schema:
+        type: string
+        enum: ["true"]
+      description: Includes deleted Host objects in the response when set to "true".
   responses:
     '200':
       description: success

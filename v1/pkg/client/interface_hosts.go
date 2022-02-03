@@ -38,9 +38,11 @@ type HostsAPI interface {
 	   List List all Hosts in project
 	   Returns an array of all Host objects defined within the project.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param optional nil or *HostsApiListOpts - Optional Parameters:
+	    * @param "All" (optional.String) -  Includes deleted Host objects in the response when set to \"true\".
 	   @return []Host
 	*/
-	List(ctx _context.Context) ([]Host, *_nethttp.Response, error)
+	List(ctx _context.Context, localVarOptionals *HostsApiListOpts) ([]Host, *_nethttp.Response, error)
 	/*
 	   PowerOff Power off Host by ID
 	   Powers off a single Host with matching ID

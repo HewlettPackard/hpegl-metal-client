@@ -18,6 +18,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -460,13 +461,20 @@ func (a *HostsApiService) GetByID(ctx _context.Context, hostId string) (Host, *_
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// HostsApiListOpts Optional parameters for the method 'List'
+type HostsApiListOpts struct {
+    All optional.String
+}
+
 /*
 List List all Hosts in project
 Returns an array of all Host objects defined within the project.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *HostsApiListOpts - Optional Parameters:
+ * @param "All" (optional.String) -  Includes deleted Host objects in the response when set to \"true\".
 @return []Host
 */
-func (a *HostsApiService) List(ctx _context.Context) ([]Host, *_nethttp.Response, error) {
+func (a *HostsApiService) List(ctx _context.Context, localVarOptionals *HostsApiListOpts) ([]Host, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -482,6 +490,9 @@ func (a *HostsApiService) List(ctx _context.Context) ([]Host, *_nethttp.Response
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.All.IsSet() {
+		localVarQueryParams.Add("all", parameterToString(localVarOptionals.All.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

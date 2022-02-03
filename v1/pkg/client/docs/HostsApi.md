@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ## List
 
-> []Host List(ctx, )
+> []Host List(ctx, optional)
 
 List all Hosts in project
 
@@ -126,7 +126,20 @@ Returns an array of all Host objects defined within the project.
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **all** | **optional.String**| Includes deleted Host objects in the response when set to \&quot;true\&quot;. | 
 
 ### Return type
 
