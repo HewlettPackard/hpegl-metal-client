@@ -5,10 +5,12 @@ enum:
   - Deleted
   - Failed
   - Updating Connections
-  - Allocating
   - Imaging
   - Connecting
-  - Deploy Complete
+  - Booting
   - Ready
+  - Replacing
+  - Releasing
+  - Allocating
 description: Overall host state
 example: Ready

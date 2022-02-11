@@ -136,3 +136,7 @@ allOf:
         type: array
         items:
           $ref: ./HostAlertInfo.yaml
+      Workflow:
+        type: string
+        description: The current workflow the host is in
+

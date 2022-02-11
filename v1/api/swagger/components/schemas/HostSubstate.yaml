@@ -2,29 +2,29 @@ type: string
 description: Host substate within HostState
 enum:
   - ''
-  - Init
+  - Abort Deploy
+  - Allocate
+  - Attach Volumes
+  - Boot Service-OS
+  - Clear Log
   - Complete
-  - Failed
-  - Init-Off
-  - Clearing-Log
-  - Deploy-Poweron
-  - Deploying
-  - SnapLog
-  - Fail-SnapLog
-  - Setting-DiskBoot
-  - Boot-Service-OS
+  - Confirm Off
+  - Confirm On
   - Connect
-  - Power-on
-  - Confirm-on
+  - Connect Provisioning
+  - Deploy
+  - Detach Volumes
+  - Error Recovery
+  - Fail Cleanup
+  - Failed
+  - Init
+  - Init Off
   - Isolate
-  - Connect-Provisioning
-  - Abort-Deploy
-  - Delete-Poweroff
-  - Confirm-off
-  - Releasing
-  - Detaching-Volumes
-  - Problem-Releasing
-  - Updating
-  - Cleaning
-  - Connection Error Recovery
+  - Power Off
+  - Power On
+  - Release
+  - Release With Problem
+  - Set Boot Disk
+  - Snap Log
+  - Update
 example: Complete

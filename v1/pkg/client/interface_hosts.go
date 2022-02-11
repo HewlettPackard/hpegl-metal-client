@@ -60,6 +60,14 @@ type HostsAPI interface {
 	*/
 	PowerOn(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
 	/*
+	   Replace Replace Host by ID
+	   Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in Workflow Replace.
+	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param hostId ID of Host to replace
+	   @return Host
+	*/
+	Replace(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
+	/*
 	   Update Update an existing Host
 	   Updates the Host with the matching ID.  Update is permitted only if the host is in the &#39;Ready&#39; or &#39;Connection Updating Failed&#39; state.  Only the Host &#39;Description&#39;, &#39;Networks&#39;, and &#39;NetworkForDefaultRoute&#39; can be updated.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **Progress** | **int64** |  | [optional] 
 **Alert** | **bool** |  | [optional] 
 **AlertInfo** | [**[]HostAlertInfo**](HostAlertInfo.md) |  | [optional] 
+**Workflow** | **string** | The current workflow the host is in | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

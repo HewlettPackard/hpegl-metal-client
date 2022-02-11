@@ -1,0 +1,33 @@
+summary: Replace a specific host
+post:
+  tags:
+    - hosts
+  summary: Replace Host by ID
+  description: >-
+    Re-deploys a host with a new machine that satisfies the current host settings.
+    Only the machine is replaced, IP addresses, volumes, etc are not changed.
+    The host must be powered off.  The host must also be in the Ready state or in
+    the Failed state and in Workflow Replace.
+  operationId: replace
+  parameters:
+    - name: hostId
+      in: path
+      description: ID of Host to replace
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Host.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

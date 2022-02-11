@@ -133,6 +133,22 @@ func (mr *MockHostsAPIMockRecorder) PowerOn(ctx, hostId interface{}) *gomock.Cal
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PowerOn", reflect.TypeOf((*MockHostsAPI)(nil).PowerOn), ctx, hostId)
 }
 
+// Replace mocks base method.
+func (m *MockHostsAPI) Replace(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Replace", ctx, hostId)
+	ret0, _ := ret[0].(client.Host)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// Replace indicates an expected call of Replace.
+func (mr *MockHostsAPIMockRecorder) Replace(ctx, hostId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Replace", reflect.TypeOf((*MockHostsAPI)(nil).Replace), ctx, hostId)
+}
+
 // Update mocks base method.
 func (m *MockHostsAPI) Update(ctx context.Context, hostId string, host client.Host) (client.Host, *http.Response, error) {
 	m.ctrl.T.Helper()

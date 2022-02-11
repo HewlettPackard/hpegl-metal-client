@@ -1,4 +1,4 @@
-// Copyright 2016-2021 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2016-2022 Hewlett Packard Enterprise Development LP
 
 package model
 
@@ -66,9 +66,7 @@ type Host struct {
 	Progress     int64            // Progress on the overall host provisioning
 	Alert        bool             // flags when an issue has been detected
 	AlertInfo    []HostAlertInfo  // details about a specific alert condition
-	// Events            []*HostEvent
-	// LogFileID    string           // provides the file ID for the console log snapped after deploy
-	// RetryCount   uint32           // is the number of times a substate retry has been attempted
+	Workflow     HostWorkflowEnum // the current workflow
 }
 
 // PowerStatusEnum is used to report the current host PowerStatus
@@ -98,6 +96,18 @@ type HostAlertInfo struct {
 	Time     time.Time
 	Ack      bool
 }
+
+// HostWorkflowEnum defines the workflows
+type HostWorkflowEnum string
+
+// HostWorkflowEnum values.
+const (
+	HostWorkflowNil               HostWorkflowEnum = ""
+	HostWorkflowCreate            HostWorkflowEnum = "Create"
+	HostWorkflowDelete            HostWorkflowEnum = "Delete"
+	HostWorkflowUpdateConnections HostWorkflowEnum = "Update Connections"
+	HostWorkflowReplace           HostWorkflowEnum = "Replace"
+)
 
 // Connection defines a Host network connection with some details being
 // embedded in the NetworkConnection struct.
@@ -148,14 +158,16 @@ type HostStateEnum string
 
 // HostStateEnum values
 const (
-	HostStateNew        HostStateEnum = "New"      // Host has been created
-	HostStateDeleting   HostStateEnum = "Deleting" // Host is being deleted
-	HostStateDeleted    HostStateEnum = "Deleted"  // Host has been deleted
-	HostStateFailed     HostStateEnum = "Failed"   // Host configuration failed
-	HostStateAllocating HostStateEnum = "Allocating"
-	HostStateImaging    HostStateEnum = "Imaging"
-	HostStateConnecting HostStateEnum = "Connecting"
-	HostStateReady      HostStateEnum = "Ready"
+	HostStateNew                 HostStateEnum = "New"                  // Host has been created
+	HostStateDeleting            HostStateEnum = "Deleting"             // Host is being deleted
+	HostStateDeleted             HostStateEnum = "Deleted"              // Host has been deleted
+	HostStateFailed              HostStateEnum = "Failed"               // Host configuration failed
+	HostStateUpdatingConnections HostStateEnum = "Updating Connections" // Host connections are being updated
+	HostStateImaging             HostStateEnum = "Imaging"
+	HostStateConnecting          HostStateEnum = "Connecting"
+	HostStateBooting             HostStateEnum = "Booting"
+	HostStateReady               HostStateEnum = "Ready"
+	HostStateReplacing           HostStateEnum = "Replacing"
 )
 
 // HostSubstateEnum identifies valid host substates
@@ -163,30 +175,34 @@ type HostSubstateEnum string
 
 // HostSubstateEnum values
 const (
-	HostSubstateNil             HostSubstateEnum = ""                 // Used by multiple states
-	HostSubstateInit            HostSubstateEnum = "Init"             //
-	HostSubstateComplete        HostSubstateEnum = "Complete"         //
-	HostSubstateFailed          HostSubstateEnum = "Failed"           //
-	HostSubstateWorking         HostSubstateEnum = "Working"          // Allocating Substates
-	HostSubstateNeedMachine     HostSubstateEnum = "Need-Machine"     //
-	HostSubstateNeedIPs         HostSubstateEnum = "Need-IPs"         //
-	HostSubstateInitOff         HostSubstateEnum = "Init-Off"         // Imaging Substates
-	HostSubstateSettingPxe      HostSubstateEnum = "Setting-PXE"      //
-	HostSubstateClearingLog     HostSubstateEnum = "Clearing-Log"     //
-	HostSubstateStartingDeploy  HostSubstateEnum = "Starting-Deploy"  //
-	HostSubstateBlocked         HostSubstateEnum = "Blocked"          //
-	HostSubstateDeployPoweron   HostSubstateEnum = "Deploy-Poweron"   //
-	HostSubstateDeploying       HostSubstateEnum = "Deploying"        //
-	HostSubstateConfirmOff      HostSubstateEnum = "Confirm-Off"      //
-	HostSubstateSnapLog         HostSubstateEnum = "SnapLog"          //
-	HostSubstateFailSnapLog     HostSubstateEnum = "Fail-SnapLog"     //
-	HostSubstateSettingDiskBoot HostSubstateEnum = "Setting-DiskBoot" //
-	HostSubstateConnect         HostSubstateEnum = "Connect"          // Connecting Substates
-	HostSubstateConnectPoweron  HostSubstateEnum = "Connect-Poweron"  //
-	HostSubstateDisconnect      HostSubstateEnum = "Disconnect"       //Deleting Substates
-	HostSubstateAbortDeploy     HostSubstateEnum = "Abort-Deploy"     //
-	HostSubstateDeletePoweroff  HostSubstateEnum = "Delete-Poweroff"  //
-	HostSubstateReleasing       HostSubstateEnum = "Releasing"        //
+	HostSubstateNil                 HostSubstateEnum = ""
+	HostSubstateInit                HostSubstateEnum = "Init"
+	HostSubstateInitOff             HostSubstateEnum = "Init Off"
+	HostSubstateComplete            HostSubstateEnum = "Complete"
+	HostSubstateFailed              HostSubstateEnum = "Failed"
+	HostSubstateReplaceFailed       HostSubstateEnum = "Replace Failed" // replace workflow failure
+	HostSubstateCreateFailed        HostSubstateEnum = "Create Failed"  // create workflow failure
+	HostSubstatePowerOn             HostSubstateEnum = "Power On"
+	HostSubstatePowerOff            HostSubstateEnum = "Power Off"
+	HostSubstateConfirmOn           HostSubstateEnum = "Confirm On"
+	HostSubstateConfirmOff          HostSubstateEnum = "Confirm Off"
+	HostSubstateIsolate             HostSubstateEnum = "Isolate"
+	HostSubstateConnectProvisioning HostSubstateEnum = "Connect Provisioning"
+	HostSubstateClearLog            HostSubstateEnum = "Clear Log"
+	HostSubstateSnapLog             HostSubstateEnum = "Snap Log"
+	HostSubstateDeploy              HostSubstateEnum = "Deploy"
+	HostSubstateBootDisk            HostSubstateEnum = "Boot Disk"
+	HostSubstateBootSvcOS           HostSubstateEnum = "Boot Service-OS"
+	HostSubstateDetachVolumes       HostSubstateEnum = "Detach Volumes"
+	HostSubstateAttachVolumes       HostSubstateEnum = "Attach Volumes"
+	HostSubstateRelease             HostSubstateEnum = "Release"
+	HostSubstateFailCleanup         HostSubstateEnum = "Fail Cleanup"
+	HostSubstateConnect             HostSubstateEnum = "Connect"
+	HostSubstateAbortDeploy         HostSubstateEnum = "Abort Deploy"
+	HostSubstateReleaseWithProblem  HostSubstateEnum = "Release With Problem"
+	HostSubstateUpdate              HostSubstateEnum = "Update"
+	HostSubstateFailureCleanup      HostSubstateEnum = "Error Recovery"
+	HostSubstateAllocate            HostSubstateEnum = "Allocate"
 )
 
 // HostAlertEnum string
@@ -197,6 +213,7 @@ const (
 	HostAlertSubstateTimedOut HostAlertEnum = "substate-timed-out" // Time-out
 	HostAlertOpFailed         HostAlertEnum = "op-failed"          // Op failed
 	HostAlertUnknownState     HostAlertEnum = "unknown-state"      // Encountered an unknown host state/substate
+	HostAlertVolAttchFailed   HostAlertEnum = "vol-attch-failed"   // Vol-Attch failed
 )
 
 /*

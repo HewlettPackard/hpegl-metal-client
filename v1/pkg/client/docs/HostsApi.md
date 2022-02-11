@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**List**](HostsApi.md#List) | **Get** /hosts | List all Hosts in project
 [**PowerOff**](HostsApi.md#PowerOff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 [**PowerOn**](HostsApi.md#PowerOn) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
+[**Replace**](HostsApi.md#Replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 [**Update**](HostsApi.md#Update) | **Put** /hosts/{hostId} | Update an existing Host
 
 
@@ -208,6 +209,40 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **hostId** | **string**| ID of Host to power on | 
+
+### Return type
+
+[**Host**](Host.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Replace
+
+> Host Replace(ctx, hostId)
+
+Replace Host by ID
+
+Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in Workflow Replace.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostId** | **string**| ID of Host to replace | 
 
 ### Return type
 

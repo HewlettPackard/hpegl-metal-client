@@ -5,6 +5,7 @@ properties:
     enum:
       - substate-timed-out
       - op-failed
+      - vol-att-warning
       - unknown-state
     description: Identifies the type of alert
     example: op-failed
