@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **NetworkIDs** | **[]string** | The list of IDs corresponding to the networks that were provisioned to the host. These networks are among those listed in the Networks array returned by the get /available-resources call. | 
 **NetworkForDefaultRoute** | **string** | The host&#39;s default network ID. This needs to be one of the values in the  \&quot;NetworkIDs\&quot; list. | 
 **PreAllocatedIPs** | **[]string** | The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. Pre-allocated IP addresses are optional, but required when updating a host containing Pre-allocated IP addresses. | [optional] 
+**ServiceNetsProviderMAC** | **map[string]string** | The map of Service Network (Provider) ID to Provider MAC address.  Specifying a MAC address is optional, and if ommited, will default to the physical MAC learned during machine discovery.  The Service Network must be a provider network provisioned to this host. | [optional] 
 **UserData** | **string** | User-provided data attached to the image configuration data when the host was provisioned | [optional] 
 **NodeID** | **string** | User-provided data to represent the identity of the host within an application environment. For example, this could be set to represent the Kubernetes node ID if the host is provisioned as a Kubernetes node. | [optional] 
 **ISCSIConfig** | [**HostIscsiConfig**](HostISCSIConfig.md) |  | [optional] 

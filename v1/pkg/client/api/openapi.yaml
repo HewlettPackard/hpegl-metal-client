@@ -19,7 +19,7 @@ info:
     \ such that are needed when creating hosts and volumes.  \n\nNote: All URIs are\
     \ relative to metal_service_url/rest/v1\n"
   title: HPE GreenLake Metal Client API
-  version: 1.3.7
+  version: 1.3.8
 servers:
 - description: Metal Service - Development Environment
   url: https://quake.dev.hpehcss.net{basePath}
@@ -4132,6 +4132,16 @@ components:
           items:
             type: string
           type: array
+        ServiceNetsProviderMAC:
+          additionalProperties:
+            type: string
+          description: The map of Service Network (Provider) ID to Provider MAC address.  Specifying
+            a MAC address is optional, and if ommited, will default to the physical
+            MAC learned during machine discovery.  The Service Network must be a provider
+            network provisioned to this host.
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
+          type: object
         UserData:
           description: User-provided data attached to the image configuration data
             when the host was provisioned

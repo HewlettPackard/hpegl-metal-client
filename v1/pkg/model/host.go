@@ -13,20 +13,21 @@ import (
 // /available-resources" call. Where applicable, the AvailableResources
 // attribute that provides the IDs is shown in []
 type NewHost struct {
-	Name                   string      // Host name in operating system
-	Description            string      // General description of hot
-	ServiceID              string      // ID of the imaging service to use   [Images]
-	LocationID             string      // ID of the data center (Pod)        [Locations]
-	MachineSizeID          string      // ID of the desired machine size     [MachineSizes]
-	MachineID              string      // ID of the desired machine		    [Machine]
-	SSHKeyIDs              []string    // IDs of SSHKeys to be added         [SSHKeys]
-	NetworkIDs             []string    // IDs of networks connected to host  [Networks]
-	PreAllocatedIPs        []string    // List of pre-allocated IP addresses.
-	NetworkForDefaultRoute string      // ID of the network used for the default route
-	VolumeIDs              []string    // IDs of volumes to attach           [Volumes]
-	NewVolumes             []AddVolume // Information on any new volumes to be created
-	UserData               string      // UserData is copied directly to CloudInit
-	NodeID                 string      // Reference ID for application software (optional)
+	Name                   string            // Host name in operating system
+	Description            string            // General description of hot
+	ServiceID              string            // ID of the imaging service to use   [Images]
+	LocationID             string            // ID of the data center (Pod)        [Locations]
+	MachineSizeID          string            // ID of the desired machine size     [MachineSizes]
+	MachineID              string            // ID of the desired machine		    [Machine]
+	SSHKeyIDs              []string          // IDs of SSHKeys to be added         [SSHKeys]
+	NetworkIDs             []string          // IDs of networks connected to host  [Networks]
+	PreAllocatedIPs        []string          // List of pre-allocated IP addresses.
+	NetworkForDefaultRoute string            // ID of the network used for the default route
+	ServiceNetsProviderMAC map[string]string // Map of Network ID to MAC address
+	VolumeIDs              []string          // IDs of volumes to attach           [Volumes]
+	NewVolumes             []AddVolume       // Information on any new volumes to be created
+	UserData               string            // UserData is copied directly to CloudInit
+	NodeID                 string            // Reference ID for application software (optional)
 }
 
 // Host defines get, list, create, and update response body as well
@@ -37,26 +38,27 @@ type NewHost struct {
 type Host struct {
 	ResourceBase
 
-	Description            string          // General description of hot
-	ServiceID              string          // ID of the imaging service used   [Images]
-	ServiceFlavor          string          // Flavor of server image
-	ServiceVersion         string          // Version of server image
-	LocationID             string          // ID of the data center (Pod)        [Locations]
-	MachineSizeName        string          // Name of the machine size     [MachineSizes]
-	MachineSizeID          string          // ID of the machine size     [MachineSizes]
-	MachineID              string          // ID of the desired machine		    [Machine]
-	SSHKeyIDs              []string        // IDs of SSHKeys added when imaged     [SSHKeys]
-	SSHAuthorizedKeys      []string        // Direct input of Add'l SSH keys
-	NetworkIDs             []string        // IDs of networks connected to host  [Networks]
-	NetworkForDefaultRoute string          // ID of the network used for the default route
-	PreAllocatedIPs        []string        // List of pre-allocated IP addresses.
-	UserData               string          // UserData is copied directly to CloudInit
-	NodeID                 string          // Optional reference ID for application software
-	ISCSIConfig            ISCSIConfig     // TODO: Is this needed?  iSCSI related information; shared with any external volumes
-	Connections            []Connection    // Details describing host network connections
-	Deleted                bool            // TODO: Should we be able to return info on deleted hosts?
-	PortalCommOkay         bool            // Describes if the portal is in active communication to device
-	PowerStatus            PowerStatusEnum // Current machine power status
+	Description            string            // General description of hot
+	ServiceID              string            // ID of the imaging service used   [Images]
+	ServiceFlavor          string            // Flavor of server image
+	ServiceVersion         string            // Version of server image
+	LocationID             string            // ID of the data center (Pod)        [Locations]
+	MachineSizeName        string            // Name of the machine size     [MachineSizes]
+	MachineSizeID          string            // ID of the machine size     [MachineSizes]
+	MachineID              string            // ID of the desired machine		    [Machine]
+	SSHKeyIDs              []string          // IDs of SSHKeys added when imaged     [SSHKeys]
+	SSHAuthorizedKeys      []string          // Direct input of Add'l SSH keys
+	NetworkIDs             []string          // IDs of networks connected to host  [Networks]
+	NetworkForDefaultRoute string            // ID of the network used for the default route
+	PreAllocatedIPs        []string          // List of pre-allocated IP addresses.
+	ServiceNetsProviderMAC map[string]string // Map of Network ID to MAC address
+	UserData               string            // UserData is copied directly to CloudInit
+	NodeID                 string            // Optional reference ID for application software
+	ISCSIConfig            ISCSIConfig       // TODO: Is this needed?  iSCSI related information; shared with any external volumes
+	Connections            []Connection      // Details describing host network connections
+	Deleted                bool              // TODO: Should we be able to return info on deleted hosts?
+	PortalCommOkay         bool              // Describes if the portal is in active communication to device
+	PowerStatus            PowerStatusEnum   // Current machine power status
 
 	// Attributes for host state machine work:
 	State        HostStateEnum    // updated to correspond to new state machine major states
