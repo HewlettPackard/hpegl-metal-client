@@ -41,7 +41,7 @@ type HostAllOf struct {
 	NetworkForDefaultRoute string `json:"NetworkForDefaultRoute"`
 	// The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. Pre-allocated IP addresses are optional, but required when updating a host containing Pre-allocated IP addresses.
 	PreAllocatedIPs []string `json:"PreAllocatedIPs,omitempty"`
-	// The map of Service Network (Provider) ID to Provider MAC address.  Specifying a MAC address is optional, and if ommited, will default to the physical MAC learned during machine discovery.  The Service Network must be a provider network provisioned to this host.
+	// The map of Service Network (Provider) ID to Provider MAC address.   The Service Network must be a provider network provisioned to this host. Any Service Networks not included here will default to the physical MAC learned during machine discovery.
 	ServiceNetsProviderMAC map[string]string `json:"ServiceNetsProviderMAC,omitempty"`
 	// User-provided data attached to the image configuration data when the host was provisioned
 	UserData string `json:"UserData,omitempty"`

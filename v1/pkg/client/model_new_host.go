@@ -34,6 +34,8 @@ type NewHost struct {
 	NetworkForDefaultRoute string `json:"NetworkForDefaultRoute"`
 	// The list of IDs corresponding to existing, unattached volumes that should be attached to the new host.  The volume must be one of those listed in the Volumes array returned by the get /available-resources call.  In addition, the volume must be in the visible state and not a part of any current VolumeAttachment (see get volume-attachments)
 	VolumeIDs []string `json:"VolumeIDs,omitempty"`
+	// The map of Service Network (Provider) ID to Provider MAC address.   The Service Network must be a provider network provisioned to this host. Any Service Networks not included here will default to the physical MAC learned during machine discovery.
+	ServiceNetsProviderMAC map[string]string `json:"ServiceNetsProviderMAC,omitempty"`
 	// New volumes may be created and connected to the Host when the host is provisioned. The information provided here to create a host is the same as required when doing a post /volumes call
 	NewVolumes []AddVolume `json:"NewVolumes,omitempty"`
 	// User-provided data to be attached to the image configuration data.

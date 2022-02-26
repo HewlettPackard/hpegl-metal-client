@@ -99,6 +99,17 @@ properties:
     items:
       type: string
       format: uuid
+  ServiceNetsProviderMAC:
+    type: object
+    additionalProperties:
+      type: string
+    description: >-
+      The map of Service Network (Provider) ID to Provider MAC address.  
+      The Service Network must be a provider network provisioned to this host.
+      Any Service Networks not included here will default to the physical MAC learned
+      during machine discovery.
+    example:
+      046b6c7f-0b8a-43b9-b35d-6489e6daee91: a2:c8:93:15:2a:76   
   NewVolumes:
     type: array
     description: >-
