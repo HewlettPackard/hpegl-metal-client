@@ -1,12 +1,13 @@
-// (C) Copyright 2016-2021 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2016-2022 Hewlett Packard Enterprise Development LP
 
 package model
 
 // NewProject is to create a new Project within the Quake service.
 type NewProject struct {
-	Name    string // Name of the project
-	Profile Profile
-	Limits  ProjectLimits
+	Name           string // Name of the project
+	Profile        Profile
+	Limits         ProjectLimits
+	PermittedSites []string
 }
 
 // Project defines an isolated space for creating Hosts, Volumes,
@@ -14,8 +15,9 @@ type NewProject struct {
 // team within an organization or a cluster.
 type Project struct {
 	ResourceBase
-	Profile Profile
-	Limits  ProjectLimits
+	Profile        Profile
+	Limits         ProjectLimits
+	PermittedSites []string
 }
 
 // ProjectLimits place general constraints on a project in terms of

@@ -2124,6 +2124,9 @@ components:
           Volumes: 0
           VolumeCapacity: 0
           PrivateNetworks: 0
+        PermittedSites:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 91eec8b5-6460-4532-aad1-47b983edb63c
         Profile:
           TeamDesc: TeamDesc
           EmailVerified: true
@@ -2142,6 +2145,15 @@ components:
           $ref: '#/components/schemas/Profile'
         Limits:
           $ref: '#/components/schemas/Limits'
+        PermittedSites:
+          description: Array listing the permitted site IDs
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
       required:
       - Limits
       - Name
@@ -4056,6 +4068,15 @@ components:
           $ref: '#/components/schemas/Profile'
         Limits:
           $ref: '#/components/schemas/Limits'
+        PermittedSites:
+          description: Array listing the permitted site IDs
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
       required:
       - Limits
       - Profile

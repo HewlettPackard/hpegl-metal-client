@@ -16,4 +16,6 @@ type NewProject struct {
 	Name string `json:"Name"`
 	Profile Profile `json:"Profile"`
 	Limits Limits `json:"Limits"`
+	// Array listing the permitted site IDs
+	PermittedSites []string `json:"PermittedSites,omitempty"`
 }
