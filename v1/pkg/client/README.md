@@ -44,6 +44,7 @@ Class | Method | HTTP request | Description
 *HostsApi* | [**Delete**](docs/HostsApi.md#delete) | **Delete** /hosts/{hostId} | Delete a Host
 *HostsApi* | [**GetByID**](docs/HostsApi.md#getbyid) | **Get** /hosts/{hostId} | Retrieve Host by ID
 *HostsApi* | [**List**](docs/HostsApi.md#list) | **Get** /hosts | List all Hosts in project
+*HostsApi* | [**Maintenance**](docs/HostsApi.md#maintenance) | **Post** /hosts/{hostId}/maintenance | Do maintenance on a Host by ID
 *HostsApi* | [**PowerOff**](docs/HostsApi.md#poweroff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 *HostsApi* | [**PowerOn**](docs/HostsApi.md#poweron) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
 *HostsApi* | [**Replace**](docs/HostsApi.md#replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID

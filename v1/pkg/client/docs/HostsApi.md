@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**Delete**](HostsApi.md#Delete) | **Delete** /hosts/{hostId} | Delete a Host
 [**GetByID**](HostsApi.md#GetByID) | **Get** /hosts/{hostId} | Retrieve Host by ID
 [**List**](HostsApi.md#List) | **Get** /hosts | List all Hosts in project
+[**Maintenance**](HostsApi.md#Maintenance) | **Post** /hosts/{hostId}/maintenance | Do maintenance on a Host by ID
 [**PowerOff**](HostsApi.md#PowerOff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 [**PowerOn**](HostsApi.md#PowerOn) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
 [**Replace**](HostsApi.md#Replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
@@ -160,6 +161,40 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## Maintenance
+
+> Host Maintenance(ctx, hostId)
+
+Do maintenance on a Host by ID
+
+Do maintenance on a host by executing pre-defined operations. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Maintenance workflow.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostId** | **string**| ID of Host to do maintenance on | 
+
+### Return type
+
+[**Host**](Host.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PowerOff
 
 > Host PowerOff(ctx, hostId)
@@ -234,7 +269,7 @@ Name | Type | Description  | Notes
 
 Replace Host by ID
 
-Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in Workflow Replace.
+Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
 
 ### Required Parameters
 

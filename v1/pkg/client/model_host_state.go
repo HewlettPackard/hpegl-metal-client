@@ -28,4 +28,5 @@ const (
 	HOSTSTATE_REPLACING HostState = "Replacing"
 	HOSTSTATE_RELEASING HostState = "Releasing"
 	HOSTSTATE_ALLOCATING HostState = "Allocating"
+	HOSTSTATE_MAINTENANCE HostState = "Maintenance"
 )

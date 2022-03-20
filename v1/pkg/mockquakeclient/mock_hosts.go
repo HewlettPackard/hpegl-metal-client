@@ -101,6 +101,22 @@ func (mr *MockHostsAPIMockRecorder) List(ctx, localVarOptionals interface{}) *go
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockHostsAPI)(nil).List), ctx, localVarOptionals)
 }
 
+// Maintenance mocks base method.
+func (m *MockHostsAPI) Maintenance(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Maintenance", ctx, hostId)
+	ret0, _ := ret[0].(client.Host)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// Maintenance indicates an expected call of Maintenance.
+func (mr *MockHostsAPIMockRecorder) Maintenance(ctx, hostId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Maintenance", reflect.TypeOf((*MockHostsAPI)(nil).Maintenance), ctx, hostId)
+}
+
 // PowerOff mocks base method.
 func (m *MockHostsAPI) PowerOff(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
 	m.ctrl.T.Helper()

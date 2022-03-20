@@ -44,6 +44,14 @@ type HostsAPI interface {
 	*/
 	List(ctx _context.Context, localVarOptionals *HostsApiListOpts) ([]Host, *_nethttp.Response, error)
 	/*
+	   Maintenance Do maintenance on a Host by ID
+	   Do maintenance on a host by executing pre-defined operations. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Maintenance workflow.
+	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param hostId ID of Host to do maintenance on
+	   @return Host
+	*/
+	Maintenance(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
+	/*
 	   PowerOff Power off Host by ID
 	   Powers off a single Host with matching ID
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -61,7 +69,7 @@ type HostsAPI interface {
 	PowerOn(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
 	/*
 	   Replace Replace Host by ID
-	   Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in Workflow Replace.
+	   Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param hostId ID of Host to replace
 	   @return Host

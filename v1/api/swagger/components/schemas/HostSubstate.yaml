@@ -20,6 +20,7 @@ enum:
   - Init
   - Init Off
   - Isolate
+  - In Maintenance
   - Power Off
   - Power On
   - Release

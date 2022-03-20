@@ -35,6 +35,7 @@ const (
 	HOSTSUBSTATE_INIT HostSubstate = "Init"
 	HOSTSUBSTATE_INIT_OFF HostSubstate = "Init Off"
 	HOSTSUBSTATE_ISOLATE HostSubstate = "Isolate"
+	HOSTSUBSTATE_IN_MAINTENANCE HostSubstate = "In Maintenance"
 	HOSTSUBSTATE_POWER_OFF HostSubstate = "Power Off"
 	HOSTSUBSTATE_POWER_ON HostSubstate = "Power On"
 	HOSTSUBSTATE_RELEASE HostSubstate = "Release"

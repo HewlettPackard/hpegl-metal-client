@@ -12,5 +12,6 @@ enum:
   - Replacing
   - Releasing
   - Allocating
+  - Maintenance
 description: Overall host state
 example: Ready

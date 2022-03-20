@@ -118,6 +118,8 @@ paths:
     $ref: paths/hosts.yaml
   /hosts/{hostId}:
     $ref: paths/hosts@{hostId}.yaml
+  /hosts/{hostId}/maintenance:
+    $ref: paths/hosts@{hostId}@maintenance.yaml
   /hosts/{hostId}/poweron:
     $ref: paths/hosts@{hostId}@poweron.yaml
   /hosts/{hostId}/poweroff:

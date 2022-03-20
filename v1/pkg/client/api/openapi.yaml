@@ -893,6 +893,54 @@ paths:
       tags:
       - hosts
     summary: Operations associated with a specific host
+  /hosts/{hostId}/maintenance:
+    post:
+      description: Do maintenance on a host by executing pre-defined operations. The
+        host must be powered off.  The host must also be in the Ready state or in
+        the Failed state and in the Maintenance workflow.
+      operationId: maintenance
+      parameters:
+      - description: ID of Host to do maintenance on
+        in: path
+        name: hostId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Do maintenance on a Host by ID
+      tags:
+      - hosts
+    summary: Do maintenance on a specific host
   /hosts/{hostId}/poweron:
     post:
       description: Powers on a single Host with matching ID
@@ -990,7 +1038,7 @@ paths:
       description: Re-deploys a host with a new machine that satisfies the current
         host settings. Only the machine is replaced, IP addresses, volumes, etc are
         not changed. The host must be powered off.  The host must also be in the Ready
-        state or in the Failed state and in Workflow Replace.
+        state or in the Failed state and in the Replace or Maintenace workflow.
       operationId: replace
       parameters:
       - description: ID of Host to replace
@@ -2971,6 +3019,7 @@ components:
       - Replacing
       - Releasing
       - Allocating
+      - Maintenance
       example: Ready
       type: string
     HostSubstate:
@@ -2995,6 +3044,7 @@ components:
       - Init
       - Init Off
       - Isolate
+      - In Maintenance
       - Power Off
       - Power On
       - Release
