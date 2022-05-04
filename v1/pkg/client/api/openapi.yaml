@@ -1033,6 +1033,145 @@ paths:
       tags:
       - hosts
     summary: Power off a specific host
+  /hosts/{hostId}/powerreset:
+    post:
+      description: Resets a single Host with matching ID
+      operationId: powerReset
+      parameters:
+      - description: ID of Host to reset
+        in: path
+        name: hostId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Reset Host by ID
+      tags:
+      - hosts
+    summary: Reset a specific host
+  /hosts/{hostId}/bootpxe:
+    post:
+      description: Sets a single Host with matching ID to attempt PXE boot when next
+        booting
+      operationId: bootPXE
+      parameters:
+      - description: ID of Host to set to PXE boot
+        in: path
+        name: hostId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Set PXE boot order on Host by ID
+      tags:
+      - hosts
+    summary: Set a specific host to attempt PXE boot
+  /hosts/{hostId}/boothdd:
+    post:
+      description: Sets a single Host with matching ID to attempt HDD boot
+      operationId: bootHDD
+      parameters:
+      - description: ID of Host to set to HDD boot
+        in: path
+        name: hostId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Set HDD boot order on Host by ID
+      tags:
+      - hosts
+    summary: Set a specific host to attempt HDD boot
   /hosts/{hostId}/replace:
     post:
       description: Re-deploys a host with a new machine that satisfies the current

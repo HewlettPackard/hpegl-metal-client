@@ -54,6 +54,38 @@ func (mr *MockHostsAPIMockRecorder) Add(ctx, newHost interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockHostsAPI)(nil).Add), ctx, newHost)
 }
 
+// BootHDD mocks base method.
+func (m *MockHostsAPI) BootHDD(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "BootHDD", ctx, hostId)
+	ret0, _ := ret[0].(client.Host)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// BootHDD indicates an expected call of BootHDD.
+func (mr *MockHostsAPIMockRecorder) BootHDD(ctx, hostId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BootHDD", reflect.TypeOf((*MockHostsAPI)(nil).BootHDD), ctx, hostId)
+}
+
+// BootPXE mocks base method.
+func (m *MockHostsAPI) BootPXE(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "BootPXE", ctx, hostId)
+	ret0, _ := ret[0].(client.Host)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// BootPXE indicates an expected call of BootPXE.
+func (mr *MockHostsAPIMockRecorder) BootPXE(ctx, hostId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BootPXE", reflect.TypeOf((*MockHostsAPI)(nil).BootPXE), ctx, hostId)
+}
+
 // Delete mocks base method.
 func (m *MockHostsAPI) Delete(ctx context.Context, hostId string) (*http.Response, error) {
 	m.ctrl.T.Helper()
@@ -147,6 +179,22 @@ func (m *MockHostsAPI) PowerOn(ctx context.Context, hostId string) (client.Host,
 func (mr *MockHostsAPIMockRecorder) PowerOn(ctx, hostId interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PowerOn", reflect.TypeOf((*MockHostsAPI)(nil).PowerOn), ctx, hostId)
+}
+
+// PowerReset mocks base method.
+func (m *MockHostsAPI) PowerReset(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "PowerReset", ctx, hostId)
+	ret0, _ := ret[0].(client.Host)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// PowerReset indicates an expected call of PowerReset.
+func (mr *MockHostsAPIMockRecorder) PowerReset(ctx, hostId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PowerReset", reflect.TypeOf((*MockHostsAPI)(nil).PowerReset), ctx, hostId)
 }
 
 // Replace mocks base method.

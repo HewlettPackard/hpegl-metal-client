@@ -41,12 +41,15 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AvailableResourcesApi* | [**List**](docs/AvailableResourcesApi.md#list) | **Get** /available-resources | Get lists of available resources for creating hosts and volumes
 *HostsApi* | [**Add**](docs/HostsApi.md#add) | **Post** /hosts | Create a new Host
+*HostsApi* | [**BootHDD**](docs/HostsApi.md#boothdd) | **Post** /hosts/{hostId}/boothdd | Set HDD boot order on Host by ID
+*HostsApi* | [**BootPXE**](docs/HostsApi.md#bootpxe) | **Post** /hosts/{hostId}/bootpxe | Set PXE boot order on Host by ID
 *HostsApi* | [**Delete**](docs/HostsApi.md#delete) | **Delete** /hosts/{hostId} | Delete a Host
 *HostsApi* | [**GetByID**](docs/HostsApi.md#getbyid) | **Get** /hosts/{hostId} | Retrieve Host by ID
 *HostsApi* | [**List**](docs/HostsApi.md#list) | **Get** /hosts | List all Hosts in project
 *HostsApi* | [**Maintenance**](docs/HostsApi.md#maintenance) | **Post** /hosts/{hostId}/maintenance | Do maintenance on a Host by ID
 *HostsApi* | [**PowerOff**](docs/HostsApi.md#poweroff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 *HostsApi* | [**PowerOn**](docs/HostsApi.md#poweron) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
+*HostsApi* | [**PowerReset**](docs/HostsApi.md#powerreset) | **Post** /hosts/{hostId}/powerreset | Reset Host by ID
 *HostsApi* | [**Replace**](docs/HostsApi.md#replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 *HostsApi* | [**Update**](docs/HostsApi.md#update) | **Put** /hosts/{hostId} | Update an existing Host
 *IppoolsApi* | [**AllocateIPs**](docs/IppoolsApi.md#allocateips) | **Post** /ippools/{ippoolId}/allocation | Allocate IPs from the pool

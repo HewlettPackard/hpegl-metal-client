@@ -5,12 +5,15 @@ All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Add**](HostsApi.md#Add) | **Post** /hosts | Create a new Host
+[**BootHDD**](HostsApi.md#BootHDD) | **Post** /hosts/{hostId}/boothdd | Set HDD boot order on Host by ID
+[**BootPXE**](HostsApi.md#BootPXE) | **Post** /hosts/{hostId}/bootpxe | Set PXE boot order on Host by ID
 [**Delete**](HostsApi.md#Delete) | **Delete** /hosts/{hostId} | Delete a Host
 [**GetByID**](HostsApi.md#GetByID) | **Get** /hosts/{hostId} | Retrieve Host by ID
 [**List**](HostsApi.md#List) | **Get** /hosts | List all Hosts in project
 [**Maintenance**](HostsApi.md#Maintenance) | **Post** /hosts/{hostId}/maintenance | Do maintenance on a Host by ID
 [**PowerOff**](HostsApi.md#PowerOff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 [**PowerOn**](HostsApi.md#PowerOn) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
+[**PowerReset**](HostsApi.md#PowerReset) | **Post** /hosts/{hostId}/powerreset | Reset Host by ID
 [**Replace**](HostsApi.md#Replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 [**Update**](HostsApi.md#Update) | **Put** /hosts/{hostId} | Update an existing Host
 
@@ -43,6 +46,74 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BootHDD
+
+> Host BootHDD(ctx, hostId)
+
+Set HDD boot order on Host by ID
+
+Sets a single Host with matching ID to attempt HDD boot
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostId** | **string**| ID of Host to set to HDD boot | 
+
+### Return type
+
+[**Host**](Host.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## BootPXE
+
+> Host BootPXE(ctx, hostId)
+
+Set PXE boot order on Host by ID
+
+Sets a single Host with matching ID to attempt PXE boot when next booting
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostId** | **string**| ID of Host to set to PXE boot | 
+
+### Return type
+
+[**Host**](Host.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -244,6 +315,40 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **hostId** | **string**| ID of Host to power on | 
+
+### Return type
+
+[**Host**](Host.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PowerReset
+
+> Host PowerReset(ctx, hostId)
+
+Reset Host by ID
+
+Resets a single Host with matching ID
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostId** | **string**| ID of Host to reset | 
 
 ### Return type
 

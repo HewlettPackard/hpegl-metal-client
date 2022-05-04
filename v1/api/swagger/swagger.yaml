@@ -124,6 +124,12 @@ paths:
     $ref: paths/hosts@{hostId}@poweron.yaml
   /hosts/{hostId}/poweroff:
     $ref: paths/hosts@{hostId}@poweroff.yaml
+  /hosts/{hostId}/powerreset:
+    $ref: paths/hosts@{hostId}@powerreset.yaml
+  /hosts/{hostId}/bootpxe:
+    $ref: paths/hosts@{hostId}@bootpxe.yaml
+  /hosts/{hostId}/boothdd:
+    $ref: paths/hosts@{hostId}@boothdd.yaml
   /hosts/{hostId}/replace:
     $ref: paths/hosts@{hostId}@replace.yaml
   /available-resources:

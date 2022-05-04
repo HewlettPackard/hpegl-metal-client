@@ -20,6 +20,22 @@ type HostsAPI interface {
 	*/
 	Add(ctx _context.Context, newHost NewHost) (Host, *_nethttp.Response, error)
 	/*
+	   BootHDD Set HDD boot order on Host by ID
+	   Sets a single Host with matching ID to attempt HDD boot
+	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param hostId ID of Host to set to HDD boot
+	   @return Host
+	*/
+	BootHDD(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
+	/*
+	   BootPXE Set PXE boot order on Host by ID
+	   Sets a single Host with matching ID to attempt PXE boot when next booting
+	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param hostId ID of Host to set to PXE boot
+	   @return Host
+	*/
+	BootPXE(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
+	/*
 	   Delete Delete a Host
 	   Deletes the Host with the matching ID.  A host in the &#39;Ready&#39; state must first be powered-off before a delete will be permitted.  Deletes to hosts in other states is permitted regardless of the power state
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -67,6 +83,14 @@ type HostsAPI interface {
 	   @return Host
 	*/
 	PowerOn(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
+	/*
+	   PowerReset Reset Host by ID
+	   Resets a single Host with matching ID
+	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	    * @param hostId ID of Host to reset
+	   @return Host
+	*/
+	PowerReset(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
 	/*
 	   Replace Replace Host by ID
 	   Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
