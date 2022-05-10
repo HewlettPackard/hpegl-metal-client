@@ -11,8 +11,8 @@ import (
 	http "net/http"
 	reflect "reflect"
 
+	client "github.com/HewlettPackard/hpegl-metal-client/v1/pkg/client"
 	gomock "github.com/golang/mock/gomock"
-	client "github.com/hpe-hcss/quake-client/v1/pkg/client"
 )
 
 // MockUsageReportsAPI is a mock of UsageReportsAPI interface.
