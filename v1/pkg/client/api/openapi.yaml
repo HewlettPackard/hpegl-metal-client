@@ -2350,37 +2350,68 @@ components:
       example:
         MachineSizes:
         - ProjectsUsed: 5
-          Available: 2
-          OtherUsed: 5
+          Available: 7
+          OtherUsed: 2
           Name: Name
         - ProjectsUsed: 5
-          Available: 2
-          OtherUsed: 5
+          Available: 7
+          OtherUsed: 2
           Name: Name
         VolumeFlavors:
-        - ProjectsUsed: 7
-          Available: 3
-          OtherUsed: 9
+        - ProjectsUsed: 9
+          Available: 2
+          OtherUsed: 3
           Name: Name
-        - ProjectsUsed: 7
-          Available: 3
-          OtherUsed: 9
+        - ProjectsUsed: 9
+          Available: 2
+          OtherUsed: 3
           Name: Name
         Projects:
         - Status: Enable
           NumVolumes: 6
           Description: Description
           TotalStorageGB: 1
+          Locations:
+          - DataCenter: FTC1
+            Region: Central
+            ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - DataCenter: FTC1
+            Region: Central
+            ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           NumHosts: 0
           ID: ID
+          NumNetworks: 5
           Name: Name
         - Status: Enable
           NumVolumes: 6
           Description: Description
           TotalStorageGB: 1
+          Locations:
+          - DataCenter: FTC1
+            Region: Central
+            ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - DataCenter: FTC1
+            Region: Central
+            ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           NumHosts: 0
           ID: ID
+          NumNetworks: 5
           Name: Name
+        Summary:
+          NumUnknown: 7
+          NumVolumes: 7
+          NumOK: 1
+          NumWarning: 1
+          TotalStorageGB: 1
+          Locations:
+          - DataCenter: FTC1
+            Region: Central
+            ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - DataCenter: FTC1
+            Region: Central
+            ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          NumHosts: 4
+          NumCritical: 6
       properties:
         Projects:
           items:
@@ -2394,6 +2425,8 @@ components:
           items:
             $ref: '#/components/schemas/VolumeFlavorsInfo'
           type: array
+        Summary:
+          $ref: '#/components/schemas/SummaryInfo'
       type: object
     SSHKey:
       allOf:
@@ -3027,8 +3060,16 @@ components:
         NumVolumes: 6
         Description: Description
         TotalStorageGB: 1
+        Locations:
+        - DataCenter: FTC1
+          Region: Central
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - DataCenter: FTC1
+          Region: Central
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         NumHosts: 0
         ID: ID
+        NumNetworks: 5
         Name: Name
       properties:
         ID:
@@ -3048,12 +3089,22 @@ components:
           - Enable
           - Disable
           type: string
+        NumNetworks:
+          description: Number of project networks
+          type: integer
+        SummaryStatus:
+          $ref: '#/components/schemas/HealthStatus'
+        Locations:
+          description: Locations where project resources exist
+          items:
+            $ref: '#/components/schemas/LocationInfo'
+          type: array
       type: object
     MachineSizeInfo:
       example:
         ProjectsUsed: 5
-        Available: 2
-        OtherUsed: 5
+        Available: 7
+        OtherUsed: 2
         Name: Name
       properties:
         Name:
@@ -3067,9 +3118,9 @@ components:
       type: object
     VolumeFlavorsInfo:
       example:
-        ProjectsUsed: 7
-        Available: 3
-        OtherUsed: 9
+        ProjectsUsed: 9
+        Available: 2
+        OtherUsed: 3
         Name: Name
       properties:
         Name:
@@ -3079,6 +3130,50 @@ components:
         OtherUsed:
           type: integer
         Available:
+          type: integer
+      type: object
+    SummaryInfo:
+      example:
+        NumUnknown: 7
+        NumVolumes: 7
+        NumOK: 1
+        NumWarning: 1
+        TotalStorageGB: 1
+        Locations:
+        - DataCenter: FTC1
+          Region: Central
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - DataCenter: FTC1
+          Region: Central
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        NumHosts: 4
+        NumCritical: 6
+      properties:
+        Locations:
+          description: Locations where resources exist for all listed projects
+          items:
+            $ref: '#/components/schemas/LocationInfo'
+          type: array
+        NumHosts:
+          description: Number of hosts for all listed projects
+          type: integer
+        NumVolumes:
+          description: Number of volumes for all listed projects
+          type: integer
+        TotalStorageGB:
+          description: Total storage for all listed projects
+          type: integer
+        NumOK:
+          description: Number of projects with OK health summary status
+          type: integer
+        NumWarning:
+          description: Number of projects with Warning health summary status
+          type: integer
+        NumCritical:
+          description: Number of projects with Critical health summary status
+          type: integer
+        NumUnknown:
+          description: Number of projects with Unknown health summary status
           type: integer
       type: object
     SSHKeyValue:
@@ -3778,6 +3873,13 @@ components:
         Stats:
           $ref: '#/components/schemas/IPPoolStats'
       type: object
+    HealthStatus:
+      enum:
+      - OK
+      - Warning
+      - Critical
+      - Unknown
+      type: string
     HostServerPort:
       properties:
         Name:

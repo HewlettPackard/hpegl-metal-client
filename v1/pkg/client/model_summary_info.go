@@ -11,10 +11,22 @@
  */
 
 package client
-// ProjectsInfo struct for ProjectsInfo
-type ProjectsInfo struct {
-	Projects []ProjectInfo `json:"Projects,omitempty"`
-	MachineSizes []MachineSizeInfo `json:"MachineSizes,omitempty"`
-	VolumeFlavors []VolumeFlavorsInfo `json:"VolumeFlavors,omitempty"`
-	Summary SummaryInfo `json:"Summary,omitempty"`
+// SummaryInfo struct for SummaryInfo
+type SummaryInfo struct {
+	// Locations where resources exist for all listed projects
+	Locations []LocationInfo `json:"Locations,omitempty"`
+	// Number of hosts for all listed projects
+	NumHosts int32 `json:"NumHosts,omitempty"`
+	// Number of volumes for all listed projects
+	NumVolumes int32 `json:"NumVolumes,omitempty"`
+	// Total storage for all listed projects
+	TotalStorageGB int32 `json:"TotalStorageGB,omitempty"`
+	// Number of projects with OK health summary status
+	NumOK int32 `json:"NumOK,omitempty"`
+	// Number of projects with Warning health summary status
+	NumWarning int32 `json:"NumWarning,omitempty"`
+	// Number of projects with Critical health summary status
+	NumCritical int32 `json:"NumCritical,omitempty"`
+	// Number of projects with Unknown health summary status
+	NumUnknown int32 `json:"NumUnknown,omitempty"`
 }

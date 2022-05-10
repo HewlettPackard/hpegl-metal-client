@@ -12,3 +12,6 @@ properties:
     type: array
     items:
       $ref: ./VolumeFlavorsInfo.yaml
+  Summary:
+    $ref: ./SummaryInfo.yaml
+    description: Aggregate consumption and health counts of projects at the specified locations    

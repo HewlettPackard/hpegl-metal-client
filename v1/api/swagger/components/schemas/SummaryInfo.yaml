@@ -1,0 +1,28 @@
+type: object
+properties:
+  Locations:
+    type: array
+    items:
+      $ref: ./LocationInfo.yaml
+    description: Locations where resources exist for all listed projects
+  NumHosts:
+    type: integer
+    description: Number of hosts for all listed projects
+  NumVolumes:
+    type: integer
+    description: Number of volumes for all listed projects
+  TotalStorageGB:
+    type: integer
+    description: Total storage for all listed projects
+  NumOK:
+    type: integer
+    description: Number of projects with OK health summary status
+  NumWarning:
+    type: integer
+    description: Number of projects with Warning health summary status
+  NumCritical:
+    type: integer
+    description: Number of projects with Critical health summary status
+  NumUnknown:
+    type: integer
+    description: Number of projects with Unknown health summary status                             

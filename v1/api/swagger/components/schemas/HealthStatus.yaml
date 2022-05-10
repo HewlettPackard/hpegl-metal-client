@@ -1,0 +1,6 @@
+type: string
+enum:
+  - OK
+  - Warning
+  - Critical
+  - Unknown

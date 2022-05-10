@@ -20,4 +20,9 @@ type ProjectInfo struct {
 	NumVolumes int32 `json:"NumVolumes,omitempty"`
 	TotalStorageGB int32 `json:"TotalStorageGB,omitempty"`
 	Status string `json:"Status,omitempty"`
+	// Number of project networks
+	NumNetworks int32 `json:"NumNetworks,omitempty"`
+	SummaryStatus HealthStatus `json:"SummaryStatus,omitempty"`
+	// Locations where project resources exist
+	Locations []LocationInfo `json:"Locations,omitempty"`
 }

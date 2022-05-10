@@ -11,10 +11,13 @@
  */
 
 package client
-// ProjectsInfo struct for ProjectsInfo
-type ProjectsInfo struct {
-	Projects []ProjectInfo `json:"Projects,omitempty"`
-	MachineSizes []MachineSizeInfo `json:"MachineSizes,omitempty"`
-	VolumeFlavors []VolumeFlavorsInfo `json:"VolumeFlavors,omitempty"`
-	Summary SummaryInfo `json:"Summary,omitempty"`
-}
+// HealthStatus the model 'HealthStatus'
+type HealthStatus string
+
+// List of HealthStatus
+const (
+	HEALTHSTATUS_OK HealthStatus = "OK"
+	HEALTHSTATUS_WARNING HealthStatus = "Warning"
+	HEALTHSTATUS_CRITICAL HealthStatus = "Critical"
+	HEALTHSTATUS_UNKNOWN HealthStatus = "Unknown"
+)
