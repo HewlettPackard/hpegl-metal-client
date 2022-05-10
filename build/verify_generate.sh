@@ -10,7 +10,6 @@ GENERATED_DIR=$1
 
 diff="$(git status -s ${GENERATED_DIR})";
 if [[ ! -z $diff ]]; then
-    echo "Error - Generated files not checked in. Run \"make gen\" and then check-in generated files.";
     echo "$diff";
     exit 1;
 fi

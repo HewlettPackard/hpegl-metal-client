@@ -36,13 +36,15 @@ gen: api_files fixup
 .PHONY: verify_gen
 verify_gen: gen 
 	@echo "Checking the status of the generated client directory"
-	@bash ../build/verify_generate.sh ${OUTPUT_DIR}
+	@bash ../build/verify_generate.sh ${OUTPUT_DIR} || \
+		(echo "Error-Generated files not checked in. Run \"make gen\" and then check-in generated files." && false)
+
 
 .PHONY: api_files
 api_files:
 	@echo "Running $@"
 	rm -rf pkg/client
-	@echo "Generating client from swagger..."
+	@echo "Generating client from OpenAPI file..."
 	openapi-generator generate --remove-operation-id-prefix -g go -o ${OUTPUT_DIR} -i ./api/swagger/swagger.yaml -p enumClassPrefix=true -p structPrefix=true -p packageName=client
 	# The generator produces go.mod and go.sum, but we don't want them.
 	rm -f pkg/client/go.mod pkg/client/go.sum
@@ -62,4 +64,5 @@ ${GO_MOCKGEN}:
 .PHONY: fixup
 fixup: api_files ${IFACEMAKER} ${GO_MOCKGEN} vendor
 	@bash fixup_generated_files.bash ${OUTPUT_DIR}
-
+	@bash ../build/verify_generate.sh ${GO_MOCK_DIR} || \
+		(echo "Error-Generated interfaces not checked in. Run \"make fixup\" and then check-in generated files." && false)
