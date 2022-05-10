@@ -2573,14 +2573,12 @@ components:
         Networks:
         - IPPoolID: IPPoolID
           Description: Private network for intra-cluster communication
-          Kind: Private
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Private
         - IPPoolID: IPPoolID
           Description: Private network for intra-cluster communication
-          Kind: Private
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3311,7 +3309,6 @@ components:
       example:
         IPPoolID: IPPoolID
         Description: Private network for intra-cluster communication
-        Kind: Private
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         HostUse: Default
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3335,8 +3332,6 @@ components:
         Description:
           example: Private network for intra-cluster communication
           type: string
-        Kind:
-          $ref: '#/components/schemas/NetworkKind'
         HostUse:
           $ref: '#/components/schemas/NetworkHostUse'
         IPPoolID:
@@ -3583,15 +3578,6 @@ components:
         as part of the get /available-resources call.  The locations are typically
         described by country, region, and data center.
       format: uuid
-      type: string
-    NetworkKind:
-      description: |
-        Describes the type of network that implies the level of isolation associated  with the network
-      enum:
-      - Shared
-      - Private
-      - Custom
-      example: Private
       type: string
     NetworkHostUse:
       description: |
@@ -3845,9 +3831,34 @@ components:
           - /27
           - /28
           - /29
-          - /'30'
-          - /'31'
+          - /30
+          - /31
           example: /24
+          type: string
+        Gateway:
+          description: The IP subnet gateway address
+          example: 10.5.3.1
+          type: string
+        DNS:
+          description: List of DNS servers for the IP subnet
+          items:
+            example: 8.8.8.8
+            type: string
+          type: array
+        VLAN:
+          description: VLAN ID of the network
+          type: integer
+        VNI:
+          description: VNI ID of the network
+          type: integer
+        Proxy:
+          description: Optional web-proxy for external internet access should the
+            IP subnet actually be behind a firewall
+          example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
+          type: string
+        NoProxy:
+          description: Addresses or CIDRs for which proxy requests are not made
+          example: localhost,15.10.0.10,test.com
           type: string
       type: object
     Country:
@@ -4507,12 +4518,16 @@ components:
         Description:
           example: Private network for intra-cluster communication
           type: string
-        Kind:
-          $ref: '#/components/schemas/NetworkKind'
         HostUse:
           $ref: '#/components/schemas/NetworkHostUse'
         IPPoolID:
           type: string
+        VLAN:
+          description: VLAN ID of the network
+          type: integer
+        VNI:
+          description: VNI ID of the network
+          type: integer
     IPPool_allOf:
       properties:
         Description:

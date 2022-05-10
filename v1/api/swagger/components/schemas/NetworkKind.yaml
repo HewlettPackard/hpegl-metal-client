@@ -1,9 +1,0 @@
-type: string
-enum:
-  - Shared
-  - Private
-  - Custom
-example: Private
-description: >
-  Describes the type of network that implies the level of isolation associated 
-  with the network

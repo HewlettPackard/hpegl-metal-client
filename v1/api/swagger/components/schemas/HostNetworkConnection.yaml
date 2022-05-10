@@ -42,5 +42,31 @@ properties:
       - /27
       - /28
       - /29
-      - /'30'
-      - /'31'
+      - /30
+      - /31
+  Gateway:
+    type: string
+    description: The IP subnet gateway address
+    example: 10.5.3.1
+  DNS:
+    type: array
+    items:
+      type: string
+      example: 8.8.8.8
+    description: List of DNS servers for the IP subnet
+  VLAN:
+    type: integer
+    description: VLAN ID of the network
+  VNI:
+    type: integer
+    description: VNI ID of the network
+  Proxy:
+    type: string
+    example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
+    description: >-
+      Optional web-proxy for external internet access should the IP subnet
+      actually be behind a firewall
+  NoProxy:
+    type: string
+    example: localhost,15.10.0.10,test.com
+    description: Addresses or CIDRs for which proxy requests are not made

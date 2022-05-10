@@ -22,4 +22,16 @@ type HostNetworkConnection struct {
 	// The IP subnet address
 	Subnet string `json:"Subnet,omitempty"`
 	Netmask string `json:"Netmask,omitempty"`
+	// The IP subnet gateway address
+	Gateway string `json:"Gateway,omitempty"`
+	// List of DNS servers for the IP subnet
+	DNS []string `json:"DNS,omitempty"`
+	// VLAN ID of the network
+	VLAN int32 `json:"VLAN,omitempty"`
+	// VNI ID of the network
+	VNI int32 `json:"VNI,omitempty"`
+	// Optional web-proxy for external internet access should the IP subnet actually be behind a firewall
+	Proxy string `json:"Proxy,omitempty"`
+	// Addresses or CIDRs for which proxy requests are not made
+	NoProxy string `json:"NoProxy,omitempty"`
 }

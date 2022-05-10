@@ -126,7 +126,6 @@ Class | Method | HTTP request | Description
  - [Network](docs/Network.md)
  - [NetworkAllOf](docs/NetworkAllOf.md)
  - [NetworkHostUse](docs/NetworkHostUse.md)
- - [NetworkKind](docs/NetworkKind.md)
  - [NewHost](docs/NewHost.md)
  - [NewIpPool](docs/NewIpPool.md)
  - [NewNetwork](docs/NewNetwork.md)

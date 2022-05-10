@@ -7,9 +7,13 @@ allOf:
       Description:
         type: string
         example: Private network for intra-cluster communication
-      Kind:
-        $ref: ./NetworkKind.yaml
       HostUse:
         $ref: ./NetworkHostUse.yaml
       IPPoolID:
         type: string
+      VLAN:
+        type: integer
+        description: VLAN ID of the network
+      VNI:
+        type: integer
+        description: VNI ID of the network
