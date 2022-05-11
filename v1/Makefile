@@ -7,12 +7,6 @@ export GOPRIVATE=github.com/HewlettPackard
 
 OUTPUT_DIR="pkg/client"
 
-BIN_DIR := ${PWD}/bin
-export IFACEMAKER := ${BIN_DIR}/ifacemaker
-
-# the location of the go mock generator binary
-export GO_MOCKGEN := ${BIN_DIR}/mockgen
-
 # The package containing the mocks
 export MOCK_CLIENT_PACKAGE=mockquakeclient
 
@@ -51,18 +45,13 @@ api_files:
 	# additional files that we don't need
 	rm -f pkg/client/git_push.sh pkg/client/.travis.yml pkg/client/.openapi-generator-ignore
 
-${IFACEMAKER}:
-	GOBIN="$(@D)" go get github.com/vburenin/ifacemaker@v1.1.0
-
-${GO_MOCKGEN}:
-	GOBIN="$(@D)" go get github.com/golang/mock/mockgen@v1.5.0
 
 # fixup invokes a script to generate interfaces for all of the
 # generated client types to allow consumers to use mocks to test their code that
 # interacts with Quake via the client and adds copyrights to all the generated
 # files.
 .PHONY: fixup
-fixup: api_files ${IFACEMAKER} ${GO_MOCKGEN} vendor
+fixup: api_files vendor
 	@bash fixup_generated_files.bash ${OUTPUT_DIR}
 	@bash ../build/verify_generate.sh ${GO_MOCK_DIR} || \
 		(echo "Error-Generated interfaces not checked in. Run \"make fixup\" and then check-in generated files." && false)
