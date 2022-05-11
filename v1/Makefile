@@ -28,10 +28,13 @@ validate:
 gen: api_files fixup
 
 .PHONY: verify_gen
-verify_gen: gen 
+verify_gen: 
 	@echo "Checking the status of the generated client directory"
 	@bash ../build/verify_generate.sh ${OUTPUT_DIR} || \
 		(echo "Error-Generated files not checked in. Run \"make gen\" and then check-in generated files." && false)
+	@echo "Checking the status of the generated mock client directory"
+	@bash ../build/verify_generate.sh ${GO_MOCK_DIR} || \
+		(echo "Error-Generated interfaces not checked in. Run \"make fixup\" and then check-in generated files." && false)
 
 
 .PHONY: api_files
@@ -53,5 +56,4 @@ api_files:
 .PHONY: fixup
 fixup: api_files vendor
 	@bash fixup_generated_files.bash ${OUTPUT_DIR}
-	@bash ../build/verify_generate.sh ${GO_MOCK_DIR} || \
-		(echo "Error-Generated interfaces not checked in. Run \"make fixup\" and then check-in generated files." && false)
+	
