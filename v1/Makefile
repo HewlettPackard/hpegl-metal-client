@@ -35,6 +35,7 @@ verify_gen:
 	@echo "Checking the status of the generated mock client directory"
 	@bash ../build/verify_generate.sh ${GO_MOCK_DIR} || \
 		(echo "Error-Generated interfaces not checked in. Run \"make fixup\" and then check-in generated files." && false)
+	go get github.com/golang/mock/mockgen@v1.5.0
 
 
 .PHONY: api_files
