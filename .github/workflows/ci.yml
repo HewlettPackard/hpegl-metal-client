@@ -27,4 +27,12 @@ jobs:
         run: (cd v1 && make validate)
 
       - name: Generate Client and Interfaces
+        run: (cd v1 && make gen)
+
+      - name: Verifying whether the generated files are checked-in
         run: (cd v1 && make verify_gen)
+
+      - name: Verifying go.mod file isn't changed
+        run: |
+          git diff --exit-code go.mod 
+          git diff --exit-code go.sum
