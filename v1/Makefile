@@ -7,12 +7,6 @@ export GOPRIVATE=github.com/HewlettPackard
 
 OUTPUT_DIR="pkg/client"
 
-BIN_DIR := ${PWD}/bin
-export IFACEMAKER := ${BIN_DIR}/ifacemaker
-
-# the location of the go mock generator binary
-export GO_MOCKGEN := ${BIN_DIR}/mockgen
-
 # The package containing the mocks
 export MOCK_CLIENT_PACKAGE=mockquakeclient
 

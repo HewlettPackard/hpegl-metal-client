@@ -28,6 +28,10 @@ for file in $(ls api_*.go); do
   if [ "${INTERFACE}" == "IppoolsAPI" ]; then
     INTERFACE="IPPoolsAPI"
   fi
+
+  IFACEMAKER='go run github.com/vburenin/ifacemaker'
+  GO_MOCKGEN='go run github.com/golang/mock/mockgen'
+  
   echo "Generating interface and mocks for ${SERVICE}"
    ${IFACEMAKER} -p client -y "${INTERFACE} defines the client functions provided for ${TYPE}." --struct=${SERVICE} --file=${file} --output=${INTERFACE_FILE} --iface=${INTERFACE}
    sed -i "s/\(${TYPE}Api\) \*${SERVICE}/\1 ${INTERFACE}/g" client.go
