@@ -11,8 +11,8 @@ import (
 	http "net/http"
 	reflect "reflect"
 
-	client "github.com/HewlettPackard/hpegl-metal-client/v1/pkg/client"
 	gomock "github.com/golang/mock/gomock"
+	client "github.com/hewlettpackard/hpegl-metal-client/v1/pkg/client"
 )
 
 // MockAvailableResourcesAPI is a mock of AvailableResourcesAPI interface.

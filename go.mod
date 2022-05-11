@@ -1,4 +1,4 @@
-module github.com/HewlettPackard/hpegl-metal-client
+module github.com/hewlettpackard/hpegl-metal-client
 
 go 1.17
 
