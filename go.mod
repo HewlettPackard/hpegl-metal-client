@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/antihax/optional v1.0.0
-	github.com/golang/mock v1.4.4
+	github.com/golang/mock v1.6.0
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
 )
 
