@@ -20,22 +20,19 @@ _NOTE: java is required for openapi-generator-cli to work.  Install default JRE 
 _NOTE: All files under **\<version\>/pkg/client** are generated code.  Do not modify these files directly._
 
 
-### Installing openapi-generator and ifacemaker
+### Using openapi-generator for GO
+Installing openapi-generator 
 
 ```bash
 $ sudo apt update
 $ sudo apt install default-jre
-
 $ sudo npm install @openapitools/openapi-generator-cli@cli-4.2.3 -g
-$ go get github.com/vburenin/ifacemaker@v1.1.0
-
 ```
-### Using openapi-generator for Go
-With the generator installed and repository cloned, navigate to the hgegl-metal-client/\<version\> directory. Generate the Go client using
+
+With the generator installed and repository cloned, navigate to the hgegl-metal-client/\<version\> directory. Generate the GO client using
 
 ```bash
 $ make gen
-
 ```
 
 The generated client code will be created in **/\<version\>/pkg/client** with package name "client". 
