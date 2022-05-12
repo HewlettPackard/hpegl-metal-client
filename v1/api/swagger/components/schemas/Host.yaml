@@ -150,4 +150,6 @@ allOf:
       Workflow:
         type: string
         description: The current workflow the host is in
-
+      SummaryStatus:
+        $ref: ./HealthStatus.yaml
+        description: Host health summary status

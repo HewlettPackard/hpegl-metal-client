@@ -38,6 +38,7 @@ Name | Type | Description | Notes
 **Alert** | **bool** |  | [optional] 
 **AlertInfo** | [**[]HostAlertInfo**](HostAlertInfo.md) |  | [optional] 
 **Workflow** | **string** | The current workflow the host is in | [optional] 
+**SummaryStatus** | [**HealthStatus**](HealthStatus.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
