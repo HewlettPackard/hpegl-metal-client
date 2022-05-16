@@ -18,6 +18,7 @@ type ProjectsInfoAPI interface {
 	    * @param optional nil or *ProjectsInfoApiListOpts - Optional Parameters:
 	    * @param "Space" (optional.String) -  GreenLake space name
 	    * @param "Spaceid" (optional.String) -  GreenLake space ID
+	    * @param "Siteid" (optional.String) -  GreenLake site ID
 	   @return ProjectsInfo
 	*/
 	List(ctx _context.Context, localVarOptionals *ProjectsInfoApiListOpts) (ProjectsInfo, *_nethttp.Response, error)

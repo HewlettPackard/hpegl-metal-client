@@ -33,6 +33,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **space** | **optional.String**| GreenLake space name | 
  **spaceid** | **optional.String**| GreenLake space ID | 
+ **siteid** | **optional.String**| GreenLake site ID | 
 
 ### Return type
 
