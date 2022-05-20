@@ -32,6 +32,7 @@ type ProjectsInfoApiService service
 type ProjectsInfoApiListOpts struct {
     Space optional.String
     Spaceid optional.String
+    Siteid optional.String
 }
 
 /*
@@ -41,6 +42,7 @@ Returns an object with information on projects, machine sizes, and volume flavor
  * @param optional nil or *ProjectsInfoApiListOpts - Optional Parameters:
  * @param "Space" (optional.String) -  GreenLake space name
  * @param "Spaceid" (optional.String) -  GreenLake space ID
+ * @param "Siteid" (optional.String) -  GreenLake site ID
 @return ProjectsInfo
 */
 func (a *ProjectsInfoApiService) List(ctx _context.Context, localVarOptionals *ProjectsInfoApiListOpts) (ProjectsInfo, *_nethttp.Response, error) {
@@ -59,6 +61,9 @@ func (a *ProjectsInfoApiService) List(ctx _context.Context, localVarOptionals *P
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Siteid.IsSet() {
+		localVarQueryParams.Add("siteid", parameterToString(localVarOptionals.Siteid.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
