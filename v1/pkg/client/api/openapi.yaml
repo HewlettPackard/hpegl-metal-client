@@ -408,6 +408,13 @@ paths:
         name: spaceid
         schema:
           type: string
+      - description: GreenLake site ID
+        example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
+        in: query
+        name: siteid
+        required: false
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -3313,6 +3320,13 @@ components:
             unacknowledged alerts
           type: boolean
       type: object
+    HealthStatus:
+      enum:
+      - OK
+      - Warning
+      - Critical
+      - Unknown
+      type: string
     AddVolume:
       example:
         Shareable: true
@@ -3873,13 +3887,6 @@ components:
         Stats:
           $ref: '#/components/schemas/IPPoolStats'
       type: object
-    HealthStatus:
-      enum:
-      - OK
-      - Warning
-      - Critical
-      - Unknown
-      type: string
     HostServerPort:
       properties:
         Name:
@@ -4526,6 +4533,8 @@ components:
         Workflow:
           description: The current workflow the host is in
           type: string
+        SummaryStatus:
+          $ref: '#/components/schemas/HealthStatus'
       required:
       - Description
       - NetworkForDefaultRoute

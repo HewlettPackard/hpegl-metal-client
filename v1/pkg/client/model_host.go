@@ -74,4 +74,5 @@ type Host struct {
 	AlertInfo []HostAlertInfo `json:"AlertInfo,omitempty"`
 	// The current workflow the host is in
 	Workflow string `json:"Workflow,omitempty"`
+	SummaryStatus HealthStatus `json:"SummaryStatus,omitempty"`
 }
