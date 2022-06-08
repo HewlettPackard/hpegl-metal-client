@@ -23,6 +23,7 @@ _NOTE: All files under **\<version\>/pkg/client** are generated code.  Do not mo
 ### Using openapi-generator for GO
 Installing openapi-generator 
 
+
 ```bash
 $ sudo apt update
 $ sudo apt install default-jre
