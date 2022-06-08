@@ -1986,7 +1986,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Update an existing network.  NOT YET SUPPORTED
+      summary: Update an existing network.
       tags:
       - networks
     summary: Operations on a single network
@@ -2892,6 +2892,8 @@ components:
           IPVersion: IPv4
           Name: Name
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        HostUse: Default
+        Purpose: Storage
         Name: Private2
       properties:
         Name:
@@ -2908,6 +2910,10 @@ components:
         Description:
           example: Private network for intra-cluster communication
           type: string
+        HostUse:
+          $ref: '#/components/schemas/NetworkHostUse'
+        Purpose:
+          $ref: '#/components/schemas/NetworkPurpose'
         NewIPPool:
           $ref: '#/components/schemas/NewIPPool'
       required:
@@ -3696,6 +3702,21 @@ components:
       - Default
       - Optional
       example: Default
+      type: string
+    NetworkPurpose:
+      description: |
+        Indicates the usage of the network.
+      enum:
+      - Backup
+      - Storage
+      - vmKernel
+      - vmNSX-T
+      - vMotion
+      - vCHA
+      - vmFT
+      - iSCSI-A
+      - iSCSI-B
+      example: Storage
       type: string
     NewIPPool:
       example:
@@ -4631,6 +4652,8 @@ components:
           type: string
         HostUse:
           $ref: '#/components/schemas/NetworkHostUse'
+        Purpose:
+          $ref: '#/components/schemas/NetworkPurpose'
         IPPoolID:
           type: string
         VLAN:

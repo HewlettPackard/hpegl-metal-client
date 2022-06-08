@@ -12,6 +12,10 @@ properties:
   Description:
     type: string
     example: Private network for intra-cluster communication
+  HostUse:
+    $ref: ./NetworkHostUse.yaml
+  Purpose:
+    $ref: ./NetworkPurpose.yaml
   NewIPPool:
     $ref: ./NewIPPool.yaml
     description: >-

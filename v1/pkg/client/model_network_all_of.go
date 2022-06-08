@@ -17,6 +17,7 @@ type NetworkAllOf struct {
 	LocationID string `json:"LocationID,omitempty"`
 	Description string `json:"Description,omitempty"`
 	HostUse NetworkHostUse `json:"HostUse,omitempty"`
+	Purpose NetworkPurpose `json:"Purpose,omitempty"`
 	IPPoolID string `json:"IPPoolID,omitempty"`
 	// VLAN ID of the network
 	VLAN int32 `json:"VLAN,omitempty"`

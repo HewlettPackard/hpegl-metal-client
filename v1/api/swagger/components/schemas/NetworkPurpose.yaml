@@ -1,0 +1,14 @@
+type: string
+enum:
+  - Backup
+  - Storage
+  - vmKernel
+  - vmNSX-T
+  - vMotion
+  - vCHA
+  - vmFT
+  - iSCSI-A
+  - iSCSI-B
+example: Storage
+description: >
+  Indicates the usage of the network.

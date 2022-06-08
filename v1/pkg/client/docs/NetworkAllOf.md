@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **LocationID** | **string** | The location ID is the data center location of the resource.  The LocationID must be one of those provided by the LocationInfo array returned as part of the get /available-resources call.  The locations are typically described by country, region, and data center. | [optional] 
 **Description** | **string** |  | [optional] 
 **HostUse** | [**NetworkHostUse**](NetworkHostUse.md) |  | [optional] 
+**Purpose** | [**NetworkPurpose**](NetworkPurpose.md) |  | [optional] 
 **IPPoolID** | **string** |  | [optional] 
 **VLAN** | **int32** | VLAN ID of the network | [optional] 
 **VNI** | **int32** | VNI ID of the network | [optional] 
