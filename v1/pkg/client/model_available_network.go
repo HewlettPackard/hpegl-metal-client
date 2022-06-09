@@ -21,5 +21,6 @@ type AvailableNetwork struct {
 	LocationID string `json:"LocationID,omitempty"`
 	Description string `json:"Description,omitempty"`
 	HostUse NetworkHostUse `json:"HostUse,omitempty"`
+	Purpose NetworkPurpose `json:"Purpose,omitempty"`
 	IPPoolID string `json:"IPPoolID,omitempty"`
 }

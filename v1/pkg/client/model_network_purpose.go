@@ -11,7 +11,7 @@
  */
 
 package client
-// NetworkPurpose Indicates the usage of the network. 
+// NetworkPurpose Indicates the purpose of the network. 
 type NetworkPurpose string
 
 // List of NetworkPurpose

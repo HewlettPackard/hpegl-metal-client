@@ -2615,12 +2615,14 @@ components:
           Description: Private network for intra-cluster communication
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
+          Purpose: Storage
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Private
         - IPPoolID: IPPoolID
           Description: Private network for intra-cluster communication
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
+          Purpose: Storage
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Private
         Volumes:
@@ -3426,6 +3428,7 @@ components:
         Description: Private network for intra-cluster communication
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         HostUse: Default
+        Purpose: Storage
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: Private
       properties:
@@ -3449,6 +3452,8 @@ components:
           type: string
         HostUse:
           $ref: '#/components/schemas/NetworkHostUse'
+        Purpose:
+          $ref: '#/components/schemas/NetworkPurpose'
         IPPoolID:
           type: string
       type: object
@@ -3705,7 +3710,7 @@ components:
       type: string
     NetworkPurpose:
       description: |
-        Indicates the usage of the network.
+        Indicates the purpose of the network.
       enum:
       - Backup
       - Storage
