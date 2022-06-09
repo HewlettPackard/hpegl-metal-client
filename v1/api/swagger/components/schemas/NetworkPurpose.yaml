@@ -11,4 +11,4 @@ enum:
   - iSCSI-B
 example: Storage
 description: >
-  Indicates the usage of the network.
+  Indicates the purpose of the network.
