@@ -30,7 +30,7 @@ get:
 put:
   tags:
     - networks
-  summary: Update an existing network.  NOT YET SUPPORTED
+  summary: Update an existing network.
   description: ''
   operationId: Network_update
   parameters:

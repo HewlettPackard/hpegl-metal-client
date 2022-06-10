@@ -61,7 +61,7 @@ Class | Method | HTTP request | Description
 *NetworksApi* | [**Delete**](docs/NetworksApi.md#delete) | **Delete** /networks/{networkId} | Delete a network
 *NetworksApi* | [**GetByID**](docs/NetworksApi.md#getbyid) | **Get** /networks/{networkId} | Retrieve network by ID
 *NetworksApi* | [**List**](docs/NetworksApi.md#list) | **Get** /networks | List all networks in project
-*NetworksApi* | [**Update**](docs/NetworksApi.md#update) | **Put** /networks/{networkId} | Update an existing network.  NOT YET SUPPORTED
+*NetworksApi* | [**Update**](docs/NetworksApi.md#update) | **Put** /networks/{networkId} | Update an existing network.
 *ProjectsApi* | [**Add**](docs/ProjectsApi.md#add) | **Post** /projects | Create a new project
 *ProjectsApi* | [**Delete**](docs/ProjectsApi.md#delete) | **Delete** /projects/{projectId} | Delete a Project
 *ProjectsApi* | [**GetByID**](docs/ProjectsApi.md#getbyid) | **Get** /projects/{projectId} | Retrieve a project by its ID
@@ -127,6 +127,7 @@ Class | Method | HTTP request | Description
  - [Network](docs/Network.md)
  - [NetworkAllOf](docs/NetworkAllOf.md)
  - [NetworkHostUse](docs/NetworkHostUse.md)
+ - [NetworkPurpose](docs/NetworkPurpose.md)
  - [NewHost](docs/NewHost.md)
  - [NewIpPool](docs/NewIpPool.md)
  - [NewNetwork](docs/NewNetwork.md)

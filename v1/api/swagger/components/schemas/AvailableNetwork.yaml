@@ -16,5 +16,7 @@ properties:
     example: Private network for intra-cluster communication
   HostUse:
     $ref: ./NetworkHostUse.yaml
+  Purpose:
+    $ref: ./NetworkPurpose.yaml
   IPPoolID:
     type: string

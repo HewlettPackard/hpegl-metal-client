@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**Delete**](NetworksApi.md#Delete) | **Delete** /networks/{networkId} | Delete a network
 [**GetByID**](NetworksApi.md#GetByID) | **Get** /networks/{networkId} | Retrieve network by ID
 [**List**](NetworksApi.md#List) | **Get** /networks | List all networks in project
-[**Update**](NetworksApi.md#Update) | **Put** /networks/{networkId} | Update an existing network.  NOT YET SUPPORTED
+[**Update**](NetworksApi.md#Update) | **Put** /networks/{networkId} | Update an existing network.
 
 
 
@@ -148,7 +148,7 @@ This endpoint does not need any parameter.
 
 > Network Update(ctx, networkId, network)
 
-Update an existing network.  NOT YET SUPPORTED
+Update an existing network.
 
 
 
