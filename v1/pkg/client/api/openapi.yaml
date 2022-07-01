@@ -837,7 +837,8 @@ paths:
     put:
       description: Updates the Host with the matching ID.  Update is permitted only
         if the host is in the 'Ready' or 'Connection Updating Failed' state.  Only
-        the Host 'Description', 'Networks', and 'NetworkForDefaultRoute' can be updated.
+        the Host 'Description', 'Networks', 'NetworkForDefaultRoute', and 'ISCSIConfig:InitiatorName'
+        can be updated.
       operationId: Host_update
       parameters:
       - description: ID of host to update
