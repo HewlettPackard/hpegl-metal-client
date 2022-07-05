@@ -838,7 +838,8 @@ paths:
       description: Updates the Host with the matching ID.  Update is permitted only
         if the host is in the 'Ready' or 'Connection Updating Failed' state.  Only
         the Host 'Description', 'Networks', 'NetworkForDefaultRoute', and 'ISCSIConfig:InitiatorName'
-        can be updated.
+        can be updated. 'ISCSIConfig:InitiatorName' can be updated only if the host
+        has no volumes attached.
       operationId: Host_update
       parameters:
       - description: ID of host to update
@@ -3214,6 +3215,8 @@ components:
           type: string
         ISCSIDiscoveryAddress:
           type: string
+      required:
+      - InitiatorName
       type: object
     HostConnection:
       properties:
