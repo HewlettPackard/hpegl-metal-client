@@ -3198,6 +3198,7 @@ components:
         'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxv1C5uOeG9BBjfQbum9GupGthTFcifS4FNYxZ2ZakN9UcpD05L2lKp4OI6mfCfciOhJ9SHduZWJFM0pYfC99hIsPAHhEwWOjh3/rHKxB/U4RYN4VFWM+ShDv92+k0Hse73HhuiHKVtmRj/fltAeCFm/mPlL+McMYFhFYMIK8b/spKpXxdEBCSowHPGIn3yi0ivPWhC4wcIa9jDIela/a0t/oDnYTeIp2WMLDbpZyQsGHmKopAAvb+83JhwytQMVTI/g5pMerbqPyxKtWaWDVDtpQ7O8G877T5U3kkl4jLLOJywxrvLrfHh1UNdNvPmvRFd+ct9Q5ugj5CIMJHqWTj Joe@Laptop.local'
       type: string
     HostISCSIConfig:
+      nullable: true
       properties:
         InitiatorName:
           description: |

@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **ServiceNetsProviderMAC** | **map[string]string** | The map of Service Network (Provider) ID to Provider MAC address.   The Service Network must be a provider network provisioned to this host. Any Service Networks not included here will default to the physical MAC learned during machine discovery. | [optional] 
 **UserData** | **string** | User-provided data attached to the image configuration data when the host was provisioned | [optional] 
 **NodeID** | **string** | User-provided data to represent the identity of the host within an application environment. For example, this could be set to represent the Kubernetes node ID if the host is provisioned as a Kubernetes node. | [optional] 
-**ISCSIConfig** | [**HostIscsiConfig**](HostISCSIConfig.md) |  | [optional] 
+**ISCSIConfig** | Pointer to [**HostIscsiConfig**](HostISCSIConfig.md) |  | [optional] 
 **Connections** | [**[]HostConnection**](HostConnection.md) | Details describing host network connections | [optional] 
 **Deleted** | **bool** | True if the Host has been deleted. | [optional] 
 **PortalCommOkay** | **bool** | Describes if the portal is in active communication to the device | [optional] 

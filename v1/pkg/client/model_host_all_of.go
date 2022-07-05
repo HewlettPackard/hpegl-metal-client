@@ -47,7 +47,7 @@ type HostAllOf struct {
 	UserData string `json:"UserData,omitempty"`
 	// User-provided data to represent the identity of the host within an application environment. For example, this could be set to represent the Kubernetes node ID if the host is provisioned as a Kubernetes node.
 	NodeID string `json:"NodeID,omitempty"`
-	ISCSIConfig HostIscsiConfig `json:"ISCSIConfig,omitempty"`
+	ISCSIConfig *HostIscsiConfig `json:"ISCSIConfig,omitempty"`
 	// Details describing host network connections
 	Connections []HostConnection `json:"Connections,omitempty"`
 	// True if the Host has been deleted.
