@@ -408,7 +408,7 @@ Name | Type | Description  | Notes
 
 Update an existing Host
 
-Updates the Host with the matching ID.  Update is permitted only if the host is in the 'Ready' or 'Connection Updating Failed' state.  Only the Host 'Description', 'Networks', and 'NetworkForDefaultRoute' can be updated.
+Updates the Host with the matching ID.  Update is permitted only if the host is in the 'Ready' or 'Connection Updating Failed' state.  Only the Host 'Description', 'Networks', 'NetworkForDefaultRoute', and 'ISCSIConfig:InitiatorName' can be updated. 'ISCSIConfig:InitiatorName' can be updated only if the host has no volumes attached.
 
 ### Required Parameters
 

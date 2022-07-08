@@ -1,4 +1,7 @@
 type: object
+nullable: true
+required:
+  - InitiatorName
 properties:
   InitiatorName:
     type: string

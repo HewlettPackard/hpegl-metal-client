@@ -1658,7 +1658,7 @@ func (a *HostsApiService) Replace(ctx _context.Context, hostId string) (Host, *_
 
 /*
 Update Update an existing Host
-Updates the Host with the matching ID.  Update is permitted only if the host is in the &#39;Ready&#39; or &#39;Connection Updating Failed&#39; state.  Only the Host &#39;Description&#39;, &#39;Networks&#39;, and &#39;NetworkForDefaultRoute&#39; can be updated.
+Updates the Host with the matching ID.  Update is permitted only if the host is in the &#39;Ready&#39; or &#39;Connection Updating Failed&#39; state.  Only the Host &#39;Description&#39;, &#39;Networks&#39;, &#39;NetworkForDefaultRoute&#39;, and &#39;ISCSIConfig:InitiatorName&#39; can be updated. &#39;ISCSIConfig:InitiatorName&#39; can be updated only if the host has no volumes attached.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostId ID of host to update
  * @param host Updated Host
