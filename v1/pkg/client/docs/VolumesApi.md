@@ -222,7 +222,7 @@ This endpoint does not need any parameter.
 
 Update an existing volume
 
-Update operation presently allows user to expand an existing volume to the specified size in GiB. This is allowed only when the volume is either in \"allocated\" or \"visible\" state. If an update operation  is already in progress, subsequent update operations result in error.  
+Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state. Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume.  
 
 ### Required Parameters
 

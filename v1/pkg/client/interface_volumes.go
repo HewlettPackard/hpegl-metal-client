@@ -60,7 +60,7 @@ type VolumesAPI interface {
 	List(ctx _context.Context) ([]Volume, *_nethttp.Response, error)
 	/*
 	   Update Update an existing volume
-	   Update operation presently allows user to expand an existing volume to the specified size in GiB. This is allowed only when the volume is either in \&quot;allocated\&quot; or \&quot;visible\&quot; state. If an update operation  is already in progress, subsequent update operations result in error.
+	   Updates volume with matching ID. Update is permitted only when volume is in &#39;Allocated&#39; or &#39;Visible&#39; state. Only the Volume &#39;Capacity&#39; can be updated with a value greater than the existing one to expand the volume.
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param volume Volume object with its ID and Capacity in GiB indicating the expanded size to be speficified.
 	   @return Volume
