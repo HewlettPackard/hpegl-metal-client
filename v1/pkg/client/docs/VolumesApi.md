@@ -218,11 +218,11 @@ This endpoint does not need any parameter.
 
 ## Update
 
-> Volume Update(ctx, volumeId, volume)
+> Volume Update(ctx, volume)
 
 Update an existing volume
 
-Only expansion of an existing volume to the specified size supported.
+Update operation presently allows user to expand an existing volume to the specified size in GiB. This is allowed only when the volume is either in \"allocated\" or \"visible\" state. If an update operation  is already in progress, subsequent update operations result in error.  
 
 ### Required Parameters
 
@@ -230,8 +230,7 @@ Only expansion of an existing volume to the specified size supported.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**volumeId** | **string**| ID of volume to update | 
-**volume** | [**Volume**](Volume.md)| Volume with its ID and Capacity in GB indicating the expanded size to be speficified. | 
+**volume** | [**Volume**](Volume.md)| Volume object with its ID and Capacity in GiB indicating the expanded size to be speficified. | 
 
 ### Return type
 

@@ -30,5 +30,7 @@ allOf:
           their attached Host.
       State:
         $ref: ./VolumeState.yaml
+      SubState:
+        $ref: ./VolumeSubState.yaml
       Status:
         $ref: ./VolumeStatus.yaml

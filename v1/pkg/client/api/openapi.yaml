@@ -1443,22 +1443,18 @@ paths:
       tags:
       - volumes
     put:
-      description: Only expansion of an existing volume to the specified size supported.
+      description: "Update operation presently allows user to expand an existing volume\
+        \ to the specified size in GiB. This is allowed only when the volume is either\
+        \ in \"allocated\" or \"visible\" state. If an update operation  is already\
+        \ in progress, subsequent update operations result in error. \n"
       operationId: Volume_update
-      parameters:
-      - description: ID of volume to update
-        in: path
-        name: volumeId
-        required: true
-        schema:
-          type: string
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Volume'
-        description: Volume with its ID and Capacity in GB indicating the expanded
-          size to be speficified.
+        description: Volume object with its ID and Capacity in GiB indicating the
+          expanded size to be speficified.
         required: true
       responses:
         "200":
@@ -3648,6 +3644,14 @@ components:
       - deleted
       - failed
       type: string
+    VolumeSubState:
+      description: Current update state of volume expressed as a string enum value
+        (idle, update-requested, updating)
+      enum:
+      - idle
+      - update-requested
+      - updating
+      type: string
     VolumeStatus:
       description: Current volume status expressed as a string enum values (ok, error,
         degraded)
@@ -4599,6 +4603,8 @@ components:
           type: string
         State:
           $ref: '#/components/schemas/VolumeState'
+        SubState:
+          $ref: '#/components/schemas/VolumeSubState'
         Status:
           $ref: '#/components/schemas/VolumeStatus'
     VolumeAttachment_allOf:

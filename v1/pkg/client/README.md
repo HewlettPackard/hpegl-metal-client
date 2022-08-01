@@ -165,6 +165,7 @@ Class | Method | HTTP request | Description
  - [VolumeInfo](docs/VolumeInfo.md)
  - [VolumeState](docs/VolumeState.md)
  - [VolumeStatus](docs/VolumeStatus.md)
+ - [VolumeSubState](docs/VolumeSubState.md)
  - [VolumeUsageEntry](docs/VolumeUsageEntry.md)
  - [VolumeUsageEntryAllOf](docs/VolumeUsageEntryAllOf.md)
 
