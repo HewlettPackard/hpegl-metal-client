@@ -1443,7 +1443,7 @@ paths:
       tags:
       - volumes
     put:
-      description: ""
+      description: Only expansion of an existing volume to the specified size supported.
       operationId: Volume_update
       parameters:
       - description: ID of volume to update
@@ -1457,7 +1457,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Volume'
-        description: Updated volume
+        description: Volume with its ID and Capacity in GB indicating the expanded
+          size to be speficified.
         required: true
       responses:
         "200":
@@ -1502,7 +1503,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Update an existing volume.  NOT SUPPORTED!!
+      summary: Update an existing volume
       tags:
       - volumes
     summary: Operations on a single volume

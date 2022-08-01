@@ -30,8 +30,8 @@ get:
 put:
   tags:
     - volumes
-  summary: Update an existing volume.  NOT SUPPORTED!!
-  description: ''
+  summary: Update an existing volume
+  description: Only expansion of an existing volume to the specified size supported.
   operationId: Volume_update
   parameters:
     - name: volumeId
@@ -42,7 +42,7 @@ put:
         type: string
   requestBody:
     required: true
-    description: Updated volume
+    description: Volume with its ID and Capacity in GB indicating the expanded size to be speficified.
     content:
       application/json:
         schema:

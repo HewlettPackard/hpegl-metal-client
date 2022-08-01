@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**Detach**](VolumesApi.md#Detach) | **Post** /volumes/{volumeId}/detach | Detach existing volume from Host
 [**GetByID**](VolumesApi.md#GetByID) | **Get** /volumes/{volumeId} | Retrieve volume by ID
 [**List**](VolumesApi.md#List) | **Get** /volumes | List all volumes in project
-[**Update**](VolumesApi.md#Update) | **Put** /volumes/{volumeId} | Update an existing volume.  NOT SUPPORTED!!
+[**Update**](VolumesApi.md#Update) | **Put** /volumes/{volumeId} | Update an existing volume
 
 
 
@@ -220,9 +220,9 @@ This endpoint does not need any parameter.
 
 > Volume Update(ctx, volumeId, volume)
 
-Update an existing volume.  NOT SUPPORTED!!
+Update an existing volume
 
-
+Only expansion of an existing volume to the specified size supported.
 
 ### Required Parameters
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **volumeId** | **string**| ID of volume to update | 
-**volume** | [**Volume**](Volume.md)| Updated volume | 
+**volume** | [**Volume**](Volume.md)| Volume with its ID and Capacity in GB indicating the expanded size to be speficified. | 
 
 ### Return type
 
