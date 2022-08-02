@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **AlertInfo** | [**[]HostAlertInfo**](HostAlertInfo.md) |  | [optional] 
 **Workflow** | **string** | The current workflow the host is in | [optional] 
 **SummaryStatus** | [**HealthStatus**](HealthStatus.md) |  | [optional] 
+**Labels** | **map[string]string** | The map of tags as (name, value) pairs  for host resource | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
