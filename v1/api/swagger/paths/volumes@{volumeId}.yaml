@@ -37,7 +37,7 @@ put:
   operationId: Volume_update
   requestBody:
     required: true
-    description: Volume object with its ID and Capacity in GiB indicating the expanded size to be speficified.
+    description: Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
     content:
       application/json:
         schema:

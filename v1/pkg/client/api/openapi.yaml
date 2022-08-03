@@ -1454,7 +1454,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Volume'
         description: Volume object with its ID and Capacity in GiB indicating the
-          expanded size to be speficified.
+          expanded size to be specified.
         required: true
       responses:
         "200":
