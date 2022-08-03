@@ -132,6 +132,6 @@ properties:
     type: object
     additionalProperties:
       type: string
-    description: The map of tags as (name, value) pairs  for host resource
+    description: The map of tag name to tag value for this host.
     example:
       serviceType: BMaaS
