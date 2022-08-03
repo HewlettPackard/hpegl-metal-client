@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **NewVolumes** | [**[]AddVolume**](AddVolume.md) | New volumes may be created and connected to the Host when the host is provisioned. The information provided here to create a host is the same as required when doing a post /volumes call | [optional] 
 **UserData** | **string** | User-provided data to be attached to the image configuration data. | [optional] 
 **NodeID** | **string** | User-provided data to represent the identity of the host within an application environment. For example, this could be set to represent the Kubernetes node ID if the host is provisioned as a Kubernetes node. | [optional] 
+**Labels** | **map[string]string** | The map of tag name to tag value for this host. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

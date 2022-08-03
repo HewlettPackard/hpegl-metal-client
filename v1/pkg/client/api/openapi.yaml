@@ -2469,6 +2469,8 @@ components:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         MachineSizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Labels:
+          serviceType: BMaaS
         PreAllocatedIPs:
         - 10.0.0.4
         - 10.0.0.8
@@ -2601,6 +2603,13 @@ components:
             the Kubernetes node ID if the host is provisioned as a Kubernetes node.
           example: Node21
           type: string
+        Labels:
+          additionalProperties:
+            type: string
+          description: The map of tag name to tag value for this host.
+          example:
+            serviceType: BMaaS
+          type: object
       required:
       - LocationID
       - MachineSizeID
@@ -4566,6 +4575,13 @@ components:
           type: string
         SummaryStatus:
           $ref: '#/components/schemas/HealthStatus'
+        Labels:
+          additionalProperties:
+            type: string
+          description: The map of tag name to tag value for the host.
+          example:
+            serviceType: BMaaS
+          type: object
       required:
       - Description
       - NetworkForDefaultRoute
