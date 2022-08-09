@@ -153,3 +153,10 @@ allOf:
       SummaryStatus:
         $ref: ./HealthStatus.yaml
         description: Host health summary status
+      Labels:
+        type: object
+        additionalProperties:
+          type: string
+        description: The map of tag name to tag value for the host.
+        example:
+          serviceType: BMaaS
