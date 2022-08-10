@@ -876,14 +876,13 @@ func (a *VolumesApiService) List(ctx _context.Context) ([]Volume, *_nethttp.Resp
 }
 
 /*
-Update Update an existing volume.  NOT SUPPORTED!!
-
+Update Update an existing volume
+Updates volume with matching ID. Update is permitted only when volume is in &#39;Allocated&#39; or &#39;Visible&#39; state. Only the Volume &#39;Capacity&#39; can be updated with a value greater than the existing one to expand the volume.  
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param volumeId ID of volume to update
- * @param volume Updated volume
+ * @param volume Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
 @return Volume
 */
-func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, volume Volume) (Volume, *_nethttp.Response, error) {
+func (a *VolumesApiService) Update(ctx _context.Context, volume Volume) (Volume, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -895,8 +894,6 @@ func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, volume
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/volumes/{volumeId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"volumeId"+"}", _neturl.QueryEscape(parameterToString(volumeId, "")) , -1)
-
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -1006,16 +1003,6 @@ func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, volume
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

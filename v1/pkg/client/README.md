@@ -85,7 +85,7 @@ Class | Method | HTTP request | Description
 *VolumesApi* | [**Detach**](docs/VolumesApi.md#detach) | **Post** /volumes/{volumeId}/detach | Detach existing volume from Host
 *VolumesApi* | [**GetByID**](docs/VolumesApi.md#getbyid) | **Get** /volumes/{volumeId} | Retrieve volume by ID
 *VolumesApi* | [**List**](docs/VolumesApi.md#list) | **Get** /volumes | List all volumes in project
-*VolumesApi* | [**Update**](docs/VolumesApi.md#update) | **Put** /volumes/{volumeId} | Update an existing volume.  NOT SUPPORTED!!
+*VolumesApi* | [**Update**](docs/VolumesApi.md#update) | **Put** /volumes/{volumeId} | Update an existing volume
 
 
 ## Documentation For Models
@@ -165,6 +165,7 @@ Class | Method | HTTP request | Description
  - [VolumeInfo](docs/VolumeInfo.md)
  - [VolumeState](docs/VolumeState.md)
  - [VolumeStatus](docs/VolumeStatus.md)
+ - [VolumeSubState](docs/VolumeSubState.md)
  - [VolumeUsageEntry](docs/VolumeUsageEntry.md)
  - [VolumeUsageEntryAllOf](docs/VolumeUsageEntryAllOf.md)
 
