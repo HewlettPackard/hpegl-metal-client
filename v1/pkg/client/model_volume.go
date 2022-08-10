@@ -36,6 +36,7 @@ type Volume struct {
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
 	LocationID string `json:"LocationID,omitempty"`
 	State VolumeState `json:"State,omitempty"`
+	SubState VolumeSubState `json:"SubState,omitempty"`
 	Status VolumeStatus `json:"Status,omitempty"`
 	// The map of label name to label value for the volume.
 	Labels map[string]string `json:"Labels,omitempty"`
