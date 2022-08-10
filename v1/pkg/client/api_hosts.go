@@ -3,7 +3,7 @@
 /*
  * HPE GreenLake Metal Client API
  *
- * This Metal Client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.    Note: All URIs are relative to metal_service_url/rest/v1
+ * This Metal Client REST API provides access to bare metal as-a-service (BMaaS) within a single project context.  Clients are able to create fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated project environment.  Project-owned resources that can be accessed via this API include... Host, Volume, VolumeAttachment, Network (project private), and SSH Key.    Each API call is done within a single project context.  The specific Project identifier must be provided within the header of each REST call. The server will validate that the provided authentication credentials (JWTs) are valid for the referenced project before any operation is performed.  If a single credential is valid for multiple projects, the client must still reference a single project in the header each API call.  Clients can also access information about available services and resources through the AvailableResources object.  This object provides detailed  information about the OS imaging options, the machine size options, the storage volume options, data center locations, and such that are needed when creating hosts and volumes.    Note: All URIs are relative to metal_service_url/rest/v1 
  *
  * API version: 1.3.8
  * Contact: quake-core@hpe.com
@@ -15,12 +15,9 @@ package client
 import (
 	_context "context"
 	_ioutil "io/ioutil"
-	"log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
 	"strings"
-
 	"github.com/antihax/optional"
 )
 
@@ -113,10 +110,6 @@ func (a *HostsApiService) Add(ctx _context.Context, newHost NewHost) (Host, *_ne
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
-	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o666)
-	log.SetOutput(file)
-	log.Println("Creating new host")
-	log.Println(newHost.Labels)
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := GenericOpenAPIError{
@@ -206,7 +199,7 @@ func (a *HostsApiService) BootHDD(ctx _context.Context, hostId string) (Host, *_
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}/boothdd"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -357,7 +350,7 @@ func (a *HostsApiService) BootPXE(ctx _context.Context, hostId string) (Host, *_
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}/bootpxe"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -506,7 +499,7 @@ func (a *HostsApiService) Delete(ctx _context.Context, hostId string) (*_nethttp
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -638,7 +631,7 @@ func (a *HostsApiService) GetByID(ctx _context.Context, hostId string) (Host, *_
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -772,7 +765,7 @@ func (a *HostsApiService) GetByID(ctx _context.Context, hostId string) (Host, *_
 
 // HostsApiListOpts Optional parameters for the method 'List'
 type HostsApiListOpts struct {
-	All optional.String
+    All optional.String
 }
 
 /*
@@ -927,7 +920,7 @@ func (a *HostsApiService) Maintenance(ctx _context.Context, hostId string) (Host
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}/maintenance"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1078,7 +1071,7 @@ func (a *HostsApiService) PowerOff(ctx _context.Context, hostId string) (Host, *
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}/poweroff"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1229,7 +1222,7 @@ func (a *HostsApiService) PowerOn(ctx _context.Context, hostId string) (Host, *_
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}/poweron"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1380,7 +1373,7 @@ func (a *HostsApiService) PowerReset(ctx _context.Context, hostId string) (Host,
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}/powerreset"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1531,7 +1524,7 @@ func (a *HostsApiService) Replace(ctx _context.Context, hostId string) (Host, *_
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}/replace"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1683,7 +1676,7 @@ func (a *HostsApiService) Update(ctx _context.Context, hostId string, host Host)
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/hosts/{hostId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"hostId"+"}", _neturl.QueryEscape(parameterToString(hostId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

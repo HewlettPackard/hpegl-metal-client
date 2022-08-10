@@ -35,3 +35,10 @@ properties:
       those listed by the LocationInfo array returned as part of the get
       /available-resources call. Any volumes must be in the same location as
       their attached Host.
+  Labels:
+    type: object
+    additionalProperties:
+      type: string
+    description: The map of label name to label value for this volume.
+    example:
+      serviceType: BMaaS

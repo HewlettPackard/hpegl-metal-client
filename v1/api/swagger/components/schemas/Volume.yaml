@@ -32,3 +32,10 @@ allOf:
         $ref: ./VolumeState.yaml
       Status:
         $ref: ./VolumeStatus.yaml
+      Labels:
+        type: object
+        additionalProperties:
+          type: string
+        description: The map of label name to label value for the volume.
+        example:
+          serviceType: BMaaS
