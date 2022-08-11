@@ -65,6 +65,6 @@ type HostAllOf struct {
 	// The current workflow the host is in
 	Workflow string `json:"Workflow,omitempty"`
 	SummaryStatus HealthStatus `json:"SummaryStatus,omitempty"`
-	// The map of tag name to tag value for the host.
+	// The map of label name to label value for the host.
 	Labels map[string]string `json:"Labels,omitempty"`
 }

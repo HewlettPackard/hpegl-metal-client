@@ -157,6 +157,6 @@ allOf:
         type: object
         additionalProperties:
           type: string
-        description: The map of tag name to tag value for the host.
+        description: The map of label name to label value for the host.
         example:
           serviceType: BMaaS

@@ -2597,7 +2597,7 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of tag name to tag value for this host.
+          description: The map of label name to label value for this host.
           example:
             serviceType: BMaaS
           type: object
@@ -2794,6 +2794,8 @@ components:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Labels:
+          serviceType: BMaaS
         Name: NewVolumeName
       properties:
         Name:
@@ -2824,6 +2826,13 @@ components:
             as their attached Host.
           format: uuid
           type: string
+        Labels:
+          additionalProperties:
+            type: string
+          description: The map of label name to label value for this volume.
+          example:
+            serviceType: BMaaS
+          type: object
       required:
       - Capacity
       - FlavorID
@@ -4577,7 +4586,7 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of tag name to tag value for the host.
+          description: The map of label name to label value for the host.
           example:
             serviceType: BMaaS
           type: object
@@ -4617,6 +4626,13 @@ components:
           $ref: '#/components/schemas/VolumeSubState'
         Status:
           $ref: '#/components/schemas/VolumeStatus'
+        Labels:
+          additionalProperties:
+            type: string
+          description: The map of label name to label value for the volume.
+          example:
+            serviceType: BMaaS
+          type: object
     VolumeAttachment_allOf:
       properties:
         VolumeID:
