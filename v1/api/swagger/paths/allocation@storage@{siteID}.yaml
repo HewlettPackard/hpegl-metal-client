@@ -1,0 +1,24 @@
+get:
+  tags:
+    - allocation
+  summary: Get allocation for storage
+  description: Returns allocation information, for each volume type used by each PCE service.
+  operationId: allocation_storage_getBySite
+  parameters:
+    - name: siteID
+      in: path
+      description: site ID
+      optional: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Allocation.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
