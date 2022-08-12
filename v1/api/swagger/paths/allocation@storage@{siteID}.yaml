@@ -8,7 +8,7 @@ get:
     - name: siteID
       in: path
       description: site ID
-      optional: true
+      required: false
       schema:
         type: string
   responses:

@@ -2291,7 +2291,7 @@ paths:
       - description: site ID
         in: path
         name: siteID
-        required: true
+        required: false
         schema:
           type: string
       responses:
@@ -2325,7 +2325,7 @@ paths:
       - description: site ID
         in: path
         name: siteID
-        required: true
+        required: false
         schema:
           type: string
       responses:
