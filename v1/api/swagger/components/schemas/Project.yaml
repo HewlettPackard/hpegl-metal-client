@@ -13,6 +13,9 @@ allOf:
           Project Limits place general constraints on a project in terms of
           server and storage
         $ref: ./Limits.yaml
+      Resources:
+        description: Project resources provides resources currently utilized by the project
+        $ref: ./ProjectResources.yml
       PermittedSites:
         description: Array listing the permitted site IDs
         type: array

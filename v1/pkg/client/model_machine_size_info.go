@@ -17,4 +17,6 @@ type MachineSizeInfo struct {
 	ProjectsUsed int32 `json:"ProjectsUsed,omitempty"`
 	OtherUsed int32 `json:"OtherUsed,omitempty"`
 	Available int32 `json:"Available,omitempty"`
+	ID string `json:"ID,omitempty"`
+	Restricted bool `json:"Restricted,omitempty"`
 }

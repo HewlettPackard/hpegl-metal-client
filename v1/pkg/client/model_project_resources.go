@@ -11,16 +11,16 @@
  */
 
 package client
-// Limits struct for Limits
-type Limits struct {
-	// Maximum number of hosts to allow
+// ProjectResources struct for ProjectResources
+type ProjectResources struct {
+	// Number of hosts in use
 	Hosts int32 `json:"Hosts,omitempty"`
-	// Maximum number of volumes to allow
+	// Number of volumes is use
 	Volumes int32 `json:"Volumes,omitempty"`
-	// Maximum capacity to allow in TiB
+	// Volumes capacity in use in TiB
 	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
-	// Maximum number of private networks to allow
+	// Number of private networks in use
 	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`
-	// Map of instance type ID to maximum number of instance type to allow
+	// Numbert of instance types in use
 	InstanceTypes map[string]int32 `json:"InstanceTypes,omitempty"`
 }

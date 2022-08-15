@@ -17,3 +17,10 @@ properties:
     type: integer
     description: Maximum number of private networks to allow
     minimum: 0
+  InstanceTypes:
+    type: object
+    additionalProperties:
+      type: integer
+    description: Map of instance type ID to maximum number of instance type to allow
+    example:
+      046b6c7f-0b8a-43b9-b35d-6489e6daee90: 1

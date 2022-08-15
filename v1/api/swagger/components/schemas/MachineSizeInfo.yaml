@@ -8,3 +8,8 @@ properties:
     type: integer
   Available:
     type: integer
+  ID:
+    type: string
+    format: uuid
+  Restricted:
+    type: boolean

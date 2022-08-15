@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Volumes** | **int32** | Maximum number of volumes to allow | [optional] 
 **VolumeCapacity** | **int64** | Maximum capacity to allow in TiB | [optional] 
 **PrivateNetworks** | **int32** | Maximum number of private networks to allow | [optional] 
+**InstanceTypes** | **map[string]int32** | Map of instance type ID to maximum number of instance type to allow | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

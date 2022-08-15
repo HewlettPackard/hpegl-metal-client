@@ -2310,6 +2310,8 @@ components:
           Hosts: 0
           Volumes: 0
           VolumeCapacity: 0
+          InstanceTypes:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
           PrivateNetworks: 0
         PermittedSites:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2350,12 +2352,16 @@ components:
       example:
         MachineSizes:
         - ProjectsUsed: 5
+          Restricted: true
           Available: 7
           OtherUsed: 2
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Name
         - ProjectsUsed: 5
+          Restricted: true
           Available: 7
           OtherUsed: 2
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Name
         VolumeFlavors:
         - ProjectsUsed: 9
@@ -3060,6 +3066,8 @@ components:
         Hosts: 0
         Volumes: 0
         VolumeCapacity: 0
+        InstanceTypes:
+          "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
         PrivateNetworks: 0
       properties:
         Hosts:
@@ -3079,6 +3087,41 @@ components:
           description: Maximum number of private networks to allow
           minimum: 0
           type: integer
+        InstanceTypes:
+          additionalProperties:
+            type: integer
+          description: Map of instance type ID to maximum number of instance type
+            to allow
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
+          type: object
+      type: object
+    ProjectResources:
+      properties:
+        Hosts:
+          description: Number of hosts in use
+          minimum: 0
+          type: integer
+        Volumes:
+          description: Number of volumes is use
+          minimum: 0
+          type: integer
+        VolumeCapacity:
+          description: Volumes capacity in use in TiB
+          format: int64
+          minimum: 0
+          type: integer
+        PrivateNetworks:
+          description: Number of private networks in use
+          minimum: 0
+          type: integer
+        InstanceTypes:
+          additionalProperties:
+            type: integer
+          description: Numbert of instance types in use
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
+          type: object
       type: object
     ProjectInfo:
       example:
@@ -3129,8 +3172,10 @@ components:
     MachineSizeInfo:
       example:
         ProjectsUsed: 5
+        Restricted: true
         Available: 7
         OtherUsed: 2
+        ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: Name
       properties:
         Name:
@@ -3141,6 +3186,11 @@ components:
           type: integer
         Available:
           type: integer
+        ID:
+          format: uuid
+          type: string
+        Restricted:
+          type: boolean
       type: object
     VolumeFlavorsInfo:
       example:
@@ -4425,6 +4475,8 @@ components:
           $ref: '#/components/schemas/Profile'
         Limits:
           $ref: '#/components/schemas/Limits'
+        Resources:
+          $ref: '#/components/schemas/ProjectResources'
         PermittedSites:
           description: Array listing the permitted site IDs
           example:
