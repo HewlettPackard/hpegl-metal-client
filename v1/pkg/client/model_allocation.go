@@ -11,9 +11,9 @@
  */
 
 package client
-// Allocation allocation of servers or storage for each PCE service
+// Allocation allocation of servers or storage for each PCE service.
 type Allocation struct {
-	// Type of the resource the allocation inforamtion is listed. It is either Server or Volume
+	// Type of the resource the allocation information is listed. It is either Server or Volume
 	ResourceType string `json:"ResourceType,omitempty"`
 	// If the resource type is Server, Total is total number of servers.  If the resource type is Volume, Total  is the total storage capacity in TB
 	Total int32 `json:"Total,omitempty"`

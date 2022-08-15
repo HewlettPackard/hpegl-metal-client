@@ -4,8 +4,8 @@ All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBySite**](AllocationApi.md#GetBySite) | **Get** /allocation/servers/{siteID} | Get allocation for servers
-[**StorageGetBySite**](AllocationApi.md#StorageGetBySite) | **Get** /allocation/storage/{siteID} | Get allocation for storage
+[**GetBySite**](AllocationApi.md#GetBySite) | **Get** /allocation/servers/{siteID} | Get servers allocation
+[**StorageGetBySite**](AllocationApi.md#StorageGetBySite) | **Get** /allocation/storage/{siteID} | Get storage allocation
 
 
 
@@ -13,9 +13,9 @@ Method | HTTP request | Description
 
 > Allocation GetBySite(ctx, siteID)
 
-Get allocation for servers
+Get servers allocation
 
-Returns allocation information, for each server instance type used by each PCE service.
+Returns allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
 
 ### Required Parameters
 
@@ -47,9 +47,9 @@ Name | Type | Description  | Notes
 
 > Allocation StorageGetBySite(ctx, siteID)
 
-Get allocation for storage
+Get storage allocation
 
-Returns allocation information, for each volume type used by each PCE service.
+Returns allocation information for each volume type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
 
 ### Required Parameters
 
