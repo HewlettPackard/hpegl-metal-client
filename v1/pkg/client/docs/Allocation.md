@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ResourceType** | **string** | Type of the resource the allocation information is listed. It is either Server or Volume | [optional] 
+**ResourceType** | **string** | Type of the resource the allocation information is listed for. It is either Server or Volume | [optional] 
 **Total** | **int32** | If the resource type is Server, Total is total number of servers.  If the resource type is Volume, Total  is the total storage capacity in TB | [optional] 
 **InstanceFamily** | **string** | Instance type family name. | [optional] 
 **InstanceType** | **string** | Server instance type or volume type | [optional] 

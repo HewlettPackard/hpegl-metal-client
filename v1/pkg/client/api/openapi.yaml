@@ -3072,7 +3072,7 @@ components:
         InstanceType: C2i, M2ie for servers. SBP for volume
       properties:
         ResourceType:
-          description: Type of the resource the allocation information is listed.
+          description: Type of the resource the allocation information is listed for.
             It is either Server or Volume
           type: string
         Total:
