@@ -1,9 +1,9 @@
 type: object
-description: allocation of servers or storage for each PCE service
+description: allocation of servers or storage for each PCE service.
 properties:
   ResourceType:
     type: string
-    description: Type of the resource the allocation inforamtion is listed. It is either Server or Volume
+    description: Type of the resource the allocation information is listed. It is either Server or Volume
   Total:
     type: integer
     description: If the resource type is Server, Total is total number of servers.  If the resource type is Volume, Total  is the total storage capacity in TB

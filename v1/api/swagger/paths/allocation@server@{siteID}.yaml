@@ -1,8 +1,8 @@
 get:
   tags:
     - allocation
-  summary: Get allocation for servers 
-  description: Returns allocation information, for each server instance type used by each PCE service.
+  summary: Get servers allocation
+  description: Returns allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
   operationId: allocation_getBySite
   parameters:
     - name: siteID
