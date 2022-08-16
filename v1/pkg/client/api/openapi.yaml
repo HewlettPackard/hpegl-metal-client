@@ -78,6 +78,9 @@ tags:
 - description: |
     Operations related to IP pools.
   name: ippools
+- description: |
+    Operations related to listing information about allocation by servers and storage.
+  name: allocation
 paths:
   /version:
     get:
@@ -2279,6 +2282,76 @@ paths:
       tags:
       - ippools
     summary: Operations on a single IP pool
+  /allocation/servers/{siteID}:
+    get:
+      description: Returns allocation information for each server instance type used
+        by each PCE service. If siteID is present, the information returned is specific
+        to that site ID, otherwise the allocation information for all sites is returned.
+      operationId: allocation_getBySite
+      parameters:
+      - description: site ID
+        in: path
+        name: siteID
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation'
+          description: success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Get servers allocation
+      tags:
+      - allocation
+  /allocation/storage/{siteID}:
+    get:
+      description: Returns allocation information for each volume type used by each
+        PCE service. If siteID is present, the information returned is specific to
+        that site ID, otherwise the allocation information for all sites is returned.
+      operationId: allocation_storage_getBySite
+      parameters:
+      - description: site ID
+        in: path
+        name: siteID
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Allocation'
+          description: success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Get storage allocation
+      tags:
+      - allocation
 components:
   schemas:
     Version:
@@ -2981,6 +3054,50 @@ components:
       - Base
       - Count
       - Usage
+      type: object
+    Allocation:
+      description: allocation of servers or storage for each PCE service.
+      example:
+        InstanceFamily: Compute Optimized, General Purpose
+        AllocationInfo:
+        - AllocatedCount: 1
+          ServiceType: BMaaS, VMaaS
+          AllocatedCapacity: 5
+        - AllocatedCount: 1
+          ServiceType: BMaaS, VMaaS
+          AllocatedCapacity: 5
+        Total: 0
+        ResourceType: ResourceType
+        Available: 0
+        InstanceType: C2i, M2ie for servers. SBP for volume
+      properties:
+        ResourceType:
+          description: Type of the resource the allocation information is listed for.
+            It is either Server or Volume
+          type: string
+        Total:
+          description: If the resource type is Server, Total is total number of servers.  If
+            the resource type is Volume, Total  is the total storage capacity in TB
+          type: integer
+        InstanceFamily:
+          description: Instance type family name.
+          example: Compute Optimized, General Purpose
+          type: string
+        InstanceType:
+          description: Server instance type or volume type
+          example: C2i, M2ie for servers. SBP for volume
+          type: string
+        Available:
+          description: If the resource type is Servers, it is available number of
+            servers.  If resource type is volume, it is available storage space in
+            TB
+          minimum: 0
+          type: integer
+        AllocationInfo:
+          description: Array listing the allocation information for each service type
+          items:
+            $ref: '#/components/schemas/AllocationInfo'
+          type: array
       type: object
     ResourceBase:
       properties:
@@ -3934,6 +4051,26 @@ components:
           type: array
         Stats:
           $ref: '#/components/schemas/IPPoolStats'
+      type: object
+    AllocationInfo:
+      description: Allocation information about server or storage for each service
+        type
+      example:
+        AllocatedCount: 1
+        ServiceType: BMaaS, VMaaS
+        AllocatedCapacity: 5
+      properties:
+        ServiceType:
+          description: Service type consuming the resource
+          example: BMaaS, VMaaS
+          type: string
+        AllocatedCount:
+          description: Allocated number of Servers or Volumes
+          type: integer
+        AllocatedCapacity:
+          description: It is populated when the resource type is volume. It represents
+            total capacity of all allocated volume in TB for each service type.
+          type: integer
       type: object
     HostServerPort:
       properties:
