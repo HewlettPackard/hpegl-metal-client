@@ -6,12 +6,12 @@ properties:
     minimum: 0
   Volumes:
     type: integer
-    description: Number of volumes is use
+    description: Number of volumes in use
     minimum: 0
   VolumeCapacity:
     type: integer
     format: int64
-    description: Volumes capacity in use in TiB
+    description: Volume capacity in use in TiB
     minimum: 0
   PrivateNetworks:
     type: integer
@@ -24,4 +24,3 @@ properties:
     description: Numbert of instance types in use
     example:
       046b6c7f-0b8a-43b9-b35d-6489e6daee90: 1
-      
