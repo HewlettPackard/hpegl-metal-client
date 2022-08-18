@@ -3207,7 +3207,7 @@ components:
         InstanceTypes:
           additionalProperties:
             type: integer
-          description: Map of instance type ID to maximum number of instance type
+          description: Map of instance type ID to maximum number of instance types
             to allow
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
@@ -3220,11 +3220,11 @@ components:
           minimum: 0
           type: integer
         Volumes:
-          description: Number of volumes is use
+          description: Number of volumes in use
           minimum: 0
           type: integer
         VolumeCapacity:
-          description: Volumes capacity in use in TiB
+          description: Volume capacity in use in TiB
           format: int64
           minimum: 0
           type: integer

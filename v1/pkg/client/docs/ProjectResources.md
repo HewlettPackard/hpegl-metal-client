@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hosts** | **int32** | Number of hosts in use | [optional] 
-**Volumes** | **int32** | Number of volumes is use | [optional] 
-**VolumeCapacity** | **int64** | Volumes capacity in use in TiB | [optional] 
+**Volumes** | **int32** | Number of volumes in use | [optional] 
+**VolumeCapacity** | **int64** | Volume capacity in use in TiB | [optional] 
 **PrivateNetworks** | **int32** | Number of private networks in use | [optional] 
 **InstanceTypes** | **map[string]int32** | Numbert of instance types in use | [optional] 
 

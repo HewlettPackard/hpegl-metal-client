@@ -15,9 +15,9 @@ package client
 type ProjectResources struct {
 	// Number of hosts in use
 	Hosts int32 `json:"Hosts,omitempty"`
-	// Number of volumes is use
+	// Number of volumes in use
 	Volumes int32 `json:"Volumes,omitempty"`
-	// Volumes capacity in use in TiB
+	// Volume capacity in use in TiB
 	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
 	// Number of private networks in use
 	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`

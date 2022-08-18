@@ -21,6 +21,6 @@ type Limits struct {
 	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
 	// Maximum number of private networks to allow
 	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`
-	// Map of instance type ID to maximum number of instance type to allow
+	// Map of instance type ID to maximum number of instance types to allow
 	InstanceTypes map[string]int32 `json:"InstanceTypes,omitempty"`
 }
