@@ -14,13 +14,13 @@ package client
 // Limits struct for Limits
 type Limits struct {
 	// Maximum number of hosts to allow
-	Hosts int32 `json:"Hosts,omitempty"`
+	Hosts int32 `json:"Hosts"`
 	// Maximum number of volumes to allow
-	Volumes int32 `json:"Volumes,omitempty"`
+	Volumes int32 `json:"Volumes"`
 	// Maximum capacity to allow in TiB
-	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
+	VolumeCapacity int64 `json:"VolumeCapacity"`
 	// Maximum number of private networks to allow
-	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`
+	PrivateNetworks int32 `json:"PrivateNetworks"`
 	// Map of instance type ID to maximum number of instance types to allow
 	InstanceTypes map[string]int32 `json:"InstanceTypes,omitempty"`
 }

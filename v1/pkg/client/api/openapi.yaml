@@ -3212,6 +3212,11 @@ components:
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
           type: object
+      required:
+      - Hosts
+      - PrivateNetworks
+      - VolumeCapacity
+      - Volumes
       type: object
     ProjectResources:
       properties:

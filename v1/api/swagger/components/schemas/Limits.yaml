@@ -1,4 +1,9 @@
 type: object
+required:
+  - Hosts
+  - Volumes
+  - VolumeCapacity
+  - PrivateNetworks
 properties:
   Hosts:
     type: integer
