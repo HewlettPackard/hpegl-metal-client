@@ -24,3 +24,4 @@ properties:
     description: Numbert of instance types in use
     example:
       046b6c7f-0b8a-43b9-b35d-6489e6daee90: 1
+      
