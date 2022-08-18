@@ -13,3 +13,6 @@ properties:
     format: uuid
   Restricted:
     type: boolean
+    description: >
+      True if the usage of this machine size is restricted 
+      to selected projects, false if the machine size is available to anyone.

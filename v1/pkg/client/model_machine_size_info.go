@@ -18,5 +18,6 @@ type MachineSizeInfo struct {
 	OtherUsed int32 `json:"OtherUsed,omitempty"`
 	Available int32 `json:"Available,omitempty"`
 	ID string `json:"ID,omitempty"`
+	// True if the usage of this machine size is restricted  to selected projects, false if the machine size is available to anyone. 
 	Restricted bool `json:"Restricted,omitempty"`
 }

@@ -3207,8 +3207,8 @@ components:
         InstanceTypes:
           additionalProperties:
             type: integer
-          description: Map of instance type ID to maximum number of instance types
-            to allow
+          description: Map of instance type ID to maximum number of hosts that can
+            be created with that instance type
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
           type: object
@@ -3240,7 +3240,7 @@ components:
         InstanceTypes:
           additionalProperties:
             type: integer
-          description: Numbert of instance types in use
+          description: Number of hosts with the instance type in use
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
           type: object
@@ -3312,6 +3312,8 @@ components:
           format: uuid
           type: string
         Restricted:
+          description: |
+            True if the usage of this machine size is restricted  to selected projects, false if the machine size is available to anyone.
           type: boolean
       type: object
     VolumeFlavorsInfo:

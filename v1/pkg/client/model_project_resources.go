@@ -21,6 +21,6 @@ type ProjectResources struct {
 	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
 	// Number of private networks in use
 	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`
-	// Numbert of instance types in use
+	// Number of hosts with the instance type in use
 	InstanceTypes map[string]int32 `json:"InstanceTypes,omitempty"`
 }
