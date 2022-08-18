@@ -100,6 +100,9 @@ tags:
   - name: ippools
     description: |
       Operations related to IP pools.
+  - name: allocation
+    description: |
+      Operations related to listing information about allocation by servers and storage.
 
 paths:
   /version:
@@ -160,6 +163,10 @@ paths:
     $ref: paths/ippools@{ippoolId}@allocation.yaml
   /ippools/{ippoolId}/return:
     $ref: paths/ippools@{ippoolId}@return.yaml
+  /allocation/servers/{siteID}:
+    $ref: paths/allocation@server@{siteID}.yaml
+  /allocation/storage/{siteID}:
+    $ref: paths/allocation@storage@{siteID}.yaml
 
 components:
   securitySchemes:
