@@ -144,6 +144,7 @@ Class | Method | HTTP request | Description
  - [Project](docs/Project.md)
  - [ProjectAllOf](docs/ProjectAllOf.md)
  - [ProjectInfo](docs/ProjectInfo.md)
+ - [ProjectResources](docs/ProjectResources.md)
  - [ProjectsInfo](docs/ProjectsInfo.md)
  - [ProtocolKind](docs/ProtocolKind.md)
  - [ProtocolParameters](docs/ProtocolParameters.md)

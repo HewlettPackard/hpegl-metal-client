@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Modified** | [**time.Time**](time.Time.md) | Time when the resource was last modified in the database | [optional] 
 **Profile** | [**Profile**](Profile.md) |  | 
 **Limits** | [**Limits**](Limits.md) |  | 
+**Resources** | [**ProjectResources**](ProjectResources.md) |  | [optional] 
 **PermittedSites** | **[]string** | Array listing the permitted site IDs | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

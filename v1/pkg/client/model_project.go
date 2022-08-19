@@ -28,6 +28,7 @@ type Project struct {
 	Modified time.Time `json:"Modified,omitempty"`
 	Profile Profile `json:"Profile"`
 	Limits Limits `json:"Limits"`
+	Resources ProjectResources `json:"Resources,omitempty"`
 	// Array listing the permitted site IDs
 	PermittedSites []string `json:"PermittedSites,omitempty"`
 }

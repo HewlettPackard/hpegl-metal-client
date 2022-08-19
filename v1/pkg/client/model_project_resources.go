@@ -11,13 +11,16 @@
  */
 
 package client
-// MachineSizeInfo struct for MachineSizeInfo
-type MachineSizeInfo struct {
-	Name string `json:"Name,omitempty"`
-	ProjectsUsed int32 `json:"ProjectsUsed,omitempty"`
-	OtherUsed int32 `json:"OtherUsed,omitempty"`
-	Available int32 `json:"Available,omitempty"`
-	ID string `json:"ID,omitempty"`
-	// True if the usage of this machine size is restricted  to selected projects, false if the machine size is available to anyone. 
-	Restricted bool `json:"Restricted,omitempty"`
+// ProjectResources struct for ProjectResources
+type ProjectResources struct {
+	// Number of hosts in use
+	Hosts int32 `json:"Hosts,omitempty"`
+	// Number of volumes in use
+	Volumes int32 `json:"Volumes,omitempty"`
+	// Volume capacity in use in TiB
+	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
+	// Number of private networks in use
+	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`
+	// Number of hosts with the instance type in use
+	InstanceTypes map[string]int32 `json:"InstanceTypes,omitempty"`
 }
