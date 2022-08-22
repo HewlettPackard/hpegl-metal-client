@@ -2282,7 +2282,7 @@ paths:
       tags:
       - ippools
     summary: Operations on a single IP pool
-  /allocation/servers/{siteID}:
+  /allocation/servers:
     get:
       description: Returns allocation information for each server instance type used
         by each PCE service. If siteID is present, the information returned is specific
@@ -2317,7 +2317,7 @@ paths:
       summary: Get servers allocation
       tags:
       - allocation
-  /allocation/storage/{siteID}:
+  /allocation/storage:
     get:
       description: Returns allocation information for each volume type used by each
         PCE service. If siteID is present, the information returned is specific to

@@ -4,8 +4,8 @@ All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBySite**](AllocationApi.md#GetBySite) | **Get** /allocation/servers/{siteID} | Get servers allocation
-[**StorageGetBySite**](AllocationApi.md#StorageGetBySite) | **Get** /allocation/storage/{siteID} | Get storage allocation
+[**GetBySite**](AllocationApi.md#GetBySite) | **Get** /allocation/servers | Get servers allocation
+[**StorageGetBySite**](AllocationApi.md#StorageGetBySite) | **Get** /allocation/storage | Get storage allocation
 
 
 

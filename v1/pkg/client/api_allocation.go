@@ -47,7 +47,7 @@ func (a *AllocationApiService) GetBySite(ctx _context.Context, siteID string) (A
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/allocation/servers/{siteID}"
+	localVarPath := a.client.cfg.BasePath + "/allocation/servers"
 	localVarPath = strings.Replace(localVarPath, "{"+"siteID"+"}", _neturl.QueryEscape(parameterToString(siteID, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -184,7 +184,7 @@ func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, localVarOp
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/allocation/storage/{siteID}"
+	localVarPath := a.client.cfg.BasePath + "/allocation/storage"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
