@@ -18,6 +18,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -159,14 +160,20 @@ func (a *AllocationApiService) GetBySite(ctx _context.Context, siteID string) (A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// AllocationApiStorageGetBySiteOpts Optional parameters for the method 'StorageGetBySite'
+type AllocationApiStorageGetBySiteOpts struct {
+    SiteID optional.String
+}
+
 /*
 StorageGetBySite Get storage allocation
 Returns allocation information for each volume type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param siteID site ID
+ * @param optional nil or *AllocationApiStorageGetBySiteOpts - Optional Parameters:
+ * @param "SiteID" (optional.String) -  site ID
 @return Allocation
 */
-func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, siteID string) (Allocation, *_nethttp.Response, error) {
+func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, localVarOptionals *AllocationApiStorageGetBySiteOpts) (Allocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -178,12 +185,13 @@ func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, siteID str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/allocation/storage/{siteID}"
-	localVarPath = strings.Replace(localVarPath, "{"+"siteID"+"}", _neturl.QueryEscape(parameterToString(siteID, "")) , -1)
-
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.SiteID.IsSet() {
+		localVarQueryParams.Add("siteID", parameterToString(localVarOptionals.SiteID.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

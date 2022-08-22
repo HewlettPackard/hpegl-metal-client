@@ -2325,7 +2325,7 @@ paths:
       operationId: allocation_storage_getBySite
       parameters:
       - description: site ID
-        in: path
+        in: query
         name: siteID
         required: false
         schema:
@@ -3067,10 +3067,10 @@ components:
         InstanceFamily: Compute Optimized, General Purpose
         AllocationInfo:
         - AllocatedCount: 1
-          ServiceType: BMaaS, VMaaS
+          ServiceType: BMaaS
           AllocatedCapacity: 5
         - AllocatedCount: 1
-          ServiceType: BMaaS, VMaaS
+          ServiceType: BMaaS
           AllocatedCapacity: 5
         Total: 0
         ResourceType: ResourceType
@@ -4114,12 +4114,12 @@ components:
         type
       example:
         AllocatedCount: 1
-        ServiceType: BMaaS, VMaaS
+        ServiceType: BMaaS
         AllocatedCapacity: 5
       properties:
         ServiceType:
           description: Service type consuming the resource
-          example: BMaaS, VMaaS
+          example: BMaaS
           type: string
         AllocatedCount:
           description: Allocated number of Servers or Volumes

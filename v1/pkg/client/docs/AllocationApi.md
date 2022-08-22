@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ## StorageGetBySite
 
-> Allocation StorageGetBySite(ctx, siteID)
+> Allocation StorageGetBySite(ctx, optional)
 
 Get storage allocation
 
@@ -57,7 +57,16 @@ Returns allocation information for each volume type used by each PCE service. If
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteID** | **string**| site ID | 
+ **optional** | ***StorageGetBySiteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a StorageGetBySiteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **siteID** | **optional.String**| site ID | 
 
 ### Return type
 

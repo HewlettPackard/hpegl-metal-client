@@ -164,9 +164,9 @@ paths:
   /ippools/{ippoolId}/return:
     $ref: paths/ippools@{ippoolId}@return.yaml
   /allocation/servers/{siteID}:
-    $ref: paths/allocation@server@{siteID}.yaml
+    $ref: paths/allocation@server.yaml
   /allocation/storage/{siteID}:
-    $ref: paths/allocation@storage@{siteID}.yaml
+    $ref: paths/allocation@storage.yaml
 
 components:
   securitySchemes:
