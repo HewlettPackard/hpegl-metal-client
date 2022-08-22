@@ -4,7 +4,7 @@ properties:
   ServiceType:
     type: string
     description: Service type consuming the resource 
-    example: BMaaS, VMaaS
+    example: BMaaS
   AllocatedCount:
     type: integer
     description: Allocated number of Servers or Volumes

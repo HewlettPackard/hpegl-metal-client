@@ -4,14 +4,14 @@ All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBySite**](AllocationApi.md#GetBySite) | **Get** /allocation/servers/{siteID} | Get servers allocation
-[**StorageGetBySite**](AllocationApi.md#StorageGetBySite) | **Get** /allocation/storage/{siteID} | Get storage allocation
+[**GetBySite**](AllocationApi.md#GetBySite) | **Get** /allocation/servers | Get servers allocation
+[**StorageGetBySite**](AllocationApi.md#StorageGetBySite) | **Get** /allocation/storage | Get storage allocation
 
 
 
 ## GetBySite
 
-> Allocation GetBySite(ctx, siteID)
+> Allocation GetBySite(ctx, optional)
 
 Get servers allocation
 
@@ -23,7 +23,16 @@ Returns allocation information for each server instance type used by each PCE se
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteID** | **string**| site ID | 
+ **optional** | ***GetBySiteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetBySiteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **siteID** | **optional.String**| site ID | 
 
 ### Return type
 
@@ -45,7 +54,7 @@ Name | Type | Description  | Notes
 
 ## StorageGetBySite
 
-> Allocation StorageGetBySite(ctx, siteID)
+> Allocation StorageGetBySite(ctx, optional)
 
 Get storage allocation
 
@@ -57,7 +66,16 @@ Returns allocation information for each volume type used by each PCE service. If
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteID** | **string**| site ID | 
+ **optional** | ***StorageGetBySiteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a StorageGetBySiteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **siteID** | **optional.String**| site ID | 
 
 ### Return type
 

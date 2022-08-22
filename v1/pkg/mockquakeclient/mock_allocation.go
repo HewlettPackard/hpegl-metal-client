@@ -39,9 +39,9 @@ func (m *MockAllocationAPI) EXPECT() *MockAllocationAPIMockRecorder {
 }
 
 // GetBySite mocks base method.
-func (m *MockAllocationAPI) GetBySite(ctx context.Context, siteID string) (client.Allocation, *http.Response, error) {
+func (m *MockAllocationAPI) GetBySite(ctx context.Context, localVarOptionals *client.AllocationApiGetBySiteOpts) (client.Allocation, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetBySite", ctx, siteID)
+	ret := m.ctrl.Call(m, "GetBySite", ctx, localVarOptionals)
 	ret0, _ := ret[0].(client.Allocation)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -49,15 +49,15 @@ func (m *MockAllocationAPI) GetBySite(ctx context.Context, siteID string) (clien
 }
 
 // GetBySite indicates an expected call of GetBySite.
-func (mr *MockAllocationAPIMockRecorder) GetBySite(ctx, siteID interface{}) *gomock.Call {
+func (mr *MockAllocationAPIMockRecorder) GetBySite(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBySite", reflect.TypeOf((*MockAllocationAPI)(nil).GetBySite), ctx, siteID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBySite", reflect.TypeOf((*MockAllocationAPI)(nil).GetBySite), ctx, localVarOptionals)
 }
 
 // StorageGetBySite mocks base method.
-func (m *MockAllocationAPI) StorageGetBySite(ctx context.Context, siteID string) (client.Allocation, *http.Response, error) {
+func (m *MockAllocationAPI) StorageGetBySite(ctx context.Context, localVarOptionals *client.AllocationApiStorageGetBySiteOpts) (client.Allocation, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "StorageGetBySite", ctx, siteID)
+	ret := m.ctrl.Call(m, "StorageGetBySite", ctx, localVarOptionals)
 	ret0, _ := ret[0].(client.Allocation)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -65,7 +65,7 @@ func (m *MockAllocationAPI) StorageGetBySite(ctx context.Context, siteID string)
 }
 
 // StorageGetBySite indicates an expected call of StorageGetBySite.
-func (mr *MockAllocationAPIMockRecorder) StorageGetBySite(ctx, siteID interface{}) *gomock.Call {
+func (mr *MockAllocationAPIMockRecorder) StorageGetBySite(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StorageGetBySite", reflect.TypeOf((*MockAllocationAPI)(nil).StorageGetBySite), ctx, siteID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StorageGetBySite", reflect.TypeOf((*MockAllocationAPI)(nil).StorageGetBySite), ctx, localVarOptionals)
 }

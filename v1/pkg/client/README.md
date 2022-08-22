@@ -39,8 +39,8 @@ All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AllocationApi* | [**GetBySite**](docs/AllocationApi.md#getbysite) | **Get** /allocation/servers/{siteID} | Get servers allocation
-*AllocationApi* | [**StorageGetBySite**](docs/AllocationApi.md#storagegetbysite) | **Get** /allocation/storage/{siteID} | Get storage allocation
+*AllocationApi* | [**GetBySite**](docs/AllocationApi.md#getbysite) | **Get** /allocation/servers | Get servers allocation
+*AllocationApi* | [**StorageGetBySite**](docs/AllocationApi.md#storagegetbysite) | **Get** /allocation/storage | Get storage allocation
 *AvailableResourcesApi* | [**List**](docs/AvailableResourcesApi.md#list) | **Get** /available-resources | Get lists of available resources for creating hosts and volumes
 *HostsApi* | [**Add**](docs/HostsApi.md#add) | **Post** /hosts | Create a new Host
 *HostsApi* | [**BootHDD**](docs/HostsApi.md#boothdd) | **Post** /hosts/{hostId}/boothdd | Set HDD boot order on Host by ID
