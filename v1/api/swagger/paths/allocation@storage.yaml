@@ -6,7 +6,7 @@ get:
   operationId: allocation_storage_getBySite
   parameters:
     - name: siteID
-      in: path
+      in: query
       description: site ID
       required: false
       schema:
