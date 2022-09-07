@@ -25,7 +25,7 @@ type AllocationAPI interface {
 	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	    * @param optional nil or *AllocationApiStorageGetBySiteOpts - Optional Parameters:
 	    * @param "SiteID" (optional.String) -  site ID
-	   @return Allocation
+	   @return AllocationStorage
 	*/
-	StorageGetBySite(ctx _context.Context, localVarOptionals *AllocationApiStorageGetBySiteOpts) (Allocation, *_nethttp.Response, error)
+	StorageGetBySite(ctx _context.Context, localVarOptionals *AllocationApiStorageGetBySiteOpts) (AllocationStorage, *_nethttp.Response, error)
 }

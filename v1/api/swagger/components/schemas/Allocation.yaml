@@ -1,12 +1,12 @@
 type: object
-description: allocation of servers or storage for each PCE service.
+description: allocation of servers for each PCE service.
 properties:
   ResourceType:
     type: string
-    description: Type of the resource the allocation information is listed for. e.g. Server 
+    description: Type of the resource the allocation information is listed for. 
   Total:
     type: integer
-    description: Total is total number of servers.
+    description: Total number of servers.
   InstanceFamily:
     type: string
     description: Instance type family name.

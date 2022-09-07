@@ -3,10 +3,11 @@ description: allocation of storage for each PCE service.
 properties:
   ResourceType:
     type: string
-    description: Type of the resource the allocation information is listed for. The value will be Volume
+    description: Type of the resource the allocation information is listed for.
   Total:
-    type: float
-    description: Total  is the total storage capacity in TB
+    type: number
+    format: float
+    description: Total storage capacity in TB
   InstanceFamily:
     type: string
     description: Instance type family name.
@@ -16,7 +17,8 @@ properties:
     description: volume type
     example: SBP
   Available:
-    type: float
+    type: number
+    format: float
     minimum: 0.0
     description: Available storage space in TB
   AllocationInfo:
