@@ -1,0 +1,26 @@
+type: object
+description: allocation of storage for each PCE service.
+properties:
+  ResourceType:
+    type: string
+    description: Type of the resource the allocation information is listed for. The value will be Volume
+  Total:
+    type: float
+    description: Total  is the total storage capacity in TB
+  InstanceFamily:
+    type: string
+    description: Instance type family name.
+    example: Performance Optimized Block
+  InstanceType:
+    type: string
+    description: volume type
+    example: SBP
+  Available:
+    type: float
+    minimum: 0.0
+    description: Available storage space in TB
+  AllocationInfo:
+    type: array
+    description: Array listing the allocation information for each service type
+    items:
+      $ref: ./AllocationInfo.yaml

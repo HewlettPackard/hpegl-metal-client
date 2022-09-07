@@ -17,7 +17,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Allocation.yaml
+            $ref: ../components/schemas/AllocationStorage.yaml
     '401':
       $ref: ../components/responses/Unauthorized.yaml
     '500':
