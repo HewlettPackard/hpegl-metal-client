@@ -60,6 +60,9 @@ properties:
   VNI:
     type: integer
     description: VNI ID of the network
+  Untagged:
+    type: boolean
+    description: True if the network is untagged
   Proxy:
     type: string
     example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080

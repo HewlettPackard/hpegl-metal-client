@@ -30,6 +30,8 @@ type HostNetworkConnection struct {
 	VLAN int32 `json:"VLAN,omitempty"`
 	// VNI ID of the network
 	VNI int32 `json:"VNI,omitempty"`
+	// True if the network is untagged
+	Untagged bool `json:"Untagged,omitempty"`
 	// Optional web-proxy for external internet access should the IP subnet actually be behind a firewall
 	Proxy string `json:"Proxy,omitempty"`
 	// Addresses or CIDRs for which proxy requests are not made
