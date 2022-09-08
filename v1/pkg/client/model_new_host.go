@@ -32,6 +32,8 @@ type NewHost struct {
 	PreAllocatedIPs []string `json:"PreAllocatedIPs,omitempty"`
 	// The host default network ID
 	NetworkForDefaultRoute string `json:"NetworkForDefaultRoute"`
+	// ID of the network selected to be untagged. This needs to be one of the values in the  \"NetworkIDs\" list.
+	NetworkUntagged string `json:"NetworkUntagged,omitempty"`
 	// The list of IDs corresponding to existing, unattached volumes that should be attached to the new host.  The volume must be one of those listed in the Volumes array returned by the get /available-resources call.  In addition, the volume must be in the visible state and not a part of any current VolumeAttachment (see get volume-attachments)
 	VolumeIDs []string `json:"VolumeIDs,omitempty"`
 	// The map of Service Network (Provider) ID to Provider MAC address.   The Service Network must be a provider network provisioned to this host. Any Service Networks not included here will default to the physical MAC learned during machine discovery.
