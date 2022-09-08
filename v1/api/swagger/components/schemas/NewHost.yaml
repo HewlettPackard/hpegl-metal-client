@@ -87,7 +87,10 @@ properties:
   NetworkForDefaultRoute:
     type: string
     format: uuid
-    description: The host default network ID
+    description: >-
+          The host's default network ID. This needs to be one of the values in the 
+          "NetworkIDs" list.
+    example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
   NetworkUntagged:
     type: string
     format: uuid
