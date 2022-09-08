@@ -171,16 +171,16 @@ Returns allocation information for each volume type used by each PCE service. If
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *AllocationApiStorageGetBySiteOpts - Optional Parameters:
  * @param "SiteID" (optional.String) -  site ID
-@return Allocation
+@return AllocationStorage
 */
-func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, localVarOptionals *AllocationApiStorageGetBySiteOpts) (Allocation, *_nethttp.Response, error) {
+func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, localVarOptionals *AllocationApiStorageGetBySiteOpts) (AllocationStorage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Allocation
+		localVarReturnValue  AllocationStorage
 	)
 
 	// create path and map variables
@@ -255,7 +255,7 @@ func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, localVarOp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v Allocation
+			var v AllocationStorage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

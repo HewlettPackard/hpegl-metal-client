@@ -1,24 +1,24 @@
 type: object
-description: allocation of servers or storage for each PCE service.
+description: allocation of servers for each PCE service.
 properties:
   ResourceType:
     type: string
-    description: Type of the resource the allocation information is listed for. It is either Server or Volume
+    description: Type of the resource the allocation information is listed for. 
   Total:
     type: integer
-    description: If the resource type is Server, Total is total number of servers.  If the resource type is Volume, Total  is the total storage capacity in TB
+    description: Total number of servers.
   InstanceFamily:
     type: string
     description: Instance type family name.
     example: Compute Optimized, General Purpose
   InstanceType:
     type: string
-    description: Server instance type or volume type
-    example: C2i, M2ie for servers. SBP for volume
+    description: Server instance type
+    example: C2i, M2ie
   Available:
     type: integer
     minimum: 0
-    description: If the resource type is Servers, it is available number of servers.  If resource type is volume, it is available storage space in TB
+    description: Available number of servers.
   AllocationInfo:
     type: array
     description: Array listing the allocation information for each service type

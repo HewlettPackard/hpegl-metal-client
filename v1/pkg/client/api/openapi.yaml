@@ -2335,7 +2335,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Allocation'
+                $ref: '#/components/schemas/AllocationStorage'
           description: success
         "401":
           content:
@@ -3062,7 +3062,7 @@ components:
       - Usage
       type: object
     Allocation:
-      description: allocation of servers or storage for each PCE service.
+      description: allocation of servers for each PCE service.
       example:
         InstanceFamily: Compute Optimized, General Purpose
         AllocationInfo:
@@ -3075,30 +3075,68 @@ components:
         Total: 0
         ResourceType: ResourceType
         Available: 0
-        InstanceType: C2i, M2ie for servers. SBP for volume
+        InstanceType: C2i, M2ie
       properties:
         ResourceType:
           description: Type of the resource the allocation information is listed for.
-            It is either Server or Volume
           type: string
         Total:
-          description: If the resource type is Server, Total is total number of servers.  If
-            the resource type is Volume, Total  is the total storage capacity in TB
+          description: Total number of servers.
           type: integer
         InstanceFamily:
           description: Instance type family name.
           example: Compute Optimized, General Purpose
           type: string
         InstanceType:
-          description: Server instance type or volume type
-          example: C2i, M2ie for servers. SBP for volume
+          description: Server instance type
+          example: C2i, M2ie
           type: string
         Available:
-          description: If the resource type is Servers, it is available number of
-            servers.  If resource type is volume, it is available storage space in
-            TB
+          description: Available number of servers.
           minimum: 0
           type: integer
+        AllocationInfo:
+          description: Array listing the allocation information for each service type
+          items:
+            $ref: '#/components/schemas/AllocationInfo'
+          type: array
+      type: object
+    AllocationStorage:
+      description: allocation of storage for each PCE service.
+      example:
+        InstanceFamily: Performance Optimized Block
+        AllocationInfo:
+        - AllocatedCount: 1
+          ServiceType: BMaaS
+          AllocatedCapacity: 5
+        - AllocatedCount: 1
+          ServiceType: BMaaS
+          AllocatedCapacity: 5
+        Total: 0.8008282
+        ResourceType: ResourceType
+        Available: 0.6027456
+        InstanceType: SBP
+      properties:
+        ResourceType:
+          description: Type of the resource the allocation information is listed for.
+          type: string
+        Total:
+          description: Total storage capacity in TB
+          format: float
+          type: number
+        InstanceFamily:
+          description: Instance type family name.
+          example: Performance Optimized Block
+          type: string
+        InstanceType:
+          description: volume type
+          example: SBP
+          type: string
+        Available:
+          description: Available storage space in TB
+          format: float
+          minimum: 0.0
+          type: number
         AllocationInfo:
           description: Array listing the allocation information for each service type
           items:

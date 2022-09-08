@@ -55,10 +55,10 @@ func (mr *MockAllocationAPIMockRecorder) GetBySite(ctx, siteID interface{}) *gom
 }
 
 // StorageGetBySite mocks base method.
-func (m *MockAllocationAPI) StorageGetBySite(ctx context.Context, localVarOptionals *client.AllocationApiStorageGetBySiteOpts) (client.Allocation, *http.Response, error) {
+func (m *MockAllocationAPI) StorageGetBySite(ctx context.Context, localVarOptionals *client.AllocationApiStorageGetBySiteOpts) (client.AllocationStorage, *http.Response, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "StorageGetBySite", ctx, localVarOptionals)
-	ret0, _ := ret[0].(client.Allocation)
+	ret0, _ := ret[0].(client.AllocationStorage)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
 	return ret0, ret1, ret2
