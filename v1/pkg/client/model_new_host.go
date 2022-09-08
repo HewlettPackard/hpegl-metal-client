@@ -30,7 +30,7 @@ type NewHost struct {
 	NetworkIDs []string `json:"NetworkIDs"`
 	// A list of pre-allocated IP addresses to be used for corresponding networks. This array of IP addresses, if present, is in one-to-one correspondence with Networks.
 	PreAllocatedIPs []string `json:"PreAllocatedIPs,omitempty"`
-	// The host default network ID
+	// The host's default network ID. This needs to be one of the values in the  \"NetworkIDs\" list.
 	NetworkForDefaultRoute string `json:"NetworkForDefaultRoute"`
 	// ID of the network selected to be untagged. This needs to be one of the values in the  \"NetworkIDs\" list.
 	NetworkUntagged string `json:"NetworkUntagged,omitempty"`
