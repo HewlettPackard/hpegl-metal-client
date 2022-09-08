@@ -4240,6 +4240,9 @@ components:
         VNI:
           description: VNI ID of the network
           type: integer
+        Untagged:
+          description: True if the network is untagged
+          type: boolean
         Proxy:
           description: Optional web-proxy for external internet access should the
             IP subnet actually be behind a firewall
@@ -4747,6 +4750,12 @@ components:
           description: The host's default network ID. This needs to be one of the
             values in the  "NetworkIDs" list.
           example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          format: uuid
+          type: string
+        NetworkUntagged:
+          description: ID of the network selected to be untagged. This needs to be
+            one of the values in the  "NetworkIDs" list.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
           format: uuid
           type: string
         PreAllocatedIPs:

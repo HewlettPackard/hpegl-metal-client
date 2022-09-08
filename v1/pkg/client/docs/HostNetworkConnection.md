@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **DNS** | **[]string** | List of DNS servers for the IP subnet | [optional] 
 **VLAN** | **int32** | VLAN ID of the network | [optional] 
 **VNI** | **int32** | VNI ID of the network | [optional] 
+**Untagged** | **bool** | True if the network is untagged | [optional] 
 **Proxy** | **string** | Optional web-proxy for external internet access should the IP subnet actually be behind a firewall | [optional] 
 **NoProxy** | **string** | Addresses or CIDRs for which proxy requests are not made | [optional] 
 
