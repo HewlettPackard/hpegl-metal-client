@@ -1,14 +1,14 @@
-# Allocation
+# AllocationStorage
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ResourceType** | **string** | Type of the resource the allocation information is listed for. | [optional] 
-**Total** | **int32** | Total number of servers. | [optional] 
+**Total** | **float32** | Total storage capacity in TB | [optional] 
 **InstanceFamily** | **string** | Instance type family name. | [optional] 
-**InstanceType** | **string** | Server instance type | [optional] 
-**Available** | **int32** | Available number of servers. | [optional] 
+**InstanceType** | **string** | volume type | [optional] 
+**Available** | **float32** | Available storage space in TB | [optional] 
 **AllocationInfo** | [**[]AllocationInfo**](AllocationInfo.md) | Array listing the allocation information for each service type | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

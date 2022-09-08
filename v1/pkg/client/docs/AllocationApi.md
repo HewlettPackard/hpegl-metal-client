@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ## StorageGetBySite
 
-> Allocation StorageGetBySite(ctx, optional)
+> AllocationStorage StorageGetBySite(ctx, optional)
 
 Get storage allocation
 
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Allocation**](Allocation.md)
+[**AllocationStorage**](AllocationStorage.md)
 
 ### Authorization
 

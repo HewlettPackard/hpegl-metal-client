@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
  - [AddVolume](docs/AddVolume.md)
  - [Allocation](docs/Allocation.md)
  - [AllocationInfo](docs/AllocationInfo.md)
+ - [AllocationStorage](docs/AllocationStorage.md)
  - [AvailableImage](docs/AvailableImage.md)
  - [AvailableNetwork](docs/AvailableNetwork.md)
  - [AvailableResources](docs/AvailableResources.md)
