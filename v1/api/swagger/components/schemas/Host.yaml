@@ -5,6 +5,7 @@ allOf:
       - Description
       - NetworkIDs
       - NetworkForDefaultRoute
+      - NetworkUntagged
     properties:
       Description:
         type: string
