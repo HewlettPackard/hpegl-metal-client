@@ -43,6 +43,9 @@ allOf:
         type: string
         format: ipv4
         description: VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
+      WWN:
+        type: string
+        description: WWN is the serial number of the volume
       State:
         $ref: ./VaStateEnum.yaml
       FSConfig:

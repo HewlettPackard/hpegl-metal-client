@@ -4927,6 +4927,9 @@ components:
             export
           format: ipv4
           type: string
+        WWN:
+          description: WWN is the serial number of the volume
+          type: string
         State:
           $ref: '#/components/schemas/VaStateEnum'
         FSConfig:

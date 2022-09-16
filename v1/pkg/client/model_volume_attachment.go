@@ -44,6 +44,8 @@ type VolumeAttachment struct {
 	VolumeTargetIQN string `json:"VolumeTargetIQN,omitempty"`
 	// VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
 	VolumeTargetIPAddress string `json:"VolumeTargetIPAddress,omitempty"`
+	// WWN is the serial number of the volume
+	WWN string `json:"WWN,omitempty"`
 	State VaStateEnum `json:"State,omitempty"`
 	// File share specific configuration parameters
 	FSConfig *VafsConfig `json:"FSConfig,omitempty"`
