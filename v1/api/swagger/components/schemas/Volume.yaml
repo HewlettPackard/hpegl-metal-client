@@ -41,3 +41,6 @@ allOf:
         description: The map of label name to label value for the volume.
         example:
           serviceType: BMaaS
+      WWN:
+        type: string
+        description: Serial number of the volume.

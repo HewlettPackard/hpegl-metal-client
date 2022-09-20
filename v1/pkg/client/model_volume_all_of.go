@@ -27,4 +27,6 @@ type VolumeAllOf struct {
 	Status VolumeStatus `json:"Status,omitempty"`
 	// The map of label name to label value for the volume.
 	Labels map[string]string `json:"Labels,omitempty"`
+	// Serial number of the volume.
+	WWN string `json:"WWN,omitempty"`
 }

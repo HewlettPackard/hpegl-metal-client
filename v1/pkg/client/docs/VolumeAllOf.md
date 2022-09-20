@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **SubState** | [**VolumeSubState**](VolumeSubState.md) |  | [optional] 
 **Status** | [**VolumeStatus**](VolumeStatus.md) |  | [optional] 
 **Labels** | **map[string]string** | The map of label name to label value for the volume. | [optional] 
+**WWN** | **string** | Serial number of the volume. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
