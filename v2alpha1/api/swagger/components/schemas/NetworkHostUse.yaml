@@ -1,0 +1,12 @@
+type: string
+enum:
+  - Required
+  - Default
+  - Optional
+example: Default
+description: >
+  Indicates whether use of the network is required, default, or optional.  If
+  the  network is required, any new create host request for that location must
+  include this network among the requested networks.  Default and Optional are
+  both optional networks, but imply whether they should show up initially in
+  pre-populated fields in a graphical user interface.

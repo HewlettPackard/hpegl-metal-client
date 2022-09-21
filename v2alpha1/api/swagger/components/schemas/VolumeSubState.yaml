@@ -1,0 +1,9 @@
+description: >-
+  Current update state of volume expressed as a string enum value (idle, update-requested,
+  updating)
+type: string
+enum:
+  - idle
+  - update-requested
+  - updating
+

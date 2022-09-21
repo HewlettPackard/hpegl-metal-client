@@ -1,0 +1,51 @@
+get:
+  tags:
+    - volumes
+  summary: List all volumes in project
+  description: Returns an array of all volumes defined within the project.
+  operationId: Volumes_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Volume.yaml
+
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+post:
+  tags:
+    - volumes
+  summary: Add a new volume
+  description: >
+    Adds a new volume to the project.  Volumes may be created separately and
+    then referenced in the create Host call; or volumes may be created directly
+    within the create Host call.
+  operationId: Volume_add
+  requestBody:
+    required: true
+    description: Volume that is to be added to the project
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewVolume.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Volume.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

@@ -1,0 +1,29 @@
+summary: Set a specific host to attempt HDD boot 
+post:
+  tags:
+    - hosts
+  summary: Set HDD boot order on Host by ID
+  description: Sets a single Host with matching ID to attempt HDD boot
+  operationId: bootHDD
+  parameters:
+    - name: hostId
+      in: path
+      description: ID of Host to set to HDD boot
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Host.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

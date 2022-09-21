@@ -1,0 +1,111 @@
+get:
+  tags:
+    - projects
+  summary: Retrieve a project by its ID
+  description: >-
+    Returns a single Project object with its matching ID This includes profile
+    information for the project and project limits on resouces like hosts,
+    private networks, volumes, and volume capacity.
+  operationId: Project_getByID
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: projectId
+      in: path
+      description: ID of project to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Project.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+put:
+  tags:
+    - projects
+  summary: Update a project by its ID
+  description: >-
+    Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated
+    with this operation.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
+  operationId: Project_update
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: projectId
+      in: path
+      description: ID of project to update
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Project parameters to update an existing Project
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Project.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Project.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+delete:
+  tags:
+    - projects
+  summary: Delete a Project
+  description: >-
+    Deletes the Project with the matching ID.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
+  operationId: Project_delete
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: projectId
+      in: path
+      description: ID of project to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

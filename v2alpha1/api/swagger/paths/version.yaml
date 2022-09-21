@@ -1,0 +1,20 @@
+get:
+  tags:
+    - version
+  summary: Get api server build version
+  operationId: Versions_get
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Version.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

@@ -1,0 +1,64 @@
+get:
+  tags:
+    - hosts
+  summary: List all Hosts in project
+  description: Returns an array of all Host objects defined within the project.
+  operationId: Hosts_list
+  parameters:
+    - in: query
+      name: all
+      required: false
+      schema:
+        type: string
+        enum: ["true"]
+      description: Includes deleted Host objects in the response when set to "true".
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Host.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+post:
+  tags:
+    - hosts
+  summary: Create a new Host
+  description: >-
+    Creates a new host object which kicks off the provisioning of a physical
+    server in accordance to the attributes provided for the Host object.  Most
+    values for these options must be selected from the set of options provided
+    by the get available-resources API call.
+
+    The SvcFlavor, SvcVersion, LocationID, SSHKeyIDs, and Network attribute must
+    all be set with appropriate ID values from the available-resources call.
+  operationId: Host_add
+  requestBody:
+    required: true
+    description: >-
+      Defines the configuration of the desired host. See the schema for
+      descriptions of individual attributes.
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewHost.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Host.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

@@ -1,0 +1,36 @@
+get:
+  tags:
+    - usage-reports
+  summary: Get a usage report
+  description: >
+    Creates and returns a usage report based on the parameters passed in the
+    request body
+  operationId: UsageReport_get
+  parameters:
+    - in: query
+      name: start
+      required: true
+      schema:
+        type: string
+      description: Start of the billing period
+    - in: query
+      name: end
+      required: false
+      schema:
+        type: string
+      description: End of the billing period, default to now if omitted
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/UsageReport.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

@@ -1,0 +1,38 @@
+summary: Operations on a single IP pool
+post:
+  tags:
+    - ippools
+  summary: Allocate IPs from the pool
+  description: Allocate IPs from the pool
+  operationId: IPPool_allocateIPs
+  parameters:
+    - name: ippoolId
+      in: path
+      description: ID of IP pool to allocate IPs
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: IPs being requested starting from an optional base IP and their usage
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/IPAllocation.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/IPPool.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

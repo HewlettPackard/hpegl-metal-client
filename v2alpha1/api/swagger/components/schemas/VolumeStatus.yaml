@@ -1,0 +1,6 @@
+description: Current volume status expressed as a string enum values (ok, error, degraded)
+type: string
+enum:
+  - ok
+  - error
+  - degraded

@@ -1,0 +1,66 @@
+summary: Operations on a single IP pool
+get:
+  tags:
+    - ippools
+  summary: Retrieve IP pool by ID
+  description: Returns a single ip pool with matching ID
+  operationId: IPPool_getByID
+  parameters:
+    - name: ippoolId
+      in: path
+      description: ID of IP pool to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/IPPool.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+put:
+  tags:
+    - ippools
+  summary: Update IP pool by ID
+  description: Update a single ip pool with matching ID. 'DefaultRoute' can only be updated if ip pool is not currently in-use.
+  operationId: IPPool_update
+  parameters:
+    - name: ippoolId
+      in: path
+      description: ID of IP pool to update
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Update IPPool
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/IPPool.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/IPPool.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

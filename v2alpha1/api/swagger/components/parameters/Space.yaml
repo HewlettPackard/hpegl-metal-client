@@ -1,0 +1,6 @@
+name: Space
+in: header
+description: GreenLake space name
+schema:
+  type: string
+example: Default

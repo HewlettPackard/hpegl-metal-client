@@ -1,0 +1,30 @@
+type: object
+properties:
+  ID:
+    type: string
+  Name:
+    type: string
+  Description:
+    type: string
+  NumHosts:
+    type: integer
+  NumVolumes:
+    type: integer
+  TotalStorageGB:
+    type: integer
+  Status:
+    type: string
+    enum:
+      - Enable
+      - Disable
+  NumNetworks:
+    type: integer
+    description: Number of project networks
+  SummaryStatus:
+    $ref: ./HealthStatus.yaml
+    description: Project health status
+  Locations:
+    type: array
+    items:
+      $ref: ./LocationInfo.yaml   
+    description: Locations where project resources exist

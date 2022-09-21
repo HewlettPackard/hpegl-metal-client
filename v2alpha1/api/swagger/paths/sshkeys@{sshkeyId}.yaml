@@ -1,0 +1,92 @@
+summary: Operations on a single SSH Key
+get:
+  tags:
+    - sshkeys
+  summary: Retrieve SSH Key by ID
+  description: Returns a single SSH key with matching ID
+  operationId: SSHKey_getByID
+  parameters:
+    - name: sshkeyId
+      in: path
+      description: ID of sshkey to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/SSHKey.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+put:
+  tags:
+    - sshkeys
+  summary: Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
+  description: ''
+  operationId: SSHKey_update
+  parameters:
+    - name: sshkeyId
+      in: path
+      description: ID of sshkey to update
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Updated SSH key
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/SSHKey.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/SSHKey.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+delete:
+  tags:
+    - sshkeys
+  summary: Delete an SSH key
+  description: Deletes the SSH key with the matching ID
+  operationId: SSHKey_delete
+  parameters:
+    - name: sshkeyId
+      in: path
+      description: ID of sshkey to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

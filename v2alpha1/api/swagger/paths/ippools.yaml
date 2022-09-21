@@ -1,0 +1,19 @@
+get:
+  tags:
+    - ippools
+  summary: List all ip pools in project
+  description: Returns an array of all ip pool objects defined within the project.
+  operationId: IPPool_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/IPPool.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

@@ -1,0 +1,10 @@
+type: object
+properties:
+  Name:
+    type: string
+  ProjectsUsed:
+    type: integer
+  OtherUsed:
+    type: integer
+  Available:
+    type: integer

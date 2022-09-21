@@ -1,0 +1,12 @@
+description: >-
+  Current volume state expressed as a string enum value (new, allocating,
+  allocated, visible, deleting, deleted, failed)
+type: string
+enum:
+  - new
+  - allocating
+  - allocated
+  - visible
+  - deleting
+  - deleted
+  - failed

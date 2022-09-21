@@ -1,0 +1,19 @@
+type: object
+description: >-
+  Entry on data center with its location ID and country, region, and data center
+  description strings
+properties:
+  ID:
+    type: string
+    format: uuid
+    description: Unique ID for data center location
+  Country:
+    $ref: ./Country.yaml
+  Region:
+    type: string
+    example: Central
+    description: Region within the indicated country
+  DataCenter:
+    type: string
+    example: FTC1
+    description: Data center descriptor

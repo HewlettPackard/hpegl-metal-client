@@ -1,0 +1,85 @@
+summary: Operations on a single volume
+get:
+  tags:
+    - volumes
+  summary: Retrieve volume by ID
+  description: Returns a single volume with matching ID
+  operationId: Volume_getByID
+  parameters:
+    - name: volumeId
+      in: path
+      description: ID of volume to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Volume.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+put:
+  tags:
+    - volumes
+  summary: Update an existing volume
+  description: >
+   Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state.
+   Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume. 
+  operationId: Volume_update
+  requestBody:
+    required: true
+    description: Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Volume.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Volume.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+delete:
+  tags:
+    - volumes
+  summary: Delete a volume
+  description: Deletes the volume with the matching ID
+  operationId: Volume_delete
+  parameters:
+    - name: volumeId
+      in: path
+      description: ID of volume to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

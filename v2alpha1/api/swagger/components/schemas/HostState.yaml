@@ -1,0 +1,17 @@
+type: string
+enum:
+  - New
+  - Deleting
+  - Deleted
+  - Failed
+  - Updating Connections
+  - Imaging
+  - Connecting
+  - Booting
+  - Ready
+  - Replacing
+  - Releasing
+  - Allocating
+  - Maintenance
+description: Overall host state
+example: Ready

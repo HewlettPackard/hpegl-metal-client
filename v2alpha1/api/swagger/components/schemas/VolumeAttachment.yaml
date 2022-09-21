@@ -1,0 +1,53 @@
+allOf:
+  - $ref: ./ResourceBase.yaml
+  - type: object
+    properties:
+      VolumeID:
+        type: string
+        format: uuid
+        description: Unique ID of the volume attached to the host
+      HostID:
+        type: string
+        format: uuid
+        description: Unique ID of the host connected to the volume
+      HostIPAddress:
+        type: string
+        format: ipv4
+        description: >-
+          Host IP address for the network connection that connects to the
+          storage array
+      IQN:
+        type: string
+        description: >-
+          IQN is the full initiator name used for identification during iSCSI
+          login
+        example: iqn.yyyy-mm.naming-authority:unique name
+      CHAPSecret:
+        type: string
+        description: >-
+          CHAPSecret is the Challenge Authentication Protocol secret to be
+          shared between array and initiator.
+      CHAPUserName:
+        type: string
+        description: CHAPUserName is the CHAP username to use for CHAP authentication
+      LUN:
+        type: integer
+        description: LUN is the Logical Unit Number to be assigned to the volume on export
+      VolumeTargetIQN:
+        type: string
+        example: iqn.yyyy-mm.naming-authority:unique name
+        description: >-
+          VolumeTargetIQN is the iQN for the volume, assigned by the array
+          correspnding to the volume
+      VolumeTargetIPAddress:
+        type: string
+        format: ipv4
+        description: VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
+      State:
+        $ref: ./VaStateEnum.yaml
+      FSConfig:
+        description: File share specific configuration parameters 
+        nullable: true
+        allOf:
+        - $ref: ./VAFSConfig.yaml
+
