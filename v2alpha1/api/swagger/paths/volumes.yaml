@@ -1,8 +1,8 @@
 get:
   tags:
     - volumes
-  summary: List all volumes in project
-  description: Returns an array of all volumes defined within the project.
+  summary: List all volumes in compute group
+  description: Returns an array of all volumes defined within the compute group.
   operationId: Volumes_list
   responses:
     '200':
@@ -23,13 +23,13 @@ post:
     - volumes
   summary: Add a new volume
   description: >
-    Adds a new volume to the project.  Volumes may be created separately and
+    Adds a new volume to the compute group.  Volumes may be created separately and
     then referenced in the create Host call; or volumes may be created directly
     within the create Host call.
   operationId: Volume_add
   requestBody:
     required: true
-    description: Volume that is to be added to the project
+    description: Volume that is to be added to the compute group
     content:
       application/json:
         schema:

@@ -1,9 +1,9 @@
 type: object
 properties:
-  projectID:
+  computeGroupID:
     type: string
     format: uuid
-    description: Project ID that contained the host
+    description: Compute group ID that contained the host
   locationID:
     $ref: ./LocationID.yaml
   allocated:

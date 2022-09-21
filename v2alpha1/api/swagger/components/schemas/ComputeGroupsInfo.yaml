@@ -1,0 +1,17 @@
+type: object
+properties:
+  computeGroups:
+    type: array
+    items:
+      $ref: ./ComputeGroupInfo.yaml
+  instanceTypes:
+    type: array
+    items:
+      $ref: ./InstanceTypeInfo.yaml
+  volumeFlavors:
+    type: array
+    items:
+      $ref: ./VolumeFlavorsInfo.yaml
+  summary:
+    $ref: ./SummaryInfo.yaml
+    description: Aggregate consumption and health counts of compute-groups at the specified locations    

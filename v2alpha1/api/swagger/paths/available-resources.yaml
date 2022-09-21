@@ -11,7 +11,7 @@ get:
     * images - A list of image service IDs along with their category (Linux), 
       flavor (ubuntu), and version (18.04)
 
-    * machineSizes - A list of machine size IDs along with the machine size 
+    * instanceTypes - A list of instance type IDs along with the instance type 
       names and detailed descriptions
 
     * locations - A list of location IDs along with their country, region, 
@@ -21,9 +21,9 @@ get:
       location ID, network kind, and host usage (Required, Default, Optional)
 
     * machineInventory - Information about the available inventory of machines 
-      based on location ID and machine size ID.  While this information may 
+      based on location ID and instance type ID.  While this information may 
       change rapidly, it can be used by GUIs and systems to restrict host
-      creates to locations with the desired machine size.
+      creates to locations with the desired instance type.
 
     * storageInventory - Information about the current available storage
     capacity 

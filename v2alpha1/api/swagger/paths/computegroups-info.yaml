@@ -1,18 +1,18 @@
 get:
   tags:
-    - projects-info
+    - computegroups-info
   summary: >-
-    List of all projects info within an organization or cluster for which user
+    List of all compute groups info within an organization or cluster for which user
     is authorized.
   description: >-
-    Returns an object with information on projects, machine sizes, and volume flavors. 
-    The 'projects' list includes projects authorized for a user, and the 'machineSizes' and 
-    'volumeFlavors' list include only those machine sizes and volume flavors permitted for projects.
+    Returns an object with information on compute groups, instance types, and volume flavors. 
+    The 'computeGroups' list includes compute groups authorized for a user, and the 'instanceTypes' and 
+    'volumeFlavors' list include only those instance types and volume flavors permitted for compute groups.
 
 
     When GreenLake IAM issued token is used for authentication, it is required to 
     pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
-  operationId: ProjectsInfo_list
+  operationId: ComputeGroupsInfo_list
   security:
     - BearerAuth: []
       Membership: []
@@ -29,7 +29,7 @@ get:
         application/json:
           schema:
             type: object
-            $ref: ../components/schemas/ProjectsInfo.yaml
+            $ref: ../components/schemas/ComputeGroupsInfo.yaml
     '401':
       $ref: ../components/responses/Unauthorized.yaml
     '500':

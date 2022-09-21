@@ -32,20 +32,20 @@ allOf:
           The location of the machine assigned to the host.  'locationID' is one
           of those listed by the 'locationInfo' array returned as part of the get
           /available-resources call.
-      machineSizeName:
+      instanceTypeName:
         type: string
         example: HPE Large
         description: >-
-          Name of the machine size used to identify and select the machine
-          assigned to the host.  MachineSizes are described by the 'machineSize'
+          Name of the instance type used to identify and select the machine
+          assigned to the host.  Instance types are described by the 'instanceType'
           array returned by the get /available-resources call.
-      machineSizeID:
+      instanceTypeID:
         type: string
         format: uuid
         description: >-
-          UniqueID referring to the machine size used to identify and select the
-          machine assigned to the host.  MachineSizes are described by the
-          'machineSize' array returned by the get /available-resources call.
+          UniqueID referring to the instance type used to identify and select the
+          machine assigned to the host. Instance types are described by the
+          'instanceType' array returned by the get /available-resources call.
       machineID:
         type: string
         format: uuid

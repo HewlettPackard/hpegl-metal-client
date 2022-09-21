@@ -2,7 +2,7 @@ type: object
 properties:
   name:
     type: string
-  projectsUsed:
+  computeGroupUsed:
     type: integer
   otherUsed:
     type: integer
@@ -14,5 +14,5 @@ properties:
   restricted:
     type: boolean
     description: >
-      True if the usage of this machine size is restricted 
-      to selected projects, false if the machine size is available to anyone.
+      True if the usage of this instance type is restricted 
+      to selected compute groups, false if the instance type is available to anyone.

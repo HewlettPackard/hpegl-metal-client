@@ -15,11 +15,11 @@ properties:
     description: Array listing the networks available for host connections
     items:
       $ref: ./AvailableNetwork.yaml
-  machineSizes:
+  instanceTypes:
     type: array
-    description: Array listing the available machine (server) sizes
+    description: Array listing the available machine instance types
     items:
-      $ref: ./MachineSize.yaml
+      $ref: ./InstanceType.yaml
   volumeFlavors:
     type: array
     description: Array listing the available volume flavors
@@ -28,13 +28,13 @@ properties:
   volumes:
     type: array
     description: >-
-      Array listing the existing project volumes that could be attached to a
+      Array listing the existing volumes that could be attached to a
       host
     items:
       $ref: ./VolumeInfo.yaml
   machineInventory:
     type: array
-    description: Array listing the number of machines of each size in each location
+    description: Array listing the number of machines of each instance type in each location
     items:
       $ref: ./MachineInventory.yaml
   storageInventory:
