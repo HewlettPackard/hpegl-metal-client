@@ -36,7 +36,7 @@ allOf:
         example: iqn.yyyy-mm.naming-authority:unique name
         description: >-
           'volumeTargetIQN' is the iQN for the volume, assigned by the array
-          correspnding to the volume
+          corresponding to the volume
       volumeTargetIPAddress:
         type: string
         format: ipv4
