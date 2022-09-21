@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: HPE GreenLake Metal Client API
-  version: 1.3.8
+  version: 0.0.1
   description: >
     This Metal Client REST API provides access to bare metal as-a-service
     (BMaaS) within a single project context.  Clients are able to create
@@ -26,15 +26,13 @@ info:
     creating hosts and volumes.  
 
 
-    Note: All URIs are relative to metal_service_url/rest/v2alpha1
-
   contact:
     email: quake-core@hpe.com
 
 servers:
   - url: https://quake.dev.hpehcss.net
-    description: Metal Service - Development Environment    
-
+    description: Metal Service - Development Environment
+   
 security:
   - BearerAuth: []
     Project: []
@@ -89,67 +87,67 @@ tags:
       Operations related to listing information about allocation by servers and storage.
 
 paths:
-  /version:
+  /metal/v2alpha1/version:
     $ref: paths/version.yaml
-  /projects:
+  /metal/v2alpha1/projects:
     $ref: paths/projects.yaml
-  /projects/{projectId}:
+  /metal/v2alpha1/projects/{projectId}:
     $ref: paths/projects@{projectId}.yaml
-  /projects-info:
+  /metal/v2alpha1/projects-info:
     $ref: paths/projects-info.yaml
-  /sshkeys:
+  /metal/v2alpha1/sshkeys:
     $ref: paths/sshkeys.yaml
-  /sshkeys/{sshkeyId}:
+  /metal/v2alpha1/sshkeys/{sshkeyId}:
     $ref: paths/sshkeys@{sshkeyId}.yaml
-  /hosts:
+  /metal/v2alpha1/hosts:
     $ref: paths/hosts.yaml
-  /hosts/{hostId}:
+  /metal/v2alpha1/hosts/{hostId}:
     $ref: paths/hosts@{hostId}.yaml
-  /hosts/{hostId}/maintenance:
+  /metal/v2alpha1/hosts/{hostId}/maintenance:
     $ref: paths/hosts@{hostId}@maintenance.yaml
-  /hosts/{hostId}/poweron:
+  /metal/v2alpha1/hosts/{hostId}/poweron:
     $ref: paths/hosts@{hostId}@poweron.yaml
-  /hosts/{hostId}/poweroff:
+  /metal/v2alpha1/hosts/{hostId}/poweroff:
     $ref: paths/hosts@{hostId}@poweroff.yaml
-  /hosts/{hostId}/powerreset:
+  /metal/v2alpha1/hosts/{hostId}/powerreset:
     $ref: paths/hosts@{hostId}@powerreset.yaml
-  /hosts/{hostId}/bootpxe:
+  /metal/v2alpha1/hosts/{hostId}/bootpxe:
     $ref: paths/hosts@{hostId}@bootpxe.yaml
-  /hosts/{hostId}/boothdd:
+  /metal/v2alpha1/hosts/{hostId}/boothdd:
     $ref: paths/hosts@{hostId}@boothdd.yaml
-  /hosts/{hostId}/replace:
+  /metal/v2alpha1/hosts/{hostId}/replace:
     $ref: paths/hosts@{hostId}@replace.yaml
-  /available-resources:
+  /metal/v2alpha1/available-resources:
     $ref: paths/available-resources.yaml
-  /volumes:
+  /metal/v2alpha1/volumes:
     $ref: paths/volumes.yaml
-  /volumes/{volumeId}:
+  /metal/v2alpha1/volumes/{volumeId}:
     $ref: paths/volumes@{volumeId}.yaml
-  /volumes/{volumeId}/attach:
+  /metal/v2alpha1/volumes/{volumeId}/attach:
     $ref: paths/volumes@{volumeId}@attach.yaml
-  /volumes/{volumeId}/detach:
+  /metal/v2alpha1/volumes/{volumeId}/detach:
     $ref: paths/volumes@{volumeId}@detach.yaml
-  /volume-attachments:
+  /metal/v2alpha1/volume-attachments:
     $ref: paths/volume-attachments.yaml
-  /volume-attachments/{attachmentId}:
+  /metal/v2alpha1/volume-attachments/{attachmentId}:
     $ref: paths/volume-attachments@{attachmentId}.yaml
-  /networks:
+  /metal/v2alpha1/networks:
     $ref: paths/networks.yaml
-  /networks/{networkId}:
+  /metal/v2alpha1/networks/{networkId}:
     $ref: paths/networks@{networkId}.yaml
-  /usage-reports:
+  /metal/v2alpha1/usage-reports:
     $ref: paths/usage-reports.yaml
-  /ippools:
+  /metal/v2alpha1/ippools:
     $ref: paths/ippools.yaml
-  /ippools/{ippoolId}:
+  /metal/v2alpha1/ippools/{ippoolId}:
     $ref: paths/ippools@{ippoolId}.yaml
-  /ippools/{ippoolId}/allocation:
+  /metal/v2alpha1/ippools/{ippoolId}/allocation:
     $ref: paths/ippools@{ippoolId}@allocation.yaml
-  /ippools/{ippoolId}/return:
+  /metal/v2alpha1/ippools/{ippoolId}/return:
     $ref: paths/ippools@{ippoolId}@return.yaml
-  /allocation/servers:
+  /metal/v2alpha1/allocation/servers:
     $ref: paths/allocation@server.yaml
-  /allocation/storage:
+  /metal/v2alpha1/allocation/storage:
     $ref: paths/allocation@storage.yaml
 
 components:

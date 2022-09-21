@@ -35,7 +35,7 @@ post:
     values for these options must be selected from the set of options provided
     by the get available-resources API call.
 
-    The SvcFlavor, SvcVersion, LocationID, SSHKeyIDs, and Network attribute must
+    The svcFlavor, svcVersion, locationID, sshKeyIDs, and network attribute must
     all be set with appropriate ID values from the available-resources call.
   operationId: Host_add
   requestBody:

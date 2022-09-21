@@ -1,25 +1,25 @@
 type: object
 description: allocation of servers for each PCE service.
 properties:
-  ResourceType:
+  resourceType:
     type: string
     description: Type of the resource the allocation information is listed for. 
-  Total:
+  total:
     type: integer
     description: Total number of servers.
-  InstanceFamily:
+  instanceFamily:
     type: string
     description: Instance type family name.
     example: Compute Optimized, General Purpose
-  InstanceType:
+  instanceType:
     type: string
     description: Server instance type
     example: C2i, M2ie
-  Available:
+  available:
     type: integer
     minimum: 0
     description: Available number of servers.
-  AllocationInfo:
+  allocationInfo:
     type: array
     description: Array listing the allocation information for each service type
     items:

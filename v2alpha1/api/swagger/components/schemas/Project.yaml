@@ -2,21 +2,21 @@ allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
     required:
-      - Profile
-      - Limits
+      - profile
+      - limits
     properties:
-      Profile:
+      profile:
         description: Profile is a generalized description of a team
         $ref: ./Profile.yaml
-      Limits:
+      limits:
         description: >-
           Project Limits place general constraints on a project in terms of
           server and storage
         $ref: ./Limits.yaml
-      Resources:
+      resources:
         description: Project resources provides resources currently utilized by the project
         $ref: ./ProjectResources.yml
-      PermittedSites:
+      permittedSites:
         description: Array listing the permitted site IDs
         type: array
         items:

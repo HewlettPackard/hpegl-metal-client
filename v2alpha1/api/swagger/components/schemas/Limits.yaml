@@ -1,28 +1,28 @@
 type: object
 required:
-  - Hosts
-  - Volumes
-  - VolumeCapacity
-  - PrivateNetworks
+  - hosts
+  - volumes
+  - volumeCapacity
+  - privateNetworks
 properties:
-  Hosts:
+  hosts:
     type: integer
     description: Maximum number of hosts to allow
     minimum: 0
-  Volumes:
+  volumes:
     type: integer
     description: Maximum number of volumes to allow
     minimum: 0
-  VolumeCapacity:
+  volumeCapacity:
     type: integer
     format: int64
     description: Maximum capacity to allow in TiB
     minimum: 0
-  PrivateNetworks:
+  privateNetworks:
     type: integer
     description: Maximum number of private networks to allow
     minimum: 0
-  InstanceTypes:
+  instanceTypes:
     type: object
     additionalProperties:
       type: integer

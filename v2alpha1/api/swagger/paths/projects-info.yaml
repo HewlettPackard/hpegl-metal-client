@@ -6,8 +6,8 @@ get:
     is authorized.
   description: >-
     Returns an object with information on projects, machine sizes, and volume flavors. 
-    The 'Projects' list includes projects authorized for a user, and the 'MachineSizes' and 
-    'VolumeFlavors' list include only those machine sizes and volume flavors permitted for projects.
+    The 'projects' list includes projects authorized for a user, and the 'machineSizes' and 
+    'volumeFlavors' list include only those machine sizes and volume flavors permitted for projects.
 
 
     When GreenLake IAM issued token is used for authentication, it is required to 

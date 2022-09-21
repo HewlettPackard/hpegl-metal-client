@@ -1,27 +1,27 @@
 type: object
 description: allocation of storage for each PCE service.
 properties:
-  ResourceType:
+  resourceType:
     type: string
     description: Type of the resource the allocation information is listed for.
-  Total:
+  total:
     type: number
     format: float
     description: Total storage capacity in TB
-  InstanceFamily:
+  instanceFamily:
     type: string
     description: Instance type family name.
     example: Performance Optimized Block
-  InstanceType:
+  instanceType:
     type: string
     description: volume type
     example: SBP
-  Available:
+  available:
     type: number
     format: float
     minimum: 0.0
     description: Available storage space in TB
-  AllocationInfo:
+  allocationInfo:
     type: array
     description: Array listing the allocation information for each service type
     items:

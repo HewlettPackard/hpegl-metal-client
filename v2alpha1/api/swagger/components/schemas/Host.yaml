@@ -2,70 +2,70 @@ allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
     required:
-      - Description
-      - NetworkIDs
-      - NetworkForDefaultRoute
-      - NetworkUntagged
+      - description
+      - networkIDs
+      - networkForDefaultRoute
+      - networkUntagged
     properties:
-      Description:
+      description:
         type: string
         example: Description of Host
-      ServiceID:
+      serviceID:
         type: string
         format: uuid
         description: >-
-          The image service identifier used to image the server. ServiceID is
+          The image service identifier used to image the server. 'serviceID' is
           one of those listed by the Images array returned as part of the get
           /available-resources call.
-      ServiceFlavor:
+      serviceFlavor:
         type: string
         example: ubuntu
         description: Overall flavor of server image used to image the server
-      ServiceVersion:
+      serviceVersion:
         type: string
         example: 18.04-20190807
-        description: Version of the ServiceFlavor used to image the server
-      LocationID:
+        description: Version of the 'serviceFlavor' used to image the server
+      locationID:
         type: string
         format: uuid
         description: >-
-          The location of the machine assigned to the host.  LocationID is one
-          of those listed by the LocationInfo array returned as part of the get
+          The location of the machine assigned to the host.  'locationID' is one
+          of those listed by the 'locationInfo' array returned as part of the get
           /available-resources call.
-      MachineSizeName:
+      machineSizeName:
         type: string
         example: HPE Large
         description: >-
           Name of the machine size used to identify and select the machine
-          assigned to the host.  MachineSizes are described by the MachineSize
+          assigned to the host.  MachineSizes are described by the 'machineSize'
           array returned by the get /available-resources call.
-      MachineSizeID:
+      machineSizeID:
         type: string
         format: uuid
         description: >-
           UniqueID referring to the machine size used to identify and select the
           machine assigned to the host.  MachineSizes are described by the
-          MachineSize array returned by the get /available-resources call.
-      MachineID:
+          'machineSize' array returned by the get /available-resources call.
+      machineID:
         type: string
         format: uuid
         description: UniqueID referring to the machine on which this host is running.
-      SSHKeyIDs:
+      sshKeyIDs:
         type: array
         description: IDs of SSH Keys used when configuring the Host
         items:
           type: string
           format: uuid
-      SSHAuthorizedKeys:
+      sshAuthorizedKeys:
         type: array
         description: Specific SSH keys that were when configuring the host.
         items:
           $ref: ./SSHKeyValue.yaml
-      NetworkIDs:
+      networkIDs:
         type: array
         description: >-
           The list of IDs corresponding to the networks that were provisioned to
-          the host. These networks are among those listed in the Networks array
+          the host. These networks are among those listed in the 'networks' array
           returned by the get /available-resources call.
         items:
           type: string
@@ -73,29 +73,29 @@ allOf:
         example:
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - 91eec8b5-6460-4532-aad1-47b983edb63c
-      NetworkForDefaultRoute:
+      networkForDefaultRoute:
         type: string
         format: uuid
         description: >-
           The host's default network ID. This needs to be one of the values in the 
-          "NetworkIDs" list.
+          "networkIDs" list.
         example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      NetworkUntagged:
+      networkUntagged:
         type: string
         format: uuid
         description: >-
           ID of the network selected to be untagged. This needs to be one of the values in the 
-          "NetworkIDs" list.
+          "networkIDs" list.
         example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
-      PreAllocatedIPs:
+      preAllocatedIPs:
         type: array
         description: >-
-          The list of pre-allocated IP addresses corresponding to the list of NetworkIDs.
+          The list of pre-allocated IP addresses corresponding to the list of 'networkIDs'.
           Pre-allocated IP addresses are optional, but required when updating a host
           containing Pre-allocated IP addresses.
         items:
           type: string
-      ServiceNetsProviderMAC:
+      serviceNetsProviderMAC:
         type: object
         additionalProperties:
           type: string
@@ -106,12 +106,12 @@ allOf:
           during machine discovery.
         example:
           046b6c7f-0b8a-43b9-b35d-6489e6daee91: a2:c8:93:15:2a:76
-      UserData:
+      userData:
         type: string
         description: >-
           User-provided data attached to the image configuration data when the
           host was provisioned
-      NodeID:
+      nodeID:
         type: string
         example: Node21
         description: >-
@@ -119,49 +119,49 @@ allOf:
           application environment. For example, this could be set to represent
           the Kubernetes node ID if the host is provisioned as a Kubernetes
           node.
-      ISCSIConfig:
+      iscsiConfig:
         $ref: ./HostISCSIConfig.yaml
-      Connections:
+      connections:
         type: array
         description: Details describing host network connections
         items:
           $ref: ./HostConnection.yaml
-      Deleted:
+      deleted:
         type: boolean
         description: True if the Host has been deleted.
-      PortalCommOkay:
+      portalCommOkay:
         type: boolean
         description: Describes if the portal is in active communication to the device
-      PowerStatus:
+      powerStatus:
         $ref: ./HostPowerState.yaml
-      State:
+      state:
         $ref: ./HostState.yaml
-      Substate:
+      substate:
         $ref: ./HostSubstate.yaml
-      StateTime:
+      stateTime:
         type: string
         format: date-time
-      SubstateTime:
+      substateTime:
         type: string
         format: date-time
-      Progress:
+      progress:
         type: integer
         format: int64
         minimum: 0
         maximum: 100
-      Alert:
+      alert:
         type: boolean
-      AlertInfo:
+      alertInfo:
         type: array
         items:
           $ref: ./HostAlertInfo.yaml
-      Workflow:
+      workflow:
         type: string
         description: The current workflow the host is in
-      SummaryStatus:
+      summaryStatus:
         $ref: ./HealthStatus.yaml
         description: Host health summary status
-      Labels:
+      labels:
         type: object
         additionalProperties:
           type: string

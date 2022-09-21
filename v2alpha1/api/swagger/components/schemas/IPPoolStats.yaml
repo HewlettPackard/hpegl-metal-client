@@ -1,14 +1,14 @@
 type: object
 properties:
-  Total:
+  total:
     type: integer
     format: int32
     description: Total number of IPs (pool capacity)
-  Available:
+  available:
     type: integer
     format: int32
     description: Number of non allocated IPs
-  InUse:
+  inUse:
     type: integer
     format: int32
     description: Number of allocated IPs

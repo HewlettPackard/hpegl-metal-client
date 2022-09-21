@@ -4,13 +4,13 @@ description: >
   typically refer to a specific level of performance and durability as defined
   in the Details
 properties:
-  ID:
+  id:
     type: string
     format: uuid
     description: Volume flavor unique ID
-  Name:
+  name:
     type: string
     example: HighPerfFlash
     description: Typical user-visible name for a volume flavor
-  Details:
+  details:
     $ref: ./FlavorDesc.yaml
