@@ -3,7 +3,7 @@ get:
     - computegroups
   summary: Retrieve a compute group by its ID
   description: >-
-    Returns a single compute group object with its matching ID This includes profile
+    Returns a single compute group object with its matching ID. This includes profile
     information and compute group limits on resouces like hosts,
     private networks, volumes, and volume capacity.
   operationId: ComputeGroup_getByID
