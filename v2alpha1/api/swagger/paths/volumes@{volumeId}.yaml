@@ -33,7 +33,7 @@ put:
   summary: Update an existing volume
   description: >
    Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state.
-   Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume. 
+   Only the Volume 'capacity' can be updated with a value greater than the existing one to expand the volume. 
   operationId: Volume_update
   requestBody:
     required: true

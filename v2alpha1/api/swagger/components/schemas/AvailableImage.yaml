@@ -1,27 +1,27 @@
 type: object
 description: Entry describing an available imaging service
 properties:
-  ID:
+  id:
     type: string
     format: uuid
     description: Unique ID for imaging service
-  Category:
+  category:
     type: string
     example: Linux
     description: >-
       Top-level grouping of imaging services that may reference an OS or
       application type
-  Flavor:
+  flavor:
     type: string
     example: ubuntu
     description: >-
       Second-level grouping of imaging services.  Typically references a
       specific OS or application.
-  Version:
+  version:
     type: string
     example: '18.04'
     description: Specific version of a imaging service flavor.
-  Description:
+  description:
     type: string
     example: ubuntu OS also including Docker runtime
     description: Additional image information for additional services added to the OS

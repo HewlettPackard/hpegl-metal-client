@@ -1,50 +1,50 @@
 type: object
 properties:
-  Images:
+  images:
     type: array
     description: Array listing the available host imaging services
     items:
       $ref: ./AvailableImage.yaml
-  Locations:
+  locations:
     type: array
     description: Array listing the data center locations with available resources
     items:
       $ref: ./LocationInfo.yaml
-  Networks:
+  networks:
     type: array
     description: Array listing the networks available for host connections
     items:
       $ref: ./AvailableNetwork.yaml
-  MachineSizes:
+  machineSizes:
     type: array
     description: Array listing the available machine (server) sizes
     items:
       $ref: ./MachineSize.yaml
-  VolumeFlavors:
+  volumeFlavors:
     type: array
     description: Array listing the available volume flavors
     items:
       $ref: ./VolumeFlavor.yaml
-  Volumes:
+  volumes:
     type: array
     description: >-
       Array listing the existing project volumes that could be attached to a
       host
     items:
       $ref: ./VolumeInfo.yaml
-  MachineInventory:
+  machineInventory:
     type: array
     description: Array listing the number of machines of each size in each location
     items:
       $ref: ./MachineInventory.yaml
-  StorageInventory:
+  storageInventory:
     type: array
     description: >-
       Array providing information on the amount of available storage of each
       flavor in each location
     items:
       $ref: ./StorageInventory.yaml
-  SSHKeys:
+  sshKeys:
     type: array
     description: >-
       Array listing pre-defined SSH keys that could be referenced when creating

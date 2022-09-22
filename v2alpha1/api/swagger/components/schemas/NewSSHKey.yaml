@@ -1,10 +1,10 @@
 type: object
 required:
-  - Name
-  - Key
+  - name
+  - key
 properties:
-  Name:
+  name:
     type: string
     example: Joe's Laptop
-  Key:
+  key:
     $ref: ./SSHKeyValue.yaml

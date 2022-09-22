@@ -3,15 +3,15 @@ description: >-
   An entry describing the number of machines of a particular machine size at a
   specific location
 properties:
-  LocationID:
+  locationID:
     type: string
     format: uuid
     description: Unique ID of the data center location
-  SizeID:
+  sizeID:
     type: string
     format: uuid
-    description: ID of a MachineSize as listed in the MachineSizes array
-  Number:
+    description: ID of a MachineSize as listed in the 'machineSizes' array
+  number:
     type: integer
     minimum: 0
     description: >-

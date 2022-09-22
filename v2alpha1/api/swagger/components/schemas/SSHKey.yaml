@@ -2,7 +2,7 @@ allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
     required:
-      - Key
+      - key
     properties:
-      Key:
+      key:
         $ref: ./SSHKeyValue.yaml

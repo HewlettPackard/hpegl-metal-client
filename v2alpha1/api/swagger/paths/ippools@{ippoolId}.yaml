@@ -31,7 +31,7 @@ put:
   tags:
     - ippools
   summary: Update IP pool by ID
-  description: Update a single ip pool with matching ID. 'DefaultRoute' can only be updated if ip pool is not currently in-use.
+  description: Update a single ip pool with matching ID. 'defaultRoute' can only be updated if ip pool is not currently in-use.
   operationId: IPPool_update
   parameters:
     - name: ippoolId

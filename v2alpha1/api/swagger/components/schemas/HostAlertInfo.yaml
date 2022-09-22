@@ -1,6 +1,6 @@
 type: object
 properties:
-  Alert:
+  alert:
     type: string
     enum:
       - substate-timed-out
@@ -9,18 +9,18 @@ properties:
       - unknown-state
     description: Identifies the type of alert
     example: op-failed
-  State:
+  state:
     $ref: ./HostState.yaml
-  Substate:
+  substate:
     $ref: ./HostSubstate.yaml
-  Message:
+  message:
     type: string
     description: Provides some detailed description about the Alert
     example: 'Operation XXX completed as failed with status: YYY'
-  Time:
+  time:
     type: string
     format: date-time
-  Ack:
+  ack:
     type: boolean
     description: >-
       Used to acknowledge the alert so that the UI can list only unacknowledged

@@ -1,10 +1,10 @@
 type: object
 properties:
-  Name:
+  name:
     type: string
-  ProjectsUsed:
+  projectsUsed:
     type: integer
-  OtherUsed:
+  otherUsed:
     type: integer
-  Available:
+  available:
     type: integer

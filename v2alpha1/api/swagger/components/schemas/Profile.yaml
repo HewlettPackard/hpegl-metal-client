@@ -1,26 +1,26 @@
 type: object
 properties:
-  TeamName:
+  teamName:
     type: string
     description: Name of the Project Team. Must not be empty, maximum 128 printable characters
-  TeamDesc:
+  teamDesc:
     type: string
     description: Optional description of the Project Team, maximum 256 printable characters
-  Company:
+  company:
     type: string
     description: Optional name of the company, maximum 256 printable characters
-  Address:
+  address:
     type: string
     description: Optional address of the company, maximum 256 printable characters
-  Email:
+  email:
     type: string
     description: Optional email address of the contact person for the team, maximum 256 printable characters
-  EmailVerified:
+  emailVerified:
     type: boolean
     description: Currently always false
-  PhoneNumber:
+  phoneNumber:
     type: string
     description: Optional phone number of the contact person for the team, maximum 32 printable characters
-  PhoneVerified:
+  phoneVerified:
     type: boolean
     description: Currently always false

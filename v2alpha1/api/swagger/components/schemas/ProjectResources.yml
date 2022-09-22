@@ -1,23 +1,23 @@
 type: object
 properties:
-  Hosts:
+  hosts:
     type: integer
     description: Number of hosts in use
     minimum: 0
-  Volumes:
+  volumes:
     type: integer
     description: Number of volumes in use
     minimum: 0
-  VolumeCapacity:
+  volumeCapacity:
     type: integer
     format: int64
     description: Volume capacity in use in TiB
     minimum: 0
-  PrivateNetworks:
+  privateNetworks:
     type: integer
     description: Number of private networks in use
     minimum: 0
-  InstanceTypes:
+  instanceTypes:
     type: object
     additionalProperties:
       type: integer

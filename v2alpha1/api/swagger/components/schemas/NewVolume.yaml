@@ -1,41 +1,41 @@
 type: object
 required:
-  - Name
-  - FlavorID
-  - Capacity
-  - LocationID
+  - name
+  - flavorID
+  - capacity
+  - locationID
 properties:
-  Name:
+  name:
     type: string
     example: NewVolumeName
-  Description:
+  description:
     type: string
     example: Description of New Volume
-  FlavorID:
+  flavorID:
     type: string
     format: uuid
     description: >-
       Adds a new volume to the project.  This object requires the LocationID and
       is used when a new volume is created independently from the host creation
       therefore requiring a specified location.
-  Capacity:
+  capacity:
     type: integer
     format: int64
     example: 10
     minimum: 0
     description: The size of the volume in GiB
-  Shareable:
+  shareable:
     type: boolean
     description: Indicates if the volume can be attached to multiple hosts
-  LocationID:
+  locationID:
     type: string
     format: uuid
     description: >-
-      The location of the volume (and the storage array) LocationID is one of
-      those listed by the LocationInfo array returned as part of the get
+      The location of the volume (and the storage array) 'locationID' is one of
+      those listed by the 'locationInfo' array returned as part of the get
       /available-resources call. Any volumes must be in the same location as
       their attached Host.
-  Labels:
+  labels:
     type: object
     additionalProperties:
       type: string

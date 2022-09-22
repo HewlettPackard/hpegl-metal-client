@@ -1,17 +1,17 @@
 type: object
 properties:
-  Projects:
+  projects:
     type: array
     items:
       $ref: ./ProjectInfo.yaml
-  MachineSizes:
+  machineSizes:
     type: array
     items:
       $ref: ./MachineSizeInfo.yaml
-  VolumeFlavors:
+  volumeFlavors:
     type: array
     items:
       $ref: ./VolumeFlavorsInfo.yaml
-  Summary:
+  summary:
     $ref: ./SummaryInfo.yaml
     description: Aggregate consumption and health counts of projects at the specified locations    

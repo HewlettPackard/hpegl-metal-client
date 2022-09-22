@@ -2,61 +2,61 @@ allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
     required:
-      - Description
-      - DefaultRoute
-      - DNS
-      - Proxy
-      - NoProxy
-      - NTP
+      - description
+      - defaultRoute
+      - dns
+      - proxy
+      - noProxy
+      - ntp
     properties:
-      Description:
+      description:
         type: string
         example: Description of IP pool
-      IPVersion:
+      ipVersion:
         $ref: ./IPVer.yaml
-      NetworkID:
+      networkID:
         type: string
         format: uuid
         description: Unique ID of the network associated with the IP pool
-      BaseIP:
+      baseIP:
         type: string
         example: 10.128.0.0
         description: Base address of the IP pool
-      Netmask:
+      netmask:
         $ref: ./Netmask.yaml
-      DefaultRoute:
+      defaultRoute:
         type: string
         example: 10.128.0.1
         description: Default route associated with the IP pool
-      Sources:
+      sources:
         type: array
         items:
           $ref: ./IPSource.yaml
-      UseRecords:
+      useRecords:
         type: array
         items:
           $ref: ./UseRecord.yaml
-      DNS:
+      dns:
         type: array
         items:
           type: string
           example: 8.8.8.8
         description: List of DNS servers for the IP pool
-      Proxy:
+      proxy:
         type: string
         example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
         description: >-
           Optional web-proxy for external internet access should the pool
           actually be behind a firewall
-      NoProxy:
+      noProxy:
         type: string
         example: localhost,15.10.0.10,test.com
         description: Addresses or CIDRs for which proxy requests are not made
-      NTP:
+      ntp:
         type: array
         items:
           type: string
           example: 15.0.0.1
         description: List of NTP servers for the IP pool
-      Pool:
+      pool:
         $ref: ./Pool.yaml

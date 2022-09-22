@@ -1,12 +1,12 @@
 type: object
 description: The composite usage report
 properties:
-  Hosts:
+  hosts:
     description: list of Host usage entries for the report window
     type: array
     items:
       $ref: ./HostUsageEntry.yaml
-  Volumes:
+  volumes:
     description: list of Volume usage entries for the report window
     type: array
     items:

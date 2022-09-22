@@ -8,7 +8,7 @@ post:
     details about the connection of the volume and will update the Host  to
     remove selected iSCSI configuration information.
 
-    Note that the HostID is required in the body of the request to ensure that
+    Note that the 'hostID' is required in the body of the request to ensure that
     the operation is well understood and that a volume is not accidently being
     removed from the wrong host.
   operationId: Volume_detach

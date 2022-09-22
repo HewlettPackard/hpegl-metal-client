@@ -1,22 +1,22 @@
 type: object
 description: Entry of a network available within a data center location
 properties:
-  ID:
+  id:
     type: string
     format: uuid
     description: ID of the network
-  Name:
+  name:
     type: string
     example: Private
     description: The name of the network
-  LocationID:
+  locationID:
     $ref: ./LocationID.yaml
-  Description:
+  description:
     type: string
     example: Private network for intra-cluster communication
-  HostUse:
+  hostUse:
     $ref: ./NetworkHostUse.yaml
-  Purpose:
+  purpose:
     $ref: ./NetworkPurpose.yaml
-  IPPoolID:
+  ipPoolID:
     type: string

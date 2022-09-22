@@ -1,10 +1,10 @@
 type: object
 properties:
-  Fragments:
+  fragments:
     type: array
     items:
       $ref: ./IPRange.yaml
     description: List of fragments for the IP pool
-  Stats:
+  stats:
     $ref: ./IPPoolStats.yaml
     description: Statistics for the IP pool

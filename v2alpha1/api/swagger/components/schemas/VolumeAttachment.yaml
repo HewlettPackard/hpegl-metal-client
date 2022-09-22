@@ -2,50 +2,48 @@ allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
     properties:
-      VolumeID:
+      volumeID:
         type: string
         format: uuid
         description: Unique ID of the volume attached to the host
-      HostID:
+      hostID:
         type: string
         format: uuid
         description: Unique ID of the host connected to the volume
-      HostIPAddress:
+      hostIPAddress:
         type: string
         format: ipv4
         description: >-
           Host IP address for the network connection that connects to the
           storage array
-      IQN:
+      iqn:
         type: string
         description: >-
-          IQN is the full initiator name used for identification during iSCSI
-          login
+          Full initiator name used for identification during iSCSI login
         example: iqn.yyyy-mm.naming-authority:unique name
-      CHAPSecret:
+      chapSecret:
         type: string
         description: >-
-          CHAPSecret is the Challenge Authentication Protocol secret to be
-          shared between array and initiator.
-      CHAPUserName:
+          Challenge Authentication Protocol secret to be shared between array and initiator.
+      chapUserName:
         type: string
-        description: CHAPUserName is the CHAP username to use for CHAP authentication
-      LUN:
+        description: CHAP username to use for CHAP authentication
+      lun:
         type: integer
-        description: LUN is the Logical Unit Number to be assigned to the volume on export
-      VolumeTargetIQN:
+        description: Logical Unit Number to be assigned to the volume on export
+      volumeTargetIQN:
         type: string
         example: iqn.yyyy-mm.naming-authority:unique name
         description: >-
-          VolumeTargetIQN is the iQN for the volume, assigned by the array
-          correspnding to the volume
-      VolumeTargetIPAddress:
+          'volumeTargetIQN' is the iQN for the volume, assigned by the array
+          corresponding to the volume
+      volumeTargetIPAddress:
         type: string
         format: ipv4
-        description: VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
-      State:
+        description: volumeTargetIPAddress is the IPV4 address of the iSCSI volume export
+      state:
         $ref: ./VaStateEnum.yaml
-      FSConfig:
+      fsConfig:
         description: File share specific configuration parameters 
         nullable: true
         allOf:

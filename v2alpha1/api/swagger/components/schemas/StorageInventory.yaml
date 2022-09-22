@@ -3,15 +3,15 @@ description: >-
   specific flavor
 type: object
 properties:
-  FlavorID:
+  flavorID:
     type: string
     format: uuid
     description: Unique ID of a volume flavor as listed in the the VolumeFlavors array
-  LocationID:
+  locationID:
     type: string
     format: uuid
     description: Unique ID of a data center location
-  Capacity:
+  capacity:
     type: integer
     format: int64
     description: >-

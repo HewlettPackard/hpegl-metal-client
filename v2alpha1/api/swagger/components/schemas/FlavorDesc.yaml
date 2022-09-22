@@ -1,23 +1,23 @@
 type: object
 description: Describes the details of machine size or volume flavor
 properties:
-  Collection:
+  collection:
     type: string
     description: Groups flavors together to make finding a specific flavor easier
     example: Collection1
-  Banner1:
+  banner1:
     type: string
     example: Banner1 value
-  Banner2:
+  banner2:
     type: string
     example: Banner2 value
-  Bullets:
+  bullets:
     type: array
     items:
       type: string
-  InfoLink:
+  infoLink:
     type: string
     description: URI to more information about the specific machine size or volume flavor
-  Tooltip:
+  tooltip:
     type: string
     description: Supplemental tooltip text to use in GUIs

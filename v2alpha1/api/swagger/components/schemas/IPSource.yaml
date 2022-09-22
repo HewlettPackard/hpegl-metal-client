@@ -1,10 +1,10 @@
 type: object
 properties:
-  Base:
+  base:
     type: string
     example: 10.128.0.2
     description: Base address for the IP source
-  Count:
+  count:
     type: integer
     example: 1
     description: Number of IPs to count from the base

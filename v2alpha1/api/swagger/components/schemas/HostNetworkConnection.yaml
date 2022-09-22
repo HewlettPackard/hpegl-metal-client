@@ -1,22 +1,22 @@
 type: object
 properties:
-  Name:
+  name:
     type: string
     description: Name of the network connection
     example: HostConn1
-  NetworkID:
+  networkID:
     type: string
     format: uuid
     description: Unique ID corresponding to a network in the local data center
-  IP:
+  ip:
     type: string
     description: IP address for the network connection
     example: 10.5.3.4
-  Subnet:
+  subnet:
     type: string
     description: The IP subnet address
     example: 10.5.3.0
-  Netmask:
+  netmask:
     type: string
     example: /24
     enum:
@@ -44,32 +44,32 @@ properties:
       - /29
       - /30
       - /31
-  Gateway:
+  gateway:
     type: string
     description: The IP subnet gateway address
     example: 10.5.3.1
-  DNS:
+  dns:
     type: array
     items:
       type: string
       example: 8.8.8.8
     description: List of DNS servers for the IP subnet
-  VLAN:
+  vlan:
     type: integer
     description: VLAN ID of the network
-  VNI:
+  vni:
     type: integer
     description: VNI ID of the network
-  Untagged:
+  untagged:
     type: boolean
     description: True if the network is untagged
-  Proxy:
+  proxy:
     type: string
     example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
     description: >-
       Optional web-proxy for external internet access should the IP subnet
       actually be behind a firewall
-  NoProxy:
+  noProxy:
     type: string
     example: localhost,15.10.0.10,test.com
     description: Addresses or CIDRs for which proxy requests are not made

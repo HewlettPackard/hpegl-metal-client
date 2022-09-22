@@ -1,20 +1,20 @@
 type: object
 required:
-  - Base
-  - Count
-  - Usage
+  - base
+  - count
+  - usage
 properties:
-  Base:
+  base:
     type: string
     example: 10.128.0.1
     description: >-
       An optional base address for the allocation, if not specified first
       available address from the pool will be the base
-  Count:
+  count:
     type: integer
     example: 2
     description: Number of addresses to allocate starting from the base
-  Usage:
+  usage:
     type: string
     example: Allocated IP for external storage
     description: A short description for the allocation
