@@ -19,7 +19,7 @@ properties:
       - Disable
   numNetworks:
     type: integer
-    description: Number of compute group networks
+    description: Number of networks in compute group
   summaryStatus:
     $ref: ./HealthStatus.yaml
     description: Compute group health status
