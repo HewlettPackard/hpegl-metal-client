@@ -2,7 +2,7 @@ type: object
 properties:
   name:
     type: string
-  projectsUsed:
+  computeGroupUsed:
     type: integer
   otherUsed:
     type: integer

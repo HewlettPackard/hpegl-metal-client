@@ -19,12 +19,12 @@ properties:
       - Disable
   numNetworks:
     type: integer
-    description: Number of project networks
+    description: Number of networks in compute group
   summaryStatus:
     $ref: ./HealthStatus.yaml
-    description: Project health status
+    description: Compute group health status
   locations:
     type: array
     items:
       $ref: ./LocationInfo.yaml   
-    description: Locations where project resources exist
+    description: Locations where compute group's resources exist

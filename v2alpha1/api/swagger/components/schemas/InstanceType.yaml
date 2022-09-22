@@ -1,0 +1,13 @@
+type: object
+description: Description of a specific machine instance type offering
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Unique ID for the machine instance type offering
+  name:
+    type: string
+    example: HPE-Large
+    description: Typical user-visible name for a machine instance type offering
+  details:
+    $ref: ./FlavorDesc.yaml

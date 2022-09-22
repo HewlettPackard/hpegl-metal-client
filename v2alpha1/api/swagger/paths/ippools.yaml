@@ -1,8 +1,8 @@
 get:
   tags:
     - ippools
-  summary: List all ip pools in project
-  description: Returns an array of all ip pool objects defined within the project.
+  summary: List all ip pools in compute group
+  description: Returns an array of all ip pool objects defined within the compute group.
   operationId: IPPool_list
   responses:
     '200':

@@ -2,10 +2,10 @@ type: object
 properties:
   teamName:
     type: string
-    description: Name of the Project Team. Must not be empty, maximum 128 printable characters
+    description: Name of the compute group team. Must not be empty, maximum 128 printable characters
   teamDesc:
     type: string
-    description: Optional description of the Project Team, maximum 256 printable characters
+    description: Optional description of the compute group team, maximum 256 printable characters
   company:
     type: string
     description: Optional name of the company, maximum 256 printable characters

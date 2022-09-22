@@ -1,9 +1,9 @@
 get:
   tags:
     - sshkeys
-  summary: List all sshkeys in project
+  summary: List all sshkeys in compute group
   description: >-
-    Returns an array of all SSHKey objects defined within the project.
+    Returns an array of all SSHKey objects defined within the compute group.
   operationId: SSHKeys_list
   responses:
     '200':
@@ -26,7 +26,7 @@ post:
   operationId: SSHKey_add
   requestBody:
     required: true
-    description: SSH Key that is to be added to the project
+    description: SSH Key that is to be added to the compute group
     content:
       application/json:
         schema:

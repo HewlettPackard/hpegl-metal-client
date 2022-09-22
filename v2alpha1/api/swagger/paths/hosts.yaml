@@ -1,8 +1,8 @@
 get:
   tags:
     - hosts
-  summary: List all Hosts in project
-  description: Returns an array of all Host objects defined within the project.
+  summary: List all Hosts in compute group
+  description: Returns an array of all Host objects defined within the compute group.
   operationId: Hosts_list
   parameters:
     - in: query

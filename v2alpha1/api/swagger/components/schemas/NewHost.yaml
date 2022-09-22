@@ -3,7 +3,7 @@ required:
   - name
   - serviceID
   - locationID
-  - machineSizeID
+  - instanceTypeID
   - sshKeyIDs
   - networkIDs
   - networkForDefaultRoute
@@ -36,19 +36,19 @@ properties:
       typically described by country, region, and data center.
 
       The location ID must also be one that has sufficient inventory for the
-      selected MachineSize.  See the 'machineInventory' array as returned by the
+      selected instance type.  See the 'machineInventory' array as returned by the
       get /available-resources call to select a location that has machines
-      available with the correct machine size.
-  machineSizeID:
+      available with the correct instance type.
+  instanceTypeID:
     type: string
     format: uuid
     description: >-
-      The machine size ID must be one of those listed in the 'machineSizes' array
+      The machine instance type ID must be one of those listed in the 'instanceTypes' array
       returned as part of the get /available-resources call.  This array
-      provides the name and detailed description for each machine size.  Use the
+      provides the name and detailed description for each instance type.  Use the
       'machineInventory' array provided by the get /available-resources call to
       find a location with an adequate inventory of machines with the desired
-      machine size.
+      instance type.
   machineID:
     type: string
     format: uuid
@@ -57,7 +57,7 @@ properties:
     type: array
     description: >-
       These IDs must correspond to the IDs for SSH keys already created within
-      the context of the project.  These SSH keys and those included as
+      the context of the compute group.  These SSH keys and those included as
       'sshAuthorizedKeys' will be used together to provision SSH keys when the
       machine is imaged.
     items:

@@ -6,14 +6,13 @@ required:
 properties:
   name:
     type: string
-    example: Project foobar
+    example: foobar
   profile:
-    description: Profile is a generalized description of a team
+    description: Generalized description of a team
     $ref: ./Profile.yaml
   limits:
     description: >-
-      Project Limits place general constraints on a project in terms of server
-      and storage
+      Limits on a compute group in terms of server and storage
     $ref: ./Limits.yaml
   permittedSites:
     description: Array listing the permitted site IDs

@@ -1,8 +1,8 @@
 get:
   tags:
     - networks
-  summary: List all networks in project
-  description: Returns an array of all network objects defined within the project.
+  summary: List all networks in compute group
+  description: Returns an array of all network objects defined within the compute group.
   operationId: Networks_list
   responses:
     '200':
@@ -25,7 +25,7 @@ post:
   operationId: Network_add
   requestBody:
     required: true
-    description: Network that is to be added to the project
+    description: Network that is to be added to the compute group
     content:
       application/json:
         schema:

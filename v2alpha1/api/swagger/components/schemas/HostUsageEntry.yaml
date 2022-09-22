@@ -2,14 +2,14 @@ allOf:
   - $ref: ./UsageEntryBase.yaml
   - type: object
     properties:
-      machineSizeName:
+      instanceTypeName:
         type: string
         example: HPE-Large
-        description: Name of the MachineSize requested when host was created
-      machineSizeID:
+        description: Name of the instanceType requested when host was created
+      instanceTypeID:
         type: string
         format: uuid
-        description: Unique ID of the MachineSize requested when host was created
+        description: Unique ID of the instanceType requested when host was created
       hostName:
         type: string
         description: Name of the associated Host

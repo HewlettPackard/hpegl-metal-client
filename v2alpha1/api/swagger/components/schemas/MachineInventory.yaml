@@ -1,19 +1,19 @@
 type: object
 description: >-
-  An entry describing the number of machines of a particular machine size at a
+  An entry describing the number of machines of a particular instance type at a
   specific location
 properties:
   locationID:
     type: string
     format: uuid
     description: Unique ID of the data center location
-  sizeID:
+  instanceTypeID:
     type: string
     format: uuid
-    description: ID of a MachineSize as listed in the 'machineSizes' array
+    description: ID of a machine instance type as listed in the 'instanceTypes' array
   number:
     type: integer
     minimum: 0
     description: >-
-      The number of machines in inventory with indicated machine size at the
+      The number of machines in inventory with indicated instance type at the
       indicated location

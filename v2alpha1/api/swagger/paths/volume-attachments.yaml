@@ -1,8 +1,8 @@
 get:
   tags:
     - volume-attachments
-  summary: List all volume attachments in project
-  description: Returns an array of all VolumeAttachments defined within the project.
+  summary: List all volume attachments in compute group
+  description: Returns an array of all VolumeAttachments defined within the compute group.
   operationId: VolumeAttachments_list
   responses:
     '200':

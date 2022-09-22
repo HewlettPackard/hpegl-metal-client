@@ -1,5 +1,5 @@
 type: object
-description: Describes the details of machine size or volume flavor
+description: Describes the details of machine instance type or volume flavor
 properties:
   collection:
     type: string
@@ -17,7 +17,7 @@ properties:
       type: string
   infoLink:
     type: string
-    description: URI to more information about the specific machine size or volume flavor
+    description: URI to more information about the specific machine instance type or volume flavor
   tooltip:
     type: string
     description: Supplemental tooltip text to use in GUIs

@@ -15,7 +15,7 @@ properties:
     type: string
     format: uuid
     description: >-
-      Adds a new volume to the project.  This object requires the LocationID and
+      Adds a new volume to the compute group.  This object requires the LocationID and
       is used when a new volume is created independently from the host creation
       therefore requiring a specified location.
   capacity:
