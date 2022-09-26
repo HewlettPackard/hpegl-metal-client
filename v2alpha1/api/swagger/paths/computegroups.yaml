@@ -1,6 +1,6 @@
 get:
   tags:
-    - compute groups
+    - computegroups
   summary: List of all compute groups within an organization or cluster
   description: >-
     Returns an array of all compute group objects that have been created. This
