@@ -2,7 +2,7 @@ get:
   tags:
     - networks
   summary: List all networks in compute group
-  description: Returns an array of all network objects defined within the compute group.
+  description: Returns a cursor-based paginated response of network objects defined within the compute group.
   operationId: Networks_list
   responses:
     '200':
@@ -10,9 +10,24 @@ get:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: ../components/schemas/Network.yaml
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../components/schemas/Network.yaml
+                  description: List of returned networks
+              count:
+                type: integer
+                description: Number of returned networks
+                example: 20
+              next: 
+                type: string
+                x-nullable: true
+                description: Cursor for the next page of networks
+                example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
     '401':
       $ref: ../components/responses/Unauthorized.yaml
     '500':

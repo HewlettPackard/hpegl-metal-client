@@ -2,7 +2,7 @@ get:
   tags:
     - hosts
   summary: List all Hosts in compute group
-  description: Returns an array of all Host objects defined within the compute group.
+  description: Returns a cursor-based paginated response of host objects defined within the compute group.
   operationId: Hosts_list
   parameters:
     - in: query
@@ -18,9 +18,24 @@ get:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: ../components/schemas/Host.yaml
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../components/schemas/Host.yaml
+                  description: List of returned hosts
+              count:
+                type: integer
+                description: Number of returned hosts
+                example: 20
+              next: 
+                type: string
+                x-nullable: true
+                description: Cursor for the next page of hosts
+                example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
     '401':
       $ref: ../components/responses/Unauthorized.yaml
     '500':

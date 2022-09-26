@@ -1,0 +1,7 @@
+name: next
+in: query
+description: Specifies the pagination cursor for the next page of resources
+required: false
+schema:
+  type: string
+example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
