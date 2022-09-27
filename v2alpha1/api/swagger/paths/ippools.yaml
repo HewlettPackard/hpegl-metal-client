@@ -2,7 +2,7 @@ get:
   tags:
     - ippools
   summary: List all ip pools in compute group
-  description: Returns an array of all ip pool objects defined within the compute group.
+  description: Returns a cursor-based paginated response of IP pool objects defined within the compute group.
   operationId: IPPool_list
   responses:
     '200':
@@ -10,9 +10,24 @@ get:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: ../components/schemas/IPPool.yaml
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../components/schemas/IPPool.yaml
+                  description: List of IP pools
+              count:
+                type: integer
+                description: Number of returned IP pools
+                example: 20
+              next: 
+                type: string
+                nullable: true
+                description: Cursor for the next page of IP pools
+                example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
     '401':
       $ref: ../components/responses/Unauthorized.yaml
     '500':
