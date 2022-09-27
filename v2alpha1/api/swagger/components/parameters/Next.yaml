@@ -1,6 +1,8 @@
 name: next
 in: query
-description: Specifies the pagination cursor for the next page of resources
+description: >
+  If present, it specifies the pagination cursor for the next page of resources.
+  If it's not provided the first page of resources is returned.
 required: false
 schema:
   type: string
