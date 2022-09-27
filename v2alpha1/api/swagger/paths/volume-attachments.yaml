@@ -16,14 +16,14 @@ get:
                 type: array
                 items:
                   $ref: ../components/schemas/VolumeAttachment.yaml
-                  description: List of returned volume attachments
+                  description: List of volume attachments
               count:
                 type: integer
                 description: Number of returned volume attachments
                 example: 20
               next: 
                 type: string
-                x-nullable: true
+                nullable: true
                 description: Cursor for the next page of volume attachments
                 example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
     '400':

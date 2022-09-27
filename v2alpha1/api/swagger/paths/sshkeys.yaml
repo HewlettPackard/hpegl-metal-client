@@ -20,14 +20,14 @@ get:
                 type: array
                 items:
                   $ref: ../components/schemas/SSHKey.yaml
-                  description: List of returned SSH keys
+                  description: List of SSH keys
               count:
                 type: integer
                 description: Number of returned SSH keys
                 example: 20
               next: 
                 type: string
-                x-nullable: true
+                nullable: true
                 description: Cursor for the next page of SSH keys
                 example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
     '400':

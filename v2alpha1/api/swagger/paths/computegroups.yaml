@@ -3,7 +3,7 @@ get:
     - computegroups
   summary: List of all compute groups within an organization or cluster
   description: >-
-    Returns a cursor-based paginate response of compute group objects that have been created. This
+    Returns a cursor-based paginated response of compute group objects that have been created. This
     includes profile information and compute group limits on resouces
     like hosts, private networks, volumes, and volume capacity. If GreenLake IAM issued token is
     used for authentication, then it is required to pass either 'Space' or
@@ -30,14 +30,14 @@ get:
                 type: array
                 items:
                   $ref: ../components/schemas/ComputeGroup.yaml
-                  description: List of returned compute groups
+                  description: List of compute groups
               count:
                 type: integer
                 description: Number of returned compute groups
                 example: 20
               next: 
                 type: string
-                x-nullable: true
+                nullable: true
                 description: Cursor for the next page of compute groups
                 example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
     '400':

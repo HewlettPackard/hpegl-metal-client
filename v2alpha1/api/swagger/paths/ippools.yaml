@@ -16,14 +16,14 @@ get:
                 type: array
                 items:
                   $ref: ../components/schemas/IPPool.yaml
-                  description: List of returned IP pools
+                  description: List of IP pools
               count:
                 type: integer
                 description: Number of returned IP pools
                 example: 20
               next: 
                 type: string
-                x-nullable: true
+                nullable: true
                 description: Cursor for the next page of IP pools
                 example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
     '400':

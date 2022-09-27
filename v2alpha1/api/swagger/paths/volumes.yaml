@@ -16,14 +16,14 @@ get:
                 type: array
                 items:
                   $ref: ../components/schemas/Volume.yaml
-                  description: List of returned volumes
+                  description: List of volumes
               count:
                 type: integer
                 description: Number of returned volumes
                 example: 20
               next: 
                 type: string
-                x-nullable: true
+                nullable: true
                 description: Cursor for the next page of volumes
                 example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
     '400':
