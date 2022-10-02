@@ -1,0 +1,15 @@
+type: object
+required:
+  - volumeID
+  - protocol
+properties:
+  name:
+    type: string
+    example: My Object Name
+    description: Name for the volume attachment. Must be 128 or fewer printable characters
+  volumeID:
+    type: string
+    format: uuid
+    description: Unique ID of the volume attached to the host
+  protocol:
+    $ref: ./ProtocolParameters.yaml

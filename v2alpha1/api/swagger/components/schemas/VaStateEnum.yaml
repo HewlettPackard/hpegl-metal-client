@@ -1,0 +1,13 @@
+description: >-
+  Current volume attachment state expressed as a string enum value (new,
+  exporting, attaching, ready, detaching, unexporting, deleted, failed)
+type: string
+enum:
+  - new
+  - exporting
+  - attaching
+  - ready
+  - detaching
+  - unexporting
+  - deleted
+  - failed

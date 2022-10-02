@@ -1,0 +1,37 @@
+type: object
+properties:
+  computeGroupID:
+    type: string
+    format: uuid
+    description: Compute group ID that contained the host
+  locationID:
+    $ref: ./LocationID.yaml
+  allocated:
+    type: string
+    format: date-time
+    description: Timestamp of when resource (machine or storage) was allocated
+  ready:
+    type: string
+    format: date-time
+    description: Timestamp of when resource (host or volume) was ready for use
+  freed:
+    type: string
+    format: date-time
+    description: Timestamp of when resource (machine or storage) was freed
+  usageStart:
+    type: string
+    format: date-time
+    description: The start of the usage reporting window or when the resource was allocated
+  usageEnd:
+    type: string
+    format: date-time
+    description: The end of the usage reporting window or when the resource was freed
+  usageHours:
+    type: integer
+    format: int64
+    description: >-
+      The difference between the 'usageEnd' and 'usageStart' rounded up to the
+      'usageHours'
+  error:
+    type: string
+    description: Description of error that affected the usage reporting

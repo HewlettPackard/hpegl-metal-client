@@ -1,0 +1,173 @@
+openapi: 3.0.0
+info:
+  title: HPE GreenLake Metal Client API
+  version: 0.0.1
+  description: >
+    This Metal Client REST API provides access to bare metal as-a-service
+    (BMaaS) within a single compute group context.  Clients are able to create
+    fully-provisioned hosts, storage volumes, and compute group specific private
+    networks in an isolated compute group environment.  Compute group owned resources that
+    can be accessed via this API include... Host, Volume, VolumeAttachment,
+    Network (private), and SSH Key.  
+
+
+    Each API call is done within a single compute group context.  The specific compute group
+    identifier must be provided within the header of each REST call. The server
+    will validate that the provided authentication credentials (JWTs) are valid
+    for the referenced compute group before any operation is performed.  If a single
+    credential is valid for multiple compute groups, the client must still reference a
+    single compute group in the header each API call.
+
+
+    Clients can also access information about available services and resources
+    through the AvailableResources object.  This object provides detailed 
+    information about the OS imaging options, the instance type options, the
+    storage volume options, data center locations, and such that are needed when
+    creating hosts and volumes.  
+
+
+  contact:
+    email: quake-core@hpe.com
+
+servers:
+  - url: https://quake.dev.hpehcss.net
+    description: Metal Service - Development Environment
+   
+security:
+  - BearerAuth: []
+    Project: []
+  - BearerAuth: []
+    Membership: []
+
+tags:
+  - name: version
+    description: |
+      Read-only operation to get api server build version information.
+  - name: computegroups
+    description: >
+      Operations related to Compute Groups.  A Compute Group defines an isolated space for 
+      creating Hosts, Volumes, and private Networks. A Compute Group is often aligned 
+      to a specific team within an organization or a cluster
+  - name: sshkeys
+    description: >
+      Operations related to SSH Keys.  Clients may define SSH Keys that can then
+      be referenced by ID when creating a Host.  Particularly useful with a
+      BMaaS client graphical user interface.
+  - name: hosts
+    description: >
+      Operations related to Hosts. A host is a fully-provisioned physical
+      server. Clients may create, view, list, and delete hosts.
+  - name: volumes
+    description: >
+      Operations related to Volumes.  A Volume is an external storage volume
+      that persists independent of the associated host.
+  - name: volume-attachments
+    description: >
+      Operations related to VolumeAttachments that describe how a host is
+      connected to a volume.
+  - name: networks
+    description: |
+      Operations related to Networks.
+  - name: available-resources
+    description: >
+      Operations related to listing information that is needed to construct
+      create Host and create Volume calls.
+  - name: usage-reports
+    description: >
+      Operations related to retrieving information about resource usage within
+      the Compute Group.
+  - name: computegroups-info
+    description: |
+      Operations related to listing information related to Compute Groups.
+  - name: ippools
+    description: |
+      Operations related to IP pools.
+  - name: allocation
+    description: |
+      Operations related to listing information about allocation by servers and storage.
+
+paths:
+  /metal/v2alpha1/version:
+    $ref: paths/version.yaml
+  /metal/v2alpha1/projects:
+    $ref: paths/computegroups.yaml
+  /metal/v2alpha1/projects/{groupId}:
+    $ref: paths/computegroups@{groupId}.yaml
+  /metal/v2alpha1/projects-info:
+    $ref: paths/computegroups-info.yaml
+  /metal/v2alpha1/sshkeys:
+    $ref: paths/sshkeys.yaml
+  /metal/v2alpha1/sshkeys/{sshkeyId}:
+    $ref: paths/sshkeys@{sshkeyId}.yaml
+  /metal/v2alpha1/hosts:
+    $ref: paths/hosts.yaml
+  /metal/v2alpha1/hosts/{hostId}:
+    $ref: paths/hosts@{hostId}.yaml
+  /metal/v2alpha1/hosts/{hostId}/maintenance:
+    $ref: paths/hosts@{hostId}@maintenance.yaml
+  /metal/v2alpha1/hosts/{hostId}/poweron:
+    $ref: paths/hosts@{hostId}@poweron.yaml
+  /metal/v2alpha1/hosts/{hostId}/poweroff:
+    $ref: paths/hosts@{hostId}@poweroff.yaml
+  /metal/v2alpha1/hosts/{hostId}/powerreset:
+    $ref: paths/hosts@{hostId}@powerreset.yaml
+  /metal/v2alpha1/hosts/{hostId}/bootpxe:
+    $ref: paths/hosts@{hostId}@bootpxe.yaml
+  /metal/v2alpha1/hosts/{hostId}/boothdd:
+    $ref: paths/hosts@{hostId}@boothdd.yaml
+  /metal/v2alpha1/hosts/{hostId}/replace:
+    $ref: paths/hosts@{hostId}@replace.yaml
+  /metal/v2alpha1/available-resources:
+    $ref: paths/available-resources.yaml
+  /metal/v2alpha1/volumes:
+    $ref: paths/volumes.yaml
+  /metal/v2alpha1/volumes/{volumeId}:
+    $ref: paths/volumes@{volumeId}.yaml
+  /metal/v2alpha1/volumes/{volumeId}/attach:
+    $ref: paths/volumes@{volumeId}@attach.yaml
+  /metal/v2alpha1/volumes/{volumeId}/detach:
+    $ref: paths/volumes@{volumeId}@detach.yaml
+  /metal/v2alpha1/volume-attachments:
+    $ref: paths/volume-attachments.yaml
+  /metal/v2alpha1/volume-attachments/{attachmentId}:
+    $ref: paths/volume-attachments@{attachmentId}.yaml
+  /metal/v2alpha1/networks:
+    $ref: paths/networks.yaml
+  /metal/v2alpha1/networks/{networkId}:
+    $ref: paths/networks@{networkId}.yaml
+  /metal/v2alpha1/usage-reports:
+    $ref: paths/usage-reports.yaml
+  /metal/v2alpha1/ippools:
+    $ref: paths/ippools.yaml
+  /metal/v2alpha1/ippools/{ippoolId}:
+    $ref: paths/ippools@{ippoolId}.yaml
+  /metal/v2alpha1/ippools/{ippoolId}/allocation:
+    $ref: paths/ippools@{ippoolId}@allocation.yaml
+  /metal/v2alpha1/ippools/{ippoolId}/return:
+    $ref: paths/ippools@{ippoolId}@return.yaml
+  /metal/v2alpha1/allocation/servers:
+    $ref: paths/allocation@server.yaml
+  /metal/v2alpha1/allocation/storage:
+    $ref: paths/allocation@storage.yaml
+
+components:
+  securitySchemes:
+    BearerAuth:
+      description: Uses JWT as a bearer token to validate access
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    Project:
+      description: >-
+        The Compute Group ID. Required only when using GreenLake IAM issued JWT for
+        authentication
+      type: apiKey
+      in: header
+      name: Project
+    Membership:
+      description: >-
+        The Metal membership ID. Required only when using Metal service issued
+        JWT for authentication
+      type: apiKey
+      in: header
+      name: Membership

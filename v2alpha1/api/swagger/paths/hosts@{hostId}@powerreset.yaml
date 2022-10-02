@@ -1,0 +1,29 @@
+summary: Reset a specific host
+post:
+  tags:
+    - hosts
+  summary: Reset Host by ID
+  description: Resets a single Host with matching ID
+  operationId: powerReset
+  parameters:
+    - name: hostId
+      in: path
+      description: ID of Host to reset 
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Host.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

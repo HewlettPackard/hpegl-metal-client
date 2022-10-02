@@ -1,0 +1,6 @@
+type: string
+enum:
+  - 'ON'
+  - 'OFF'
+  - UNKNOWN
+description: Current power status of the underlaying physical server (machine)

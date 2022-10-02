@@ -1,0 +1,28 @@
+type: object
+properties:
+  base:
+    type: string
+    example: 10.128.0.2
+    description: Address of the record
+  hostID:
+    type: string
+    format: uuid
+    description: Unique ID of the host associated with the record
+  rackID:
+    type: string
+    format: uuid
+    description: Unique ID of the rack associated with the record
+  deviceID:
+    type: string
+    format: uuid
+    description: Unique ID of the device associated with the record
+  external:
+    type: boolean
+    example: true
+    description: Indicates if the record is used for non Metal scope
+  usage:
+    type: string
+    description: Usage of the record
+  allocatedBy:
+    type: string
+    description: User which performed the allocation of the record

@@ -1,0 +1,8 @@
+type: object
+required:
+  - hostID
+properties:
+  hostID:
+    type: string
+    format: uuid
+    description: Unique ID of the Host to attach or detach volume

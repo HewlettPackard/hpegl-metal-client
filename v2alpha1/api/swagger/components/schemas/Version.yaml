@@ -1,0 +1,5 @@
+type: object
+properties:
+  build:
+    type: string
+    example: 0.8.6-dev-218-g0b3b1ad

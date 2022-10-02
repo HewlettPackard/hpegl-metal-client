@@ -1,0 +1,26 @@
+type: object
+required:
+  - hostIPAddress
+  - initiatorName
+properties:
+  hostIPAddress:
+    type: string
+    description: The IP address of the host in dotted notation.
+    example: 10.1.2.3
+  initiatorName:
+    type: string
+    description: >-
+      The full initiator name to be created. The name must be at least 12
+      characters in length and begin with "iqn.".
+    example: iqn.1234.com.hpe-initiator
+  chapSecret:
+    type: string
+    description: >-
+      It is the Challenge Authentication Protocol secret to be shared
+      between array and initiator. If empty, no CHAP login is enabled; if set it
+      must be a string between 12 and 16 characters.
+  chapUserName:
+    type: string
+    description: >-
+      It is the CHAP username to use for CHAP authentication. If
+      'chapSecret' is specified, 'chapUserName' must also be specified.

@@ -1,0 +1,10 @@
+type: object
+required:
+  - message
+properties:
+  message:
+    type: string
+    description: Description of the error condition
+  details:
+    type: string
+    description: Optional verbose description of the error condition

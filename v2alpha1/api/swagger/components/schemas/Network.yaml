@@ -1,0 +1,21 @@
+allOf:
+  - $ref: ./ResourceBase.yaml
+  - type: object
+    properties:
+      locationID:
+        $ref: ./LocationID.yaml
+      description:
+        type: string
+        example: Private network for intra-cluster communication
+      hostUse:
+        $ref: ./NetworkHostUse.yaml
+      purpose:
+        $ref: ./NetworkPurpose.yaml
+      ipPoolID:
+        type: string
+      vlan:
+        type: integer
+        description: VLAN ID of the network
+      vni:
+        type: integer
+        description: VNI ID of the network

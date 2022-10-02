@@ -1,0 +1,20 @@
+type: object
+properties:
+  base:
+    type: string
+    example: 10.128.0.2
+    description: Base address for the IP range
+  count:
+    type: integer
+    example: 1
+    description: Number of IPs to count from the base
+  defaultRoute:
+    type: string
+    example: 10.128.0.1
+    description: Default route for the IP range
+  netmask:
+    $ref: ./Netmask.yaml
+  sourceBase:
+    type: string
+    example: 10.128.0.0
+    description: Base address of the Source the IPRange was allocated from

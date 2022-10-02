@@ -1,0 +1,19 @@
+allOf:
+  - $ref: ./UsageEntryBase.yaml
+  - type: object
+    properties:
+      instanceTypeName:
+        type: string
+        example: HPE-Large
+        description: Name of the instanceType requested when host was created
+      instanceTypeID:
+        type: string
+        format: uuid
+        description: Unique ID of the instanceType requested when host was created
+      hostName:
+        type: string
+        description: Name of the associated Host
+      hostID:
+        type: string
+        format: uuid
+        description: Unique ID of the associated Host

@@ -1,0 +1,32 @@
+type: object
+properties:
+  name:
+    type: string
+    example: Default
+  ports:
+    type: array
+    items:
+      $ref: ./HostServerPort.yaml
+  ha:
+    type: boolean
+    description: >-
+      Indicates whether the network connection should be a link aggregation
+      group (LAG)
+  speed:
+    type: string
+    enum:
+      - 100Mb
+      - 1Gb
+      - 10Gb
+      - 25Gb
+      - 50Gb
+      - 40Gb
+      - 100Gb
+    description: >-
+      The speed of the physical connection from the server to the top of rack
+      switch
+    example: 1Gb
+  networks:
+    type: array
+    items:
+      $ref: ./HostNetworkConnection.yaml

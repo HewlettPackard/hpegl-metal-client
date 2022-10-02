@@ -1,0 +1,18 @@
+type: object
+properties:
+  name:
+    type: string
+  computeGroupUsed:
+    type: integer
+  otherUsed:
+    type: integer
+  available:
+    type: integer
+  id:
+    type: string
+    format: uuid
+  restricted:
+    type: boolean
+    description: >
+      True if the usage of this instance type is restricted 
+      to selected compute groups, false if the instance type is available to anyone.

@@ -1,0 +1,25 @@
+type: object
+required:
+  - name
+  - locationID
+properties:
+  name:
+    type: string
+    description: Name of the network
+    example: Private2
+  locationID:
+    $ref: ./LocationID.yaml
+  description:
+    type: string
+    example: Private network for intra-cluster communication
+  hostUse:
+    $ref: ./NetworkHostUse.yaml
+  purpose:
+    $ref: ./NetworkPurpose.yaml
+  newIPPool:
+    $ref: ./NewIPPool.yaml
+    description: >-
+      IP pool for the network. It is optional while creating new private network.
+      If not specified, the network uses the default IP pool allocated from the 
+      hoster/project IP Pool factory and if specified, a new custom IP Pool will 
+      be created and used for IP allocations.

@@ -1,0 +1,17 @@
+type: object
+properties:
+  storageID:
+    type: string
+    description: Storage identifier for an array or a SDS
+  userName:
+    type: string
+    description: Storage array or SDS user
+  ticket:
+    type: string
+    description: >-
+      SDS token acquired by login into the SDS for a given user.
+      This is required by the FUSE client to mount volumes on host.
+  ticketExpiryTime:
+    type: string
+    description: Ticket expiry time to help client to refresh the ticket.
+

@@ -1,0 +1,26 @@
+type: object
+properties:
+  teamName:
+    type: string
+    description: Name of the compute group team. Must not be empty, maximum 128 printable characters
+  teamDesc:
+    type: string
+    description: Optional description of the compute group team, maximum 256 printable characters
+  company:
+    type: string
+    description: Optional name of the company, maximum 256 printable characters
+  address:
+    type: string
+    description: Optional address of the company, maximum 256 printable characters
+  email:
+    type: string
+    description: Optional email address of the contact person for the team, maximum 256 printable characters
+  emailVerified:
+    type: boolean
+    description: Currently always false
+  phoneNumber:
+    type: string
+    description: Optional phone number of the contact person for the team, maximum 32 printable characters
+  phoneVerified:
+    type: boolean
+    description: Currently always false

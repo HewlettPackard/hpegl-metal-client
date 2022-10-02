@@ -1,0 +1,67 @@
+get:
+  tags:
+    - volume-attachments
+  summary: List all volume attachments in compute group
+  description: Returns a cursor-based paginated response of VolumeAttachments defined within the compute group.
+  operationId: VolumeAttachments_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../components/schemas/VolumeAttachment.yaml
+                  description: List of volume attachments
+              count:
+                type: integer
+                description: Number of returned volume attachments
+                example: 20
+              next: 
+                type: string
+                nullable: true
+                description: Cursor for the next page of volume attachments
+                example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+
+post:
+  tags:
+    - volume-attachments
+  summary: Create a new VolumeAttachment
+  description: >-
+    Adds a new VolumeAttachment which enables a machine to use a volume. Note that
+    this API is for creation of a VolumeAttachment for non-Hosts. A VolumeAttachment resource
+    must be deleted using the 'DELETE /volume-attachments/{attachmentId}' API. For regular hosts,
+    a VolumeAttachment is created via the 'POST /volumes/{volumeId}/attach' API.
+  operationId: VolumeAttachments_add
+  requestBody:
+    required: true
+    description: NewVolumeAttachement parameters to create a new VolumeAttachment.
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewVolumeAttachment.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/VolumeAttachment.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

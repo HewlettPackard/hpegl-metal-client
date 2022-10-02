@@ -1,0 +1,26 @@
+type: object
+description: allocation of servers for each PCE service.
+properties:
+  resourceType:
+    type: string
+    description: Type of the resource the allocation information is listed for. 
+  total:
+    type: integer
+    description: Total number of servers.
+  instanceFamily:
+    type: string
+    description: Instance type family name.
+    example: Compute Optimized, General Purpose
+  instanceType:
+    type: string
+    description: Server instance type
+    example: C2i, M2ie
+  available:
+    type: integer
+    minimum: 0
+    description: Available number of servers.
+  allocationInfo:
+    type: array
+    description: Array listing the allocation information for each service type
+    items:
+      $ref: ./AllocationInfo.yaml

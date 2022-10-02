@@ -1,0 +1,111 @@
+get:
+  tags:
+    - computegroups
+  summary: Retrieve a compute group by its ID
+  description: >-
+    Returns a single compute group object with its matching ID. This includes profile
+    information and compute group limits on resouces like hosts,
+    private networks, volumes, and volume capacity.
+  operationId: ComputeGroup_getByID
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: groupId
+      in: path
+      description: ID of compute group to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ComputeGroup.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+put:
+  tags:
+    - computegroups
+  summary: Update a compute group by its ID
+  description: >-
+    Updates a compute group with a matching ID. Only compute group's 'name', 'profile' and 'limits' can be updated
+    with this operation.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
+  operationId: ComputeGroup_update
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: groupId
+      in: path
+      description: ID of compute group to update
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: compute group parameters to update an existing compute group
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ComputeGroup.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ComputeGroup.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+delete:
+  tags:
+    - computegroups
+  summary: Delete a compute group
+  description: >-
+    Deletes the compute group with the matching ID.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
+  operationId: ComputeGroup_delete
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: groupId
+      in: path
+      description: ID of compute group to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: no content
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

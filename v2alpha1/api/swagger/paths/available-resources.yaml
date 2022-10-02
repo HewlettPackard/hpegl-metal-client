@@ -1,0 +1,51 @@
+get:
+  tags:
+    - available-resources
+  operationId: AvailableResources_list
+  summary: Get lists of available resources for creating hosts and volumes
+  description: >
+    Used to get lists of options that are used when creating hosts and volumes.
+    A get /available-resources will return an object that includes the following
+    arrays:
+
+    * images - A list of image service IDs along with their category (Linux), 
+      flavor (ubuntu), and version (18.04)
+
+    * instanceTypes - A list of instance type IDs along with the instance type 
+      names and detailed descriptions
+
+    * locations - A list of location IDs along with their country, region, 
+      and data center.
+
+    * networks - A list of available Network IDs along with the network name,
+      location ID, network kind, and host usage (Required, Default, Optional)
+
+    * machineInventory - Information about the available inventory of machines 
+      based on location ID and instance type ID.  While this information may 
+      change rapidly, it can be used by GUIs and systems to restrict host
+      creates to locations with the desired instance type.
+
+    * storageInventory - Information about the current available storage
+    capacity 
+      for a specific volume flavor by site. 
+
+    * volumeFlavors - A list of volume flavor IDs along with their name and 
+      detailed description.
+
+    * volumes - A list of current, existing volumes.  If the volume is in the
+      the right state, it could be attached to a new Host.
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AvailableResources.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

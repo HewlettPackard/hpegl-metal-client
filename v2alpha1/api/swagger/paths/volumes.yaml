@@ -1,0 +1,66 @@
+get:
+  tags:
+    - volumes
+  summary: List all volumes in compute group
+  description: Returns a cursor-based paginated response of volumes defined within the compute group.
+  operationId: Volumes_list
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../components/schemas/Volume.yaml
+                  description: List of volumes
+              count:
+                type: integer
+                description: Number of returned volumes
+                example: 20
+              next: 
+                type: string
+                nullable: true
+                description: Cursor for the next page of volumes
+                example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+post:
+  tags:
+    - volumes
+  summary: Add a new volume
+  description: >
+    Adds a new volume to the compute group.  Volumes may be created separately and
+    then referenced in the create Host call; or volumes may be created directly
+    within the create Host call.
+  operationId: Volume_add
+  requestBody:
+    required: true
+    description: Volume that is to be added to the compute group
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewVolume.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Volume.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

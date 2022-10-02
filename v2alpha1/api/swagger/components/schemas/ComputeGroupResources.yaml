@@ -1,0 +1,26 @@
+type: object
+properties:
+  hosts:
+    type: integer
+    description: Number of hosts in use
+    minimum: 0
+  volumes:
+    type: integer
+    description: Number of volumes in use
+    minimum: 0
+  volumeCapacity:
+    type: integer
+    format: int64
+    description: Volume capacity in use in TiB
+    minimum: 0
+  privateNetworks:
+    type: integer
+    description: Number of private networks in use
+    minimum: 0
+  instanceTypes:
+    type: object
+    additionalProperties:
+      type: integer
+    description: Number of hosts with the instance type in use
+    example:
+      046b6c7f-0b8a-43b9-b35d-6489e6daee90: 1

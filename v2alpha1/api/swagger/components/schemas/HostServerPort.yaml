@@ -1,0 +1,10 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Server port name
+    example: lan5
+  hwAddr:
+    type: string
+    description: Hardware address for the Ethernet interface (MAC)
+    example: 5c:b9:01:95:64:a0

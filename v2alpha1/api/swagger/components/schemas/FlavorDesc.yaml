@@ -1,0 +1,23 @@
+type: object
+description: Describes the details of machine instance type or volume flavor
+properties:
+  collection:
+    type: string
+    description: Groups flavors together to make finding a specific flavor easier
+    example: Collection1
+  banner1:
+    type: string
+    example: Banner1 value
+  banner2:
+    type: string
+    example: Banner2 value
+  bullets:
+    type: array
+    items:
+      type: string
+  infoLink:
+    type: string
+    description: URI to more information about the specific machine instance type or volume flavor
+  tooltip:
+    type: string
+    description: Supplemental tooltip text to use in GUIs

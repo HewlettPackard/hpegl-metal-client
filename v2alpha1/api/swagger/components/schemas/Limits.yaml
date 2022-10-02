@@ -1,0 +1,31 @@
+type: object
+required:
+  - hosts
+  - volumes
+  - volumeCapacity
+  - privateNetworks
+properties:
+  hosts:
+    type: integer
+    description: Maximum number of hosts to allow
+    minimum: 0
+  volumes:
+    type: integer
+    description: Maximum number of volumes to allow
+    minimum: 0
+  volumeCapacity:
+    type: integer
+    format: int64
+    description: Maximum capacity to allow in TiB
+    minimum: 0
+  privateNetworks:
+    type: integer
+    description: Maximum number of private networks to allow
+    minimum: 0
+  instanceTypes:
+    type: object
+    additionalProperties:
+      type: integer
+    description: Map of instance type ID to maximum number of hosts that can be created with that instance type
+    example:
+      046b6c7f-0b8a-43b9-b35d-6489e6daee90: 1

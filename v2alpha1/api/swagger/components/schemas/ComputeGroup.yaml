@@ -1,0 +1,26 @@
+allOf:
+  - $ref: ./ResourceBase.yaml
+  - type: object
+    required:
+      - profile
+      - limits
+    properties:
+      profile:
+        description: Generalized description of a team
+        $ref: ./Profile.yaml
+      limits:
+        description: >-
+          Limits on a compute group in terms of server and storage
+        $ref: ./Limits.yaml
+      resources:
+        description: Resources currently utilized by the compute group
+        $ref: ./ComputeGroupResources.yaml
+      permittedSites:
+        description: Array listing the permitted site IDs
+        type: array
+        items:
+          type: string
+          format: uuid
+        example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c

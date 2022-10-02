@@ -1,0 +1,8 @@
+allOf:
+  - $ref: ./ResourceBase.yaml
+  - type: object
+    required:
+      - key
+    properties:
+      key:
+        $ref: ./SSHKeyValue.yaml

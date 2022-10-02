@@ -1,0 +1,53 @@
+summary: Operations on a single volume attachment
+get:
+  tags:
+    - volume-attachments
+  summary: Retrieve volume attachment by ID
+  description: Returns a single volume attachment with matching ID
+  operationId: VolumeAttachment_getByID
+  parameters:
+    - name: attachmentId
+      in: path
+      description: ID of volume attachment to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/VolumeAttachment.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+delete:
+  tags:
+    - volume-attachments
+  summary: Delete a VolumeAttachment
+  description: Deletes the VolumeAttachment with the matching ID
+  operationId: VolumeAttachment_delete
+  parameters:
+    - name: attachmentId
+      in: path
+      description: ID of VolumeAttachment to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: no content
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

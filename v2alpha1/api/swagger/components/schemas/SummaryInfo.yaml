@@ -1,0 +1,28 @@
+type: object
+properties:
+  locations:
+    type: array
+    items:
+      $ref: ./LocationInfo.yaml
+    description: Locations where resources exist for all listed compute groups
+  numHosts:
+    type: integer
+    description: Number of hosts for all listed compute groups
+  numVolumes:
+    type: integer
+    description: Number of volumes for all listed compute groups
+  totalStorageGB:
+    type: integer
+    description: Total storage for all listed compute groups
+  numOK:
+    type: integer
+    description: Number of compute groups with OK health summary status
+  numWarning:
+    type: integer
+    description: Number of compute groups with Warning health summary status
+  numCritical:
+    type: integer
+    description: Number of compute groups with Critical health summary status
+  numUnknown:
+    type: integer
+    description: Number of compute groups with Unknown health summary status                             

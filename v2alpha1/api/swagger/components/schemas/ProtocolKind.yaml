@@ -1,0 +1,5 @@
+description: The protocol to be used to attach the volume
+type: string
+enum:
+  - unknown
+  - iscsi

@@ -1,0 +1,79 @@
+get:
+  tags:
+    - hosts
+  summary: List all Hosts in compute group
+  description: Returns a cursor-based paginated response of host objects defined within the compute group.
+  operationId: Hosts_list
+  parameters:
+    - in: query
+      name: all
+      required: false
+      schema:
+        type: string
+        enum: ["true"]
+      description: Includes deleted Host objects in the response when set to "true".
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: ../components/schemas/Host.yaml
+                  description: List of hosts
+              count:
+                type: integer
+                description: Number of returned hosts
+                example: 20
+              next: 
+                type: string
+                nullable: true
+                description: Cursor for the next page of hosts
+                example: MjAyMi0wOS0yMlQxNjozODoyNy43MTFaLDY0MmI2Yzk2LTVkOTctNGE5NC1iMmUyLTY0MWRlMzFjOTkyZQ==
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+post:
+  tags:
+    - hosts
+  summary: Create a new Host
+  description: >-
+    Creates a new host object which kicks off the provisioning of a physical
+    server in accordance to the attributes provided for the Host object.  Most
+    values for these options must be selected from the set of options provided
+    by the get available-resources API call.
+
+    The 'svcFlavor', 'svcVersion', 'locationID', 'sshKeyIDs', and 'network' attribute must
+    all be set with appropriate ID values from the available-resources call.
+  operationId: Host_add
+  requestBody:
+    required: true
+    description: >-
+      Defines the configuration of the desired host. See the schema for
+      descriptions of individual attributes.
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/NewHost.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Host.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

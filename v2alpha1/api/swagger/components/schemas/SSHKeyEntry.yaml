@@ -1,0 +1,13 @@
+type: object
+description: An entry listing an SSH key that is available for use when creating HostState
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Unique ID of the SSH key entry
+  name:
+    type: string
+    example: ExampleKey
+    description: Name or description of the stored SSH key
+  key:
+    $ref: ./SSHKeyValue.yaml

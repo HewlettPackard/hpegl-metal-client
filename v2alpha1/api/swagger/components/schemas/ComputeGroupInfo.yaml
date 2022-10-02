@@ -1,0 +1,30 @@
+type: object
+properties:
+  id:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  numHosts:
+    type: integer
+  numVolumes:
+    type: integer
+  totalStorageGB:
+    type: integer
+  status:
+    type: string
+    enum:
+      - Enabled
+      - Disabled
+  numNetworks:
+    type: integer
+    description: Number of networks in compute group
+  summaryStatus:
+    $ref: ./HealthStatus.yaml
+    description: Compute group health status
+  locations:
+    type: array
+    items:
+      $ref: ./LocationInfo.yaml   
+    description: Locations where compute group's resources exist
