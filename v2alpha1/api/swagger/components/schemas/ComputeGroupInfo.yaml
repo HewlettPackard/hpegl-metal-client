@@ -15,8 +15,8 @@ properties:
   status:
     type: string
     enum:
-      - Enable
-      - Disable
+      - Enabled
+      - Disabled
   numNetworks:
     type: integer
     description: Number of networks in compute group

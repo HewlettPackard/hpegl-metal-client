@@ -27,8 +27,8 @@ post:
         schema:
           $ref: ../components/schemas/VolumeAttachHostUUID.yaml
   responses:
-    '200':
-      description: success
+    '204':
+      description: no content
     '400':
       $ref: ../components/responses/InvalidContent.yaml
     '401':
