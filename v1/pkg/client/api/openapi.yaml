@@ -3964,6 +3964,7 @@ components:
       - vmFT
       - iSCSI-A
       - iSCSI-B
+      - Telemetry
       example: Storage
       type: string
     NewIPPool:
