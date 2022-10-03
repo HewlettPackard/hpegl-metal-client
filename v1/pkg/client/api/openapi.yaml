@@ -2290,7 +2290,7 @@ paths:
       operationId: allocation_getBySite
       parameters:
       - description: site ID
-        in: path
+        in: query
         name: siteID
         required: false
         schema:
@@ -2446,7 +2446,7 @@ components:
           OtherUsed: 3
           Name: Name
         Projects:
-        - Status: Enable
+        - Status: Enabled
           NumVolumes: 6
           Description: Description
           TotalStorageGB: 1
@@ -2461,7 +2461,7 @@ components:
           ID: ID
           NumNetworks: 5
           Name: Name
-        - Status: Enable
+        - Status: Enabled
           NumVolumes: 6
           Description: Description
           TotalStorageGB: 1
@@ -3294,7 +3294,7 @@ components:
       type: object
     ProjectInfo:
       example:
-        Status: Enable
+        Status: Enabled
         NumVolumes: 6
         Description: Description
         TotalStorageGB: 1
@@ -3324,8 +3324,8 @@ components:
           type: integer
         Status:
           enum:
-          - Enable
-          - Disable
+          - Enabled
+          - Disabled
           type: string
         NumNetworks:
           description: Number of project networks
@@ -3964,6 +3964,7 @@ components:
       - vmFT
       - iSCSI-A
       - iSCSI-B
+      - Telemetry
       example: Storage
       type: string
     NewIPPool:

@@ -15,8 +15,8 @@ properties:
   Status:
     type: string
     enum:
-      - Enable
-      - Disable
+      - Enabled
+      - Disabled
   NumNetworks:
     type: integer
     description: Number of project networks

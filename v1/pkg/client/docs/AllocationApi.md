@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetBySite
 
-> Allocation GetBySite(ctx, siteID)
+> Allocation GetBySite(ctx, optional)
 
 Get servers allocation
 
@@ -23,7 +23,16 @@ Returns allocation information for each server instance type used by each PCE se
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteID** | **string**| site ID | 
+ **optional** | ***GetBySiteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetBySiteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **siteID** | **optional.String**| site ID | 
 
 ### Return type
 

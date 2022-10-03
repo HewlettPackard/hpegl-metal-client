@@ -25,4 +25,5 @@ const (
 	NETWORKPURPOSE_VM_FT NetworkPurpose = "vmFT"
 	NETWORKPURPOSE_I_SCSI_A NetworkPurpose = "iSCSI-A"
 	NETWORKPURPOSE_I_SCSI_B NetworkPurpose = "iSCSI-B"
+	NETWORKPURPOSE_TELEMETRY NetworkPurpose = "Telemetry"
 )

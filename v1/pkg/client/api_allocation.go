@@ -17,7 +17,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 	"github.com/antihax/optional"
 )
 
@@ -29,14 +28,20 @@ var (
 // AllocationApiService AllocationApi service
 type AllocationApiService service
 
+// AllocationApiGetBySiteOpts Optional parameters for the method 'GetBySite'
+type AllocationApiGetBySiteOpts struct {
+    SiteID optional.String
+}
+
 /*
 GetBySite Get servers allocation
 Returns allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param siteID site ID
+ * @param optional nil or *AllocationApiGetBySiteOpts - Optional Parameters:
+ * @param "SiteID" (optional.String) -  site ID
 @return Allocation
 */
-func (a *AllocationApiService) GetBySite(ctx _context.Context, siteID string) (Allocation, *_nethttp.Response, error) {
+func (a *AllocationApiService) GetBySite(ctx _context.Context, localVarOptionals *AllocationApiGetBySiteOpts) (Allocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -48,12 +53,13 @@ func (a *AllocationApiService) GetBySite(ctx _context.Context, siteID string) (A
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/allocation/servers"
-	localVarPath = strings.Replace(localVarPath, "{"+"siteID"+"}", _neturl.QueryEscape(parameterToString(siteID, "")) , -1)
-
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.SiteID.IsSet() {
+		localVarQueryParams.Add("siteID", parameterToString(localVarOptionals.SiteID.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
