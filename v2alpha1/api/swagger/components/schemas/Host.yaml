@@ -7,6 +7,8 @@ allOf:
       - networkForDefaultRoute
       - networkUntagged
     properties:
+      type:        
+        default: "metal/host"
       description:
         type: string
         example: Description of Host

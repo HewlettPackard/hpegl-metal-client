@@ -2,6 +2,8 @@ allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
     properties:
+      type:       
+        default: "metal/volume"
       description:
         type: string
         example: Description of New Volume

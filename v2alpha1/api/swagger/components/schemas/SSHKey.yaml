@@ -4,5 +4,7 @@ allOf:
     required:
       - key
     properties:
+      type:        
+        default: "metal/sshkey"
       key:
         $ref: ./SSHKeyValue.yaml
