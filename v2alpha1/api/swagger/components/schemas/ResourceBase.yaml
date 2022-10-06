@@ -19,6 +19,9 @@ properties:
     type: string
     example: My Object Name
     description: Common name for the resource instance. Must be 128 or fewer printable characters
+  type:
+    type: string
+    description: Type of the resource
   createdAt:
     type: string
     format: date-time

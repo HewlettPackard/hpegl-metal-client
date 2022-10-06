@@ -9,6 +9,8 @@ allOf:
       - noProxy
       - ntp
     properties:
+      type:       
+        default: "metal/ippool"
       description:
         type: string
         example: Description of IP pool

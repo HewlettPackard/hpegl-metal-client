@@ -5,6 +5,8 @@ allOf:
       - profile
       - limits
     properties:
+      type:       
+        default: "metal/compute-group"
       profile:
         description: Generalized description of a team
         $ref: ./Profile.yaml
