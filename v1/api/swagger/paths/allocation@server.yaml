@@ -2,7 +2,7 @@ get:
   tags:
     - allocation
   summary: Get servers allocation
-  description: Returns allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
+  description: Returns an array of allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
   operationId: allocation_getBySite
   parameters:
     - name: siteID
@@ -17,7 +17,9 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Allocation.yaml
+            items:
+              $ref: ../components/schemas/Allocation.yaml
+            type: array
     '401':
       $ref: ../components/responses/Unauthorized.yaml
     '500':

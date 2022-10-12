@@ -2284,9 +2284,10 @@ paths:
     summary: Operations on a single IP pool
   /allocation/servers:
     get:
-      description: Returns allocation information for each server instance type used
-        by each PCE service. If siteID is present, the information returned is specific
-        to that site ID, otherwise the allocation information for all sites is returned.
+      description: Returns an array of allocation information for each server instance
+        type used by each PCE service. If siteID is present, the information returned
+        is specific to that site ID, otherwise the allocation information for all
+        sites is returned.
       operationId: allocation_getBySite
       parameters:
       - description: site ID
@@ -2300,7 +2301,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Allocation'
+                items:
+                  $ref: '#/components/schemas/Allocation'
+                type: array
           description: success
         "401":
           content:
@@ -2319,9 +2322,10 @@ paths:
       - allocation
   /allocation/storage:
     get:
-      description: Returns allocation information for each volume type used by each
-        PCE service. If siteID is present, the information returned is specific to
-        that site ID, otherwise the allocation information for all sites is returned.
+      description: Returns an array of allocation information for each volume type
+        used by each PCE service. If siteID is present, the information returned is
+        specific to that site ID, otherwise the allocation information for all sites
+        is returned.
       operationId: allocation_storage_getBySite
       parameters:
       - description: site ID
@@ -2335,7 +2339,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AllocationStorage'
+                items:
+                  $ref: '#/components/schemas/AllocationStorage'
+                type: array
           description: success
         "401":
           content:

@@ -11,11 +11,11 @@ Method | HTTP request | Description
 
 ## GetBySite
 
-> Allocation GetBySite(ctx, optional)
+> []Allocation GetBySite(ctx, optional)
 
 Get servers allocation
 
-Returns allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
+Returns an array of allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
 
 ### Required Parameters
 
@@ -36,7 +36,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Allocation**](Allocation.md)
+[**[]Allocation**](Allocation.md)
 
 ### Authorization
 
@@ -54,11 +54,11 @@ Name | Type | Description  | Notes
 
 ## StorageGetBySite
 
-> AllocationStorage StorageGetBySite(ctx, optional)
+> []AllocationStorage StorageGetBySite(ctx, optional)
 
 Get storage allocation
 
-Returns allocation information for each volume type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
+Returns an array of allocation information for each volume type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
 
 ### Required Parameters
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AllocationStorage**](AllocationStorage.md)
+[**[]AllocationStorage**](AllocationStorage.md)
 
 ### Authorization
 
