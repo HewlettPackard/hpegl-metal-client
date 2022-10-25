@@ -18,7 +18,7 @@ info:
     \ machine size options, the storage volume options, data center locations, and\
     \ such that are needed when creating hosts and volumes.  \n"
   license:
-    name: HPE
+    name: HPE End User License Agreement
     url: https://www.hpe.com/us/en/software/licensing.html
   title: HPE GreenLake Metal Client API
   version: 1.3.8
