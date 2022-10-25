@@ -18,26 +18,17 @@ info:
     \ machine size options, the storage volume options, data center locations, and\
     \ such that are needed when creating hosts and volumes.  \n\nNote: All URIs are\
     \ relative to metal_service_url/rest/v1\n"
+  license:
+    name: HPE
+    url: https://www.hpe.com/us/en/software/licensing.html
   title: HPE GreenLake Metal Client API
   version: 1.3.8
 servers:
-- description: Metal Service - Development Environment
-  url: https://quake.dev.hpehcss.net{basePath}
+- description: HPE GreenLake Central - Metal Endpoint
+  url: https://client.greenlake.hpe.com/api/metal{basePath}
   variables:
     basePath:
       default: /rest/v1
-      description: URL prefix for endpoints
-- description: Metal Service - Integration Environment
-  url: https://quake.intg.hpedevops.net{basePath}
-  variables:
-    basePath:
-      default: /rest/v1
-      description: URL prefix for endpoints
-- description: HPE GreenLake Central - Integration Environment
-  url: https://client.greenlake.hpe-gl-intg.com{basePath}
-  variables:
-    basePath:
-      default: /api/metal/rest/v1
       description: URL prefix for endpoints
 security:
 - BearerAuth: []

@@ -35,7 +35,7 @@ import "./client"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
+All URIs are relative to *https://client.greenlake.hpe.com/api/metal/rest/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

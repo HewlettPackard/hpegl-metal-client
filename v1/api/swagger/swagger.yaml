@@ -2,6 +2,9 @@ openapi: 3.0.0
 info:
   title: HPE GreenLake Metal Client API
   version: 1.3.8
+  license:
+    name: "HPE"
+    url: 'https://www.hpe.com/us/en/software/licensing.html'
   description: >
     This Metal Client REST API provides access to bare metal as-a-service
     (BMaaS) within a single project context.  Clients are able to create
@@ -31,24 +34,12 @@ info:
   contact:
     email: quake-core@hpe.com
 
-servers:
-  - url: https://quake.dev.hpehcss.net{basePath}
-    description: Metal Service - Development Environment
+servers:  
+  - url: https://client.greenlake.hpe.com/api/metal{basePath}
+    description: HPE GreenLake Central - Metal Endpoint
     variables:
       basePath:
         default: /rest/v1
-        description: URL prefix for endpoints
-  - url: https://quake.intg.hpedevops.net{basePath}
-    description: Metal Service - Integration Environment
-    variables:
-      basePath:
-        default: /rest/v1
-        description: URL prefix for endpoints
-  - url: https://client.greenlake.hpe-gl-intg.com{basePath}
-    description: HPE GreenLake Central - Integration Environment
-    variables:
-      basePath:
-        default: /api/metal/rest/v1
         description: URL prefix for endpoints
 
 security:

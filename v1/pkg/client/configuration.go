@@ -85,38 +85,18 @@ type Configuration struct {
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		BasePath:      "https://quake.dev.hpehcss.net/rest/v1",
+		BasePath:      "https://client.greenlake.hpe.com/api/metal/rest/v1",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "OpenAPI-Generator/1.0.0/go",
 		Debug:         false,
 		Servers:       []ServerConfiguration{
 			{
-				Url: "https://quake.dev.hpehcss.net{basePath}",
-				Description: "Metal Service - Development Environment",
+				Url: "https://client.greenlake.hpe.com/api/metal{basePath}",
+				Description: "HPE GreenLake Central - Metal Endpoint",
 				Variables: map[string]ServerVariable{
 					"basePath": ServerVariable{
 						Description: "URL prefix for endpoints",
 						DefaultValue: "/rest/v1",
-					},
-				},
-			},
-			{
-				Url: "https://quake.intg.hpedevops.net{basePath}",
-				Description: "Metal Service - Integration Environment",
-				Variables: map[string]ServerVariable{
-					"basePath": ServerVariable{
-						Description: "URL prefix for endpoints",
-						DefaultValue: "/rest/v1",
-					},
-				},
-			},
-			{
-				Url: "https://client.greenlake.hpe-gl-intg.com{basePath}",
-				Description: "HPE GreenLake Central - Integration Environment",
-				Variables: map[string]ServerVariable{
-					"basePath": ServerVariable{
-						Description: "URL prefix for endpoints",
-						DefaultValue: "/api/metal/rest/v1",
 					},
 				},
 			},

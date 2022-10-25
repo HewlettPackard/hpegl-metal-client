@@ -56,4 +56,7 @@ api_files:
 .PHONY: fixup
 fixup: api_files vendor
 	@bash fixup_generated_files.bash ${OUTPUT_DIR}
-	
+
+.PHONY: gen
+gen-html:
+	redoc-cli build -o ./docs/index.html ./api/swagger/swagger.yaml
