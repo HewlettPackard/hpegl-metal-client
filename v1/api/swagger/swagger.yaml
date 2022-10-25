@@ -29,17 +29,15 @@ info:
     creating hosts and volumes.  
 
 
-    Note: All URIs are relative to metal_service_url/rest/v1
-
   contact:
     email: quake-core@hpe.com
 
 servers:  
-  - url: https://client.greenlake.hpe.com/api/metal{basePath}
-    description: HPE GreenLake Central - Metal Endpoint
+  - url: https://client.greenlake.hpe.com{basePath}
+    description: HPE GreenLake Central
     variables:
       basePath:
-        default: /rest/v1
+        default: /api/metal/rest/v1
         description: URL prefix for endpoints
 
 security:
