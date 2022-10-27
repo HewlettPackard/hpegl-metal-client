@@ -42,7 +42,8 @@ api_files:
 	@echo "Running $@"
 	rm -rf pkg/client
 	@echo "Generating client from OpenAPI file..."
-	openapi-generator generate --remove-operation-id-prefix -g go -o ${OUTPUT_DIR} -i ./api/swagger/swagger.yaml -p enumClassPrefix=true -p structPrefix=true -p packageName=client
+	openapi-generator generate --skip-validate-spec --remove-operation-id-prefix -g go -o ${OUTPUT_DIR} -i ./api/swagger/swagger.yaml -p enumClassPrefix=true -p structPrefix=true -p packageName=client
+	#openapi-generator generate --remove-operation-id-prefix -g go -o ${OUTPUT_DIR} -i ./api/swagger/swagger.yaml -p enumClassPrefix=true -p structPrefix=true -p packageName=client -p hidegenerationTimestamp=false
 	# The generator produces go.mod and go.sum, but we don't want them.
 	rm -f pkg/client/go.mod pkg/client/go.sum
 	# additional files that we don't need
