@@ -7,8 +7,10 @@ info:
     url: https://www.hpe.com/us/en/software/licensing.html
   description:
     $ref: ./docs/description.md
-  contact:
-    email: quake-core@hpe.com
+
+externalDocs:
+  description: API Versioning
+  url: https://developer.greenlake.hpe.com/docs/greenlake/guides/
 
 servers:  
   - url: https://client.greenlake.hpe.com{basePath}
@@ -32,8 +34,7 @@ tags:
     description: >
       Operations related to Projects. A project is a.k.a Compute Group.
       A Project defines an isolated space for creating Hosts, Volumes, 
-      and private Networks. A project is often aligned to a specific team 
-      within an organization or a cluster
+      and private Networks.
   - name: sshkeys
     description: >
       Operations related to SSH Keys.  Clients may define SSH Keys that can then
