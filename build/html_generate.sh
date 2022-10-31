@@ -18,15 +18,23 @@ fi
 
 API_FILE=$1
 
-TEMP_API_FILE=$(mktemp --suffix=".yaml")
-trap "rm -f ${TEMP_API_FILE}" exit
+TEMP_DIR=$(mktemp -d)
+trap "rm -rf ${TEMP_DIR}" exit
 
-# copy to temp file before editing.
-cp ${API_FILE} ${TEMP_API_FILE}
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
+SRC_DIR=`dirname ${API_FILE}`
+SRC_MAIN_FILE=`basename ${API_FILE}`
+
+TEMP_MAIN_FILE=${TEMP_DIR}/${SRC_MAIN_FILE}
+
+# Copying required files to temp space.
+cp -r ${SRC_DIR}/* ${TEMP_DIR}
+cp -r ${SCRIPT_DIR}/html ${TEMP_DIR}
 
 # on-the-fly updating API Spec to generate offline HTML API documentation in the desired format.
-yq -i '.info.description={"$ref": "./html/docs/api_description.md"}' ${TEMP_API_FILE}
-yq -i '.externalDocs={"description":"API Versioning", "url":"https://www.hpe.com/us/en/software/licensing.html"}' ${TEMP_API_FILE}
+yq -i '.info.description={"$ref": "./html/docs/api_description.md"}' ${TEMP_MAIN_FILE}
+yq -i '.externalDocs={"description":"API Versioning", "url":"https://www.hpe.com/us/en/software/licensing.html"}' ${TEMP_MAIN_FILE}
 
 # generate HTML file. 
-redoc-cli build -o ./html/GLPCE_BMaaS_API_Spec.html ${TEMP_API_FILE}
+redoc-cli build -o ./html/GLPCE_BMaaS_API_Spec.html ${TEMP_MAIN_FILE}
