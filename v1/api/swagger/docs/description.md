@@ -1,8 +1,4 @@
-# Table of Contents  
-- [Introduction](#introduction)
-- [Authentication](#authentication)
-- [Getting a Space name or ID](#get-a-space-info)
-
+ 
 # Introduction
 Welcome to HPE GreenLake for bare metal APIs. 
 
@@ -22,6 +18,17 @@ project environment.  Clients can also access information about available servic
 through the available-resources API.  This API provides detailed information about the OS imaging 
 options, the machine size options, the storage volume options, data center locations,and such that 
 are needed when creating hosts and volumes.
+
+The API specification references a few resources by the old name, which differs from the name 
+displayed in HPE GreenLake Central UI. The table below maps the resource's old name in the API 
+specification with the corresponding name in HPE GreenLake Central UI.
+
+| **SN** | **Name in API Spec** | **Name in GreenLake Central** |
+|--------|----------------------|-------------------------------|
+| 1      | Project              | Compute Group                 |
+| 2      | Host                 | Compute Instance              |
+| 3      | Machine Size         | Compute Instance Type         |
+
 
 # Authentication
 
@@ -125,3 +132,5 @@ icon in the top right corner and copy the value of **Space** field.
 
 The corresponding ID for the Space can be extracted from the current URL in the address bar.  
 It is the value of **spaceid** query parameter at the end of a URL after a '?' symbol.
+
+# HPE GreenLake for bare metal API

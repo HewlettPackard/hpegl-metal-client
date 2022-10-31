@@ -32,9 +32,9 @@ tags:
       Read-only operation to get api server build version information.
   - name: projects
     description: >
-      Operations related to Projects. A project is a.k.a Compute Group.
-      A Project defines an isolated space for creating Hosts, Volumes, 
-      and private Networks.
+      Operations related to Projects. A Project defines an isolated space 
+      for creating Hosts, Volumes, and private Networks.  A project is a.k.a 
+      Compute Group.
   - name: sshkeys
     description: >
       Operations related to SSH Keys.  Clients may define SSH Keys that can then
@@ -42,9 +42,8 @@ tags:
       BMaaS client graphical user interface.
   - name: hosts
     description: >
-      Operations related to Hosts. A host is a.k.a Compute Instance.
-      A host is a fully-provisioned physical server. Clients may create, 
-      view, list, and delete hosts.
+      Operations related to Hosts. A host is a fully-provisioned physical server. 
+      Clients may create, view, list, and delete hosts. A host is a.k.a Compute Instance.
   - name: volumes
     description: >
       Operations related to Volumes.  A Volume is an external storage volume
@@ -60,8 +59,8 @@ tags:
     description: >
       Operations related to listing information that is needed to construct
       create host and create volume calls. This provides a detailed information
-      about the OS imaging options, the machine size(a.k.a Compute Instance Type) options, the
-      storage volume options, data center locations, and such that are needed when
+      about the OS imaging options, the machine size (a.k.a Compute Instance Type) options, 
+      the storage volume options, data center locations, and such that are needed when
       creating hosts and volumes.
   - name: usage-reports
     description: >
