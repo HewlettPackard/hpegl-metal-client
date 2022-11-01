@@ -7,17 +7,17 @@ Enterprise service, and it is sometimes also called Bare Metal as a Service or B
 
 This document describes the HPE GreenLake for bare metal APIs protocol and available endpoints.
 
-The BMaaS API is built on HTTP and is RESTful. It has predictable resource URLs. It retuns HTTP 
+The BMaaS API is built on HTTP and is RESTful. It has predictable resource URLs. It returns HTTP 
 response codes to indicate errors. It also accepts and returns JSON in the HTTP body. You can 
-use your favorite HTTP/REST library for your promming language to use HPE GreenLake for Private 
+use your favorite HTTP/REST library for your programming language to use HPE GreenLake for Private 
 Cloud Enterprise bare metal APIs.
 
 The APIs provides access to bare metal service within a single project context. Clients can create 
-a fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated 
-project environment.  Clients can also access information about available services and resources 
-through the available-resources API.  This API provides detailed information about the OS imaging 
-options, the machine size options, the storage volume options, data center locations,and such that 
-are needed when creating hosts and volumes.
+fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated 
+project environment. Clients can also access information about available services and resources 
+through the available-resources API. This API provides detailed information about OS imaging options, 
+machine size options, storage volume options, and data center locations which are needed when creating 
+hosts and volumes.
 
 The API specification references a few resources by the old name, which differs from the name 
 displayed in HPE GreenLake Central UI. The table below maps the resource's old name in the API 
@@ -35,12 +35,12 @@ specification with the corresponding name in HPE GreenLake Central UI.
 ## Bearer Auth
 
 The HPE GreenLake for bare metal APIs uses Bearer Authentication that requires the users to provide 
-a bearer token in the **Authorization** header.   The service supports two types of tokens, the HPE 
-GreenLake IAM token and the Metal classic token.  The Metal classic token is HPE internal purpose only.
+a bearer token in the **Authorization** header. The service supports two types of tokens, the HPE 
+GreenLake IAM token and the Metal classic token. The Metal classic token is for HPE internal use only.
 The clients are required to provide HPE GreenLake IAM token to authenticate with the HPE GreenLake 
-for bare metal APIs.  The access token can be obtained using any of the following way.
+for bare metal APIs. The access token can be obtained using any of the following ways.
 
-<h2>Option1: API client(recommended)</h2>
+<h2>Option 1: API client(recommended)</h2>
 
 An API client allows nonhuman entities (an application service account, for instance) programmatic access to a resource on a space.
 
@@ -64,7 +64,7 @@ An API client allows nonhuman entities (an application service account, for inst
     height="12">
 </a>
 
-**Note:** Make sure to assign the appropriate  HPE GreenLake for bare metal user roles in HPE GreenLake Central.
+**Note:** Make sure to assign the appropriate HPE GreenLake for bare metal user roles in HPE GreenLake Central.
 
   + 3. Make a REST call to generate the API access token:
 
@@ -79,7 +79,7 @@ curl -i -X POST \
 ```
 Obtain the `access_token` from the response.
 
-<h2>Option2: Getting the token directly from UI</h2>
+<h2>Option 2: Getting the token directly from UI</h2>
 
 To authenticate with the BMaaS API you need to obtain the access token from
 <a
@@ -106,18 +106,18 @@ icon to copy the personal access token.
 
 <br>
 
-> <img src="https://raw.githubusercontent.com/grommet/grommet-icons/stable/img/circle-information.svg"> **INFO**
+<img src="https://raw.githubusercontent.com/grommet/grommet-icons/stable/img/circle-information.svg"> **INFO**
 For both the options, the access token lease expires in **15** minutes.
 
 ## Project API Key
-The specific Project ID must be provided with **Project** header required when accessing service
-within a single project context. Used only when using HPE GreenLake IAM issued access tokens.
+The specific Project ID must be provided with **Project** header when accessing service within a single project context.
+Used only when using HPE GreenLake IAM issued access tokens.
 
 ## Membership API Key
-HPE Internal only. Required only when using classic Metal access tokens.
+HPE Internal use only. Required only when using classic Metal access tokens.
 
 # Getting a Space name or ID
-Space name or ID is required in header for few Project level APIs. You can obtain the Space name and the corresponding ID from 
+Space name or ID is required in header for a few Project level APIs. You can obtain the Space name and the corresponding ID from 
 <a
     href="https://client.greenlake.hpe.com"
     target="_blank">
@@ -133,4 +133,4 @@ icon in the top right corner and copy the value of **Space** field.
 The corresponding ID for the Space can be extracted from the current URL in the address bar.  
 It is the value of **spaceid** query parameter at the end of a URL after a '?' symbol.
 
-# HPE GreenLake for bare metal API
+# HPE GreenLake for bare metal APIs
