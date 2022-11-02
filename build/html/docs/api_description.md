@@ -1,18 +1,18 @@
  
 # Introduction
-Welcome to HPE GreenLake for Bare Metal APIs. 
+Welcome to HPE GreenLake for bare metal APIs. 
 
-The HPE GreenLake for Bare Metal is included as part of the HPE GreenLake for Private Cloud
+The HPE GreenLake for bare metal is included as part of the HPE GreenLake for Private Cloud
 Enterprise service, and it is sometimes also called Bare Metal as a Service or BMaaS.
 
-This document describes the HPE GreenLake for Bare Metal APIs protocol and available endpoints.
+This document describes the HPE GreenLake for bare metal APIs protocol and available endpoints.
 
 The BMaaS API is built on HTTP and is RESTful. It has predictable resource URLs. It returns HTTP 
 response codes to indicate errors. It also accepts and returns JSON in the HTTP body. You can 
 use your favorite HTTP/REST library for your programming language to use HPE GreenLake for Private 
-Cloud Enterprise Bare Metal APIs.
+Cloud Enterprise bare metal APIs.
 
-The APIs provides access to Bare Metal service within a single project context. Clients can create 
+The APIs provides access to bare metal service within a single project context. Clients can create 
 fully-provisioned hosts, storage volumes, and project-specific private networks in an isolated 
 project environment. Clients can also access information about available services and resources 
 through the available-resources API. This API provides detailed information about OS imaging options, 
@@ -34,11 +34,11 @@ specification with the corresponding name in HPE GreenLake Central UI.
 
 ## Bearer Auth
 
-The HPE GreenLake for Bare Metal APIs use Bearer Authentication that requires the users to provide 
+The HPE GreenLake for bare metal APIs use Bearer Authentication that requires the users to provide 
 a bearer token in the **Authorization** header. The service supports two types of tokens, the HPE 
 GreenLake IAM token and the Metal classic token. The Metal classic token is for HPE internal use only.
 The clients are required to provide HPE GreenLake IAM token to authenticate with the HPE GreenLake 
-for Bare Metal APIs. The access token can be obtained using any of the following ways.
+for bare metal APIs. The access token can be obtained using any of the following ways.
 
 <h2>Option 1: API client(recommended)</h2>
 
@@ -64,7 +64,7 @@ An API client allows nonhuman entities (an application service account, for inst
     height="12">
 </a>
 
-**Note:** Make sure to assign the appropriate HPE GreenLake for Bare Metal user roles in HPE GreenLake Central.
+**Note:** Make sure to assign the appropriate HPE GreenLake for bare metal user roles in HPE GreenLake Central.
 
   + 3. Make a REST call to generate the API access token:
 
@@ -133,4 +133,4 @@ icon in the top right corner and copy the value of **Space** field.
 The corresponding ID for the Space can be extracted from the current URL in the address bar.  
 It is the value of **spaceid** query parameter at the end of a URL after a '?' symbol.
 
-# HPE GreenLake for Bare Metal APIs
+# HPE GreenLake for bare metal APIs
