@@ -1,6 +1,6 @@
 # \NetworksApi
 
-All URIs are relative to *https://quake.dev.hpehcss.net/rest/v1*
+All URIs are relative to *https://client.greenlake.hpe.com/api/metal/rest/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

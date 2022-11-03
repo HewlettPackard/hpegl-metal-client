@@ -56,4 +56,7 @@ api_files:
 .PHONY: fixup
 fixup: api_files vendor
 	@bash fixup_generated_files.bash ${OUTPUT_DIR}
-	
+
+.PHONY: gen-html
+gen-html:
+	@(cd ../build; bash html_generate.sh ${PWD}/api/swagger/swagger.yaml)
