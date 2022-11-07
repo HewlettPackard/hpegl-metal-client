@@ -8,7 +8,7 @@ WATCH_DIR=${WATCH_DIR:-.}
 
 if [[ -n `git status -s ${WATCH_DIR}` ]]
 then
-    git add .
+    git add ${WATCH_DIR}
     git commit -m "${GIT_COMMIT_MESSAGE:-commit changes}"
 else
     echo "${WATCH_DIR} is already up-to-date"
