@@ -4,13 +4,15 @@
 
 set -eu
 
-CHANGES_DIR=${CHANGES_DIR:-.}
+WATCH_DIR=${WATCH_DIR:-.}
 
-if [[ -n `git status -s ${CHANGES_DIR}` ]]
+if [[ -n `git status -s ${WATCH_DIR}` ]]
 then
     git add .
-
     git commit -m "${GIT_COMMIT_MESSAGE:-commit changes}"
+else
+    echo "${WATCH_DIR} is already up-to-date"
+    exit 0
 fi
 
 REMOTE="${REMOTE:-https://x-access-token:${GITHUB_TOKEN}@github.com/${REPOSITORY}}"
