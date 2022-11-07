@@ -4,8 +4,9 @@
 
 set -eu
 
-CHANGES_DIR=${CHANGES_DIR:"."}
+CHANGES_DIR=${CHANGES_DIR:.}
 
+`env`
 
 if [[ -n `git status -s ${CHANGES_DIR}` ]]
 then
