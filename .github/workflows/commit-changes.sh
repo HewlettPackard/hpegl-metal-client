@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # (C) Copyright 2022 Hewlett Packard Enterprise Development LP
 #
 

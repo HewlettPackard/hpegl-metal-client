@@ -35,7 +35,7 @@ jobs:
 
       -
         name: Commit changes
-        run: .github/workflows/commit-changes.sh -x
+        run: .github/workflows/commit-changes.sh 
         env:
           CHANGES_DIR: "docs"
           GIT_AUTHOR_NAME: ${{ github.actor }}
