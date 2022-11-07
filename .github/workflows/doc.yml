@@ -1,0 +1,48 @@
+#(C) Copyright 2022 Hewlett Packard Enterprise Development LP
+
+name: doc
+
+on:
+  push:
+#    branches:
+#      - master
+
+jobs:
+  ci:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v3
+
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.2       
+
+      - name: Instal dependencies
+        run: |
+          # redocly
+          npm i -g redoc-cli  
+          # yq
+          wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq 
+          chmod +x /usr/bin/yq
+      
+      - name: Generate HTML doc 
+        run: |
+          (cd v1 && make gen-html)
+
+      -
+        name: Commit changes
+        run: .github/workflows/commit-changes.sh
+        env:
+          CHANGES_DIR: "docs"
+          GIT_AUTHOR_NAME: ${{ github.actor }}
+          GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
+          GIT_COMMITTER_NAME: GitHub Actions
+          GIT_COMMITTER_EMAIL: actions@github.com
+          GIT_COMMIT_MESSAGE: |
+            [dependabot skip] Sync changes with gen-html
+          BRANCH_REF: ${{ github.event.pull_request.head.ref }}
+          REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
