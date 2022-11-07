@@ -11,10 +11,15 @@
 
 set -euo pipefail
 
-if [ $# -ne 1 ]; then
-  echo "usage: $0 <API_Spec_file_path>" 1>&2
+if [ $# -lt 1 ]; then
+  echo "usage: $0 <API_Spec_file_path> [<output_file_path>]" 1>&2
   exit 1
 fi
+
+OUTPUT_FILE="indext.html"
+if [ ! -z "$2" ]; then
+  OUTPUT_FILE=${2}
+if
 
 API_FILE=$1
 

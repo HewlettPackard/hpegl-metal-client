@@ -59,4 +59,5 @@ fixup: api_files vendor
 
 .PHONY: gen-html
 gen-html:
-	@(cd ../build; bash html_generate.sh ${PWD}/api/swagger/swagger.yaml)
+	@(cd ../build; \
+		bash html_generate.sh ${PWD}/api/swagger/swagger.yaml ${PWD}/docs/index.html)

@@ -1,6 +1,6 @@
 #(C) Copyright 2022 Hewlett Packard Enterprise Development LP
 
-name: doc
+name: HTML Doc
 
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
         name: Commit changes
         run: .github/workflows/commit-changes.sh 
         env:
-          CHANGES_DIR: "docs"
+          CHANGES_DIR: "v1/docs"
           GIT_AUTHOR_NAME: ${{ github.actor }}
           GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
           GIT_COMMITTER_NAME: GitHub Actions
