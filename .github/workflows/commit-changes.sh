@@ -4,9 +4,7 @@
 
 set -eu
 
-CHANGES_DIR=${CHANGES_DIR:.}
-
-`env`
+CHANGES_DIR=${CHANGES_DIR:-.}
 
 if [[ -n `git status -s ${CHANGES_DIR}` ]]
 then
