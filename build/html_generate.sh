@@ -16,10 +16,10 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
-OUTPUT_FILE="indext.html"
-if [ ! -z "$2" ]; then
-  OUTPUT_FILE=${2}
-if
+OUTPUT_FILE="index.html"
+if [[ ! -z "$2" ]]; then
+  OUTPUT_FILE="${2}"
+fi
 
 API_FILE=$1
 
@@ -42,4 +42,4 @@ yq -i '.info.description={"$ref": "./html/docs/api_description.md"}' ${TEMP_MAIN
 yq -i '.externalDocs={"description":"API Versioning", "url":"https://www.hpe.com/us/en/software/licensing.html"}' ${TEMP_MAIN_FILE}
 
 # generate HTML file. 
-redoc-cli build -o ./html/GLPCE_BMaaS_API_Spec.html ${TEMP_MAIN_FILE}
+redoc-cli build -o ${OUTPUT_FILE}  ${TEMP_MAIN_FILE}

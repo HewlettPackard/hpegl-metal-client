@@ -37,7 +37,7 @@ jobs:
         name: Commit changes
         run: .github/workflows/commit-changes.sh 
         env:
-          CHANGES_DIR: "v1/docs"
+          CHANGES_DIR: "v1/html"
           GIT_AUTHOR_NAME: ${{ github.actor }}
           GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
           GIT_COMMITTER_NAME: GitHub Actions
