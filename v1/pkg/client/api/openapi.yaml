@@ -3069,12 +3069,18 @@ components:
       example:
         InstanceFamily: Compute Optimized, General Purpose
         AllocationInfo:
-        - AllocatedCount: 1
+        - CoresCapacity: 5
+          RAMCapacity: 2.3021358869347655
+          RAMAllocated: 7.061401241503109
+          AllocatedCount: 1
           ServiceType: BMaaS
-          AllocatedCapacity: 5
-        - AllocatedCount: 1
+          CoresAllocated: 5
+        - CoresCapacity: 5
+          RAMCapacity: 2.3021358869347655
+          RAMAllocated: 7.061401241503109
+          AllocatedCount: 1
           ServiceType: BMaaS
-          AllocatedCapacity: 5
+          CoresAllocated: 5
         Total: 0
         ResourceType: ResourceType
         Available: 0
@@ -3099,9 +3105,10 @@ components:
           minimum: 0
           type: integer
         AllocationInfo:
-          description: Array listing the allocation information for each service type
+          description: Array listing of server allocation information for each service
+            type.
           items:
-            $ref: '#/components/schemas/AllocationInfo'
+            $ref: '#/components/schemas/ServiceServerInfo'
           type: array
       type: object
     AllocationStorage:
@@ -3141,9 +3148,10 @@ components:
           minimum: 0.0
           type: number
         AllocationInfo:
-          description: Array listing the allocation information for each service type
+          description: Array listing the storage allocation information for each service
+            type.
           items:
-            $ref: '#/components/schemas/AllocationInfo'
+            $ref: '#/components/schemas/ServiceStorageInfo'
           type: array
       type: object
     ResourceBase:
@@ -4151,9 +4159,40 @@ components:
         Stats:
           $ref: '#/components/schemas/IPPoolStats'
       type: object
-    AllocationInfo:
-      description: Allocation information about server or storage for each service
-        type
+    ServiceServerInfo:
+      description: Server allocation information for a service type.
+      example:
+        CoresCapacity: 5
+        RAMCapacity: 2.3021358869347655
+        RAMAllocated: 7.061401241503109
+        AllocatedCount: 1
+        ServiceType: BMaaS
+        CoresAllocated: 5
+      properties:
+        ServiceType:
+          description: Service type consuming the resource
+          example: BMaaS
+          type: string
+        AllocatedCount:
+          description: Allocated number of servers.
+          type: integer
+        CoresCapacity:
+          description: Total available CPU cores.
+          type: integer
+        CoresAllocated:
+          description: Total allocated CPU cores.
+          type: integer
+        RAMCapacity:
+          description: Total available memory in GiB.
+          format: double
+          type: number
+        RAMAllocated:
+          description: Total allocated memory in GiB.
+          format: double
+          type: number
+      type: object
+    ServiceStorageInfo:
+      description: Storage allocation information for service type.
       example:
         AllocatedCount: 1
         ServiceType: BMaaS
@@ -4164,11 +4203,11 @@ components:
           example: BMaaS
           type: string
         AllocatedCount:
-          description: Allocated number of Servers or Volumes
+          description: Allocated number of volumes.
           type: integer
         AllocatedCapacity:
-          description: It is populated when the resource type is volume. It represents
-            total capacity of all allocated volume in TB for each service type.
+          description: Total capacity of all allocated volumes in TB for a service
+            type.
           type: integer
       type: object
     HostServerPort:
@@ -4917,7 +4956,7 @@ components:
           type: integer
         VolumeTargetIQN:
           description: VolumeTargetIQN is the iQN for the volume, assigned by the
-            array correspnding to the volume
+            array corresponding to the volume
           example: iqn.yyyy-mm.naming-authority:unique name
           type: string
         VolumeTargetIPAddress:
@@ -4932,6 +4971,7 @@ components:
           - $ref: '#/components/schemas/VAFSConfig'
           description: File share specific configuration parameters
           nullable: true
+          type: object
     Network_allOf:
       properties:
         LocationID:

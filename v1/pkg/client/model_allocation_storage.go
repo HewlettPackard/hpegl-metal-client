@@ -22,6 +22,6 @@ type AllocationStorage struct {
 	InstanceType string `json:"InstanceType,omitempty"`
 	// Available storage space in TB
 	Available float32 `json:"Available,omitempty"`
-	// Array listing the allocation information for each service type
-	AllocationInfo []AllocationInfo `json:"AllocationInfo,omitempty"`
+	// Array listing the storage allocation information for each service type.
+	AllocationInfo []ServiceStorageInfo `json:"AllocationInfo,omitempty"`
 }

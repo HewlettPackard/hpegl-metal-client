@@ -23,6 +23,6 @@ properties:
     description: Available storage space in TB
   AllocationInfo:
     type: array
-    description: Array listing the allocation information for each service type
+    description: Array listing the storage allocation information for each service type.
     items:
-      $ref: ./AllocationInfo.yaml
+      $ref: ./ServiceStorageInfo.yaml

@@ -38,7 +38,7 @@ allOf:
         example: iqn.yyyy-mm.naming-authority:unique name
         description: >-
           VolumeTargetIQN is the iQN for the volume, assigned by the array
-          correspnding to the volume
+          corresponding to the volume
       VolumeTargetIPAddress:
         type: string
         format: ipv4
@@ -48,6 +48,7 @@ allOf:
       FSConfig:
         description: File share specific configuration parameters 
         nullable: true
+        type: object
         allOf:
         - $ref: ./VAFSConfig.yaml
 

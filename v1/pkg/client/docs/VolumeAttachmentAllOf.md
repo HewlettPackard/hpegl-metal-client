@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **CHAPSecret** | **string** | CHAPSecret is the Challenge Authentication Protocol secret to be shared between array and initiator. | [optional] 
 **CHAPUserName** | **string** | CHAPUserName is the CHAP username to use for CHAP authentication | [optional] 
 **LUN** | **int32** | LUN is the Logical Unit Number to be assigned to the volume on export | [optional] 
-**VolumeTargetIQN** | **string** | VolumeTargetIQN is the iQN for the volume, assigned by the array correspnding to the volume | [optional] 
+**VolumeTargetIQN** | **string** | VolumeTargetIQN is the iQN for the volume, assigned by the array corresponding to the volume | [optional] 
 **VolumeTargetIPAddress** | **string** | VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export | [optional] 
 **State** | [**VaStateEnum**](VaStateEnum.md) |  | [optional] 
 **FSConfig** | Pointer to [**VafsConfig**](VAFSConfig.md) | File share specific configuration parameters | [optional] 

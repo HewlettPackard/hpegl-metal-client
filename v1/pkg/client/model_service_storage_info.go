@@ -10,18 +10,12 @@
  */
 
 package client
-// Allocation allocation of servers for each PCE service.
-type Allocation struct {
-	// Type of the resource the allocation information is listed for.
-	ResourceType string `json:"ResourceType,omitempty"`
-	// Total number of servers.
-	Total int32 `json:"Total,omitempty"`
-	// Instance type family name.
-	InstanceFamily string `json:"InstanceFamily,omitempty"`
-	// Server instance type
-	InstanceType string `json:"InstanceType,omitempty"`
-	// Available number of servers.
-	Available int32 `json:"Available,omitempty"`
-	// Array listing of server allocation information for each service type.
-	AllocationInfo []ServiceServerInfo `json:"AllocationInfo,omitempty"`
+// ServiceStorageInfo Storage allocation information for service type.
+type ServiceStorageInfo struct {
+	// Service type consuming the resource
+	ServiceType string `json:"ServiceType,omitempty"`
+	// Allocated number of volumes.
+	AllocatedCount int32 `json:"AllocatedCount,omitempty"`
+	// Total capacity of all allocated volumes in TB for a service type.
+	AllocatedCapacity int32 `json:"AllocatedCapacity,omitempty"`
 }

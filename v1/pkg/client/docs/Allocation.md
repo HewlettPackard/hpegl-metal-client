@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **InstanceFamily** | **string** | Instance type family name. | [optional] 
 **InstanceType** | **string** | Server instance type | [optional] 
 **Available** | **int32** | Available number of servers. | [optional] 
-**AllocationInfo** | [**[]AllocationInfo**](AllocationInfo.md) | Array listing the allocation information for each service type | [optional] 
+**AllocationInfo** | [**[]ServiceServerInfo**](ServiceServerInfo.md) | Array listing of server allocation information for each service type. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

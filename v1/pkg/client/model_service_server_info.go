@@ -10,12 +10,18 @@
  */
 
 package client
-// AllocationInfo Allocation information about server or storage for each service type
-type AllocationInfo struct {
+// ServiceServerInfo Server allocation information for a service type.
+type ServiceServerInfo struct {
 	// Service type consuming the resource
 	ServiceType string `json:"ServiceType,omitempty"`
-	// Allocated number of Servers or Volumes
+	// Allocated number of servers.
 	AllocatedCount int32 `json:"AllocatedCount,omitempty"`
-	// It is populated when the resource type is volume. It represents total capacity of all allocated volume in TB for each service type.
-	AllocatedCapacity int32 `json:"AllocatedCapacity,omitempty"`
+	// Total available CPU cores.
+	CoresCapacity int32 `json:"CoresCapacity,omitempty"`
+	// Total allocated CPU cores.
+	CoresAllocated int32 `json:"CoresAllocated,omitempty"`
+	// Total available memory in GiB.
+	RAMCapacity float64 `json:"RAMCapacity,omitempty"`
+	// Total allocated memory in GiB.
+	RAMAllocated float64 `json:"RAMAllocated,omitempty"`
 }
