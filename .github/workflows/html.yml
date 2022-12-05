@@ -3,10 +3,7 @@
 name: HTML Doc
 
 on:
-  push:
-    branches:
-      - master
-      - gittest
+  pull_request:
 
 permissions:
   contents: write
