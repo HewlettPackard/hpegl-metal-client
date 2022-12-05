@@ -4954,7 +4954,7 @@ components:
           type: integer
         VolumeTargetIQN:
           description: VolumeTargetIQN is the iQN for the volume, assigned by the
-            array correspnding to the volume
+            array corresponding to the volume
           example: iqn.yyyy-mm.naming-authority:unique name
           type: string
         VolumeTargetIPAddress:
@@ -4969,6 +4969,7 @@ components:
           - $ref: '#/components/schemas/VAFSConfig'
           description: File share specific configuration parameters
           nullable: true
+          type: object
     Network_allOf:
       properties:
         LocationID:
