@@ -21,6 +21,6 @@ properties:
     description: Available number of servers.
   AllocationInfo:
     type: array
-    description: Array listing the allocation information for each service type
+    description: Array listing of server allocation information for each service type.
     items:
       $ref: ./ServiceServerInfo.yaml

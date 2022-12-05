@@ -14,8 +14,8 @@ package client
 type ServiceStorageInfo struct {
 	// Service type consuming the resource
 	ServiceType string `json:"ServiceType,omitempty"`
-	// Allocated number volumes
+	// Allocated number of volumes.
 	AllocatedCount int32 `json:"AllocatedCount,omitempty"`
-	// It represents total capacity of all allocated volume in TB for a service type.
+	// Total capacity of all allocated volumes in TB for a service type.
 	AllocatedCapacity int32 `json:"AllocatedCapacity,omitempty"`
 }

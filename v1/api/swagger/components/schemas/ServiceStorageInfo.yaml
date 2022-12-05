@@ -7,7 +7,7 @@ properties:
     example: BMaaS
   AllocatedCount:
     type: integer
-    description: Allocated number volumes
+    description: Allocated number of volumes.
   AllocatedCapacity:
     type: integer
-    description:  It represents total capacity of all allocated volume in TB for a service type.
+    description:  Total capacity of all allocated volumes in TB for a service type.

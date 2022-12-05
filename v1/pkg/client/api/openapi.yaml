@@ -3105,7 +3105,8 @@ components:
           minimum: 0
           type: integer
         AllocationInfo:
-          description: Array listing the allocation information for each service type
+          description: Array listing of server allocation information for each service
+            type.
           items:
             $ref: '#/components/schemas/ServiceServerInfo'
           type: array
@@ -3147,7 +3148,8 @@ components:
           minimum: 0.0
           type: number
         AllocationInfo:
-          description: Array listing the allocation information for each service type
+          description: Array listing the storage allocation information for each service
+            type.
           items:
             $ref: '#/components/schemas/ServiceStorageInfo'
           type: array
@@ -4201,11 +4203,11 @@ components:
           example: BMaaS
           type: string
         AllocatedCount:
-          description: Allocated number volumes
+          description: Allocated number of volumes.
           type: integer
         AllocatedCapacity:
-          description: It represents total capacity of all allocated volume in TB
-            for a service type.
+          description: Total capacity of all allocated volumes in TB for a service
+            type.
           type: integer
       type: object
     HostServerPort:
