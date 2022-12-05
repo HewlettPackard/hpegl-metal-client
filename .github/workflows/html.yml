@@ -3,9 +3,7 @@
 name: HTML Doc
 
 on:
-  push:
-    branches:
-      - master
+  pull_request_target:
 
 jobs:
   ci:
@@ -13,6 +11,10 @@ jobs:
     steps:
       - name: Checkout workspace
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: false
+          fetch-depth: 2
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -40,7 +42,7 @@ jobs:
           GIT_COMMITTER_NAME: GitHub Actions
           GIT_COMMITTER_EMAIL: actions@github.com
           GIT_COMMIT_MESSAGE: |
-            [dependabot skip] Sync changes with gen-html
+            [auto generated] Checking in generated offline HTML doc
           BRANCH_REF: ${{ github.event.pull_request.head.ref }}
           REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
