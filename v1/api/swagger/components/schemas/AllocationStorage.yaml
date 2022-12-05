@@ -25,4 +25,4 @@ properties:
     type: array
     description: Array listing the allocation information for each service type
     items:
-      $ref: ./AllocationInfo.yaml
+      $ref: ./ServiceStorageInfo.yaml

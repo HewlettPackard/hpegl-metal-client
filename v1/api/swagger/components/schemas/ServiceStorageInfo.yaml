@@ -1,0 +1,13 @@
+type: object
+description: Storage allocation information for service type.
+properties:
+  ServiceType:
+    type: string
+    description: Service type consuming the resource 
+    example: BMaaS
+  AllocatedCount:
+    type: integer
+    description: Allocated number volumes
+  AllocatedCapacity:
+    type: integer
+    description:  It represents total capacity of all allocated volume in TB for a service type.

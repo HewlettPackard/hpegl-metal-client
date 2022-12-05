@@ -23,5 +23,5 @@ type Allocation struct {
 	// Available number of servers.
 	Available int32 `json:"Available,omitempty"`
 	// Array listing the allocation information for each service type
-	AllocationInfo []AllocationInfo `json:"AllocationInfo,omitempty"`
+	AllocationInfo []ServiceServerInfo `json:"AllocationInfo,omitempty"`
 }

@@ -1,0 +1,25 @@
+type: object
+description: Server allocation information for a service type.
+properties:
+  ServiceType:
+    type: string
+    description: Service type consuming the resource 
+    example: BMaaS
+  AllocatedCount:
+    type: integer
+    description: Allocated number of servers.
+  CoresCapacity:
+    type: integer
+    description: Total available CPU cores.
+  CoresAllocated:
+    type: integer
+    description: Total allocated CPU cores.
+  RAMCapacity:
+    type: number
+    format: double
+    description: Total available memory in GiB.
+  RAMAllocated:
+    type: number
+    format: double
+    description: Total allocated memory in GiB.
+  

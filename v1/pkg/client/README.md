@@ -92,7 +92,6 @@ Class | Method | HTTP request | Description
 
  - [AddVolume](docs/AddVolume.md)
  - [Allocation](docs/Allocation.md)
- - [AllocationInfo](docs/AllocationInfo.md)
  - [AllocationStorage](docs/AllocationStorage.md)
  - [AvailableImage](docs/AvailableImage.md)
  - [AvailableNetwork](docs/AvailableNetwork.md)
@@ -148,6 +147,8 @@ Class | Method | HTTP request | Description
  - [ProtocolKind](docs/ProtocolKind.md)
  - [ProtocolParameters](docs/ProtocolParameters.md)
  - [ResourceBase](docs/ResourceBase.md)
+ - [ServiceServerInfo](docs/ServiceServerInfo.md)
+ - [ServiceStorageInfo](docs/ServiceStorageInfo.md)
  - [SshKey](docs/SshKey.md)
  - [SshKeyAllOf](docs/SshKeyAllOf.md)
  - [SshKeyEntry](docs/SshKeyEntry.md)
