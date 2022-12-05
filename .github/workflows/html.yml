@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - master
+      - gittest
+
+permissions:
+  contents: write
 
 jobs:
   ci:
