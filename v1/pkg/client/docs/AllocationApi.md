@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get servers allocation
 
-Returns an array of allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID. If the allocation data is needed for a specific project, then projectID in the request header must be present. In other case, the allocation information for all sites is returned.
+Returns an array of allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID. If the allocation data is needed for a specific project, then project header must be present in the request. In other case, the allocation information for the tenant is returned.
 
 ### Required Parameters
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 Get storage allocation
 
-Returns an array of allocation information for each volume type used by each PCE service. If siteID is present, the information returned is specific to that site ID. If the allocation data is needed for a specific project, then projectID in the request header must be present. In other case, the allocation information for all sites is returned.If the allocation data is needed for a specific project, then projectID in the request header must be present. In other case, the allocation information for all sites is returned.
+Returns an array of allocation information for each volume type used by each PCE service. If siteID is present, the information returned is specific to that site ID. If the allocation data is needed for a specific project, then project header must be present in the request. In other case, the allocation information for all sites is returned.If the allocation data is needed for a specific project, then projectID in the request header must be present. In other case, the allocation information for the tenant is returned.
 
 ### Required Parameters
 
