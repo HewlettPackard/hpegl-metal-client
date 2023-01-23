@@ -2272,11 +2272,10 @@ paths:
     summary: Operations on a single IP pool
   /allocation/servers:
     get:
-      description: Returns an array of allocation information for each server instance
-        type used by each PCE service. If siteID is present, the information returned
-        is specific to that site ID. If the allocation data is needed for a specific
-        project, then project header must be present in the request. In other case,
-        the allocation information for the tenant is returned.
+      description: |
+        Returns an array of allocation information for each server instance type. Each instance type's allocation information is further grouped by service type.
+        When using a Metal token, the value in the 'Membership' header determines the scope of the response, i.e., Project or Hoster. However, the default scope is Tenant/Hoster when using the GL IAM token. If the allocation data is needed for a specific project, then the 'Project' header must be present in the request.
+        If the 'siteID' query parameter is present, the information returned is specific to that site ID.
       operationId: allocation_getBySite
       parameters:
       - description: site ID
@@ -2311,13 +2310,10 @@ paths:
       - allocation
   /allocation/storage:
     get:
-      description: Returns an array of allocation information for each volume type
-        used by each PCE service. If siteID is present, the information returned is
-        specific to that site ID. If the allocation data is needed for a specific
-        project, then project header must be present in the request. In other case,
-        the allocation information for all sites is returned.If the allocation data
-        is needed for a specific project, then projectID in the request header must
-        be present. In other case, the allocation information for the tenant is returned.
+      description: |
+        Returns an array of allocation information for each server instance type. Each instance type's allocation information is further grouped by service type.
+        When using a Metal token, the value in the 'Membership' header determines the scope of the response, i.e., Project or Hoster. However, the default scope is Tenant/Hoster when using the GL IAM token. If the allocation data is needed for a specific project, then the 'Project' header must be present in the request.
+        If the 'siteID' query parameter is present, the information returned is specific to that site ID.
       operationId: allocation_storage_getBySite
       parameters:
       - description: site ID
