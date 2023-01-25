@@ -15,6 +15,20 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           persist-credentials: false
           fetch-depth: 2
+      -
+        run: |
+          # ensure ref checked out is at the correct sha
+          git reset --hard ${PR_SHA}
+          # retrieve target branch
+          git fetch --no-tags --prune --depth=1 https://x-access-token:${GITHUB_TOKEN}@github.com/${REPOSITORY} +refs/heads/${BASE_REF}:refs/remotes/origin/${BASE_REF}
+          git branch ${BASE_REF} origin/${BASE_REF}
+          git -c credential.https://github.com/.helper="! f() { echo username=x-access-token; echo password=$GITHUB_TOKEN; };f" remote set-head origin -a
+          git config --global --add safe.directory $PWD
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+          REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Set up Node.js
         uses: actions/setup-node@v3
