@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get servers allocation
 
-Returns an array of allocation information for each server instance type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
+Returns an array of allocation information for each server instance type. Each instance type's allocation information is further grouped by service type. When using a Metal token, the value in the 'Membership' header determines the scope of the response, i.e., Project or Hoster. However, the default scope is Tenant/Hoster when using the GL IAM token. If the allocation data is needed for a specific project, then the 'Project' header must be present in the request. If the 'siteID' query parameter is present, the information returned is specific to that site ID. 
 
 ### Required Parameters
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 Get storage allocation
 
-Returns an array of allocation information for each volume type used by each PCE service. If siteID is present, the information returned is specific to that site ID, otherwise the allocation information for all sites is returned.
+Returns an array of allocation information for each server instance type. Each instance type's allocation information is further grouped by service type. When using a Metal token, the value in the 'Membership' header determines the scope of the response, i.e., Project or Hoster. However, the default scope is Tenant/Hoster when using the GL IAM token. If the allocation data is needed for a specific project, then the 'Project' header must be present in the request. If the 'siteID' query parameter is present, the information returned is specific to that site ID. 
 
 ### Required Parameters
 
