@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: test HPE GreenLake for bare metal API
+  title: HPE GreenLake for bare metal API
   version: v1
   license:
     name: HPE End User License Agreement
