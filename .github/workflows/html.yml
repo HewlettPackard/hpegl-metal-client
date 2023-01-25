@@ -3,7 +3,7 @@
 name: HTML Doc
 
 on:
-  pull_request_target:
+  push:
 
 jobs:
   ci:
