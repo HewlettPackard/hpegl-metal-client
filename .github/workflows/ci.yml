@@ -37,14 +37,14 @@ jobs:
           git diff --exit-code go.mod 
           git diff --exit-code go.sum
 
-          - name: Install dependencies
-          run: |
-            # redocly CLI
-            npm i -g redoc-cli  
-            # yq
-            wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O yq 
-            chmod +x yq
-            export PATH=${PATH}:`pwd`
+      - name: Install dependencies
+        run: |
+          # redocly CLI
+          npm i -g redoc-cli  
+          # yq
+          wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O yq 
+          chmod +x yq
+          export PATH=${PATH}:`pwd`
         
       - name: Generate HTML doc 
         run: (cd v1 && make gen-html)
