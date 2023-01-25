@@ -18,7 +18,7 @@ info:
   license:
     name: HPE End User License Agreement
     url: https://www.hpe.com/us/en/software/licensing.html
-  title: HPE GreenLake for bare metal API
+  title: test HPE GreenLake for bare metal API
   version: v1
 servers:
 - description: HPE GreenLake Central
