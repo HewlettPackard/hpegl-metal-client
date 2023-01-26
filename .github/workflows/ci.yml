@@ -2,7 +2,7 @@
 
 name: ci
 
-on: [push, pull_request_target]
+on: [push]
 jobs:
   ci:
     runs-on: ubuntu-20.04
@@ -36,3 +36,29 @@ jobs:
         run: |
           git diff --exit-code go.mod 
           git diff --exit-code go.sum
+
+      - name: Install dependencies
+        run: |
+          # redocly CLI
+          npm i -g redoc-cli  
+          # yq
+          wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O yq 
+          chmod +x yq
+          export PATH=${PATH}:`pwd`
+        
+      - name: Generate HTML doc 
+        run: (cd v1 && make gen-html)
+
+      - name: Commit changes
+        run: .github/workflows/commit-changes.sh 
+        env:
+          WATCH_DIR: "v1/html"
+          GIT_AUTHOR_NAME: ${{ github.actor }}
+          GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
+          GIT_COMMITTER_NAME: GitHub Actions
+          GIT_COMMITTER_EMAIL: actions@github.com
+          GIT_COMMIT_MESSAGE: |
+            [auto generated] Checking in generated offline HTML doc
+          BRANCH_REF: ${{ github.event.pull_request.head.ref }}
+          REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
