@@ -13,7 +13,8 @@ import (
 type VersionAPI interface {
 	/*
 	   Get Get api server build version
-	    * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 	   @return Version
 	*/
 	Get(ctx _context.Context) (Version, *_nethttp.Response, error)

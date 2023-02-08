@@ -1,5 +1,5 @@
 type: object
-description: allocation of storage for each PCE service.
+description: Allocation of storage for each PCE service.
 properties:
   ResourceType:
     type: string

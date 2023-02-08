@@ -9,5 +9,7 @@ properties:
     type: integer
     description: Allocated number of volumes.
   AllocatedCapacity:
-    type: integer
+    type: number
+    format: float
+    minimum: 0.0
     description:  Total capacity of all allocated volumes in TB for a service type.
