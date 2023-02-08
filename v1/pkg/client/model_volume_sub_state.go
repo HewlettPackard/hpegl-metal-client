@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2022 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
