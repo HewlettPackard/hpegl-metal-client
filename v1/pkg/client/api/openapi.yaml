@@ -3118,10 +3118,10 @@ components:
         AllocationInfo:
         - AllocatedCount: 1
           ServiceType: BMaaS
-          AllocatedCapacity: 5
+          AllocatedCapacity: 0.5962134
         - AllocatedCount: 1
           ServiceType: BMaaS
-          AllocatedCapacity: 5
+          AllocatedCapacity: 0.5962134
         Total: 0.8008282
         ResourceType: ResourceType
         Available: 0.6027456
@@ -4196,7 +4196,7 @@ components:
       example:
         AllocatedCount: 1
         ServiceType: BMaaS
-        AllocatedCapacity: 5
+        AllocatedCapacity: 0.5962134
       properties:
         ServiceType:
           description: Service type consuming the resource
@@ -4208,7 +4208,9 @@ components:
         AllocatedCapacity:
           description: Total capacity of all allocated volumes in TB for a service
             type.
-          type: integer
+          format: float
+          minimum: 0.0
+          type: number
       type: object
     HostServerPort:
       properties:
