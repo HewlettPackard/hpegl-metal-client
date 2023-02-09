@@ -10,7 +10,7 @@
  */
 
 package client
-// AllocationStorage allocation of storage for each PCE service.
+// AllocationStorage Allocation of storage for each PCE service.
 type AllocationStorage struct {
 	// Type of the resource the allocation information is listed for.
 	ResourceType string `json:"ResourceType,omitempty"`

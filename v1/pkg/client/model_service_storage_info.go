@@ -17,5 +17,5 @@ type ServiceStorageInfo struct {
 	// Allocated number of volumes.
 	AllocatedCount int32 `json:"AllocatedCount,omitempty"`
 	// Total capacity of all allocated volumes in TB for a service type.
-	AllocatedCapacity int32 `json:"AllocatedCapacity,omitempty"`
+	AllocatedCapacity float32 `json:"AllocatedCapacity,omitempty"`
 }
