@@ -10,6 +10,7 @@ enum:
   - iSCSI-A
   - iSCSI-B
   - Telemetry
+  - External
 example: Storage
 description: >
   Indicates the purpose of the network.

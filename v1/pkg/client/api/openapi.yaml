@@ -3967,6 +3967,7 @@ components:
       - iSCSI-A
       - iSCSI-B
       - Telemetry
+      - External
       example: Storage
       type: string
     NewIPPool:
