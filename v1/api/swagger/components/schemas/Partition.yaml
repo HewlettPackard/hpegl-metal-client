@@ -1,0 +1,50 @@
+type: object
+description: >-
+  It describes a disk partition.
+required:
+  - Type
+  - Formula
+  - Name
+  - MountPoint
+  - PartitionID
+  - Bootable
+  - MakeOptions
+  - MountOptions
+properties: 
+  Type:
+    $ref: PartitionType.yaml
+  Formula:
+    $ref: PartitionFormula.yaml
+  Name:
+    type: string
+    example: My Partition
+    description: >-
+      Name is an optional name for the partition, only usable with GPT partition table types.
+  MountPoint:
+    type: string
+    example: "/"
+    description: >-
+      Where to mount the partition, it must be set for partitions that are filesystem types.
+  PartitionID:
+    type: integer
+    format: int64
+    example: 1
+    description: >-
+      A partitionID may be explicitly set for the partition and this allows for out-of-order partitions in the table (like VMWare). 
+      If zero, sequential partitions are created starting at 1. Gaps in the partition ID numbering is also allowable (VMWare).
+  Bootable:
+    type: boolean
+    example: false
+    description: >-
+      Identify a bootable partition.
+  MakeOptions:
+    type: array
+    items:
+      type: string
+    description: Provide options for the partition's creation.
+  MountOptions:
+    type: string
+    example: errors=remount-ro
+    description: >-
+      Provide options for the patition mount. If empty, "defaults" will be used for filesystem partition types. M
+      MountOptions will be placed in the "options" field for the partition in /etc/fstab.

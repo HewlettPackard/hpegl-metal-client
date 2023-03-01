@@ -1,0 +1,7 @@
+type: string
+enum:
+  - HPE
+  - Custom
+example: Custom
+description: >
+  Indicates the origin of the OS service image.

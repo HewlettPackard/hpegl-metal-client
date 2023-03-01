@@ -1,0 +1,28 @@
+type: object
+description: >-
+  Defines embedded contents to be attached to this OS service image if form of files.
+required: 
+  - Contents
+  - Encoding
+  - Templating
+  - TemplatingInput
+  - Target
+  - Path
+properties: 
+  Contents:
+    type: string
+    description: >-
+      String encoded with file content.
+  Encoding:
+    $ref: Encoding.yaml
+  Templating:
+    $ref: Templating.yaml
+  TemplatingInput:
+    $ref: TemplatingInfo.yaml
+  Target:
+    $ref: Target.yaml
+  Path:
+    type: string
+    description: >-
+      File path and name within location.
+    example: /etc/cloud/cloud.cfg.d/92_datasource.cfg

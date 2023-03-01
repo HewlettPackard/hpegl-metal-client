@@ -40,6 +40,25 @@ type ProjectsAPI interface {
 	*/
 	GetByID(ctx _context.Context, projectId string) (Project, *_nethttp.Response, error)
 	/*
+	   ImagesGetByID Retrieve a project OS image by ID
+	   Returns a single project OS Image with matching ID
+	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	     - @param projectId ID of project
+	     - @param imageId ID of OS image to retrieve
+
+	   @return []OsServiceImage
+	*/
+	ImagesGetByID(ctx _context.Context, projectId string, imageId string) ([]OsServiceImage, *_nethttp.Response, error)
+	/*
+	   ImagesList List of all allowed OS Images within a projects
+	   Returns an array of all OS images objects that are allowed to be used within a project. If GreenLake IAM issued token is used for authentication,  then it is required to pass &#39;spaceid&#39; header
+	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	     - @param projectId ID of project to list images
+
+	   @return []OsServiceImage
+	*/
+	ImagesList(ctx _context.Context, projectId string) ([]OsServiceImage, *_nethttp.Response, error)
+	/*
 	   List List of all Projects within an organization or cluster
 	   Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity. If GreenLake IAM issued token is used for authentication, then it is required to pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

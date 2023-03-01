@@ -1,0 +1,22 @@
+type: object
+description: >-
+  User operation argument.
+required:
+  - Name
+  - Value
+  - Description
+  - Type
+  - SecureValue
+properties: 
+  Name:
+    type: string
+  Value:
+    type: string
+  Description:
+    type: string
+  Type:
+    $ref: OpArgType.yaml
+  SecureValue:
+    type: string
+    description: >-
+      Value of the argument that should be kept secret.

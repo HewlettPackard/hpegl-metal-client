@@ -52,6 +52,11 @@ Class | Method | HTTP request | Description
 *HostsApi* | [**PowerReset**](docs/HostsApi.md#powerreset) | **Post** /hosts/{hostId}/powerreset | Reset Host by ID
 *HostsApi* | [**Replace**](docs/HostsApi.md#replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 *HostsApi* | [**Update**](docs/HostsApi.md#update) | **Put** /hosts/{hostId} | Update an existing Host
+*ImagesApi* | [**Add**](docs/ImagesApi.md#add) | **Post** /images | Create a new OS image
+*ImagesApi* | [**Delete**](docs/ImagesApi.md#delete) | **Delete** /images/{imageId} | Delete an OS image
+*ImagesApi* | [**GetByID**](docs/ImagesApi.md#getbyid) | **Get** /images/{imageId} | Retrieve an OS image its ID
+*ImagesApi* | [**List**](docs/ImagesApi.md#list) | **Get** /images | List of all OS Images within an tenant
+*ImagesApi* | [**Update**](docs/ImagesApi.md#update) | **Post** /images/{imageId} | Update an OS image by its ID
 *IppoolsApi* | [**AllocateIPs**](docs/IppoolsApi.md#allocateips) | **Post** /ippools/{ippoolId}/allocation | Allocate IPs from the pool
 *IppoolsApi* | [**GetByID**](docs/IppoolsApi.md#getbyid) | **Get** /ippools/{ippoolId} | Retrieve IP pool by ID
 *IppoolsApi* | [**List**](docs/IppoolsApi.md#list) | **Get** /ippools | List all ip pools in project
@@ -65,6 +70,8 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**Add**](docs/ProjectsApi.md#add) | **Post** /projects | Create a new project
 *ProjectsApi* | [**Delete**](docs/ProjectsApi.md#delete) | **Delete** /projects/{projectId} | Delete a Project
 *ProjectsApi* | [**GetByID**](docs/ProjectsApi.md#getbyid) | **Get** /projects/{projectId} | Retrieve a project by its ID
+*ProjectsApi* | [**ImagesGetByID**](docs/ProjectsApi.md#imagesgetbyid) | **Get** /projects/{projectId}/images/{imageId} | Retrieve a project OS image by ID
+*ProjectsApi* | [**ImagesList**](docs/ProjectsApi.md#imageslist) | **Get** /projects/{projectId}/images | List of all allowed OS Images within a projects
 *ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
 *ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
@@ -91,13 +98,21 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AddVolume](docs/AddVolume.md)
+ - [Algorithm](docs/Algorithm.md)
  - [Allocation](docs/Allocation.md)
  - [AllocationStorage](docs/AllocationStorage.md)
+ - [AttributeRule](docs/AttributeRule.md)
  - [AvailableImage](docs/AvailableImage.md)
  - [AvailableNetwork](docs/AvailableNetwork.md)
  - [AvailableResources](docs/AvailableResources.md)
+ - [BondMode](docs/BondMode.md)
+ - [BootMethod](docs/BootMethod.md)
+ - [ClassifierOperator](docs/ClassifierOperator.md)
  - [Country](docs/Country.md)
+ - [DiskPartition](docs/DiskPartition.md)
+ - [Encoding](docs/Encoding.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [FileInfo](docs/FileInfo.md)
  - [FlavorDesc](docs/FlavorDesc.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Host](docs/Host.md)
@@ -122,9 +137,12 @@ Class | Method | HTTP request | Description
  - [IscsiParameters](docs/IscsiParameters.md)
  - [Limits](docs/Limits.md)
  - [LocationInfo](docs/LocationInfo.md)
+ - [MachineClassifier](docs/MachineClassifier.md)
+ - [MachineClassifierRule](docs/MachineClassifierRule.md)
  - [MachineInventory](docs/MachineInventory.md)
  - [MachineSize](docs/MachineSize.md)
  - [MachineSizeInfo](docs/MachineSizeInfo.md)
+ - [MultiPartFile](docs/MultiPartFile.md)
  - [Netmask](docs/Netmask.md)
  - [Network](docs/Network.md)
  - [NetworkAllOf](docs/NetworkAllOf.md)
@@ -137,6 +155,17 @@ Class | Method | HTTP request | Description
  - [NewSshKey](docs/NewSshKey.md)
  - [NewVolume](docs/NewVolume.md)
  - [NewVolumeAttachment](docs/NewVolumeAttachment.md)
+ - [OpArg](docs/OpArg.md)
+ - [OpArgType](docs/OpArgType.md)
+ - [OsServiceImage](docs/OsServiceImage.md)
+ - [OsServiceImageAllOf](docs/OsServiceImageAllOf.md)
+ - [OsServiceImageApproach](docs/OsServiceImageApproach.md)
+ - [OsServiceImageOrigin](docs/OsServiceImageOrigin.md)
+ - [Partition](docs/Partition.md)
+ - [PartitionFormula](docs/PartitionFormula.md)
+ - [PartitionTable](docs/PartitionTable.md)
+ - [PartitionType](docs/PartitionType.md)
+ - [PassedInfo](docs/PassedInfo.md)
  - [Pool](docs/Pool.md)
  - [Profile](docs/Profile.md)
  - [Project](docs/Project.md)
@@ -154,9 +183,15 @@ Class | Method | HTTP request | Description
  - [SshKeyEntry](docs/SshKeyEntry.md)
  - [StorageInventory](docs/StorageInventory.md)
  - [SummaryInfo](docs/SummaryInfo.md)
+ - [Target](docs/Target.md)
+ - [Templating](docs/Templating.md)
+ - [TemplatingInfo](docs/TemplatingInfo.md)
  - [UsageEntryBase](docs/UsageEntryBase.md)
  - [UsageReport](docs/UsageReport.md)
  - [UseRecord](docs/UseRecord.md)
+ - [UserDefinedSteps](docs/UserDefinedSteps.md)
+ - [UserOp](docs/UserOp.md)
+ - [UserOpEnum](docs/UserOpEnum.md)
  - [VaStateEnum](docs/VaStateEnum.md)
  - [VafsConfig](docs/VafsConfig.md)
  - [Version](docs/Version.md)

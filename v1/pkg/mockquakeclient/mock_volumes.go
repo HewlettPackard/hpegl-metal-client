@@ -133,9 +133,9 @@ func (mr *MockVolumesAPIMockRecorder) List(ctx interface{}) *gomock.Call {
 }
 
 // Update mocks base method.
-func (m *MockVolumesAPI) Update(ctx context.Context, volume client.Volume) (client.Volume, *http.Response, error) {
+func (m *MockVolumesAPI) Update(ctx context.Context, volumeId string, volume client.Volume) (client.Volume, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, volume)
+	ret := m.ctrl.Call(m, "Update", ctx, volumeId, volume)
 	ret0, _ := ret[0].(client.Volume)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -143,7 +143,7 @@ func (m *MockVolumesAPI) Update(ctx context.Context, volume client.Volume) (clie
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockVolumesAPIMockRecorder) Update(ctx, volume interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) Update(ctx, volumeId, volume interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockVolumesAPI)(nil).Update), ctx, volume)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockVolumesAPI)(nil).Update), ctx, volumeId, volume)
 }

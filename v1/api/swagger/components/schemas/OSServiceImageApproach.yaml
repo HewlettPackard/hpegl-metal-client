@@ -1,0 +1,11 @@
+type: string
+enum:
+  - svc-client
+  - vmedia
+example: vmedia
+description: >-
+  Indicates how the service image is installed. 
+  The "Service Client" approach installs the OS image by booting a GLM service OS, 
+  that then runs the GLM Service Client to deploy and setup a TGZ root file system image. 
+  The "Virtual Media" approach uses an OS .ISO installer image and OS automation files 
+  (e.g. kickstart and cloud-init files) mounted over iLO virtual media.

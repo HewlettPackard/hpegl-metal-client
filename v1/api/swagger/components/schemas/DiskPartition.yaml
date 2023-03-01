@@ -1,0 +1,31 @@
+type: object
+description: Parition to be created on the host.
+required:
+  - Device
+  - Description
+  - StartOffset
+  - TableType
+  - Partitions
+properties:
+  Device:
+    type: string
+    example: /dev/sda
+    description: >-
+      Indicates the device name of the disk of the form /dev/sdX as known by the os e.g. /dev/sda
+      This is the default device that will be used to deploy the OS Image to the host.
+      The default value may be overridden when creating the host by a UUID/NAA/EUI 
+      logical volume ID (BootDeviceID).
+  Description:
+    type: string
+  StartOffset:
+    type: integer
+    format: int64
+    example: 0
+    description: >-
+      StartOffset is the offset from the start of the disk to the first partition, 
+      if zero a default of 1MiB (2048 sectors) will be used, units bytes.
+  TableType:
+    $ref: PartitionTable.yaml
+  Partitions:
+    $ref: Partition.yaml
+

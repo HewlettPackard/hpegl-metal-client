@@ -35,6 +35,13 @@ put:
    Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state.
    Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume. 
   operationId: Volume_update
+  parameters:
+    - name: volumeId
+      in: path
+      description: ID of volume to return
+      required: true
+      schema:
+        type: string
   requestBody:
     required: true
     description: Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.

@@ -1,0 +1,10 @@
+type: string
+enum: 
+  - vmedia-floppy
+  - vmedia-cd
+  - hdd
+example: vmedia-floppy
+description: >-
+  Indicates where the passed info is expected to land once
+  converted to a file when combined with path.
+

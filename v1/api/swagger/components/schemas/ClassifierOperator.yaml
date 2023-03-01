@@ -1,0 +1,20 @@
+type: string
+enum:
+  - contains
+  - containsnocase
+  - omits
+  - omitsnocase
+  - startswith
+  - startswithnocase
+  - endswith
+  - endswithnocase
+  - ==
+  - '!='
+  - <
+  - <=
+  - '>'
+  - '>='
+  - match
+example: contains
+description: >-
+  The operator used for a comparison.

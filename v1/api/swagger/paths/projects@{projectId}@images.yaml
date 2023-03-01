@@ -1,0 +1,33 @@
+get:
+  tags:
+    - projects
+  summary: List of all allowed OS Images within a projects
+  description: >-
+    Returns an array of all OS images objects that are allowed to be used within a project.
+    If GreenLake IAM issued token is used for authentication, 
+    then it is required to pass 'spaceid' header
+  operationId: Projects_Images_list
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: projectId
+      in: path
+      description: ID of project to list images
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/OSServiceImage.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

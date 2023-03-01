@@ -218,7 +218,7 @@ This endpoint does not need any parameter.
 
 ## Update
 
-> Volume Update(ctx, volume)
+> Volume Update(ctx, volumeId, volume)
 
 Update an existing volume
 
@@ -230,6 +230,7 @@ Updates volume with matching ID. Update is permitted only when volume is in 'All
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**volumeId** | **string**| ID of volume to return | 
 **volume** | [**Volume**](Volume.md)| Volume object with its ID and Capacity in GiB indicating the expanded size to be specified. | 
 
 ### Return type
