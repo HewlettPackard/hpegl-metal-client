@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **HostUse** | [**NetworkHostUse**](NetworkHostUse.md) |  | [optional] 
 **Purpose** | [**NetworkPurpose**](NetworkPurpose.md) |  | [optional] 
 **IPPoolID** | **string** |  | [optional] 
+**VLAN** | **int32** | VLAN ID of the network | [optional] 
+**VNI** | **int32** | VNI ID of the network | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
