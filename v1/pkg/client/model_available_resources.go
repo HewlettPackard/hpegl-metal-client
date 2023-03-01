@@ -13,21 +13,21 @@ package client
 // AvailableResources struct for AvailableResources
 type AvailableResources struct {
 	// Array listing the available host imaging services
-	Images []AvailableImage `json:"Images,omitempty"`
+	Images []AvailableImage `json:"Images"`
 	// Array listing the data center locations with available resources
-	Locations []LocationInfo `json:"Locations,omitempty"`
+	Locations []LocationInfo `json:"Locations"`
 	// Array listing the networks available for host connections
-	Networks []AvailableNetwork `json:"Networks,omitempty"`
+	Networks []AvailableNetwork `json:"Networks"`
 	// Array listing the available machine (server) sizes
-	MachineSizes []MachineSize `json:"MachineSizes,omitempty"`
+	MachineSizes []MachineSize `json:"MachineSizes"`
 	// Array listing the available volume flavors
-	VolumeFlavors []VolumeFlavor `json:"VolumeFlavors,omitempty"`
+	VolumeFlavors []VolumeFlavor `json:"VolumeFlavors"`
 	// Array listing the existing project volumes that could be attached to a host
-	Volumes []VolumeInfo `json:"Volumes,omitempty"`
+	Volumes []VolumeInfo `json:"Volumes"`
 	// Array listing the number of machines of each size in each location
-	MachineInventory []MachineInventory `json:"MachineInventory,omitempty"`
+	MachineInventory []MachineInventory `json:"MachineInventory"`
 	// Array providing information on the amount of available storage of each flavor in each location
-	StorageInventory []StorageInventory `json:"StorageInventory,omitempty"`
+	StorageInventory []StorageInventory `json:"StorageInventory"`
 	// Array listing pre-defined SSH keys that could be referenced when creating a Host
-	SSHKeys []SshKeyEntry `json:"SSHKeys,omitempty"`
+	SSHKeys []SshKeyEntry `json:"SSHKeys"`
 }

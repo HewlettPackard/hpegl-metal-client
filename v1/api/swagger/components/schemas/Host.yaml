@@ -3,9 +3,37 @@ allOf:
   - type: object
     required:
       - Description
+      - ServiceID
+      - ServiceFlavor
+      - ServiceVersion
+      - LocationID
+      - MachineSizeName
+      - MachineSizeID
+      - MachineID
+      - SSHKeyIDs
+      - SSHAuthorizedKeys
       - NetworkIDs
       - NetworkForDefaultRoute
       - NetworkUntagged
+      - PreAllocatedIPs
+      - ServiceNetsProviderMAC
+      - UserData
+      - NodeID
+      - ISCSIConfig
+      - Connections
+      - Deleted
+      - PortalCommOkay
+      - PowerStatus
+      - State
+      - Substate
+      - StateTime
+      - SubstateTime
+      - Progress
+      - Alert
+      - AlertInfo
+      - Workflow
+      - SummaryStatus
+      - Labels
     properties:
       Description:
         type: string
@@ -162,9 +190,5 @@ allOf:
         $ref: ./HealthStatus.yaml
         description: Host health summary status
       Labels:
-        type: object
-        additionalProperties:
-          type: string
-        description: The map of label name to label value for the host.
-        example:
-          serviceType: BMaaS
+        $ref: ./Labels.yaml
+        

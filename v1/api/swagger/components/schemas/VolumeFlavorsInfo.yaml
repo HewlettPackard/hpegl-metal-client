@@ -1,4 +1,9 @@
 type: object
+required: 
+  - Name
+  - ProjectsUsed
+  - OtherUsed
+  - Available
 properties:
   Name:
     type: string

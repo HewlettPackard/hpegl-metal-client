@@ -49,9 +49,9 @@ type SshkeysAPI interface {
 
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param sshkeyId ID of sshkey to update
-	     - @param sshKey Updated SSH key
+	     - @param updateSshKey Updated SSH key
 
 	   @return SshKey
 	*/
-	Update(ctx _context.Context, sshkeyId string, sshKey SshKey) (SshKey, *_nethttp.Response, error)
+	Update(ctx _context.Context, sshkeyId string, updateSshKey UpdateSshKey) (SshKey, *_nethttp.Response, error)
 }

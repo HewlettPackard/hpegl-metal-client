@@ -46,7 +46,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/IPPool.yaml
+          $ref: ../components/schemas/UpdateIPPool.yaml
   responses:
     '200':
       description: success

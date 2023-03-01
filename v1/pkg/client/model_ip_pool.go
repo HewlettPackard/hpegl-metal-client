@@ -22,20 +22,20 @@ type IpPool struct {
 	// Common name for the resource instance. Must be 128 or fewer printable characters
 	Name string `json:"Name"`
 	// Time when the resource was created in the database
-	Created time.Time `json:"Created,omitempty"`
+	Created time.Time `json:"Created"`
 	// Time when the resource was last modified in the database
-	Modified time.Time `json:"Modified,omitempty"`
+	Modified time.Time `json:"Modified"`
 	Description string `json:"Description"`
-	IPVersion IpVer `json:"IPVersion,omitempty"`
+	IPVersion IpVer `json:"IPVersion"`
 	// Unique ID of the network associated with the IP pool
-	NetworkID string `json:"NetworkID,omitempty"`
+	NetworkID string `json:"NetworkID"`
 	// Base address of the IP pool
-	BaseIP string `json:"BaseIP,omitempty"`
-	Netmask Netmask `json:"Netmask,omitempty"`
+	BaseIP string `json:"BaseIP"`
+	Netmask Netmask `json:"Netmask"`
 	// Default route associated with the IP pool
 	DefaultRoute string `json:"DefaultRoute"`
-	Sources []IpSource `json:"Sources,omitempty"`
-	UseRecords []UseRecord `json:"UseRecords,omitempty"`
+	Sources []IpSource `json:"Sources"`
+	UseRecords []UseRecord `json:"UseRecords"`
 	// List of DNS servers for the IP pool
 	DNS []string `json:"DNS"`
 	// Optional web-proxy for external internet access should the pool actually be behind a firewall
@@ -44,5 +44,5 @@ type IpPool struct {
 	NoProxy string `json:"NoProxy"`
 	// List of NTP servers for the IP pool
 	NTP []string `json:"NTP"`
-	Pool Pool `json:"Pool,omitempty"`
+	Pool Pool `json:"Pool"`
 }

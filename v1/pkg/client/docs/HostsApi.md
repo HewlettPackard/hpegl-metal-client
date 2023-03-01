@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> Host Update(ctx, hostId, host)
+> Host Update(ctx, hostId, updateHost)
 
 Update an existing Host
 
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **hostId** | **string**| ID of host to update | 
-**host** | [**Host**](Host.md)| Updated Host | 
+**updateHost** | [**UpdateHost**](UpdateHost.md)| Updated Host | 
 
 ### Return type
 

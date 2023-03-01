@@ -49,9 +49,9 @@ type NetworksAPI interface {
 
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param networkId ID of network to update
-	     - @param network Updated network
+	     - @param updateNetwork Updated network
 
 	   @return Network
 	*/
-	Update(ctx _context.Context, networkId string, network Network) (Network, *_nethttp.Response, error)
+	Update(ctx _context.Context, networkId string, updateNetwork UpdateNetwork) (Network, *_nethttp.Response, error)
 }

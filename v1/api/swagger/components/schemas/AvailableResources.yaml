@@ -1,4 +1,14 @@
 type: object
+required: 
+  - Images 
+  - Locations
+  - Networks
+  - MachineSizes
+  - VolumeFlavors
+  - Volumes
+  - MachineInventory
+  - StorageInventory
+  - SSHKeys
 properties:
   Images:
     type: array

@@ -22,12 +22,14 @@ type Project struct {
 	// Common name for the resource instance. Must be 128 or fewer printable characters
 	Name string `json:"Name"`
 	// Time when the resource was created in the database
-	Created time.Time `json:"Created,omitempty"`
+	Created time.Time `json:"Created"`
 	// Time when the resource was last modified in the database
-	Modified time.Time `json:"Modified,omitempty"`
+	Modified time.Time `json:"Modified"`
 	Profile Profile `json:"Profile"`
 	Limits Limits `json:"Limits"`
-	Resources ProjectResources `json:"Resources,omitempty"`
+	Resources ProjectResources `json:"Resources"`
 	// Array listing the permitted site IDs
-	PermittedSites []string `json:"PermittedSites,omitempty"`
+	PermittedSites []string `json:"PermittedSites"`
+	// Array listing the permitted OS service images.
+	PermittedOSImages []string `json:"PermittedOSImages,omitempty"`
 }

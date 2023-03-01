@@ -13,7 +13,7 @@ package client
 // HostServerPort struct for HostServerPort
 type HostServerPort struct {
 	// Server port name
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name"`
 	// Hardware address for the Ethernet interface (MAC)
-	HWAddr string `json:"HWAddr,omitempty"`
+	HWAddr string `json:"HWAddr"`
 }

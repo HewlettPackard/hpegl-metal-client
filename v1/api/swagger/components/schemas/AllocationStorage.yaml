@@ -1,5 +1,12 @@
 type: object
 description: Allocation of storage for each PCE service.
+required: 
+  - ResourceType
+  - Total
+  - InstanceFamily
+  - InstanceType
+  - Available
+  - AllocationInfo
 properties:
   ResourceType:
     type: string

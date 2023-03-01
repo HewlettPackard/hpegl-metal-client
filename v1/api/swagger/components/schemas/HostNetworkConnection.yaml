@@ -1,4 +1,17 @@
 type: object
+required: 
+  - Name
+  - NetworkID
+  - IP
+  - Subnet
+  - Netmask
+  - Gateway
+  - DNS
+  - VLAN
+  - VNI
+  - Untagged
+  - Proxy
+  - NoProxy
 properties:
   Name:
     type: string

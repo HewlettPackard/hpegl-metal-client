@@ -22,9 +22,9 @@ type SshKey struct {
 	// Common name for the resource instance. Must be 128 or fewer printable characters
 	Name string `json:"Name"`
 	// Time when the resource was created in the database
-	Created time.Time `json:"Created,omitempty"`
+	Created time.Time `json:"Created"`
 	// Time when the resource was last modified in the database
-	Modified time.Time `json:"Modified,omitempty"`
+	Modified time.Time `json:"Modified"`
 	// SSH key value
 	Key string `json:"Key"`
 }

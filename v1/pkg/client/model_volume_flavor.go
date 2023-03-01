@@ -13,8 +13,8 @@ package client
 // VolumeFlavor Description of a specific volume flavor offering.  A volume flavor will typically refer to a specific level of performance and durability as defined in the Details 
 type VolumeFlavor struct {
 	// Volume flavor unique ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID"`
 	// Typical user-visible name for a volume flavor
-	Name string `json:"Name,omitempty"`
-	Details FlavorDesc `json:"Details,omitempty"`
+	Name string `json:"Name"`
+	Details FlavorDesc `json:"Details"`
 }

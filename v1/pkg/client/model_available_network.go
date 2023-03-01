@@ -13,13 +13,13 @@ package client
 // AvailableNetwork Entry of a network available within a data center location
 type AvailableNetwork struct {
 	// ID of the network
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID"`
 	// The name of the network
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name"`
 	// The location ID is the data center location of the resource.  The LocationID must be one of those provided by the LocationInfo array returned as part of the get /available-resources call.  The locations are typically described by country, region, and data center.
-	LocationID string `json:"LocationID,omitempty"`
-	Description string `json:"Description,omitempty"`
-	HostUse NetworkHostUse `json:"HostUse,omitempty"`
-	Purpose NetworkPurpose `json:"Purpose,omitempty"`
-	IPPoolID string `json:"IPPoolID,omitempty"`
+	LocationID string `json:"LocationID"`
+	Description string `json:"Description"`
+	HostUse NetworkHostUse `json:"HostUse"`
+	Purpose NetworkPurpose `json:"Purpose"`
+	IPPoolID string `json:"IPPoolID"`
 }

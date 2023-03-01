@@ -1,4 +1,9 @@
 type: object
+required: 
+  - StorageID
+  - UserName
+  - Ticket
+  - TicketExpiryTime
 properties:
   StorageID:
     type: string

@@ -16,31 +16,31 @@ import (
 // VolumeUsageEntry struct for VolumeUsageEntry
 type VolumeUsageEntry struct {
 	// Project ID that contained the host
-	ProjectID string `json:"ProjectID,omitempty"`
+	ProjectID string `json:"ProjectID"`
 	// The location ID is the data center location of the resource.  The LocationID must be one of those provided by the LocationInfo array returned as part of the get /available-resources call.  The locations are typically described by country, region, and data center.
-	LocationID string `json:"LocationID,omitempty"`
+	LocationID string `json:"LocationID"`
 	// Timestamp of when resource (machine or storage) was allocated
-	Allocated time.Time `json:"Allocated,omitempty"`
+	Allocated time.Time `json:"Allocated"`
 	// Timestamp of when resource (host or volume) was ready for use
-	Ready time.Time `json:"Ready,omitempty"`
+	Ready time.Time `json:"Ready"`
 	// Timestamp of when resource (machine or storage) was freed
-	Freed time.Time `json:"Freed,omitempty"`
+	Freed time.Time `json:"Freed"`
 	// The start of the usage reporting window or when the resource was allocated
-	UsageStart time.Time `json:"UsageStart,omitempty"`
+	UsageStart time.Time `json:"UsageStart"`
 	// The end of the usage reporting window or when the resource was freed
-	UsageEnd time.Time `json:"UsageEnd,omitempty"`
+	UsageEnd time.Time `json:"UsageEnd"`
 	// The difference between the UsageEnd and UsageStart rounded up to the UsageHours
-	UsageHours int64 `json:"UsageHours,omitempty"`
+	UsageHours int64 `json:"UsageHours"`
 	// Description of error that affected the usage reporting
-	Error string `json:"Error,omitempty"`
+	Error string `json:"Error"`
 	// Name of the volume
-	VolumeName string `json:"VolumeName,omitempty"`
+	VolumeName string `json:"VolumeName"`
 	// Unique ID of the volume
-	VolumeID string `json:"VolumeID,omitempty"`
+	VolumeID string `json:"VolumeID"`
 	// Name of the volume flavor used when creating the volume
-	FlavorName string `json:"FlavorName,omitempty"`
+	FlavorName string `json:"FlavorName"`
 	// Unique ID of the volume flavor used when creating the volume
-	FlavorID string `json:"FlavorID,omitempty"`
+	FlavorID string `json:"FlavorID"`
 	// The size of the volume in MB
-	Capacity int64 `json:"Capacity,omitempty"`
+	Capacity int64 `json:"Capacity"`
 }

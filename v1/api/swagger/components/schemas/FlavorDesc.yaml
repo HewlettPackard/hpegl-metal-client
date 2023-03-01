@@ -1,5 +1,12 @@
 type: object
 description: Describes the details of machine size or volume flavor
+required: 
+  - Collection
+  - Banner1
+  - Banner2
+  - Bullets
+  - InfoLink
+  - Tooltip
 properties:
   Collection:
     type: string

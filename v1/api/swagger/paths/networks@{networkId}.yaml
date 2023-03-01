@@ -46,7 +46,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Network.yaml
+          $ref: ../components/schemas/UpdateNetwork.yaml
   responses:
     '200':
       description: success

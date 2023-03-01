@@ -1,4 +1,14 @@
 type: object
+required: 
+  - ProjectID
+  - LocationID
+  - Allocated
+  - Ready
+  - Freed
+  - UsageStart
+  - UsageEnd
+  - UsageHours
+  - Error
 properties:
   ProjectID:
     type: string

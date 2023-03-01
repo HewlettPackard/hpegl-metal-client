@@ -13,8 +13,8 @@ package client
 // MachineSize Description of a specific machine size offering
 type MachineSize struct {
 	// Unique ID for the machine size offering
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID"`
 	// Typical user-visible name for a machine size offering
-	Name string `json:"Name,omitempty"`
-	Details FlavorDesc `json:"Details,omitempty"`
+	Name string `json:"Name"`
+	Details FlavorDesc `json:"Details"`
 }

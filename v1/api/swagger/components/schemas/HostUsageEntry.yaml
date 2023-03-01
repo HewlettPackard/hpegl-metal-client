@@ -1,6 +1,11 @@
 allOf:
   - $ref: ./UsageEntryBase.yaml
   - type: object
+    required: 
+      - MachineSizeName
+      - MachineSizeID
+      - HostName
+      - HostID
     properties:
       MachineSizeName:
         type: string

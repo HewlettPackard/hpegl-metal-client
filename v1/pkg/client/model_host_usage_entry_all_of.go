@@ -13,11 +13,11 @@ package client
 // HostUsageEntryAllOf struct for HostUsageEntryAllOf
 type HostUsageEntryAllOf struct {
 	// Name of the MachineSize requested when host was created
-	MachineSizeName string `json:"MachineSizeName,omitempty"`
+	MachineSizeName string `json:"MachineSizeName"`
 	// Unique ID of the MachineSize requested when host was created
-	MachineSizeID string `json:"MachineSizeID,omitempty"`
+	MachineSizeID string `json:"MachineSizeID"`
 	// Name of the associated Host
-	HostName string `json:"HostName,omitempty"`
+	HostName string `json:"HostName"`
 	// Unique ID of the associated Host
-	HostID string `json:"HostID,omitempty"`
+	HostID string `json:"HostID"`
 }

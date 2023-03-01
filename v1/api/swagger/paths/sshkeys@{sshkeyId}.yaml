@@ -46,7 +46,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/SSHKey.yaml
+          $ref: ../components/schemas/UpdateSSHKey.yaml
   responses:
     '200':
       description: success

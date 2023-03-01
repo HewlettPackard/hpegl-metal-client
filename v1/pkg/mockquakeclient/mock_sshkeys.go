@@ -102,9 +102,9 @@ func (mr *MockSshkeysAPIMockRecorder) List(ctx interface{}) *gomock.Call {
 }
 
 // Update mocks base method.
-func (m *MockSshkeysAPI) Update(ctx context.Context, sshkeyId string, sshKey client.SshKey) (client.SshKey, *http.Response, error) {
+func (m *MockSshkeysAPI) Update(ctx context.Context, sshkeyId string, updateSshKey client.UpdateSshKey) (client.SshKey, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, sshkeyId, sshKey)
+	ret := m.ctrl.Call(m, "Update", ctx, sshkeyId, updateSshKey)
 	ret0, _ := ret[0].(client.SshKey)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -112,7 +112,7 @@ func (m *MockSshkeysAPI) Update(ctx context.Context, sshkeyId string, sshKey cli
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockSshkeysAPIMockRecorder) Update(ctx, sshkeyId, sshKey interface{}) *gomock.Call {
+func (mr *MockSshkeysAPIMockRecorder) Update(ctx, sshkeyId, updateSshKey interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockSshkeysAPI)(nil).Update), ctx, sshkeyId, sshKey)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockSshkeysAPI)(nil).Update), ctx, sshkeyId, updateSshKey)
 }

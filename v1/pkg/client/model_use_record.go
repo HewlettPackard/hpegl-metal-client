@@ -13,17 +13,17 @@ package client
 // UseRecord struct for UseRecord
 type UseRecord struct {
 	// Address of the record
-	Base string `json:"Base,omitempty"`
+	Base string `json:"Base"`
 	// Unique ID of the host associated with the record
-	HostID string `json:"HostID,omitempty"`
+	HostID string `json:"HostID"`
 	// Unique ID of the rack associated with the record
-	RackID string `json:"RackID,omitempty"`
+	RackID string `json:"RackID"`
 	// Unique ID of the device associated with the record
-	DeviceID string `json:"DeviceID,omitempty"`
+	DeviceID string `json:"DeviceID"`
 	// Indicates if the record is used for non Metal scope
-	External bool `json:"External,omitempty"`
+	External bool `json:"External"`
 	// Usage of the record
-	Usage string `json:"Usage,omitempty"`
+	Usage string `json:"Usage"`
 	// User which performed the allocation of the record
-	AllocatedBy string `json:"AllocatedBy,omitempty"`
+	AllocatedBy string `json:"AllocatedBy"`
 }

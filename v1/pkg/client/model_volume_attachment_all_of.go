@@ -13,24 +13,24 @@ package client
 // VolumeAttachmentAllOf struct for VolumeAttachmentAllOf
 type VolumeAttachmentAllOf struct {
 	// Unique ID of the volume attached to the host
-	VolumeID string `json:"VolumeID,omitempty"`
+	VolumeID string `json:"VolumeID"`
 	// Unique ID of the host connected to the volume
-	HostID string `json:"HostID,omitempty"`
+	HostID string `json:"HostID"`
 	// Host IP address for the network connection that connects to the storage array
-	HostIPAddress string `json:"HostIPAddress,omitempty"`
+	HostIPAddress string `json:"HostIPAddress"`
 	// IQN is the full initiator name used for identification during iSCSI login
-	IQN string `json:"IQN,omitempty"`
+	IQN string `json:"IQN"`
 	// CHAPSecret is the Challenge Authentication Protocol secret to be shared between array and initiator.
-	CHAPSecret string `json:"CHAPSecret,omitempty"`
+	CHAPSecret string `json:"CHAPSecret"`
 	// CHAPUserName is the CHAP username to use for CHAP authentication
-	CHAPUserName string `json:"CHAPUserName,omitempty"`
+	CHAPUserName string `json:"CHAPUserName"`
 	// LUN is the Logical Unit Number to be assigned to the volume on export
-	LUN int32 `json:"LUN,omitempty"`
+	LUN int32 `json:"LUN"`
 	// VolumeTargetIQN is the iQN for the volume, assigned by the array corresponding to the volume
-	VolumeTargetIQN string `json:"VolumeTargetIQN,omitempty"`
+	VolumeTargetIQN string `json:"VolumeTargetIQN"`
 	// VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export
-	VolumeTargetIPAddress string `json:"VolumeTargetIPAddress,omitempty"`
-	State VaStateEnum `json:"State,omitempty"`
+	VolumeTargetIPAddress string `json:"VolumeTargetIPAddress"`
+	State VaStateEnum `json:"State"`
 	// File share specific configuration parameters
-	FSConfig *VafsConfig `json:"FSConfig,omitempty"`
+	FSConfig *VafsConfig `json:"FSConfig"`
 }

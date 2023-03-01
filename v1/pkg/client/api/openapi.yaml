@@ -329,7 +329,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Project'
+              $ref: '#/components/schemas/UpdateProject'
         description: Project parameters to update an existing Project
         required: true
       responses:
@@ -693,7 +693,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SSHKey'
+              $ref: '#/components/schemas/UpdateSSHKey'
         description: Updated SSH key
         required: true
       responses:
@@ -932,7 +932,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Host'
+              $ref: '#/components/schemas/UpdateHost'
         description: Updated Host
         required: true
       responses:
@@ -1539,7 +1539,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Volume'
+              $ref: '#/components/schemas/UpdateVolume'
         description: Volume object with its ID and Capacity in GiB indicating the
           expanded size to be specified.
         required: true
@@ -2020,7 +2020,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Network'
+              $ref: '#/components/schemas/UpdateNetwork'
         description: Updated network
         required: true
       responses:
@@ -2210,7 +2210,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IPPool'
+              $ref: '#/components/schemas/UpdateIPPool'
         description: Update IPPool
         required: true
       responses:
@@ -2712,6 +2712,8 @@ components:
         Build:
           example: 0.8.6-dev-218-g0b3b1ad
           type: string
+      required:
+      - Build
       type: object
     ErrorResponse:
       properties:
@@ -2772,6 +2774,10 @@ components:
       - Name
       - Profile
       type: object
+    UpdateProject:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateProject_allOf'
     OSServiceImage:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
@@ -2861,6 +2867,11 @@ components:
           type: array
         Summary:
           $ref: '#/components/schemas/SummaryInfo'
+      required:
+      - MachineSizes
+      - Projects
+      - Summary
+      - VolumeFlavors
       type: object
     SSHKey:
       allOf:
@@ -2880,6 +2891,10 @@ components:
       - Key
       - Name
       type: object
+    UpdateSSHKey:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/SSHKey_allOf'
     Host:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
@@ -3053,6 +3068,10 @@ components:
       - SSHKeyIDs
       - ServiceID
       type: object
+    UpdateHost:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateHost_allOf'
     AvailableResources:
       example:
         Networks:
@@ -3225,6 +3244,16 @@ components:
           items:
             $ref: '#/components/schemas/SSHKeyEntry'
           type: array
+      required:
+      - Images
+      - Locations
+      - MachineInventory
+      - MachineSizes
+      - Networks
+      - SSHKeys
+      - StorageInventory
+      - VolumeFlavors
+      - Volumes
       type: object
     Volume:
       allOf:
@@ -3282,6 +3311,10 @@ components:
       - LocationID
       - Name
       type: object
+    UpdateVolume:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateVolume_allOf'
     VolumeAttachHostUUID:
       properties:
         HostID:
@@ -3376,6 +3409,10 @@ components:
       - LocationID
       - Name
       type: object
+    UpdateNetwork:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateNetwork_allOf'
     UsageReport:
       description: The composite usage report
       example:
@@ -3396,11 +3433,18 @@ components:
           items:
             $ref: '#/components/schemas/VolumeUsageEntry'
           type: array
+      required:
+      - Hosts
+      - Volumes
       type: object
     IPPool:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/IPPool_allOf'
+    UpdateIPPool:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateIPPool_allOf'
     IPAllocation:
       example:
         Usage: Allocated IP for external storage
@@ -3471,6 +3515,13 @@ components:
           items:
             $ref: '#/components/schemas/ServiceServerInfo'
           type: array
+      required:
+      - AllocationInfo
+      - Available
+      - InstanceFamily
+      - InstanceType
+      - ResourceType
+      - Total
       type: object
     AllocationStorage:
       description: Allocation of storage for each PCE service.
@@ -3514,6 +3565,13 @@ components:
           items:
             $ref: '#/components/schemas/ServiceStorageInfo'
           type: array
+      required:
+      - AllocationInfo
+      - Available
+      - InstanceFamily
+      - InstanceType
+      - ResourceType
+      - Total
       type: object
     MultiPartFile:
       description: An machine OS service image file.
@@ -3554,8 +3612,10 @@ components:
           format: date-time
           type: string
       required:
+      - Created
       - ETag
       - ID
+      - Modified
       - Name
       type: object
     Profile:
@@ -3597,6 +3657,15 @@ components:
         PhoneVerified:
           description: Currently always false
           type: boolean
+      required:
+      - Address
+      - Company
+      - Email
+      - EmailVerified
+      - PhoneNumber
+      - PhoneVerified
+      - TeamDesc
+      - TeamName
       type: object
     Limits:
       example:
@@ -3634,11 +3703,144 @@ components:
           type: object
       required:
       - Hosts
+      - InstanceTypes
       - PrivateNetworks
       - VolumeCapacity
       - Volumes
       type: object
     ProjectResources:
+      properties:
+        Hosts:
+          description: Number of hosts in use
+          minimum: 0
+          type: integer
+        Volumes:
+          description: Number of volumes in use
+          minimum: 0
+          type: integer
+        VolumeCapacity:
+          description: Volume capacity in use in TiB
+          format: int64
+          minimum: 0
+          type: integer
+        PrivateNetworks:
+          description: Number of private networks in use
+          minimum: 0
+          type: integer
+        InstanceTypes:
+          additionalProperties:
+            type: integer
+          description: Number of hosts with the instance type in use
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
+          type: object
+      required:
+      - Hosts
+      - InstanceTypes
+      - PrivateNetworks
+      - VolumeCapacity
+      - Volumes
+      type: object
+    UpdateResourceBase:
+      properties:
+        ID:
+          description: Unique ID for the resource instance as generated by the Metal
+            service
+          format: uuid
+          type: string
+        ETag:
+          description: Used to determine whether the DB entry has changed since it
+            was last read. This value is updated each time the resource is updated.  Client
+            must send this value unchanged for any update operation.
+          format: uuid
+          type: string
+        Name:
+          description: Common name for the resource instance. Must be 128 or fewer
+            printable characters
+          example: My Object Name
+          type: string
+        Created:
+          description: Time when the resource was created in the database
+          example: 2019-06-27T22:59:01.661Z
+          format: date-time
+          type: string
+        Modified:
+          description: Time when the resource was last modified in the database
+          example: 2020-02-27T18:28:02.863Z
+          format: date-time
+          type: string
+      required:
+      - ETag
+      - ID
+      - Name
+      type: object
+    UpdateProfile:
+      properties:
+        TeamName:
+          description: Name of the Project Team. Must not be empty, maximum 128 printable
+            characters
+          type: string
+        TeamDesc:
+          description: Optional description of the Project Team, maximum 256 printable
+            characters
+          type: string
+        Company:
+          description: Optional name of the company, maximum 256 printable characters
+          type: string
+        Address:
+          description: Optional address of the company, maximum 256 printable characters
+          type: string
+        Email:
+          description: Optional email address of the contact person for the team,
+            maximum 256 printable characters
+          type: string
+        EmailVerified:
+          description: Currently always false
+          type: boolean
+        PhoneNumber:
+          description: Optional phone number of the contact person for the team, maximum
+            32 printable characters
+          type: string
+        PhoneVerified:
+          description: Currently always false
+          type: boolean
+      required:
+      - TeamName
+      type: object
+    UpdateLimits:
+      properties:
+        Hosts:
+          description: Maximum number of hosts to allow
+          minimum: 0
+          type: integer
+        Volumes:
+          description: Maximum number of volumes to allow
+          minimum: 0
+          type: integer
+        VolumeCapacity:
+          description: Maximum capacity to allow in TiB
+          format: int64
+          minimum: 0
+          type: integer
+        PrivateNetworks:
+          description: Maximum number of private networks to allow
+          minimum: 0
+          type: integer
+        InstanceTypes:
+          additionalProperties:
+            type: integer
+          description: Map of instance type ID to maximum number of hosts that can
+            be created with that instance type
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
+          type: object
+      required:
+      - Hosts
+      - PrivateNetworks
+      - VolumeCapacity
+      - Volumes
+      type: object
+    UpdateProjectResources:
       properties:
         Hosts:
           description: Number of hosts in use
@@ -3895,6 +4097,17 @@ components:
           items:
             $ref: '#/components/schemas/LocationInfo'
           type: array
+      required:
+      - Description
+      - ID
+      - Locations
+      - Name
+      - NumHosts
+      - NumNetworks
+      - NumVolumes
+      - Status
+      - SummaryStatus
+      - TotalStorageGB
       type: object
     MachineSizeInfo:
       example:
@@ -3920,6 +4133,13 @@ components:
           description: |
             True if the usage of this machine size is restricted  to selected projects, false if the machine size is available to anyone.
           type: boolean
+      required:
+      - Available
+      - ID
+      - Name
+      - OtherUsed
+      - ProjectsUsed
+      - Restricted
       type: object
     VolumeFlavorsInfo:
       example:
@@ -3936,6 +4156,11 @@ components:
           type: integer
         Available:
           type: integer
+      required:
+      - Available
+      - Name
+      - OtherUsed
+      - ProjectsUsed
       type: object
     SummaryInfo:
       example:
@@ -3980,6 +4205,15 @@ components:
         NumUnknown:
           description: Number of projects with Unknown health summary status
           type: integer
+      required:
+      - Locations
+      - NumCritical
+      - NumHosts
+      - NumOK
+      - NumUnknown
+      - NumVolumes
+      - NumWarning
+      - TotalStorageGB
       type: object
     SSHKeyValue:
       description: SSH key value
@@ -4004,6 +4238,9 @@ components:
         ISCSIDiscoveryAddress:
           type: string
       required:
+      - CHAPSecret
+      - CHAPUser
+      - ISCSIDiscoveryAddress
       - InitiatorName
       type: object
     HostConnection:
@@ -4036,6 +4273,12 @@ components:
           items:
             $ref: '#/components/schemas/HostNetworkConnection'
           type: array
+      required:
+      - HA
+      - Name
+      - Networks
+      - Ports
+      - Speed
       type: object
     HostPowerState:
       description: Current power status of the underlaying physical server (machine)
@@ -4120,6 +4363,13 @@ components:
           description: Used to acknowledge the alert so that the UI can list only
             unacknowledged alerts
           type: boolean
+      required:
+      - Ack
+      - Alert
+      - Message
+      - State
+      - Substate
+      - Time
       type: object
     HealthStatus:
       enum:
@@ -4128,6 +4378,13 @@ components:
       - Critical
       - Unknown
       type: string
+    Labels:
+      additionalProperties:
+        type: string
+      description: The map of label name to label value for the host.
+      example:
+        serviceType: BMaaS
+      type: object
     AddVolume:
       example:
         Shareable: true
@@ -4156,6 +4413,84 @@ components:
           type: integer
         Shareable:
           description: Indicates if the volume can be attached to multiple hosts
+          type: boolean
+      type: object
+    UpdateHostISCSIConfig:
+      nullable: true
+      properties:
+        InitiatorName:
+          description: |
+            Fully qualified iSCSI intiator name of this host. This is generated when a host is created and the information is pushed to the new host
+          type: string
+        CHAPSecret:
+          description: |
+            CHAP secret as generated by the system when attaching a volume.   Visible in VolumeAttachment object.
+          type: string
+        CHAPUser:
+          description: |
+            CHAP user as generated by the system when attaching a volume.   Visible in VolumeAttachment object.
+          type: string
+        ISCSIDiscoveryAddress:
+          type: string
+      required:
+      - InitiatorName
+      type: object
+    UpdateHostConnection:
+      properties:
+        Name:
+          example: Default
+          type: string
+        Ports:
+          items:
+            $ref: '#/components/schemas/UpdateHostServerPort'
+          type: array
+        HA:
+          description: Indicates whether the network connection should be a link aggregation
+            group (LAG)
+          type: boolean
+        Speed:
+          description: The speed of the physical connection from the server to the
+            top of rack switch
+          enum:
+          - 100Mb
+          - 1Gb
+          - 10Gb
+          - 25Gb
+          - 50Gb
+          - 40Gb
+          - 100Gb
+          example: 1Gb
+          type: string
+        Networks:
+          items:
+            $ref: '#/components/schemas/UpdateHostNetworkConnection'
+          type: array
+      type: object
+    UpdateHostAlertInfo:
+      properties:
+        Alert:
+          description: Identifies the type of alert
+          enum:
+          - substate-timed-out
+          - op-failed
+          - vol-att-warning
+          - unknown-state
+          example: op-failed
+          type: string
+        State:
+          $ref: '#/components/schemas/HostState'
+        Substate:
+          $ref: '#/components/schemas/HostSubstate'
+        Message:
+          description: Provides some detailed description about the Alert
+          example: 'Operation XXX completed as failed with status: YYY'
+          type: string
+        Time:
+          format: date-time
+          type: string
+        Ack:
+          description: Used to acknowledge the alert so that the UI can list only
+            unacknowledged alerts
           type: boolean
       type: object
     AvailableImage:
@@ -4190,6 +4525,12 @@ components:
             to the OS
           example: ubuntu OS also including Docker runtime
           type: string
+      required:
+      - Category
+      - Description
+      - Flavor
+      - ID
+      - Version
       type: object
     LocationInfo:
       description: Entry on data center with its location ID and country, region,
@@ -4213,6 +4554,11 @@ components:
           description: Data center descriptor
           example: FTC1
           type: string
+      required:
+      - Country
+      - DataCenter
+      - ID
+      - Region
       type: object
     AvailableNetwork:
       description: Entry of a network available within a data center location
@@ -4249,6 +4595,14 @@ components:
           $ref: '#/components/schemas/NetworkPurpose'
         IPPoolID:
           type: string
+      required:
+      - Description
+      - HostUse
+      - ID
+      - IPPoolID
+      - LocationID
+      - Name
+      - Purpose
       type: object
     MachineSize:
       description: Description of a specific machine size offering
@@ -4275,6 +4629,10 @@ components:
           type: string
         Details:
           $ref: '#/components/schemas/FlavorDesc'
+      required:
+      - Details
+      - ID
+      - Name
       type: object
     VolumeFlavor:
       description: |
@@ -4302,6 +4660,10 @@ components:
           type: string
         Details:
           $ref: '#/components/schemas/FlavorDesc'
+      required:
+      - Details
+      - ID
+      - Name
       type: object
     VolumeInfo:
       description: Description of the details about a pre-existing volume
@@ -4354,6 +4716,18 @@ components:
           $ref: '#/components/schemas/VolumeState'
         Status:
           $ref: '#/components/schemas/VolumeStatus'
+      required:
+      - Capacity
+      - Description
+      - DiscoveryIP
+      - FlavorID
+      - ID
+      - LocationID
+      - Name
+      - Shareable
+      - State
+      - Status
+      - TargetIQN
       type: object
     MachineInventory:
       description: An entry describing the number of machines of a particular machine
@@ -4376,6 +4750,10 @@ components:
             size at the indicated location
           minimum: 0
           type: integer
+      required:
+      - LocationID
+      - Number
+      - SizeID
       type: object
     StorageInventory:
       description: An entry describing the amount of storage available to create volumes
@@ -4399,6 +4777,10 @@ components:
             the indicated flavor at the indicated location
           format: int64
           type: integer
+      required:
+      - Capacity
+      - FlavorID
+      - LocationID
       type: object
     SSHKeyEntry:
       description: An entry listing an SSH key that is available for use when creating
@@ -4422,6 +4804,10 @@ components:
           example: |
             'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxv1C5uOeG9BBjfQbum9GupGthTFcifS4FNYxZ2ZakN9UcpD05L2lKp4OI6mfCfciOhJ9SHduZWJFM0pYfC99hIsPAHhEwWOjh3/rHKxB/U4RYN4VFWM+ShDv92+k0Hse73HhuiHKVtmRj/fltAeCFm/mPlL+McMYFhFYMIK8b/spKpXxdEBCSowHPGIn3yi0ivPWhC4wcIa9jDIela/a0t/oDnYTeIp2WMLDbpZyQsGHmKopAAvb+83JhwytQMVTI/g5pMerbqPyxKtWaWDVDtpQ7O8G877T5U3kkl4jLLOJywxrvLrfHh1UNdNvPmvRFd+ct9Q5ugj5CIMJHqWTj Joe@Laptop.local'
           type: string
+      required:
+      - ID
+      - Key
+      - Name
       type: object
     VolumeState:
       description: Current volume state expressed as a string enum value (new, allocating,
@@ -4479,6 +4865,11 @@ components:
         TicketExpiryTime:
           description: Ticket expiry time to help client to refresh the ticket.
           type: string
+      required:
+      - StorageID
+      - Ticket
+      - TicketExpiryTime
+      - UserName
       type: object
     ProtocolParameters:
       example:
@@ -4676,6 +5067,9 @@ components:
           description: Number of IPs to count from the base
           example: 1
           type: integer
+      required:
+      - Base
+      - Count
       type: object
     UseRecord:
       properties:
@@ -4705,6 +5099,14 @@ components:
         AllocatedBy:
           description: User which performed the allocation of the record
           type: string
+      required:
+      - AllocatedBy
+      - Base
+      - DeviceID
+      - External
+      - HostID
+      - RackID
+      - Usage
       type: object
     Pool:
       properties:
@@ -4715,6 +5117,59 @@ components:
           type: array
         Stats:
           $ref: '#/components/schemas/IPPoolStats'
+      required:
+      - Fragments
+      - Stats
+      type: object
+    UpdateIPSource:
+      properties:
+        Base:
+          description: Base address for the IP source
+          example: 10.128.0.2
+          type: string
+        Count:
+          description: Number of IPs to count from the base
+          example: 1
+          type: integer
+      type: object
+    UpdateUseRecord:
+      properties:
+        Base:
+          description: Address of the record
+          example: 10.128.0.2
+          type: string
+        HostID:
+          description: Unique ID of the host associated with the record
+          format: uuid
+          type: string
+        RackID:
+          description: Unique ID of the rack associated with the record
+          format: uuid
+          type: string
+        DeviceID:
+          description: Unique ID of the device associated with the record
+          format: uuid
+          type: string
+        External:
+          description: Indicates if the record is used for non Metal scope
+          example: true
+          type: boolean
+        Usage:
+          description: Usage of the record
+          type: string
+        AllocatedBy:
+          description: User which performed the allocation of the record
+          type: string
+      type: object
+    UpdatePool:
+      properties:
+        Fragments:
+          description: List of fragments for the IP pool
+          items:
+            $ref: '#/components/schemas/UpdateIPRange'
+          type: array
+        Stats:
+          $ref: '#/components/schemas/UpdateIPPoolStats'
       type: object
     ServiceServerInfo:
       description: Server allocation information for a service type.
@@ -4747,6 +5202,13 @@ components:
           description: Total allocated memory in GiB.
           format: double
           type: number
+      required:
+      - AllocatedCount
+      - CoresAllocated
+      - CoresCapacity
+      - RAMAllocated
+      - RAMCapacity
+      - ServiceType
       type: object
     ServiceStorageInfo:
       description: Storage allocation information for service type.
@@ -4768,6 +5230,10 @@ components:
           format: float
           minimum: 0.0
           type: number
+      required:
+      - AllocatedCapacity
+      - AllocatedCount
+      - ServiceType
       type: object
     PartitionTable:
       description: Defines the type of partition table.
@@ -4914,8 +5380,113 @@ components:
           description: Hardware address for the Ethernet interface (MAC)
           example: 5c:b9:01:95:64:a0
           type: string
+      required:
+      - HWAddr
+      - Name
       type: object
     HostNetworkConnection:
+      properties:
+        Name:
+          description: Name of the network connection
+          example: HostConn1
+          type: string
+        NetworkID:
+          description: Unique ID corresponding to a network in the local data center
+          format: uuid
+          type: string
+        IP:
+          description: IP address for the network connection
+          example: 10.5.3.4
+          type: string
+        Subnet:
+          description: The IP subnet address
+          example: 10.5.3.0
+          type: string
+        Netmask:
+          enum:
+          - /8
+          - /9
+          - /10
+          - /11
+          - /12
+          - /13
+          - /14
+          - /15
+          - /16
+          - /17
+          - /18
+          - /19
+          - /20
+          - /21
+          - /22
+          - /23
+          - /24
+          - /25
+          - /26
+          - /27
+          - /28
+          - /29
+          - /30
+          - /31
+          example: /24
+          type: string
+        Gateway:
+          description: The IP subnet gateway address
+          example: 10.5.3.1
+          type: string
+        DNS:
+          description: List of DNS servers for the IP subnet
+          items:
+            example: 8.8.8.8
+            type: string
+          type: array
+        VLAN:
+          description: VLAN ID of the network
+          type: integer
+        VNI:
+          description: VNI ID of the network
+          type: integer
+        Untagged:
+          description: True if the network is untagged
+          type: boolean
+        Proxy:
+          description: Optional web-proxy for external internet access should the
+            IP subnet actually be behind a firewall
+          example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
+          type: string
+        NoProxy:
+          description: Addresses or CIDRs for which proxy requests are not made
+          example: localhost,15.10.0.10,test.com
+          type: string
+      required:
+      - DNS
+      - Gateway
+      - IP
+      - Name
+      - Netmask
+      - NetworkID
+      - NoProxy
+      - Proxy
+      - Subnet
+      - Untagged
+      - VLAN
+      - VNI
+      type: object
+    UpdateHostServerPort:
+      properties:
+        Name:
+          description: Server port name
+          example: lan5
+          type: string
+        HWAddr:
+          description: Hardware address for the Ethernet interface (MAC)
+          example: 5c:b9:01:95:64:a0
+          type: string
+      required:
+      - HWAddr
+      - Name
+      type: object
+    UpdateHostNetworkConnection:
       properties:
         Name:
           description: Name of the network connection
@@ -5275,6 +5846,13 @@ components:
         Tooltip:
           description: Supplemental tooltip text to use in GUIs
           type: string
+      required:
+      - Banner1
+      - Banner2
+      - Bullets
+      - Collection
+      - InfoLink
+      - Tooltip
       type: object
     ProtocolKind:
       description: The protocol to be used to attach the volume
@@ -5354,6 +5932,16 @@ components:
         Error:
           description: Description of error that affected the usage reporting
           type: string
+      required:
+      - Allocated
+      - Error
+      - Freed
+      - LocationID
+      - ProjectID
+      - Ready
+      - UsageEnd
+      - UsageHours
+      - UsageStart
       type: object
     IPRange:
       properties:
@@ -5375,8 +5963,54 @@ components:
           description: Base address of the Source the IPRange was allocated from
           example: 10.128.0.0
           type: string
+      required:
+      - Base
+      - Count
+      - DefaultRoute
+      - Netmask
+      - SourceBase
       type: object
     IPPoolStats:
+      properties:
+        Total:
+          description: Total number of IPs (pool capacity)
+          format: int32
+          type: integer
+        Available:
+          description: Number of non allocated IPs
+          format: int32
+          type: integer
+        InUse:
+          description: Number of allocated IPs
+          format: int32
+          type: integer
+      required:
+      - Available
+      - InUse
+      - Total
+      type: object
+    UpdateIPRange:
+      properties:
+        Base:
+          description: Base address for the IP range
+          example: 10.128.0.2
+          type: string
+        Count:
+          description: Number of IPs to count from the base
+          example: 1
+          type: integer
+        DefaultRoute:
+          description: Default route for the IP range
+          example: 10.128.0.1
+          type: string
+        Netmask:
+          $ref: '#/components/schemas/Netmask'
+        SourceBase:
+          description: Base address of the Source the IPRange was allocated from
+          example: 10.128.0.0
+          type: string
+      type: object
+    UpdateIPPoolStats:
       properties:
         Total:
           description: Total number of IPs (pool capacity)
@@ -5546,6 +6180,47 @@ components:
           $ref: '#/components/schemas/ProjectResources'
         PermittedSites:
           description: Array listing the permitted site IDs
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
+        PermittedOSImages:
+          description: Array listing the permitted OS service images.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - Limits
+      - PermittedImages
+      - PermittedSites
+      - Profile
+      - Resources
+    UpdateProject_allOf:
+      properties:
+        Profile:
+          $ref: '#/components/schemas/UpdateProfile'
+        Limits:
+          $ref: '#/components/schemas/UpdateLimits'
+        Resources:
+          $ref: '#/components/schemas/UpdateProjectResources'
+        PermittedSites:
+          description: Array listing the permitted site IDs
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
+        PermittedOSImages:
+          description: Array listing the permitted OS service images.
           example:
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - 91eec8b5-6460-4532-aad1-47b983edb63c
@@ -5807,11 +6482,247 @@ components:
             serviceType: BMaaS
           type: object
       required:
+      - Alert
+      - AlertInfo
+      - Connections
+      - Deleted
+      - Description
+      - ISCSIConfig
+      - Labels
+      - LocationID
+      - MachineID
+      - MachineSizeID
+      - MachineSizeName
+      - NetworkForDefaultRoute
+      - NetworkIDs
+      - NetworkUntagged
+      - NodeID
+      - PortalCommOkay
+      - PowerStatus
+      - PreAllocatedIPs
+      - Progress
+      - SSHAuthorizedKeys
+      - SSHKeyIDs
+      - ServiceFlavor
+      - ServiceID
+      - ServiceNetsProviderMAC
+      - ServiceVersion
+      - State
+      - StateTime
+      - Substate
+      - SubstateTime
+      - SummaryStatus
+      - UserData
+      - Workflow
+    UpdateHost_allOf:
+      properties:
+        Description:
+          example: Description of Host
+          type: string
+        ServiceID:
+          description: The image service identifier used to image the server. ServiceID
+            is one of those listed by the Images array returned as part of the get
+            /available-resources call.
+          format: uuid
+          type: string
+        ServiceFlavor:
+          description: Overall flavor of server image used to image the server
+          example: ubuntu
+          type: string
+        ServiceVersion:
+          description: Version of the ServiceFlavor used to image the server
+          example: 18.04-20190807
+          type: string
+        LocationID:
+          description: The location of the machine assigned to the host.  LocationID
+            is one of those listed by the LocationInfo array returned as part of the
+            get /available-resources call.
+          format: uuid
+          type: string
+        MachineSizeName:
+          description: Name of the machine size used to identify and select the machine
+            assigned to the host.  MachineSizes are described by the MachineSize array
+            returned by the get /available-resources call.
+          example: HPE Large
+          type: string
+        MachineSizeID:
+          description: UniqueID referring to the machine size used to identify and
+            select the machine assigned to the host.  MachineSizes are described by
+            the MachineSize array returned by the get /available-resources call.
+          format: uuid
+          type: string
+        MachineID:
+          description: UniqueID referring to the machine on which this host is running.
+          format: uuid
+          type: string
+        SSHKeyIDs:
+          description: IDs of SSH Keys used when configuring the Host
+          items:
+            format: uuid
+            type: string
+          type: array
+        SSHAuthorizedKeys:
+          description: Specific SSH keys that were when configuring the host.
+          items:
+            $ref: '#/components/schemas/SSHKeyValue'
+          type: array
+        NetworkIDs:
+          description: The list of IDs corresponding to the networks that were provisioned
+            to the host. These networks are among those listed in the Networks array
+            returned by the get /available-resources call.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
+        NetworkForDefaultRoute:
+          description: The host's default network ID. This needs to be one of the
+            values in the  "NetworkIDs" list.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          format: uuid
+          type: string
+        NetworkUntagged:
+          description: ID of the network selected to be untagged. This needs to be
+            one of the values in the  "NetworkIDs" list.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
+        PreAllocatedIPs:
+          description: The list of pre-allocated IP addresses corresponding to the
+            list of NetworkIDs. Pre-allocated IP addresses are optional, but required
+            when updating a host containing Pre-allocated IP addresses.
+          items:
+            type: string
+          type: array
+        ServiceNetsProviderMAC:
+          additionalProperties:
+            type: string
+          description: The map of Service Network (Provider) ID to Provider MAC address.   The
+            Service Network must be a provider network provisioned to this host. Any
+            Service Networks not included here will default to the physical MAC learned
+            during machine discovery.
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
+          type: object
+        UserData:
+          description: User-provided data attached to the image configuration data
+            when the host was provisioned
+          type: string
+        NodeID:
+          description: User-provided data to represent the identity of the host within
+            an application environment. For example, this could be set to represent
+            the Kubernetes node ID if the host is provisioned as a Kubernetes node.
+          example: Node21
+          type: string
+        ISCSIConfig:
+          $ref: '#/components/schemas/UpdateHostISCSIConfig'
+        Connections:
+          description: Details describing host network connections
+          items:
+            $ref: '#/components/schemas/UpdateHostConnection'
+          type: array
+        Deleted:
+          description: True if the Host has been deleted.
+          type: boolean
+        PortalCommOkay:
+          description: Describes if the portal is in active communication to the device
+          type: boolean
+        PowerStatus:
+          $ref: '#/components/schemas/HostPowerState'
+        State:
+          $ref: '#/components/schemas/HostState'
+        Substate:
+          $ref: '#/components/schemas/HostSubstate'
+        StateTime:
+          format: date-time
+          type: string
+        SubstateTime:
+          format: date-time
+          type: string
+        Progress:
+          format: int64
+          maximum: 100
+          minimum: 0
+          type: integer
+        Alert:
+          type: boolean
+        AlertInfo:
+          items:
+            $ref: '#/components/schemas/UpdateHostAlertInfo'
+          type: array
+        Workflow:
+          description: The current workflow the host is in
+          type: string
+        SummaryStatus:
+          $ref: '#/components/schemas/HealthStatus'
+        Labels:
+          additionalProperties:
+            type: string
+          description: The map of label name to label value for the host.
+          example:
+            serviceType: BMaaS
+          type: object
+      required:
       - Description
       - NetworkForDefaultRoute
       - NetworkIDs
       - NetworkUntagged
     Volume_allOf:
+      properties:
+        Description:
+          example: Description of New Volume
+          type: string
+        FlavorID:
+          description: The VolumeFlavorID matching an entry in the VolumeFlavors array
+            returned as part of the get /available-resources call
+          format: uuid
+          type: string
+        Capacity:
+          description: The size of the volume in KiB
+          example: 10485760
+          format: int64
+          minimum: 0
+          type: integer
+        Shareable:
+          description: Indicates if the volume can be attached to multiple hosts
+          type: boolean
+        LocationID:
+          description: The location of the volume (and the storage array) LocationID
+            is one of those listed by the LocationInfo array returned as part of the
+            get /available-resources call. Any volumes must be in the same location
+            as their attached Host.
+          format: uuid
+          type: string
+        State:
+          $ref: '#/components/schemas/VolumeState'
+        SubState:
+          $ref: '#/components/schemas/VolumeSubState'
+        Status:
+          $ref: '#/components/schemas/VolumeStatus'
+        Labels:
+          additionalProperties:
+            type: string
+          description: The map of label name to label value for the host.
+          example:
+            serviceType: BMaaS
+          type: object
+        WWN:
+          description: Serial number of the volume.
+          type: string
+      required:
+      - Capacity
+      - Description
+      - FlavorID
+      - Labels
+      - LocationID
+      - Shareable
+      - State
+      - Status
+      - SubState
+      - WWN
+    UpdateVolume_allOf:
       properties:
         Description:
           example: Description of New Volume
@@ -5902,7 +6813,51 @@ components:
           description: File share specific configuration parameters
           nullable: true
           type: object
+      required:
+      - CHAPSecret
+      - CHAPUserName
+      - FSConfig
+      - HostID
+      - HostIPAddress
+      - IQN
+      - LUN
+      - State
+      - VolumeID
+      - VolumeTargetIPAddress
+      - VolumeTargetIQN
     Network_allOf:
+      properties:
+        LocationID:
+          description: The location ID is the data center location of the resource.  The
+            LocationID must be one of those provided by the LocationInfo array returned
+            as part of the get /available-resources call.  The locations are typically
+            described by country, region, and data center.
+          format: uuid
+          type: string
+        Description:
+          example: Private network for intra-cluster communication
+          type: string
+        HostUse:
+          $ref: '#/components/schemas/NetworkHostUse'
+        Purpose:
+          $ref: '#/components/schemas/NetworkPurpose'
+        IPPoolID:
+          type: string
+        VLAN:
+          description: VLAN ID of the network
+          type: integer
+        VNI:
+          description: VNI ID of the network
+          type: integer
+      required:
+      - Description
+      - HostUse
+      - IPPoolID
+      - LocationID
+      - Purpose
+      - VLAN
+      - VNI
+    UpdateNetwork_allOf:
       properties:
         LocationID:
           description: The location ID is the data center location of the resource.  The
@@ -5979,6 +6934,72 @@ components:
         Pool:
           $ref: '#/components/schemas/Pool'
       required:
+      - BaseIP
+      - DNS
+      - DefaultRoute
+      - Description
+      - IPVersion
+      - NTP
+      - Netmask
+      - NetworkID
+      - NoProxy
+      - Pool
+      - Proxy
+      - Sources
+      - UseRecords
+    UpdateIPPool_allOf:
+      properties:
+        Description:
+          example: Description of IP pool
+          type: string
+        IPVersion:
+          $ref: '#/components/schemas/IPVer'
+        NetworkID:
+          description: Unique ID of the network associated with the IP pool
+          format: uuid
+          type: string
+        BaseIP:
+          description: Base address of the IP pool
+          example: 10.128.0.0
+          type: string
+        Netmask:
+          $ref: '#/components/schemas/Netmask'
+        DefaultRoute:
+          description: Default route associated with the IP pool
+          example: 10.128.0.1
+          type: string
+        Sources:
+          items:
+            $ref: '#/components/schemas/UpdateIPSource'
+          type: array
+        UseRecords:
+          items:
+            $ref: '#/components/schemas/UpdateUseRecord'
+          type: array
+        DNS:
+          description: List of DNS servers for the IP pool
+          items:
+            example: 8.8.8.8
+            type: string
+          type: array
+        Proxy:
+          description: Optional web-proxy for external internet access should the
+            pool actually be behind a firewall
+          example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
+          type: string
+        NoProxy:
+          description: Addresses or CIDRs for which proxy requests are not made
+          example: localhost,15.10.0.10,test.com
+          type: string
+        NTP:
+          description: List of NTP servers for the IP pool
+          items:
+            example: 15.0.0.1
+            type: string
+          type: array
+        Pool:
+          $ref: '#/components/schemas/UpdatePool'
+      required:
       - DNS
       - DefaultRoute
       - Description
@@ -6002,6 +7023,11 @@ components:
           description: Unique ID of the associated Host
           format: uuid
           type: string
+      required:
+      - HostID
+      - HostName
+      - MachineSizeID
+      - MachineSizeName
     VolumeUsageEntry_allOf:
       properties:
         VolumeName:
@@ -6022,6 +7048,12 @@ components:
           description: The size of the volume in MB
           format: int64
           type: integer
+      required:
+      - Capacity
+      - FlavorID
+      - FlavorName
+      - VolumeID
+      - VolumeName
   securitySchemes:
     BearerAuth:
       bearerFormat: JWT

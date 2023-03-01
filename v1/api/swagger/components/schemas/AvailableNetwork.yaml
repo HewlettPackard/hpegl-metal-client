@@ -1,5 +1,13 @@
 type: object
 description: Entry of a network available within a data center location
+required: 
+  - ID
+  - Name
+  - LocationID
+  - Description
+  - HostUse
+  - Purpose
+  - IPPoolID
 properties:
   ID:
     type: string

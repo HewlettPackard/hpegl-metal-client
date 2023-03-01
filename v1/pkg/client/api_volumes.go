@@ -879,10 +879,10 @@ Update Update an existing volume
 Updates volume with matching ID. Update is permitted only when volume is in &#39;Allocated&#39; or &#39;Visible&#39; state. Only the Volume &#39;Capacity&#39; can be updated with a value greater than the existing one to expand the volume.  
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param volumeId ID of volume to return
- * @param volume Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
+ * @param updateVolume Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
 @return Volume
 */
-func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, volume Volume) (Volume, *_nethttp.Response, error) {
+func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, updateVolume UpdateVolume) (Volume, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -918,7 +918,7 @@ func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, volume
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &volume
+	localVarPostBody = &updateVolume
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

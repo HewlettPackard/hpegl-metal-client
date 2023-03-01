@@ -1,4 +1,13 @@
 type: object
+required: 
+  - Locations
+  - NumHosts
+  - NumVolumes
+  - TotalStorageGB
+  - NumOK
+  - NumWarning
+  - NumCritical
+  - NumUnknown
 properties:
   Locations:
     type: array

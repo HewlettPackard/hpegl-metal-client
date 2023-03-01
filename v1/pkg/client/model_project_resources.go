@@ -13,13 +13,13 @@ package client
 // ProjectResources struct for ProjectResources
 type ProjectResources struct {
 	// Number of hosts in use
-	Hosts int32 `json:"Hosts,omitempty"`
+	Hosts int32 `json:"Hosts"`
 	// Number of volumes in use
-	Volumes int32 `json:"Volumes,omitempty"`
+	Volumes int32 `json:"Volumes"`
 	// Volume capacity in use in TiB
-	VolumeCapacity int64 `json:"VolumeCapacity,omitempty"`
+	VolumeCapacity int64 `json:"VolumeCapacity"`
 	// Number of private networks in use
-	PrivateNetworks int32 `json:"PrivateNetworks,omitempty"`
+	PrivateNetworks int32 `json:"PrivateNetworks"`
 	// Number of hosts with the instance type in use
-	InstanceTypes map[string]int32 `json:"InstanceTypes,omitempty"`
+	InstanceTypes map[string]int32 `json:"InstanceTypes"`
 }

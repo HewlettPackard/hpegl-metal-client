@@ -1,5 +1,8 @@
 type: object
 description: The composite usage report
+required: 
+  - Hosts
+  - Volumes
 properties:
   Hosts:
     description: list of Host usage entries for the report window

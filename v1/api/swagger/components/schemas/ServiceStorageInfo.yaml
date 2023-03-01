@@ -1,5 +1,9 @@
 type: object
 description: Storage allocation information for service type.
+required: 
+  - ServiceType
+  - AllocatedCount
+  - AllocatedCapacity
 properties:
   ServiceType:
     type: string

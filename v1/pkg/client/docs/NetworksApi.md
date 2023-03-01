@@ -146,7 +146,7 @@ This endpoint does not need any parameter.
 
 ## Update
 
-> Network Update(ctx, networkId, network)
+> Network Update(ctx, networkId, updateNetwork)
 
 Update an existing network.
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **networkId** | **string**| ID of network to update | 
-**network** | [**Network**](Network.md)| Updated network | 
+**updateNetwork** | [**UpdateNetwork**](UpdateNetwork.md)| Updated network | 
 
 ### Return type
 

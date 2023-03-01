@@ -1,4 +1,11 @@
 type: object
+required: 
+  - Name
+  - ProjectsUsed
+  - OtherUsed
+  - Available
+  - ID
+  - Restricted
 properties:
   Name:
     type: string

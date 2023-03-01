@@ -134,9 +134,9 @@ func (mr *MockProjectsAPIMockRecorder) List(ctx, localVarOptionals interface{}) 
 }
 
 // Update mocks base method.
-func (m *MockProjectsAPI) Update(ctx context.Context, projectId string, project client.Project) (client.Project, *http.Response, error) {
+func (m *MockProjectsAPI) Update(ctx context.Context, projectId string, updateProject client.UpdateProject) (client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, projectId, project)
+	ret := m.ctrl.Call(m, "Update", ctx, projectId, updateProject)
 	ret0, _ := ret[0].(client.Project)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -144,7 +144,7 @@ func (m *MockProjectsAPI) Update(ctx context.Context, projectId string, project 
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockProjectsAPIMockRecorder) Update(ctx, projectId, project interface{}) *gomock.Call {
+func (mr *MockProjectsAPIMockRecorder) Update(ctx, projectId, updateProject interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockProjectsAPI)(nil).Update), ctx, projectId, project)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockProjectsAPI)(nil).Update), ctx, projectId, updateProject)
 }

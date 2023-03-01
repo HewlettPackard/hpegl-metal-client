@@ -13,12 +13,12 @@ package client
 // IpRange struct for IpRange
 type IpRange struct {
 	// Base address for the IP range
-	Base string `json:"Base,omitempty"`
+	Base string `json:"Base"`
 	// Number of IPs to count from the base
-	Count int32 `json:"Count,omitempty"`
+	Count int32 `json:"Count"`
 	// Default route for the IP range
-	DefaultRoute string `json:"DefaultRoute,omitempty"`
-	Netmask Netmask `json:"Netmask,omitempty"`
+	DefaultRoute string `json:"DefaultRoute"`
+	Netmask Netmask `json:"Netmask"`
 	// Base address of the Source the IPRange was allocated from
-	SourceBase string `json:"SourceBase,omitempty"`
+	SourceBase string `json:"SourceBase"`
 }

@@ -59,7 +59,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Project.yaml
+          $ref: ../components/schemas/UpdateProject.yaml
   responses:
     '200':
       description: success

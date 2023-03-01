@@ -1,4 +1,9 @@
 type: object
+required: 
+  - Projects
+  - MachineSizes
+  - VolumeFlavors
+  - Summary
 properties:
   Projects:
     type: array

@@ -2,6 +2,11 @@ type: object
 description: >-
   Entry on data center with its location ID and country, region, and data center
   description strings
+required: 
+  - ID
+  - Country
+  - Region
+  - DataCenter
 properties:
   ID:
     type: string

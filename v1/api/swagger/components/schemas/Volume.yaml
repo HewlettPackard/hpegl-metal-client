@@ -1,6 +1,17 @@
 allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
+    required: 
+      - Description
+      - FlavorID
+      - Capacity
+      - Shareable
+      - LocationID
+      - State
+      - SubState
+      - Status
+      - Labels
+      - WWN
     properties:
       Description:
         type: string
@@ -35,12 +46,7 @@ allOf:
       Status:
         $ref: ./VolumeStatus.yaml
       Labels:
-        type: object
-        additionalProperties:
-          type: string
-        description: The map of label name to label value for the volume.
-        example:
-          serviceType: BMaaS
+        $ref: ./Labels.yaml
       WWN:
         type: string
         description: Serial number of the volume.

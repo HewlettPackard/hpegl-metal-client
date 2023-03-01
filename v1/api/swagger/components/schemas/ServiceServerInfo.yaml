@@ -1,5 +1,12 @@
 type: object
 description: Server allocation information for a service type.
+required: 
+  - ServiceType
+  - AllocatedCount
+  - CoresCapacity
+  - CoresAllocated
+  - RAMCapacity
+  - RAMAllocated
 properties:
   ServiceType:
     type: string

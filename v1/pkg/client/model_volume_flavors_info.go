@@ -12,8 +12,8 @@
 package client
 // VolumeFlavorsInfo struct for VolumeFlavorsInfo
 type VolumeFlavorsInfo struct {
-	Name string `json:"Name,omitempty"`
-	ProjectsUsed int32 `json:"ProjectsUsed,omitempty"`
-	OtherUsed int32 `json:"OtherUsed,omitempty"`
-	Available int32 `json:"Available,omitempty"`
+	Name string `json:"Name"`
+	ProjectsUsed int32 `json:"ProjectsUsed"`
+	OtherUsed int32 `json:"OtherUsed"`
+	Available int32 `json:"Available"`
 }

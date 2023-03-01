@@ -1,6 +1,18 @@
 allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
+    required: 
+      - VolumeID
+      - HostID
+      - HostIPAddress
+      - IQN
+      - CHAPSecret
+      - CHAPUserName
+      - LUN
+      - VolumeTargetIQN
+      - VolumeTargetIPAddress
+      - State
+      - FSConfig
     properties:
       VolumeID:
         type: string

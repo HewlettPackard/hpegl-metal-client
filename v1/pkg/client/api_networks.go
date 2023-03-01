@@ -592,10 +592,10 @@ Update Update an existing network.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param networkId ID of network to update
- * @param network Updated network
+ * @param updateNetwork Updated network
 @return Network
 */
-func (a *NetworksApiService) Update(ctx _context.Context, networkId string, network Network) (Network, *_nethttp.Response, error) {
+func (a *NetworksApiService) Update(ctx _context.Context, networkId string, updateNetwork UpdateNetwork) (Network, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -631,7 +631,7 @@ func (a *NetworksApiService) Update(ctx _context.Context, networkId string, netw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &network
+	localVarPostBody = &updateNetwork
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

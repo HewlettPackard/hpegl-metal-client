@@ -592,10 +592,10 @@ Update Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sshkeyId ID of sshkey to update
- * @param sshKey Updated SSH key
+ * @param updateSshKey Updated SSH key
 @return SshKey
 */
-func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, sshKey SshKey) (SshKey, *_nethttp.Response, error) {
+func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, updateSshKey UpdateSshKey) (SshKey, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -631,7 +631,7 @@ func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, sshKey
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &sshKey
+	localVarPostBody = &updateSshKey
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

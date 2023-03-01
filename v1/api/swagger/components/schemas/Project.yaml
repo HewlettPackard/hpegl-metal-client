@@ -4,20 +4,32 @@ allOf:
     required:
       - Profile
       - Limits
+      - Resources
+      - PermittedSites
+      - PermittedImages
     properties:
       Profile:
-        description: Profile is a generalized description of a team
+        description: Profile is a generalized description of a team.
         $ref: ./Profile.yaml
       Limits:
         description: >-
           Project Limits place general constraints on a project in terms of
-          server and storage
+          server and storage.
         $ref: ./Limits.yaml
       Resources:
-        description: Project resources provides resources currently utilized by the project
+        description: Project resources provides resources currently utilized by the project.
         $ref: ./ProjectResources.yml
       PermittedSites:
         description: Array listing the permitted site IDs
+        type: array
+        items:
+          type: string
+          format: uuid
+        example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+      PermittedOSImages:
+        description: Array listing the permitted OS service images.
         type: array
         items:
           type: string
