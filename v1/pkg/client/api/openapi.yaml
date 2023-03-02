@@ -2695,23 +2695,23 @@ components:
     AvailableResources:
       example:
         Networks:
-        - VNI: 6
+        - VNI: 15006
           IPPoolID: IPPoolID
           Description: Private network for intra-cluster communication
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           Purpose: Storage
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          VLAN: 0
+          VLAN: 200
           Name: Private
-        - VNI: 6
+        - VNI: 15006
           IPPoolID: IPPoolID
           Description: Private network for intra-cluster communication
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           Purpose: Storage
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          VLAN: 0
+          VLAN: 200
           Name: Private
         Volumes:
         - TargetIQN: TargetIQN
@@ -2805,10 +2805,10 @@ components:
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         StorageInventory:
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: 5
+          Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: 5
+          Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         SSHKeys:
         - ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3665,14 +3665,14 @@ components:
     AvailableNetwork:
       description: Entry of a network available within a data center location
       example:
-        VNI: 6
+        VNI: 15006
         IPPoolID: IPPoolID
         Description: Private network for intra-cluster communication
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         HostUse: Default
         Purpose: Storage
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        VLAN: 0
+        VLAN: 200
         Name: Private
       properties:
         ID:
@@ -3701,9 +3701,11 @@ components:
           type: string
         VLAN:
           description: VLAN ID of the network
+          example: 200
           type: integer
         VNI:
           description: VNI ID of the network
+          example: 15006
           type: integer
       type: object
     MachineSize:
@@ -3838,7 +3840,7 @@ components:
         of a specific flavor
       example:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: 5
+        Capacity: 1
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         FlavorID:
