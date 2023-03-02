@@ -24,6 +24,6 @@ type Partition struct {
 	Bootable bool `json:"Bootable"`
 	// Provide options for the partition's creation.
 	MakeOptions []string `json:"MakeOptions"`
-	// Provide options for the patition mount. If empty, \"defaults\" will be used for filesystem partition types. M MountOptions will be placed in the \"options\" field for the partition in /etc/fstab.
+	// Provide options for the patition mount. If empty, \"defaults\" will be used for filesystem partition types. MountOptions will be placed in the \"options\" field for the partition in /etc/fstab.
 	MountOptions string `json:"MountOptions"`
 }

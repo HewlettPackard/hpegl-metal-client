@@ -1,5 +1,5 @@
 type: object
-description: Parition to be created on the host.
+description: Disk partition to be created on the host.
 required:
   - Device
   - Description
@@ -23,7 +23,7 @@ properties:
     example: 0
     description: >-
       StartOffset is the offset from the start of the disk to the first partition, 
-      if zero a default of 1MiB (2048 sectors) will be used, units bytes.
+      if zero a default of 1 MiB (2048 sectors) will be used, units bytes.
   TableType:
     $ref: PartitionTable.yaml
   Partitions:

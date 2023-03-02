@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Add**](ImagesApi.md#Add) | **Post** /images | Create a new OS image
 [**Delete**](ImagesApi.md#Delete) | **Delete** /images/{imageId} | Delete an OS image
-[**GetByID**](ImagesApi.md#GetByID) | **Get** /images/{imageId} | Retrieve an OS image its ID
+[**GetByID**](ImagesApi.md#GetByID) | **Get** /images/{imageId} | Retrieve an OS image
 [**List**](ImagesApi.md#List) | **Get** /images | List of all OS Images within an tenant
 [**Update**](ImagesApi.md#Update) | **Post** /images/{imageId} | Update an OS image by its ID
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Create a new OS image
 
-Adds a new OS Image that can be referenced during host creation. If GreenLake IAM issued token is used for authentication, then it is required  to pass either 'spaceid' header. Note that Hoster or BMaaS Access Owner role is  required for this operation.
+Adds a new OS Image that can be referenced during host creation. If GreenLake IAM issued token is used for authentication, then it is required  to pass either 'spaceid' header or 'Space' header.  Note that Hoster or BMaaS Access Owner role is required for this operation.
 
 ### Required Parameters
 
@@ -95,9 +95,9 @@ Name | Type | Description  | Notes
 
 > OsServiceImage GetByID(ctx, imageId)
 
-Retrieve an OS image its ID
+Retrieve an OS image
 
-Returns a single Os Image object with its matching ID.
+Returns a single OS Image object with its matching ID.
 
 ### Required Parameters
 

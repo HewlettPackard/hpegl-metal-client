@@ -17,4 +17,4 @@ properties:
   Operator:
     $ref: ClassifierOperator.yaml
     description: >-
-      Describes the operator used for a comparison.
+      Describes the operator used for comparison.

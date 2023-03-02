@@ -1,9 +1,9 @@
 get:
   tags:
     - images
-  summary: Retrieve an OS image its ID
+  summary: Retrieve an OS image
   description: >-
-    Returns a single Os Image object with its matching ID.
+    Returns a single OS Image object with its matching ID.
   operationId: Image_getByID
   parameters:
     - name: imageId

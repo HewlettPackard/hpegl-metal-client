@@ -2402,8 +2402,8 @@ paths:
     post:
       description: Adds a new OS Image that can be referenced during host creation.
         If GreenLake IAM issued token is used for authentication, then it is required  to
-        pass either 'spaceid' header. Note that Hoster or BMaaS Access Owner role
-        is  required for this operation.
+        pass either 'spaceid' header or 'Space' header.  Note that Hoster or BMaaS
+        Access Owner role is required for this operation.
       operationId: Image_add
       parameters:
       - description: GreenLake space ID
@@ -2504,7 +2504,7 @@ paths:
       tags:
       - images
     get:
-      description: Returns a single Os Image object with its matching ID.
+      description: Returns a single OS Image object with its matching ID.
       operationId: Image_getByID
       parameters:
       - description: ID of OS image to return
@@ -2544,7 +2544,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Retrieve an OS image its ID
+      summary: Retrieve an OS image
       tags:
       - images
     post:
@@ -2983,23 +2983,23 @@ components:
     AvailableResources:
       example:
         Networks:
-        - VNI: 6
+        - VNI: 15006
           IPPoolID: IPPoolID
           Description: Private network for intra-cluster communication
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           Purpose: Storage
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          VLAN: 0
+          VLAN: 200
           Name: Private
-        - VNI: 6
+        - VNI: 15006
           IPPoolID: IPPoolID
           Description: Private network for intra-cluster communication
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           Purpose: Storage
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          VLAN: 0
+          VLAN: 200
           Name: Private
         Volumes:
         - TargetIQN: TargetIQN
@@ -3093,10 +3093,10 @@ components:
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         StorageInventory:
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: 5
+          Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Capacity: 5
+          Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         SSHKeys:
         - ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4199,14 +4199,14 @@ components:
     AvailableNetwork:
       description: Entry of a network available within a data center location
       example:
-        VNI: 6
+        VNI: 15006
         IPPoolID: IPPoolID
         Description: Private network for intra-cluster communication
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         HostUse: Default
         Purpose: Storage
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        VLAN: 0
+        VLAN: 200
         Name: Private
       properties:
         ID:
@@ -4235,9 +4235,11 @@ components:
           type: string
         VLAN:
           description: VLAN ID of the network
+          example: 200
           type: integer
         VNI:
           description: VNI ID of the network
+          example: 15006
           type: integer
       required:
       - Description
@@ -4406,7 +4408,7 @@ components:
         of a specific flavor
       example:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Capacity: 5
+        Capacity: 1
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         FlavorID:
@@ -4840,7 +4842,7 @@ components:
       example: Custom
       type: string
     DiskPartition:
-      description: Parition to be created on the host.
+      description: Disk partition to be created on the host.
       properties:
         Device:
           description: Indicates the device name of the disk of the form /dev/sdX
@@ -4853,7 +4855,7 @@ components:
           type: string
         StartOffset:
           description: StartOffset is the offset from the start of the disk to the
-            first partition,  if zero a default of 1MiB (2048 sectors) will be used,
+            first partition,  if zero a default of 1 MiB (2048 sectors) will be used,
             units bytes.
           example: 0
           format: int64
@@ -4873,7 +4875,7 @@ components:
       description: Information about the file associated with the OS service image.
       properties:
         ID:
-          description: Unique id of this FileInfo.
+          description: Unique ID of this FileInfo.
           example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
           format: uuid
           type: string
@@ -4912,7 +4914,8 @@ components:
           type: string
         SecureURL:
           description: URL of the file that should be kept secret.  If this field
-            is set, it will be used or accessing the file and DisplayURL will be ignored.
+            is set, it will be used for accessing the file and DisplayURL will be
+            ignored.
           type: string
       required:
       - Algorithm
@@ -4927,7 +4930,7 @@ components:
       type: object
     PassedInfo:
       description: Defines embedded contents to be attached to this OS service image
-        if form of files.
+        if from files.
       properties:
         Contents:
           description: String encoded with file content.
@@ -5591,7 +5594,7 @@ components:
           type: array
         MountOptions:
           description: Provide options for the patition mount. If empty, "defaults"
-            will be used for filesystem partition types. M MountOptions will be placed
+            will be used for filesystem partition types. MountOptions will be placed
             in the "options" field for the partition in /etc/fstab.
           example: errors=remount-ro
           type: string
@@ -5614,7 +5617,7 @@ components:
       example: sha512sum
       type: string
     Encoding:
-      description: Describes how a file's contents maybe encoded.
+      description: Describes how a file's contents may be encoded.
       enum:
       - base64
       - hex
@@ -5807,7 +5810,7 @@ components:
       example: Integer
       type: string
     ClassifierOperator:
-      description: The operator used for a comparison.
+      description: The operator used for comparison.
       enum:
       - contains
       - containsnocase
@@ -6419,7 +6422,7 @@ components:
           type: array
         Info:
           description: Defines a list of embedded contents to be attached to this
-            OS service image if form of files.
+            OS service image in form of files.
           items:
             $ref: '#/components/schemas/PassedInfo'
           type: array

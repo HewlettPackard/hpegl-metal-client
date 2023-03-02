@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **DeviceLayouts** | [**[]DiskPartition**](DiskPartition.md) | Device partitioning information. | 
 **PermittedProjects** | **[]string** | List of projects allowed to use this OS service image. | 
 **Files** | [**[]FileInfo**](FileInfo.md) | Files and relative information for this OS service image. | 
-**Info** | [**[]PassedInfo**](PassedInfo.md) | Defines a list of embedded contents to be attached to this OS service image if form of files. | 
+**Info** | [**[]PassedInfo**](PassedInfo.md) | Defines a list of embedded contents to be attached to this OS service image in form of files. | 
 **Approach** | [**OsServiceImageApproach**](OSServiceImageApproach.md) |  | 
 **AssumedBootMethod** | [**BootMethod**](BootMethod.md) |  | 
 **NoSwitchLAG** | **bool** | Indicates if a LAG needs to be created on the switch connecting the host with this OS service image. | 

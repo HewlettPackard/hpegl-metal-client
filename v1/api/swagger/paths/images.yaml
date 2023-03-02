@@ -31,8 +31,8 @@ post:
   description: >-
     Adds a new OS Image that can be referenced during host creation.
     If GreenLake IAM issued token is used for authentication, then it is required 
-    to pass either 'spaceid' header. Note that Hoster or BMaaS Access Owner role is 
-    required for this operation.
+    to pass either 'spaceid' header or 'Space' header. 
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
   operationId: Image_add
   security:
     - BearerAuth: []

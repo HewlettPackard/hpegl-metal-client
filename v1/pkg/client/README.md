@@ -54,7 +54,7 @@ Class | Method | HTTP request | Description
 *HostsApi* | [**Update**](docs/HostsApi.md#update) | **Put** /hosts/{hostId} | Update an existing Host
 *ImagesApi* | [**Add**](docs/ImagesApi.md#add) | **Post** /images | Create a new OS image
 *ImagesApi* | [**Delete**](docs/ImagesApi.md#delete) | **Delete** /images/{imageId} | Delete an OS image
-*ImagesApi* | [**GetByID**](docs/ImagesApi.md#getbyid) | **Get** /images/{imageId} | Retrieve an OS image its ID
+*ImagesApi* | [**GetByID**](docs/ImagesApi.md#getbyid) | **Get** /images/{imageId} | Retrieve an OS image
 *ImagesApi* | [**List**](docs/ImagesApi.md#list) | **Get** /images | List of all OS Images within an tenant
 *ImagesApi* | [**Update**](docs/ImagesApi.md#update) | **Post** /images/{imageId} | Update an OS image by its ID
 *IppoolsApi* | [**AllocateIPs**](docs/IppoolsApi.md#allocateips) | **Post** /ippools/{ippoolId}/allocation | Allocate IPs from the pool

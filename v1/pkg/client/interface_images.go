@@ -14,7 +14,7 @@ import (
 type ImagesAPI interface {
 	/*
 	   Add Create a new OS image
-	   Adds a new OS Image that can be referenced during host creation. If GreenLake IAM issued token is used for authentication, then it is required  to pass either &#39;spaceid&#39; header. Note that Hoster or BMaaS Access Owner role is  required for this operation.
+	   Adds a new OS Image that can be referenced during host creation. If GreenLake IAM issued token is used for authentication, then it is required  to pass either &#39;spaceid&#39; header or &#39;Space&#39; header.  Note that Hoster or BMaaS Access Owner role is required for this operation.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param fileName
 	     - @param optional nil or *ImagesApiAddOpts - Optional Parameters:
@@ -31,8 +31,8 @@ type ImagesAPI interface {
 	*/
 	Delete(ctx _context.Context, imageId string) (*_nethttp.Response, error)
 	/*
-	   GetByID Retrieve an OS image its ID
-	   Returns a single Os Image object with its matching ID.
+	   GetByID Retrieve an OS image
+	   Returns a single OS Image object with its matching ID.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param imageId ID of OS image to return
 

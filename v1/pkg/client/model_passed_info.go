@@ -10,7 +10,7 @@
  */
 
 package client
-// PassedInfo Defines embedded contents to be attached to this OS service image if form of files.
+// PassedInfo Defines embedded contents to be attached to this OS service image if from files.
 type PassedInfo struct {
 	// String encoded with file content.
 	Contents string `json:"Contents"`

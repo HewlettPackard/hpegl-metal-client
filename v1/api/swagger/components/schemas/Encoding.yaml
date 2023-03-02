@@ -4,4 +4,4 @@ enum:
   - hex
   - none
 example: base64
-description: Describes how a file's contents maybe encoded.
+description: Describes how a file's contents may be encoded.

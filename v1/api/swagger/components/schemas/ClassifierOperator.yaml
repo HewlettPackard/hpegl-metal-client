@@ -17,4 +17,4 @@ enum:
   - match
 example: contains
 description: >-
-  The operator used for a comparison.
+  The operator used for comparison.

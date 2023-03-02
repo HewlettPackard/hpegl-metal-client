@@ -12,7 +12,7 @@
 package client
 // FileInfo Information about the file associated with the OS service image.
 type FileInfo struct {
-	// Unique id of this FileInfo.
+	// Unique ID of this FileInfo.
 	ID string `json:"ID"`
 	// Depending upon the service approach, this is either the mount-path where the file should be placed or  the relative URL where it should be served.
 	Path string `json:"Path"`
@@ -27,6 +27,6 @@ type FileInfo struct {
 	Expand bool `json:"Expand"`
 	// URL of the file that should be returned in REST response or used for display purpose. The file is downloaded from this URL only when SecureURL is not set.
 	DisplayURL string `json:"DisplayURL"`
-	// URL of the file that should be kept secret.  If this field is set, it will be used or accessing the file and DisplayURL will be ignored.
+	// URL of the file that should be kept secret.  If this field is set, it will be used for accessing the file and DisplayURL will be ignored.
 	SecureURL string `json:"SecureURL"`
 }

@@ -10,7 +10,7 @@
  */
 
 package client
-// Encoding Describes how a file's contents maybe encoded.
+// Encoding Describes how a file's contents may be encoded.
 type Encoding string
 
 // List of Encoding

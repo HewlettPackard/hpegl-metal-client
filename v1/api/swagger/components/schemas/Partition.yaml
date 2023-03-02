@@ -46,5 +46,5 @@ properties:
     type: string
     example: errors=remount-ro
     description: >-
-      Provide options for the patition mount. If empty, "defaults" will be used for filesystem partition types. M
+      Provide options for the patition mount. If empty, "defaults" will be used for filesystem partition types.
       MountOptions will be placed in the "options" field for the partition in /etc/fstab.

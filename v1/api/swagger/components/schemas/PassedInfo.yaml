@@ -1,6 +1,6 @@
 type: object
 description: >-
-  Defines embedded contents to be attached to this OS service image if form of files.
+  Defines embedded contents to be attached to this OS service image if from files.
 required: 
   - Contents
   - Encoding

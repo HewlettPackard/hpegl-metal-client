@@ -70,7 +70,7 @@ allOf:
         items: 
           $ref: PassedInfo.yaml
         description: >-
-          Defines a list of embedded contents to be attached to this OS service image if form of files.
+          Defines a list of embedded contents to be attached to this OS service image in form of files.
       Approach:
         $ref: OSServiceImageApproach.yaml
       AssumedBootMethod:

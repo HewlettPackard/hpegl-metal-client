@@ -28,7 +28,7 @@ type OsServiceImageAllOf struct {
 	PermittedProjects []string `json:"PermittedProjects"`
 	// Files and relative information for this OS service image.
 	Files []FileInfo `json:"Files"`
-	// Defines a list of embedded contents to be attached to this OS service image if form of files.
+	// Defines a list of embedded contents to be attached to this OS service image in form of files.
 	Info []PassedInfo `json:"Info"`
 	Approach OsServiceImageApproach `json:"Approach"`
 	AssumedBootMethod BootMethod `json:"AssumedBootMethod"`

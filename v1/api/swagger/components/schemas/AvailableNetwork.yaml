@@ -33,6 +33,8 @@ properties:
   VLAN:
     type: integer
     description: VLAN ID of the network
+    example: 200
   VNI:
     type: integer
     description: VNI ID of the network
+    example: 15006

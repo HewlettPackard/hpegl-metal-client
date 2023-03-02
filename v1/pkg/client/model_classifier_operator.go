@@ -10,7 +10,7 @@
  */
 
 package client
-// ClassifierOperator The operator used for a comparison.
+// ClassifierOperator The operator used for comparison.
 type ClassifierOperator string
 
 // List of ClassifierOperator
