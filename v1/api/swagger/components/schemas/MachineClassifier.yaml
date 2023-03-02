@@ -13,4 +13,3 @@ properties:
       $ref: MachineClassifierRule.yaml
     description: >-
       A list of machine classifier rules.
-  

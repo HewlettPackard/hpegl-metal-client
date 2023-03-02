@@ -99,4 +99,3 @@ allOf:
         description: >-
           Allows setting of restricted use for this service by machine attributes. 
           If rules are not defined, this OS service image is available to be installed on any machine.
-   
