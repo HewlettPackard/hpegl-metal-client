@@ -28,4 +28,3 @@ properties:
     $ref: PartitionTable.yaml
   Partitions:
     $ref: Partition.yaml
-

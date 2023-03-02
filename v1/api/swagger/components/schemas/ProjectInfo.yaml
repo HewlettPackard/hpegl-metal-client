@@ -39,3 +39,4 @@ properties:
     items:
       $ref: ./LocationInfo.yaml   
     description: Locations where project resources exist
+    

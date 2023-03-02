@@ -12,30 +12,9 @@ allOf:
       Description:
         type: string
         example: Description of IP pool
-      IPVersion:
-        $ref: ./IPVer.yaml
-      NetworkID:
-        type: string
-        format: uuid
-        description: Unique ID of the network associated with the IP pool
-      BaseIP:
-        type: string
-        example: 10.128.0.0
-        description: Base address of the IP pool
-      Netmask:
-        $ref: ./Netmask.yaml
       DefaultRoute:
         type: string
         example: 10.128.0.1
-        description: Default route associated with the IP pool
-      Sources:
-        type: array
-        items:
-          $ref: ./UpdateIPSource.yaml
-      UseRecords:
-        type: array
-        items:
-          $ref: ./UpdateUseRecord.yaml
       DNS:
         type: array
         items:
@@ -58,5 +37,3 @@ allOf:
           type: string
           example: 15.0.0.1
         description: List of NTP servers for the IP pool
-      Pool:
-        $ref: ./UpdatePool.yaml

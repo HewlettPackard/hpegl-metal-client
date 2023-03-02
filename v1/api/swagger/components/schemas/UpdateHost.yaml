@@ -6,61 +6,11 @@ allOf:
       - NetworkIDs
       - NetworkForDefaultRoute
       - NetworkUntagged
+      - ISCSIConfig
     properties:
       Description:
         type: string
         example: Description of Host
-      ServiceID:
-        type: string
-        format: uuid
-        description: >-
-          The image service identifier used to image the server. ServiceID is
-          one of those listed by the Images array returned as part of the get
-          /available-resources call.
-      ServiceFlavor:
-        type: string
-        example: ubuntu
-        description: Overall flavor of server image used to image the server
-      ServiceVersion:
-        type: string
-        example: 18.04-20190807
-        description: Version of the ServiceFlavor used to image the server
-      LocationID:
-        type: string
-        format: uuid
-        description: >-
-          The location of the machine assigned to the host.  LocationID is one
-          of those listed by the LocationInfo array returned as part of the get
-          /available-resources call.
-      MachineSizeName:
-        type: string
-        example: HPE Large
-        description: >-
-          Name of the machine size used to identify and select the machine
-          assigned to the host.  MachineSizes are described by the MachineSize
-          array returned by the get /available-resources call.
-      MachineSizeID:
-        type: string
-        format: uuid
-        description: >-
-          UniqueID referring to the machine size used to identify and select the
-          machine assigned to the host.  MachineSizes are described by the
-          MachineSize array returned by the get /available-resources call.
-      MachineID:
-        type: string
-        format: uuid
-        description: UniqueID referring to the machine on which this host is running.
-      SSHKeyIDs:
-        type: array
-        description: IDs of SSH Keys used when configuring the Host
-        items:
-          type: string
-          format: uuid
-      SSHAuthorizedKeys:
-        type: array
-        description: Specific SSH keys that were when configuring the host.
-        items:
-          $ref: ./SSHKeyValue.yaml
       NetworkIDs:
         type: array
         description: >-
@@ -87,79 +37,5 @@ allOf:
           ID of the network selected to be untagged. This needs to be one of the values in the 
           "NetworkIDs" list.
         example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
-      PreAllocatedIPs:
-        type: array
-        description: >-
-          The list of pre-allocated IP addresses corresponding to the list of NetworkIDs.
-          Pre-allocated IP addresses are optional, but required when updating a host
-          containing Pre-allocated IP addresses.
-        items:
-          type: string
-      ServiceNetsProviderMAC:
-        type: object
-        additionalProperties:
-          type: string
-        description: >-
-          The map of Service Network (Provider) ID to Provider MAC address.  
-          The Service Network must be a provider network provisioned to this host.
-          Any Service Networks not included here will default to the physical MAC learned
-          during machine discovery.
-        example:
-          046b6c7f-0b8a-43b9-b35d-6489e6daee91: a2:c8:93:15:2a:76
-      UserData:
-        type: string
-        description: >-
-          User-provided data attached to the image configuration data when the
-          host was provisioned
-      NodeID:
-        type: string
-        example: Node21
-        description: >-
-          User-provided data to represent the identity of the host within an
-          application environment. For example, this could be set to represent
-          the Kubernetes node ID if the host is provisioned as a Kubernetes
-          node.
       ISCSIConfig:
         $ref: ./UpdateHostISCSIConfig.yaml
-      Connections:
-        type: array
-        description: Details describing host network connections
-        items:
-          $ref: ./UpdateHostConnection.yaml
-      Deleted:
-        type: boolean
-        description: True if the Host has been deleted.
-      PortalCommOkay:
-        type: boolean
-        description: Describes if the portal is in active communication to the device
-      PowerStatus:
-        $ref: ./HostPowerState.yaml
-      State:
-        $ref: ./HostState.yaml
-      Substate:
-        $ref: ./HostSubstate.yaml
-      StateTime:
-        type: string
-        format: date-time
-      SubstateTime:
-        type: string
-        format: date-time
-      Progress:
-        type: integer
-        format: int64
-        minimum: 0
-        maximum: 100
-      Alert:
-        type: boolean
-      AlertInfo:
-        type: array
-        items:
-          $ref: ./UpdateHostAlertInfo.yaml
-      Workflow:
-        type: string
-        description: The current workflow the host is in
-      SummaryStatus:
-        $ref: ./HealthStatus.yaml
-        description: Host health summary status
-      Labels:
-        $ref: Labels.yaml

@@ -6,4 +6,4 @@ enum:
   - balance-tlb
 example: "none"
 description: >-
-  Specifies the policy indicating how bonding slaves are used during network transmission. 
+  Specifies the policy indicating how bonding slaves are used during network transmission.

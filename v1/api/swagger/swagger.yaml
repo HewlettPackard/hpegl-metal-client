@@ -90,7 +90,7 @@ tags:
       Operations related to listing information about allocation by servers and storage.
   - name: images
     description: |
-      Operations related to OS images.
+      Operations related to OS service images.
 
 paths:
   /version:
@@ -99,10 +99,6 @@ paths:
     $ref: paths/projects.yaml
   /projects/{projectId}:
     $ref: paths/projects@{projectId}.yaml
-  /projects/{projectId}/images:
-    $ref: paths/projects@{projectId}@images.yaml
-  /projects/{projectId}/images/{imageId}:
-    $ref: paths/projects@{projectId}@images@{imageId}.yaml
   /projects-info:
     $ref: paths/projects-info.yaml
   /sshkeys:

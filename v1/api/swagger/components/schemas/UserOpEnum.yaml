@@ -27,4 +27,3 @@ enum:
 example: Boot Service OS
 description: >-
   Defines user operation for a machine.
-

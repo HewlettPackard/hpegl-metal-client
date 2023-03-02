@@ -7,12 +7,9 @@ get:
     If GreenLake IAM issued token is used for authentication, 
     then it is required to pass 'spaceid' header
   operationId: Images_list
-  security:
-    - BearerAuth: []
-      Membership: []
-    - BearerAuth: []
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
+    - $ref: ../components/parameters/Space.yaml
   responses:
     '200':
       description: success

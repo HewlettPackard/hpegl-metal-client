@@ -5,10 +5,6 @@ get:
   description: >-
     Returns a single Os Image object with its matching ID.
   operationId: Image_getByID
-  security:
-    - BearerAuth: []
-      Membership: []
-    - BearerAuth: []
   parameters:
     - name: imageId
       in: path

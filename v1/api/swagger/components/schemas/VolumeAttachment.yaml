@@ -63,4 +63,3 @@ allOf:
         type: object
         allOf:
         - $ref: ./VAFSConfig.yaml
-
