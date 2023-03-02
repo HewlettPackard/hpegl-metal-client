@@ -45,6 +45,7 @@ type ImagesAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *ImagesApiListOpts - Optional Parameters:
 	     - @param "Spaceid" (optional.String) -  GreenLake space ID
+	     - @param "Space" (optional.String) -  GreenLake space name
 
 	   @return []OsServiceImage
 	*/

@@ -10,7 +10,7 @@
  */
 
 package client
-// BondMode Specifies the policy indicating how bonding slaves are used during network transmission. 
+// BondMode Specifies the policy indicating how bonding slaves are used during network transmission.
 type BondMode string
 
 // List of BondMode

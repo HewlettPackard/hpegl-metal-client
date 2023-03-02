@@ -12,20 +12,6 @@
 package client
 // UpdateVolumeAllOf struct for UpdateVolumeAllOf
 type UpdateVolumeAllOf struct {
-	Description string `json:"Description,omitempty"`
-	// The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the get /available-resources call
-	FlavorID string `json:"FlavorID,omitempty"`
 	// The size of the volume in KiB
-	Capacity int64 `json:"Capacity,omitempty"`
-	// Indicates if the volume can be attached to multiple hosts
-	Shareable bool `json:"Shareable,omitempty"`
-	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
-	LocationID string `json:"LocationID,omitempty"`
-	State VolumeState `json:"State,omitempty"`
-	SubState VolumeSubState `json:"SubState,omitempty"`
-	Status VolumeStatus `json:"Status,omitempty"`
-	// The map of label name to label value for the volume.
-	Labels map[string]string `json:"Labels,omitempty"`
-	// Serial number of the volume.
-	WWN string `json:"WWN,omitempty"`
+	Capacity int64 `json:"Capacity"`
 }

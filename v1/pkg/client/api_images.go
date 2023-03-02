@@ -356,6 +356,18 @@ func (a *ImagesApiService) GetByID(ctx _context.Context, imageId string) (OsServ
 			localVarHeaderParams["Membership"] = key
 		}
 	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Project"] = key
+		}
+	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -444,6 +456,7 @@ func (a *ImagesApiService) GetByID(ctx _context.Context, imageId string) (OsServ
 // ImagesApiListOpts Optional parameters for the method 'List'
 type ImagesApiListOpts struct {
     Spaceid optional.String
+    Space optional.String
 }
 
 /*
@@ -452,6 +465,7 @@ Returns an array of all OS images objects that have been created. If GreenLake I
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ImagesApiListOpts - Optional Parameters:
  * @param "Spaceid" (optional.String) -  GreenLake space ID
+ * @param "Space" (optional.String) -  GreenLake space name
 @return []OsServiceImage
 */
 func (a *ImagesApiService) List(ctx _context.Context, localVarOptionals *ImagesApiListOpts) ([]OsServiceImage, *_nethttp.Response, error) {
@@ -490,6 +504,9 @@ func (a *ImagesApiService) List(ctx _context.Context, localVarOptionals *ImagesA
 	if localVarOptionals != nil && localVarOptionals.Spaceid.IsSet() {
 		localVarHeaderParams["spaceid"] = parameterToString(localVarOptionals.Spaceid.Value(), "")
 	}
+	if localVarOptionals != nil && localVarOptionals.Space.IsSet() {
+		localVarHeaderParams["Space"] = parameterToString(localVarOptionals.Space.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -500,6 +517,18 @@ func (a *ImagesApiService) List(ctx _context.Context, localVarOptionals *ImagesA
 				key = auth.Key
 			}
 			localVarHeaderParams["Membership"] = key
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Project"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

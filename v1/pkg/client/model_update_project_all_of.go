@@ -14,9 +14,6 @@ package client
 type UpdateProjectAllOf struct {
 	Profile UpdateProfile `json:"Profile"`
 	Limits UpdateLimits `json:"Limits"`
-	Resources UpdateProjectResources `json:"Resources,omitempty"`
-	// Array listing the permitted site IDs
-	PermittedSites []string `json:"PermittedSites,omitempty"`
 	// Array listing the permitted OS service images.
-	PermittedOSImages []string `json:"PermittedOSImages,omitempty"`
+	PermittedOSImages []string `json:"PermittedOSImages"`
 }

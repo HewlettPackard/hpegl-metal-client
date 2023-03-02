@@ -12,14 +12,7 @@
 package client
 // UpdateNetworkAllOf struct for UpdateNetworkAllOf
 type UpdateNetworkAllOf struct {
-	// The location ID is the data center location of the resource.  The LocationID must be one of those provided by the LocationInfo array returned as part of the get /available-resources call.  The locations are typically described by country, region, and data center.
-	LocationID string `json:"LocationID,omitempty"`
-	Description string `json:"Description,omitempty"`
-	HostUse NetworkHostUse `json:"HostUse,omitempty"`
-	Purpose NetworkPurpose `json:"Purpose,omitempty"`
-	IPPoolID string `json:"IPPoolID,omitempty"`
-	// VLAN ID of the network
-	VLAN int32 `json:"VLAN,omitempty"`
-	// VNI ID of the network
-	VNI int32 `json:"VNI,omitempty"`
+	Description string `json:"Description"`
+	HostUse NetworkHostUse `json:"HostUse"`
+	Purpose NetworkPurpose `json:"Purpose"`
 }

@@ -85,38 +85,6 @@ func (mr *MockProjectsAPIMockRecorder) GetByID(ctx, projectId interface{}) *gomo
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockProjectsAPI)(nil).GetByID), ctx, projectId)
 }
 
-// ImagesGetByID mocks base method.
-func (m *MockProjectsAPI) ImagesGetByID(ctx context.Context, projectId, imageId string) ([]client.OsServiceImage, *http.Response, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ImagesGetByID", ctx, projectId, imageId)
-	ret0, _ := ret[0].([]client.OsServiceImage)
-	ret1, _ := ret[1].(*http.Response)
-	ret2, _ := ret[2].(error)
-	return ret0, ret1, ret2
-}
-
-// ImagesGetByID indicates an expected call of ImagesGetByID.
-func (mr *MockProjectsAPIMockRecorder) ImagesGetByID(ctx, projectId, imageId interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ImagesGetByID", reflect.TypeOf((*MockProjectsAPI)(nil).ImagesGetByID), ctx, projectId, imageId)
-}
-
-// ImagesList mocks base method.
-func (m *MockProjectsAPI) ImagesList(ctx context.Context, projectId string) ([]client.OsServiceImage, *http.Response, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ImagesList", ctx, projectId)
-	ret0, _ := ret[0].([]client.OsServiceImage)
-	ret1, _ := ret[1].(*http.Response)
-	ret2, _ := ret[2].(error)
-	return ret0, ret1, ret2
-}
-
-// ImagesList indicates an expected call of ImagesList.
-func (mr *MockProjectsAPIMockRecorder) ImagesList(ctx, projectId interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ImagesList", reflect.TypeOf((*MockProjectsAPI)(nil).ImagesList), ctx, projectId)
-}
-
 // List mocks base method.
 func (m *MockProjectsAPI) List(ctx context.Context, localVarOptionals *client.ProjectsApiListOpts) ([]client.Project, *http.Response, error) {
 	m.ctrl.T.Helper()

@@ -70,7 +70,7 @@ tags:
     Operations related to listing information about allocation by servers and storage.
   name: allocation
 - description: |
-    Operations related to OS images.
+    Operations related to OS service images.
   name: images
 paths:
   /version:
@@ -380,92 +380,6 @@ paths:
         Membership: []
       - BearerAuth: []
       summary: Update a project by its ID
-      tags:
-      - projects
-  /projects/{projectId}/images:
-    get:
-      description: Returns an array of all OS images objects that are allowed to be
-        used within a project. If GreenLake IAM issued token is used for authentication,  then
-        it is required to pass 'spaceid' header
-      operationId: Projects_Images_list
-      parameters:
-      - description: ID of project to list images
-        in: path
-        name: projectId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/OSServiceImage'
-                type: array
-          description: success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: unauthorized
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
-      summary: List of all allowed OS Images within a projects
-      tags:
-      - projects
-  /projects/{projectId}/images/{imageId}:
-    get:
-      description: Returns a single project OS Image with matching ID
-      operationId: Projects_Images_getByID
-      parameters:
-      - description: ID of project
-        in: path
-        name: projectId
-        required: true
-        schema:
-          type: string
-      - description: ID of OS image to retrieve
-        in: path
-        name: imageId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/OSServiceImage'
-                type: array
-          description: success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: unauthorized
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
-      summary: Retrieve a project OS image by ID
       tags:
       - projects
   /projects-info:
@@ -2455,6 +2369,12 @@ paths:
         name: spaceid
         schema:
           type: string
+      - description: GreenLake space name
+        example: Default
+        in: header
+        name: Space
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2476,10 +2396,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: List of all OS Images within an tenant
       tags:
       - images
@@ -2628,10 +2544,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: Retrieve an OS image its ID
       tags:
       - images
@@ -2778,10 +2690,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/UpdateResourceBase'
       - $ref: '#/components/schemas/UpdateProject_allOf'
-    OSServiceImage:
-      allOf:
-      - $ref: '#/components/schemas/ResourceBase'
-      - $ref: '#/components/schemas/OSServiceImage_allOf'
     ProjectsInfo:
       example:
         MachineSizes:
@@ -3573,6 +3481,10 @@ components:
       - ResourceType
       - Total
       type: object
+    OSServiceImage:
+      allOf:
+      - $ref: '#/components/schemas/ResourceBase'
+      - $ref: '#/components/schemas/OSServiceImage_allOf'
     MultiPartFile:
       description: An machine OS service image file.
       properties:
@@ -3759,16 +3671,6 @@ components:
             printable characters
           example: My Object Name
           type: string
-        Created:
-          description: Time when the resource was created in the database
-          example: 2019-06-27T22:59:01.661Z
-          format: date-time
-          type: string
-        Modified:
-          description: Time when the resource was last modified in the database
-          example: 2020-02-27T18:28:02.863Z
-          format: date-time
-          type: string
       required:
       - ETag
       - ID
@@ -3839,218 +3741,6 @@ components:
       - PrivateNetworks
       - VolumeCapacity
       - Volumes
-      type: object
-    UpdateProjectResources:
-      properties:
-        Hosts:
-          description: Number of hosts in use
-          minimum: 0
-          type: integer
-        Volumes:
-          description: Number of volumes in use
-          minimum: 0
-          type: integer
-        VolumeCapacity:
-          description: Volume capacity in use in TiB
-          format: int64
-          minimum: 0
-          type: integer
-        PrivateNetworks:
-          description: Number of private networks in use
-          minimum: 0
-          type: integer
-        InstanceTypes:
-          additionalProperties:
-            type: integer
-          description: Number of hosts with the instance type in use
-          example:
-            "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
-          type: object
-      type: object
-    OSServiceImageOrigin:
-      description: |
-        Indicates the origin of the OS service image.
-      enum:
-      - HPE
-      - Custom
-      example: Custom
-      type: string
-    DiskPartition:
-      description: Parition to be created on the host.
-      properties:
-        Device:
-          description: Indicates the device name of the disk of the form /dev/sdX
-            as known by the os e.g. /dev/sda This is the default device that will
-            be used to deploy the OS Image to the host. The default value may be overridden
-            when creating the host by a UUID/NAA/EUI  logical volume ID (BootDeviceID).
-          example: /dev/sda
-          type: string
-        Description:
-          type: string
-        StartOffset:
-          description: StartOffset is the offset from the start of the disk to the
-            first partition,  if zero a default of 1MiB (2048 sectors) will be used,
-            units bytes.
-          example: 0
-          format: int64
-          type: integer
-        TableType:
-          $ref: '#/components/schemas/PartitionTable'
-        Partitions:
-          $ref: '#/components/schemas/Partition'
-      required:
-      - Description
-      - Device
-      - Partitions
-      - StartOffset
-      - TableType
-      type: object
-    FileInfo:
-      description: Information about the file associated with the OS service image.
-      properties:
-        ID:
-          description: Unique id of this FileInfo.
-          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
-          format: uuid
-          type: string
-        Path:
-          description: Depending upon the service approach, this is either the mount-path
-            where the file should be placed or  the relative URL where it should be
-            served.
-          example: image.tgz
-          type: string
-        FileSize:
-          description: Size of the files in bytes.
-          example: 934960345
-          type: integer
-        DownloadTimeout:
-          description: Maximum amount of time in seconds to download the Service image.
-          example: 32000
-          format: int64
-          type: integer
-        Signature:
-          description: The signature (checksum) of the image to download.  This ensure
-            the integrity and authenticity of the images downloaded.
-          example: 5260deb631d6a9f29bca14043d406bea36d704677dff4cae1a4d48dc568406eb
-          type: string
-        Algorithm:
-          $ref: '#/components/schemas/Algorithm'
-        Expand:
-          description: Indicates if the file is compressed and should be expanded  using
-            the filename suffix in the Path as a guide.
-          example: true
-          type: boolean
-        DisplayURL:
-          description: URL of the file that should be returned in REST response or
-            used for display purpose. The file is downloaded from this URL only when
-            SecureURL is not set.
-          example: s3://bmmas-images20210506193558893900000003/images/linux/ubuntu/18.04-20220404/v2-kiwi-ubuntu18.04-15616.04_appliance.x86_64-1.16.4.tar.gz
-          type: string
-        SecureURL:
-          description: URL of the file that should be kept secret.  If this field
-            is set, it will be used or accessing the file and DisplayURL will be ignored.
-          type: string
-      required:
-      - Algorithm
-      - DisplayURL
-      - DownloadTimeout
-      - Expand
-      - FileSize
-      - ID
-      - Path
-      - SecureURL
-      - Signature
-      type: object
-    PassedInfo:
-      description: Defines embedded contents to be attached to this OS service image
-        if form of files.
-      properties:
-        Contents:
-          description: String encoded with file content.
-          type: string
-        Encoding:
-          $ref: '#/components/schemas/Encoding'
-        Templating:
-          $ref: '#/components/schemas/Templating'
-        TemplatingInput:
-          $ref: '#/components/schemas/TemplatingInfo'
-        Target:
-          $ref: '#/components/schemas/Target'
-        Path:
-          description: File path and name within location.
-          example: /etc/cloud/cloud.cfg.d/92_datasource.cfg
-          type: string
-      required:
-      - Contents
-      - Encoding
-      - Path
-      - Target
-      - Templating
-      - TemplatingInput
-      type: object
-    OSServiceImageApproach:
-      description: Indicates how the service image is installed.  The "Service Client"
-        approach installs the OS image by booting a GLM service OS,  that then runs
-        the GLM Service Client to deploy and setup a TGZ root file system image.  The
-        "Virtual Media" approach uses an OS .ISO installer image and OS automation
-        files  (e.g. kickstart and cloud-init files) mounted over iLO virtual media.
-      enum:
-      - svc-client
-      - vmedia
-      example: vmedia
-      type: string
-    BootMethod:
-      description: Indicates how the service expects the machine to be booted.
-      enum:
-      - pxe
-      - uefi-shell
-      - svc-os
-      - na
-      example: na
-      type: string
-    BondMode:
-      description: 'Specifies the policy indicating how bonding slaves are used during
-        network transmission. '
-      enum:
-      - ""
-      - none
-      - balance-xor
-      - balance-tlb
-      example: none
-      type: string
-    UserDefinedSteps:
-      description: Indicates custom operations to be executed within the host life
-        cycle.
-      properties:
-        ImagingPrepSteps:
-          description: Allows setting operations to be executed before host imaging.  If
-            a firmware update operation is defined, Firmware Baseline must be set.
-          items:
-            $ref: '#/components/schemas/UserOp'
-          type: array
-        MaintenanceSteps:
-          description: Allows setting operations to be executed during host maintenance.  If
-            a firmware update operation is defined, Firmware Baseline must be set.
-          items:
-            $ref: '#/components/schemas/UserOp'
-          type: array
-      required:
-      - ImagingPrepSteps
-      - MaintenanceSteps
-      type: object
-    MachineClassifier:
-      description: Describes a classifier via a list of rules.
-      properties:
-        Name:
-          type: string
-        Rules:
-          description: A list of machine classifier rules.
-          items:
-            $ref: '#/components/schemas/MachineClassifierRule'
-          type: array
-      required:
-      - Name
-      - Rules
       type: object
     ProjectInfo:
       example:
@@ -4434,64 +4124,6 @@ components:
           type: string
       required:
       - InitiatorName
-      type: object
-    UpdateHostConnection:
-      properties:
-        Name:
-          example: Default
-          type: string
-        Ports:
-          items:
-            $ref: '#/components/schemas/UpdateHostServerPort'
-          type: array
-        HA:
-          description: Indicates whether the network connection should be a link aggregation
-            group (LAG)
-          type: boolean
-        Speed:
-          description: The speed of the physical connection from the server to the
-            top of rack switch
-          enum:
-          - 100Mb
-          - 1Gb
-          - 10Gb
-          - 25Gb
-          - 50Gb
-          - 40Gb
-          - 100Gb
-          example: 1Gb
-          type: string
-        Networks:
-          items:
-            $ref: '#/components/schemas/UpdateHostNetworkConnection'
-          type: array
-      type: object
-    UpdateHostAlertInfo:
-      properties:
-        Alert:
-          description: Identifies the type of alert
-          enum:
-          - substate-timed-out
-          - op-failed
-          - vol-att-warning
-          - unknown-state
-          example: op-failed
-          type: string
-        State:
-          $ref: '#/components/schemas/HostState'
-        Substate:
-          $ref: '#/components/schemas/HostSubstate'
-        Message:
-          description: Provides some detailed description about the Alert
-          example: 'Operation XXX completed as failed with status: YYY'
-          type: string
-        Time:
-          format: date-time
-          type: string
-        Ack:
-          description: Used to acknowledge the alert so that the UI can list only
-            unacknowledged alerts
-          type: boolean
       type: object
     AvailableImage:
       description: Entry describing an available imaging service
@@ -5121,56 +4753,6 @@ components:
       - Fragments
       - Stats
       type: object
-    UpdateIPSource:
-      properties:
-        Base:
-          description: Base address for the IP source
-          example: 10.128.0.2
-          type: string
-        Count:
-          description: Number of IPs to count from the base
-          example: 1
-          type: integer
-      type: object
-    UpdateUseRecord:
-      properties:
-        Base:
-          description: Address of the record
-          example: 10.128.0.2
-          type: string
-        HostID:
-          description: Unique ID of the host associated with the record
-          format: uuid
-          type: string
-        RackID:
-          description: Unique ID of the rack associated with the record
-          format: uuid
-          type: string
-        DeviceID:
-          description: Unique ID of the device associated with the record
-          format: uuid
-          type: string
-        External:
-          description: Indicates if the record is used for non Metal scope
-          example: true
-          type: boolean
-        Usage:
-          description: Usage of the record
-          type: string
-        AllocatedBy:
-          description: User which performed the allocation of the record
-          type: string
-      type: object
-    UpdatePool:
-      properties:
-        Fragments:
-          description: List of fragments for the IP pool
-          items:
-            $ref: '#/components/schemas/UpdateIPRange'
-          type: array
-        Stats:
-          $ref: '#/components/schemas/UpdateIPPoolStats'
-      type: object
     ServiceServerInfo:
       description: Server allocation information for a service type.
       example:
@@ -5235,140 +4817,190 @@ components:
       - AllocatedCount
       - ServiceType
       type: object
-    PartitionTable:
-      description: Defines the type of partition table.
+    OSServiceImageOrigin:
+      description: |
+        Indicates the origin of the OS service image.
       enum:
-      - gpt
-      - dos
-      - sun
-      - sgi
-      example: gpt
+      - HPE
+      - Custom
+      example: Custom
       type: string
-    Partition:
-      description: It describes a disk partition.
+    DiskPartition:
+      description: Parition to be created on the host.
       properties:
-        Type:
-          $ref: '#/components/schemas/PartitionType'
-        Formula:
-          $ref: '#/components/schemas/PartitionFormula'
-        Name:
-          description: Name is an optional name for the partition, only usable with
-            GPT partition table types.
-          example: My Partition
+        Device:
+          description: Indicates the device name of the disk of the form /dev/sdX
+            as known by the os e.g. /dev/sda This is the default device that will
+            be used to deploy the OS Image to the host. The default value may be overridden
+            when creating the host by a UUID/NAA/EUI  logical volume ID (BootDeviceID).
+          example: /dev/sda
           type: string
-        MountPoint:
-          description: Where to mount the partition, it must be set for partitions
-            that are filesystem types.
-          example: /
+        Description:
           type: string
-        PartitionID:
-          description: A partitionID may be explicitly set for the partition and this
-            allows for out-of-order partitions in the table (like VMWare).  If zero,
-            sequential partitions are created starting at 1. Gaps in the partition
-            ID numbering is also allowable (VMWare).
-          example: 1
+        StartOffset:
+          description: StartOffset is the offset from the start of the disk to the
+            first partition,  if zero a default of 1MiB (2048 sectors) will be used,
+            units bytes.
+          example: 0
           format: int64
           type: integer
-        Bootable:
-          description: Identify a bootable partition.
-          example: false
-          type: boolean
-        MakeOptions:
-          description: Provide options for the partition's creation.
-          items:
-            type: string
-          type: array
-        MountOptions:
-          description: Provide options for the patition mount. If empty, "defaults"
-            will be used for filesystem partition types. M MountOptions will be placed
-            in the "options" field for the partition in /etc/fstab.
-          example: errors=remount-ro
-          type: string
+        TableType:
+          $ref: '#/components/schemas/PartitionTable'
+        Partitions:
+          $ref: '#/components/schemas/Partition'
       required:
-      - Bootable
-      - Formula
-      - MakeOptions
-      - MountOptions
-      - MountPoint
-      - Name
-      - PartitionID
-      - Type
+      - Description
+      - Device
+      - Partitions
+      - StartOffset
+      - TableType
       type: object
-    Algorithm:
-      description: The algorithm used to generate the Image Signature.  Currently
-        sha256sum and sha512sum are supported.
-      enum:
-      - sha256sum
-      - sha512sum
-      example: sha512sum
-      type: string
-    Encoding:
-      description: Describes how a file's contents maybe encoded.
-      enum:
-      - base64
-      - hex
-      - none
-      example: base64
-      type: string
-    Templating:
-      description: Indicates whether templating is used in contents.
-      enum:
-      - none
-      - go-text-template
-      example: go-text-template
-      type: string
-    TemplatingInfo:
-      description: It defines the source object and schema used as input to the template.  If
-        go text templating is used, then the TemplatingInfo refers to a specific  Go
-        struct that would be passed to fill-in the template.
-      enum:
-      - hostdef-v1
-      - hostdef-v2
-      example: hostdef-v2
-      type: string
-    Target:
-      description: Indicates where the passed info is expected to land once converted
-        to a file when combined with path.
-      enum:
-      - vmedia-floppy
-      - vmedia-cd
-      - hdd
-      example: vmedia-floppy
-      type: string
-    UserOp:
-      description: Describes a user operation.
+    FileInfo:
+      description: Information about the file associated with the OS service image.
       properties:
         ID:
-          description: Unique ID of this user operation.
+          description: Unique id of this FileInfo.
           example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
           format: uuid
           type: string
-        Operation:
-          $ref: '#/components/schemas/UserOpEnum'
-        Description:
+        Path:
+          description: Depending upon the service approach, this is either the mount-path
+            where the file should be placed or  the relative URL where it should be
+            served.
+          example: image.tgz
           type: string
-        Parameters:
-          items:
-            $ref: '#/components/schemas/OpArg'
-          type: array
+        FileSize:
+          description: Size of the files in bytes.
+          example: 934960345
+          type: integer
+        DownloadTimeout:
+          description: Maximum amount of time in seconds to download the Service image.
+          example: 32000
+          format: int64
+          type: integer
+        Signature:
+          description: The signature (checksum) of the image to download.  This ensure
+            the integrity and authenticity of the images downloaded.
+          example: 5260deb631d6a9f29bca14043d406bea36d704677dff4cae1a4d48dc568406eb
+          type: string
+        Algorithm:
+          $ref: '#/components/schemas/Algorithm'
+        Expand:
+          description: Indicates if the file is compressed and should be expanded  using
+            the filename suffix in the Path as a guide.
+          example: true
+          type: boolean
+        DisplayURL:
+          description: URL of the file that should be returned in REST response or
+            used for display purpose. The file is downloaded from this URL only when
+            SecureURL is not set.
+          example: s3://bmmas-images20210506193558893900000003/images/linux/ubuntu/18.04-20220404/v2-kiwi-ubuntu18.04-15616.04_appliance.x86_64-1.16.4.tar.gz
+          type: string
+        SecureURL:
+          description: URL of the file that should be kept secret.  If this field
+            is set, it will be used or accessing the file and DisplayURL will be ignored.
+          type: string
       required:
-      - Description
+      - Algorithm
+      - DisplayURL
+      - DownloadTimeout
+      - Expand
+      - FileSize
       - ID
-      - Operation
-      - Parameters
+      - Path
+      - SecureURL
+      - Signature
       type: object
-    MachineClassifierRule:
-      allOf:
-      - $ref: '#/components/schemas/AttributeRule'
-      description: Describes a machine classifier rule in form of attribute and subattributes
-        rule.
+    PassedInfo:
+      description: Defines embedded contents to be attached to this OS service image
+        if form of files.
       properties:
-        SubAttributeRules:
+        Contents:
+          description: String encoded with file content.
+          type: string
+        Encoding:
+          $ref: '#/components/schemas/Encoding'
+        Templating:
+          $ref: '#/components/schemas/Templating'
+        TemplatingInput:
+          $ref: '#/components/schemas/TemplatingInfo'
+        Target:
+          $ref: '#/components/schemas/Target'
+        Path:
+          description: File path and name within location.
+          example: /etc/cloud/cloud.cfg.d/92_datasource.cfg
+          type: string
+      required:
+      - Contents
+      - Encoding
+      - Path
+      - Target
+      - Templating
+      - TemplatingInput
+      type: object
+    OSServiceImageApproach:
+      description: Indicates how the service image is installed.  The "Service Client"
+        approach installs the OS image by booting a GLM service OS,  that then runs
+        the GLM Service Client to deploy and setup a TGZ root file system image.  The
+        "Virtual Media" approach uses an OS .ISO installer image and OS automation
+        files  (e.g. kickstart and cloud-init files) mounted over iLO virtual media.
+      enum:
+      - svc-client
+      - vmedia
+      example: vmedia
+      type: string
+    BootMethod:
+      description: Indicates how the service expects the machine to be booted.
+      enum:
+      - pxe
+      - uefi-shell
+      - svc-os
+      - na
+      example: na
+      type: string
+    BondMode:
+      description: Specifies the policy indicating how bonding slaves are used during
+        network transmission.
+      enum:
+      - ""
+      - none
+      - balance-xor
+      - balance-tlb
+      example: none
+      type: string
+    UserDefinedSteps:
+      description: Indicates custom operations to be executed within the host life
+        cycle.
+      properties:
+        ImagingPrepSteps:
+          description: Allows setting operations to be executed before host imaging.  If
+            a firmware update operation is defined, Firmware Baseline must be set.
           items:
-            $ref: '#/components/schemas/AttributeRule'
+            $ref: '#/components/schemas/UserOp'
+          type: array
+        MaintenanceSteps:
+          description: Allows setting operations to be executed during host maintenance.  If
+            a firmware update operation is defined, Firmware Baseline must be set.
+          items:
+            $ref: '#/components/schemas/UserOp'
           type: array
       required:
-      - SubAttributeRules
+      - ImagingPrepSteps
+      - MaintenanceSteps
+      type: object
+    MachineClassifier:
+      description: Describes a classifier via a list of rules.
+      properties:
+        Name:
+          type: string
+        Rules:
+          description: A list of machine classifier rules.
+          items:
+            $ref: '#/components/schemas/MachineClassifierRule'
+          type: array
+      required:
+      - Name
+      - Rules
       type: object
     HostServerPort:
       properties:
@@ -5471,95 +5103,6 @@ components:
       - Untagged
       - VLAN
       - VNI
-      type: object
-    UpdateHostServerPort:
-      properties:
-        Name:
-          description: Server port name
-          example: lan5
-          type: string
-        HWAddr:
-          description: Hardware address for the Ethernet interface (MAC)
-          example: 5c:b9:01:95:64:a0
-          type: string
-      required:
-      - HWAddr
-      - Name
-      type: object
-    UpdateHostNetworkConnection:
-      properties:
-        Name:
-          description: Name of the network connection
-          example: HostConn1
-          type: string
-        NetworkID:
-          description: Unique ID corresponding to a network in the local data center
-          format: uuid
-          type: string
-        IP:
-          description: IP address for the network connection
-          example: 10.5.3.4
-          type: string
-        Subnet:
-          description: The IP subnet address
-          example: 10.5.3.0
-          type: string
-        Netmask:
-          enum:
-          - /8
-          - /9
-          - /10
-          - /11
-          - /12
-          - /13
-          - /14
-          - /15
-          - /16
-          - /17
-          - /18
-          - /19
-          - /20
-          - /21
-          - /22
-          - /23
-          - /24
-          - /25
-          - /26
-          - /27
-          - /28
-          - /29
-          - /30
-          - /31
-          example: /24
-          type: string
-        Gateway:
-          description: The IP subnet gateway address
-          example: 10.5.3.1
-          type: string
-        DNS:
-          description: List of DNS servers for the IP subnet
-          items:
-            example: 8.8.8.8
-            type: string
-          type: array
-        VLAN:
-          description: VLAN ID of the network
-          type: integer
-        VNI:
-          description: VNI ID of the network
-          type: integer
-        Untagged:
-          description: True if the network is untagged
-          type: boolean
-        Proxy:
-          description: Optional web-proxy for external internet access should the
-            IP subnet actually be behind a firewall
-          example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
-          type: string
-        NoProxy:
-          description: Addresses or CIDRs for which proxy requests are not made
-          example: localhost,15.10.0.10,test.com
-          type: string
       type: object
     Country:
       enum:
@@ -5989,41 +5532,140 @@ components:
       - InUse
       - Total
       type: object
-    UpdateIPRange:
+    PartitionTable:
+      description: Defines the type of partition table.
+      enum:
+      - gpt
+      - dos
+      - sun
+      - sgi
+      example: gpt
+      type: string
+    Partition:
+      description: It describes a disk partition.
       properties:
-        Base:
-          description: Base address for the IP range
-          example: 10.128.0.2
+        Type:
+          $ref: '#/components/schemas/PartitionType'
+        Formula:
+          $ref: '#/components/schemas/PartitionFormula'
+        Name:
+          description: Name is an optional name for the partition, only usable with
+            GPT partition table types.
+          example: My Partition
           type: string
-        Count:
-          description: Number of IPs to count from the base
+        MountPoint:
+          description: Where to mount the partition, it must be set for partitions
+            that are filesystem types.
+          example: /
+          type: string
+        PartitionID:
+          description: A partitionID may be explicitly set for the partition and this
+            allows for out-of-order partitions in the table (like VMWare).  If zero,
+            sequential partitions are created starting at 1. Gaps in the partition
+            ID numbering is also allowable (VMWare).
           example: 1
+          format: int64
           type: integer
-        DefaultRoute:
-          description: Default route for the IP range
-          example: 10.128.0.1
+        Bootable:
+          description: Identify a bootable partition.
+          example: false
+          type: boolean
+        MakeOptions:
+          description: Provide options for the partition's creation.
+          items:
+            type: string
+          type: array
+        MountOptions:
+          description: Provide options for the patition mount. If empty, "defaults"
+            will be used for filesystem partition types. M MountOptions will be placed
+            in the "options" field for the partition in /etc/fstab.
+          example: errors=remount-ro
           type: string
-        Netmask:
-          $ref: '#/components/schemas/Netmask'
-        SourceBase:
-          description: Base address of the Source the IPRange was allocated from
-          example: 10.128.0.0
-          type: string
+      required:
+      - Bootable
+      - Formula
+      - MakeOptions
+      - MountOptions
+      - MountPoint
+      - Name
+      - PartitionID
+      - Type
       type: object
-    UpdateIPPoolStats:
+    Algorithm:
+      description: The algorithm used to generate the Image Signature.  Currently
+        sha256sum and sha512sum are supported.
+      enum:
+      - sha256sum
+      - sha512sum
+      example: sha512sum
+      type: string
+    Encoding:
+      description: Describes how a file's contents maybe encoded.
+      enum:
+      - base64
+      - hex
+      - none
+      example: base64
+      type: string
+    Templating:
+      description: Indicates whether templating is used in contents.
+      enum:
+      - none
+      - go-text-template
+      example: go-text-template
+      type: string
+    TemplatingInfo:
+      description: It defines the source object and schema used as input to the template.  If
+        go text templating is used, then the TemplatingInfo refers to a specific  Go
+        struct that would be passed to fill-in the template.
+      enum:
+      - hostdef-v1
+      - hostdef-v2
+      example: hostdef-v2
+      type: string
+    Target:
+      description: Indicates where the passed info is expected to land once converted
+        to a file when combined with path.
+      enum:
+      - vmedia-floppy
+      - vmedia-cd
+      - hdd
+      example: vmedia-floppy
+      type: string
+    UserOp:
+      description: Describes a user operation.
       properties:
-        Total:
-          description: Total number of IPs (pool capacity)
-          format: int32
-          type: integer
-        Available:
-          description: Number of non allocated IPs
-          format: int32
-          type: integer
-        InUse:
-          description: Number of allocated IPs
-          format: int32
-          type: integer
+        ID:
+          description: Unique ID of this user operation.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
+        Operation:
+          $ref: '#/components/schemas/UserOpEnum'
+        Description:
+          type: string
+        Parameters:
+          items:
+            $ref: '#/components/schemas/OpArg'
+          type: array
+      required:
+      - Description
+      - ID
+      - Operation
+      - Parameters
+      type: object
+    MachineClassifierRule:
+      allOf:
+      - $ref: '#/components/schemas/AttributeRule'
+      description: Describes a machine classifier rule in form of attribute and subattributes
+        rule.
+      properties:
+        SubAttributeRules:
+          items:
+            $ref: '#/components/schemas/AttributeRule'
+          type: array
+      required:
+      - SubAttributeRules
       type: object
     PartitionType:
       description: It defines the available partition types. This should be defined
@@ -6208,17 +5850,6 @@ components:
           $ref: '#/components/schemas/UpdateProfile'
         Limits:
           $ref: '#/components/schemas/UpdateLimits'
-        Resources:
-          $ref: '#/components/schemas/UpdateProjectResources'
-        PermittedSites:
-          description: Array listing the permitted site IDs
-          example:
-          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          - 91eec8b5-6460-4532-aad1-47b983edb63c
-          items:
-            format: uuid
-            type: string
-          type: array
         PermittedOSImages:
           description: Array listing the permitted OS service images.
           example:
@@ -6230,98 +5861,8 @@ components:
           type: array
       required:
       - Limits
+      - PermittedOSImages
       - Profile
-    OSServiceImage_allOf:
-      properties:
-        Description:
-          example: Description of the image
-          type: string
-        Category:
-          description: 'A high level classification of the service. '
-          example: linux
-          type: string
-        Flavor:
-          description: 'An high level description of the OS image type. '
-          example: ubuntu
-          type: string
-        Version:
-          description: A specific version of the service flavor.
-          example: 20.04.5
-          type: string
-        Origin:
-          $ref: '#/components/schemas/OSServiceImageOrigin'
-        Timeout:
-          description: Maximum amount of time in seconds for the service to complete
-            its work.  This time includes the amount of time to download the service
-            image if necessary.
-          example: 1000
-          format: int64
-          type: integer
-        DeviceLayouts:
-          description: Device partitioning information.
-          items:
-            $ref: '#/components/schemas/DiskPartition'
-          type: array
-        PermittedProjects:
-          description: List of projects allowed to use this OS service image.
-          items:
-            type: string
-          type: array
-        Files:
-          description: Files and relative information for this OS service image.
-          items:
-            $ref: '#/components/schemas/FileInfo'
-          type: array
-        Info:
-          description: Defines a list of embedded contents to be attached to this
-            OS service image if form of files.
-          items:
-            $ref: '#/components/schemas/PassedInfo'
-          type: array
-        Approach:
-          $ref: '#/components/schemas/OSServiceImageApproach'
-        AssumedBootMethod:
-          $ref: '#/components/schemas/BootMethod'
-        NoSwitchLAG:
-          description: Indicates if a LAG needs to be created on the switch connecting
-            the host with this OS service image.
-          example: false
-          type: boolean
-        BondMode:
-          $ref: '#/components/schemas/BondMode'
-        FWBaselineID:
-          description: Unique id of the firmware baseline to be applied by the firmware
-            update operation  in Maintenance Steps and Imaging Prep Steps.
-          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
-          format: uuid
-          type: string
-        UserDefinedSteps:
-          $ref: '#/components/schemas/UserDefinedSteps'
-        Classifiers:
-          description: Allows setting of restricted use for this service by machine
-            attributes.  If rules are not defined, this OS service image is available
-            to be installed on any machine.
-          items:
-            $ref: '#/components/schemas/MachineClassifier'
-          type: array
-      required:
-      - Approach
-      - AssumedBootMethod
-      - BondMode
-      - Category
-      - Classifiers
-      - Description
-      - DeviceLayouts
-      - FWBaselineID
-      - Files
-      - Flavor
-      - Info
-      - NoSwitchLAG
-      - Origin
-      - PermittedProjects
-      - Timeout
-      - UserDefinedSteps
-      - Version
     SSHKey_allOf:
       properties:
         Key:
@@ -6519,53 +6060,6 @@ components:
         Description:
           example: Description of Host
           type: string
-        ServiceID:
-          description: The image service identifier used to image the server. ServiceID
-            is one of those listed by the Images array returned as part of the get
-            /available-resources call.
-          format: uuid
-          type: string
-        ServiceFlavor:
-          description: Overall flavor of server image used to image the server
-          example: ubuntu
-          type: string
-        ServiceVersion:
-          description: Version of the ServiceFlavor used to image the server
-          example: 18.04-20190807
-          type: string
-        LocationID:
-          description: The location of the machine assigned to the host.  LocationID
-            is one of those listed by the LocationInfo array returned as part of the
-            get /available-resources call.
-          format: uuid
-          type: string
-        MachineSizeName:
-          description: Name of the machine size used to identify and select the machine
-            assigned to the host.  MachineSizes are described by the MachineSize array
-            returned by the get /available-resources call.
-          example: HPE Large
-          type: string
-        MachineSizeID:
-          description: UniqueID referring to the machine size used to identify and
-            select the machine assigned to the host.  MachineSizes are described by
-            the MachineSize array returned by the get /available-resources call.
-          format: uuid
-          type: string
-        MachineID:
-          description: UniqueID referring to the machine on which this host is running.
-          format: uuid
-          type: string
-        SSHKeyIDs:
-          description: IDs of SSH Keys used when configuring the Host
-          items:
-            format: uuid
-            type: string
-          type: array
-        SSHAuthorizedKeys:
-          description: Specific SSH keys that were when configuring the host.
-          items:
-            $ref: '#/components/schemas/SSHKeyValue'
-          type: array
         NetworkIDs:
           description: The list of IDs corresponding to the networks that were provisioned
             to the host. These networks are among those listed in the Networks array
@@ -6589,83 +6083,11 @@ components:
           example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
           format: uuid
           type: string
-        PreAllocatedIPs:
-          description: The list of pre-allocated IP addresses corresponding to the
-            list of NetworkIDs. Pre-allocated IP addresses are optional, but required
-            when updating a host containing Pre-allocated IP addresses.
-          items:
-            type: string
-          type: array
-        ServiceNetsProviderMAC:
-          additionalProperties:
-            type: string
-          description: The map of Service Network (Provider) ID to Provider MAC address.   The
-            Service Network must be a provider network provisioned to this host. Any
-            Service Networks not included here will default to the physical MAC learned
-            during machine discovery.
-          example:
-            "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
-          type: object
-        UserData:
-          description: User-provided data attached to the image configuration data
-            when the host was provisioned
-          type: string
-        NodeID:
-          description: User-provided data to represent the identity of the host within
-            an application environment. For example, this could be set to represent
-            the Kubernetes node ID if the host is provisioned as a Kubernetes node.
-          example: Node21
-          type: string
         ISCSIConfig:
           $ref: '#/components/schemas/UpdateHostISCSIConfig'
-        Connections:
-          description: Details describing host network connections
-          items:
-            $ref: '#/components/schemas/UpdateHostConnection'
-          type: array
-        Deleted:
-          description: True if the Host has been deleted.
-          type: boolean
-        PortalCommOkay:
-          description: Describes if the portal is in active communication to the device
-          type: boolean
-        PowerStatus:
-          $ref: '#/components/schemas/HostPowerState'
-        State:
-          $ref: '#/components/schemas/HostState'
-        Substate:
-          $ref: '#/components/schemas/HostSubstate'
-        StateTime:
-          format: date-time
-          type: string
-        SubstateTime:
-          format: date-time
-          type: string
-        Progress:
-          format: int64
-          maximum: 100
-          minimum: 0
-          type: integer
-        Alert:
-          type: boolean
-        AlertInfo:
-          items:
-            $ref: '#/components/schemas/UpdateHostAlertInfo'
-          type: array
-        Workflow:
-          description: The current workflow the host is in
-          type: string
-        SummaryStatus:
-          $ref: '#/components/schemas/HealthStatus'
-        Labels:
-          additionalProperties:
-            type: string
-          description: The map of label name to label value for the host.
-          example:
-            serviceType: BMaaS
-          type: object
       required:
       - Description
+      - ISCSIConfig
       - NetworkForDefaultRoute
       - NetworkIDs
       - NetworkUntagged
@@ -6724,46 +6146,14 @@ components:
       - WWN
     UpdateVolume_allOf:
       properties:
-        Description:
-          example: Description of New Volume
-          type: string
-        FlavorID:
-          description: The VolumeFlavorID matching an entry in the VolumeFlavors array
-            returned as part of the get /available-resources call
-          format: uuid
-          type: string
         Capacity:
           description: The size of the volume in KiB
           example: 10485760
           format: int64
           minimum: 0
           type: integer
-        Shareable:
-          description: Indicates if the volume can be attached to multiple hosts
-          type: boolean
-        LocationID:
-          description: The location of the volume (and the storage array) LocationID
-            is one of those listed by the LocationInfo array returned as part of the
-            get /available-resources call. Any volumes must be in the same location
-            as their attached Host.
-          format: uuid
-          type: string
-        State:
-          $ref: '#/components/schemas/VolumeState'
-        SubState:
-          $ref: '#/components/schemas/VolumeSubState'
-        Status:
-          $ref: '#/components/schemas/VolumeStatus'
-        Labels:
-          additionalProperties:
-            type: string
-          description: The map of label name to label value for the volume.
-          example:
-            serviceType: BMaaS
-          type: object
-        WWN:
-          description: Serial number of the volume.
-          type: string
+      required:
+      - Capacity
     VolumeAttachment_allOf:
       properties:
         VolumeID:
@@ -6859,13 +6249,6 @@ components:
       - VNI
     UpdateNetwork_allOf:
       properties:
-        LocationID:
-          description: The location ID is the data center location of the resource.  The
-            LocationID must be one of those provided by the LocationInfo array returned
-            as part of the get /available-resources call.  The locations are typically
-            described by country, region, and data center.
-          format: uuid
-          type: string
         Description:
           example: Private network for intra-cluster communication
           type: string
@@ -6873,14 +6256,10 @@ components:
           $ref: '#/components/schemas/NetworkHostUse'
         Purpose:
           $ref: '#/components/schemas/NetworkPurpose'
-        IPPoolID:
-          type: string
-        VLAN:
-          description: VLAN ID of the network
-          type: integer
-        VNI:
-          description: VNI ID of the network
-          type: integer
+      required:
+      - Description
+      - HostUse
+      - Purpose
     IPPool_allOf:
       properties:
         Description:
@@ -6952,30 +6331,9 @@ components:
         Description:
           example: Description of IP pool
           type: string
-        IPVersion:
-          $ref: '#/components/schemas/IPVer'
-        NetworkID:
-          description: Unique ID of the network associated with the IP pool
-          format: uuid
-          type: string
-        BaseIP:
-          description: Base address of the IP pool
-          example: 10.128.0.0
-          type: string
-        Netmask:
-          $ref: '#/components/schemas/Netmask'
         DefaultRoute:
-          description: Default route associated with the IP pool
           example: 10.128.0.1
           type: string
-        Sources:
-          items:
-            $ref: '#/components/schemas/UpdateIPSource'
-          type: array
-        UseRecords:
-          items:
-            $ref: '#/components/schemas/UpdateUseRecord'
-          type: array
         DNS:
           description: List of DNS servers for the IP pool
           items:
@@ -6997,8 +6355,6 @@ components:
             example: 15.0.0.1
             type: string
           type: array
-        Pool:
-          $ref: '#/components/schemas/UpdatePool'
       required:
       - DNS
       - DefaultRoute
@@ -7006,6 +6362,97 @@ components:
       - NTP
       - NoProxy
       - Proxy
+    OSServiceImage_allOf:
+      properties:
+        Description:
+          example: Description of the image
+          type: string
+        Category:
+          description: 'A high level classification of the service. '
+          example: linux
+          type: string
+        Flavor:
+          description: 'An high level description of the OS image type. '
+          example: ubuntu
+          type: string
+        Version:
+          description: A specific version of the service flavor.
+          example: 20.04.5
+          type: string
+        Origin:
+          $ref: '#/components/schemas/OSServiceImageOrigin'
+        Timeout:
+          description: Maximum amount of time in seconds for the service to complete
+            its work.  This time includes the amount of time to download the service
+            image if necessary.
+          example: 1000
+          format: int64
+          type: integer
+        DeviceLayouts:
+          description: Device partitioning information.
+          items:
+            $ref: '#/components/schemas/DiskPartition'
+          type: array
+        PermittedProjects:
+          description: List of projects allowed to use this OS service image.
+          items:
+            type: string
+          type: array
+        Files:
+          description: Files and relative information for this OS service image.
+          items:
+            $ref: '#/components/schemas/FileInfo'
+          type: array
+        Info:
+          description: Defines a list of embedded contents to be attached to this
+            OS service image if form of files.
+          items:
+            $ref: '#/components/schemas/PassedInfo'
+          type: array
+        Approach:
+          $ref: '#/components/schemas/OSServiceImageApproach'
+        AssumedBootMethod:
+          $ref: '#/components/schemas/BootMethod'
+        NoSwitchLAG:
+          description: Indicates if a LAG needs to be created on the switch connecting
+            the host with this OS service image.
+          example: false
+          type: boolean
+        BondMode:
+          $ref: '#/components/schemas/BondMode'
+        FWBaselineID:
+          description: Unique id of the firmware baseline to be applied by the firmware
+            update operation  in Maintenance Steps and Imaging Prep Steps.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
+        UserDefinedSteps:
+          $ref: '#/components/schemas/UserDefinedSteps'
+        Classifiers:
+          description: Allows setting of restricted use for this service by machine
+            attributes.  If rules are not defined, this OS service image is available
+            to be installed on any machine.
+          items:
+            $ref: '#/components/schemas/MachineClassifier'
+          type: array
+      required:
+      - Approach
+      - AssumedBootMethod
+      - BondMode
+      - Category
+      - Classifiers
+      - Description
+      - DeviceLayouts
+      - FWBaselineID
+      - Files
+      - Flavor
+      - Info
+      - NoSwitchLAG
+      - Origin
+      - PermittedProjects
+      - Timeout
+      - UserDefinedSteps
+      - Version
     HostUsageEntry_allOf:
       properties:
         MachineSizeName:

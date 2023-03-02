@@ -70,8 +70,6 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**Add**](docs/ProjectsApi.md#add) | **Post** /projects | Create a new project
 *ProjectsApi* | [**Delete**](docs/ProjectsApi.md#delete) | **Delete** /projects/{projectId} | Delete a Project
 *ProjectsApi* | [**GetByID**](docs/ProjectsApi.md#getbyid) | **Get** /projects/{projectId} | Retrieve a project by its ID
-*ProjectsApi* | [**ImagesGetByID**](docs/ProjectsApi.md#imagesgetbyid) | **Get** /projects/{projectId}/images/{imageId} | Retrieve a project OS image by ID
-*ProjectsApi* | [**ImagesList**](docs/ProjectsApi.md#imageslist) | **Get** /projects/{projectId}/images | List of all allowed OS Images within a projects
 *ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
 *ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
@@ -187,28 +185,18 @@ Class | Method | HTTP request | Description
  - [Templating](docs/Templating.md)
  - [TemplatingInfo](docs/TemplatingInfo.md)
  - [UpdateHost](docs/UpdateHost.md)
- - [UpdateHostAlertInfo](docs/UpdateHostAlertInfo.md)
  - [UpdateHostAllOf](docs/UpdateHostAllOf.md)
- - [UpdateHostConnection](docs/UpdateHostConnection.md)
  - [UpdateHostIscsiConfig](docs/UpdateHostIscsiConfig.md)
- - [UpdateHostNetworkConnection](docs/UpdateHostNetworkConnection.md)
- - [UpdateHostServerPort](docs/UpdateHostServerPort.md)
  - [UpdateIpPool](docs/UpdateIpPool.md)
  - [UpdateIpPoolAllOf](docs/UpdateIpPoolAllOf.md)
- - [UpdateIpPoolStats](docs/UpdateIpPoolStats.md)
- - [UpdateIpRange](docs/UpdateIpRange.md)
- - [UpdateIpSource](docs/UpdateIpSource.md)
  - [UpdateLimits](docs/UpdateLimits.md)
  - [UpdateNetwork](docs/UpdateNetwork.md)
  - [UpdateNetworkAllOf](docs/UpdateNetworkAllOf.md)
- - [UpdatePool](docs/UpdatePool.md)
  - [UpdateProfile](docs/UpdateProfile.md)
  - [UpdateProject](docs/UpdateProject.md)
  - [UpdateProjectAllOf](docs/UpdateProjectAllOf.md)
- - [UpdateProjectResources](docs/UpdateProjectResources.md)
  - [UpdateResourceBase](docs/UpdateResourceBase.md)
  - [UpdateSshKey](docs/UpdateSshKey.md)
- - [UpdateUseRecord](docs/UpdateUseRecord.md)
  - [UpdateVolume](docs/UpdateVolume.md)
  - [UpdateVolumeAllOf](docs/UpdateVolumeAllOf.md)
  - [UsageEntryBase](docs/UsageEntryBase.md)

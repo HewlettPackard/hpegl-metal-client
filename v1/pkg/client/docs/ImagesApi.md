@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -149,6 +149,7 @@ Optional parameters are passed through a pointer to a ListOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **spaceid** | **optional.String**| GreenLake space ID | 
+ **space** | **optional.String**| GreenLake space name | 
 
 ### Return type
 
@@ -156,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 

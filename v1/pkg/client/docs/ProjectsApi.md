@@ -7,8 +7,6 @@ Method | HTTP request | Description
 [**Add**](ProjectsApi.md#Add) | **Post** /projects | Create a new project
 [**Delete**](ProjectsApi.md#Delete) | **Delete** /projects/{projectId} | Delete a Project
 [**GetByID**](ProjectsApi.md#GetByID) | **Get** /projects/{projectId} | Retrieve a project by its ID
-[**ImagesGetByID**](ProjectsApi.md#ImagesGetByID) | **Get** /projects/{projectId}/images/{imageId} | Retrieve a project OS image by ID
-[**ImagesList**](ProjectsApi.md#ImagesList) | **Get** /projects/{projectId}/images | List of all allowed OS Images within a projects
 [**List**](ProjectsApi.md#List) | **Get** /projects | List of all Projects within an organization or cluster
 [**Update**](ProjectsApi.md#Update) | **Put** /projects/{projectId} | Update a project by its ID
 
@@ -113,75 +111,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Project**](Project.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ImagesGetByID
-
-> []OsServiceImage ImagesGetByID(ctx, projectId, imageId)
-
-Retrieve a project OS image by ID
-
-Returns a single project OS Image with matching ID
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string**| ID of project | 
-**imageId** | **string**| ID of OS image to retrieve | 
-
-### Return type
-
-[**[]OsServiceImage**](OSServiceImage.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ImagesList
-
-> []OsServiceImage ImagesList(ctx, projectId)
-
-List of all allowed OS Images within a projects
-
-Returns an array of all OS images objects that are allowed to be used within a project. If GreenLake IAM issued token is used for authentication,  then it is required to pass 'spaceid' header
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string**| ID of project to list images | 
-
-### Return type
-
-[**[]OsServiceImage**](OSServiceImage.md)
 
 ### Authorization
 

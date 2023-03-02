@@ -13,16 +13,7 @@ package client
 // UpdateIpPoolAllOf struct for UpdateIpPoolAllOf
 type UpdateIpPoolAllOf struct {
 	Description string `json:"Description"`
-	IPVersion IpVer `json:"IPVersion,omitempty"`
-	// Unique ID of the network associated with the IP pool
-	NetworkID string `json:"NetworkID,omitempty"`
-	// Base address of the IP pool
-	BaseIP string `json:"BaseIP,omitempty"`
-	Netmask Netmask `json:"Netmask,omitempty"`
-	// Default route associated with the IP pool
 	DefaultRoute string `json:"DefaultRoute"`
-	Sources []UpdateIpSource `json:"Sources,omitempty"`
-	UseRecords []UpdateUseRecord `json:"UseRecords,omitempty"`
 	// List of DNS servers for the IP pool
 	DNS []string `json:"DNS"`
 	// Optional web-proxy for external internet access should the pool actually be behind a firewall
@@ -31,5 +22,4 @@ type UpdateIpPoolAllOf struct {
 	NoProxy string `json:"NoProxy"`
 	// List of NTP servers for the IP pool
 	NTP []string `json:"NTP"`
-	Pool UpdatePool `json:"Pool,omitempty"`
 }
