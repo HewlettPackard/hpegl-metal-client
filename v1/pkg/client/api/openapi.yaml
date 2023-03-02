@@ -6102,12 +6102,30 @@ components:
           type: string
         ISCSIConfig:
           $ref: '#/components/schemas/UpdateHostISCSIConfig'
+        PreAllocatedIPs:
+          description: The list of pre-allocated IP addresses corresponding to the
+            list of NetworkIDs. Pre-allocated IP addresses are optional, but required
+            when updating a host containing Pre-allocated IP addresses.
+          items:
+            type: string
+          type: array
+        ServiceNetsProviderMAC:
+          additionalProperties:
+            type: string
+          description: The map of Service Network (Provider) ID to Provider MAC address.   The
+            Service Network must be a provider network provisioned to this host. Any
+            Service Networks not included here will default to the physical MAC learned
+            during machine discovery.
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
+          type: object
       required:
       - Description
-      - ISCSIConfig
       - NetworkForDefaultRoute
       - NetworkIDs
       - NetworkUntagged
+      - PreAllocatedIPs
+      - ServiceNetsProviderMAC
     Volume_allOf:
       properties:
         Description:
