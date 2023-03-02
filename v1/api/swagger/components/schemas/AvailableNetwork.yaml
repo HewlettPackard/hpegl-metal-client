@@ -8,6 +8,8 @@ required:
   - HostUse
   - Purpose
   - IPPoolID
+  - VLAN
+  - VNI
 properties:
   ID:
     type: string
@@ -28,3 +30,9 @@ properties:
     $ref: ./NetworkPurpose.yaml
   IPPoolID:
     type: string
+  VLAN:
+    type: integer
+    description: VLAN ID of the network
+  VNI:
+    type: integer
+    description: VNI ID of the network

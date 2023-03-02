@@ -22,4 +22,8 @@ type AvailableNetwork struct {
 	HostUse NetworkHostUse `json:"HostUse"`
 	Purpose NetworkPurpose `json:"Purpose"`
 	IPPoolID string `json:"IPPoolID"`
+	// VLAN ID of the network
+	VLAN int32 `json:"VLAN"`
+	// VNI ID of the network
+	VNI int32 `json:"VNI"`
 }

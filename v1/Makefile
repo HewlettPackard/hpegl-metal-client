@@ -1,4 +1,4 @@
-# (C) Copyright 2020-2022 Hewlett Packard Enterprise Development LP
+# (C) Copyright 2020-2023 Hewlett Packard Enterprise Development LP
 
 PWD := $(shell pwd)
 GOPATH := $(shell go env GOPATH)
@@ -13,7 +13,7 @@ export MOCK_CLIENT_PACKAGE=mockquakeclient
 # The location of any generated golang mocks
 export GO_MOCK_DIR := ${PWD}/pkg/${MOCK_CLIENT_PACKAGE}
 
-default: build
+default: gen
 
 vendor: ../go.mod ../go.sum
 	go mod download
