@@ -35,4 +35,3 @@ properties:
   NumUnknown:
     type: integer
     description: Number of projects with Unknown health summary status
-                        

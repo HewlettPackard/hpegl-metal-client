@@ -10,4 +10,3 @@ allOf:
         example: 10485760
         minimum: 0
         description: The size of the volume in KiB
-        

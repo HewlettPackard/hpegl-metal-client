@@ -61,4 +61,3 @@ properties:
     description: >-
       URL of the file that should be kept secret. 
       If this field is set, it will be used or accessing the file and DisplayURL will be ignored.
-      

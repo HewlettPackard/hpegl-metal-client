@@ -18,4 +18,3 @@ properties:
     $ref: ClassifierOperator.yaml
     description: >-
       Describes the operator used for a comparison.
-      
