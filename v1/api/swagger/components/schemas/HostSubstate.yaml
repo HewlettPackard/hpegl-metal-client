@@ -2,36 +2,36 @@ type: string
 description: Host substate within HostState
 enum:
   - ''
-  - Abort Deploy 
-  - Allocate  
-  - Attaching Volumes 
-  - Boot Service-OS 
-  - Clear Log 
-  - Complete  
+  - Abort Deploy
+  - Allocate
+  - Attaching Volumes
+  - Boot Service-OS
+  - Clear Log
+  - Complete
   - Confirm Post Complete
-  - Connect  
-  - Connect Provisioning 
-  - DNS Add 
-  - DNS Add Init
-  - DNS Delete 
-  - Deploy  
-  - Detach Volumes 
-  - Error Recovery 
-  - Fail Cleanup 
-  - Failed  
-  - In Maintenance 
+  - Connect
+  - Connect Provisioning
+  - DNS Add
+  - DNS Add Ini
+  - DNS Delete
+  - Deploy
+  - Detach Volumes
+  - Error Recovery
+  - Fail Cleanup
+  - Failed
+  - In Maintenance
   - In OS Prep
-  - Init  
+  - Init
   - Init Attach Volumes
-  - Init Maintenance 
+  - Init Maintenance
   - Init OS Prep
-  - Init Off 
-  - Isolate  
-  - Power Off 
-  - Power On 
-  - Release  
+  - Init Off
+  - Isolate
+  - Power Off
+  - Power On
+  - Release
   - Release With Problem
   - Set Boot Disk
-  - Snap Log 
-  - Update  
+  - Snap Log
+  - Update
 example: Complete
