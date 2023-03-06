@@ -3499,8 +3499,10 @@ components:
       - Deleting
       - Deleted
       - Failed
+      - Force Deleting
       - Updating Connections
       - Imaging
+      - Imaging Prep
       - Connecting
       - Booting
       - Ready
@@ -3516,23 +3518,29 @@ components:
       - ""
       - Abort Deploy
       - Allocate
-      - Attach Volumes
+      - Attaching Volumes
       - Boot Service-OS
       - Clear Log
       - Complete
-      - Confirm Off
-      - Confirm On
+      - Confirm Post Complete
       - Connect
       - Connect Provisioning
+      - DNS Add
+      - DNS Add Init
+      - DNS Delete
       - Deploy
       - Detach Volumes
       - Error Recovery
       - Fail Cleanup
       - Failed
+      - In Maintenance
+      - In OS Prep
       - Init
+      - Init Attach Volumes
+      - Init Maintenance
+      - Init OS Prep
       - Init Off
       - Isolate
-      - In Maintenance
       - Power Off
       - Power On
       - Release
