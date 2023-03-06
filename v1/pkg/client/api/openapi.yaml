@@ -3526,7 +3526,7 @@ components:
       - Connect
       - Connect Provisioning
       - DNS Add
-      - DNS Add Init
+      - DNS Add Ini
       - DNS Delete
       - Deploy
       - Detach Volumes

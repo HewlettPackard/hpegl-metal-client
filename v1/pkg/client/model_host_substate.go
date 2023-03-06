@@ -26,7 +26,7 @@ const (
 	HOSTSUBSTATE_CONNECT HostSubstate = "Connect"
 	HOSTSUBSTATE_CONNECT_PROVISIONING HostSubstate = "Connect Provisioning"
 	HOSTSUBSTATE_DNS_ADD HostSubstate = "DNS Add"
-	HOSTSUBSTATE_DNS_ADD_INIT HostSubstate = "DNS Add Init"
+	HOSTSUBSTATE_DNS_ADD_INI HostSubstate = "DNS Add Ini"
 	HOSTSUBSTATE_DNS_DELETE HostSubstate = "DNS Delete"
 	HOSTSUBSTATE_DEPLOY HostSubstate = "Deploy"
 	HOSTSUBSTATE_DETACH_VOLUMES HostSubstate = "Detach Volumes"
