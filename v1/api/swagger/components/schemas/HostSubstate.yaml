@@ -12,7 +12,7 @@ enum:
   - Connect
   - Connect Provisioning
   - DNS Add
-  - DNS Add Ini
+  - DNS Add Init
   - DNS Delete
   - Deploy
   - Detach Volumes
