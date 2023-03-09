@@ -50,7 +50,7 @@ allOf:
       DeviceLayouts:
         type: array
         items: 
-          $ref: DiskPartition.yaml
+          $ref: DiskPartitions.yaml
         description: >- 
           Device partitioning information.
       PermittedProjects:

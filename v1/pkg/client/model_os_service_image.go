@@ -36,7 +36,7 @@ type OsServiceImage struct {
 	// Maximum amount of time in seconds for the service to complete its work.  This time includes the amount of time to download the service image if necessary.
 	Timeout int64 `json:"Timeout"`
 	// Device partitioning information.
-	DeviceLayouts []DiskPartition `json:"DeviceLayouts"`
+	DeviceLayouts []DiskPartitions `json:"DeviceLayouts"`
 	// List of projects allowed to use this OS service image.
 	PermittedProjects []string `json:"PermittedProjects"`
 	// Files and relative information for this OS service image.

@@ -1,4 +1,4 @@
-# DiskPartition
+# DiskPartitions
 
 ## Properties
 
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Description** | **string** |  | 
 **StartOffset** | **int64** | StartOffset is the offset from the start of the disk to the first partition,  if zero a default of 1 MiB (2048 sectors) will be used, units bytes. | 
 **TableType** | [**PartitionTable**](PartitionTable.md) |  | 
-**Partitions** | [**Partition**](Partition.md) |  | 
+**Partitions** | [**[]Partition**](Partition.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

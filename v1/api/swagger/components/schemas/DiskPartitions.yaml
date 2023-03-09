@@ -27,4 +27,6 @@ properties:
   TableType:
     $ref: PartitionTable.yaml
   Partitions:
-    $ref: Partition.yaml
+    type: array
+    items:
+      $ref: Partition.yaml

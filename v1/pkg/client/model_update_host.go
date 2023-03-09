@@ -26,7 +26,7 @@ type UpdateHost struct {
 	// ID of the network selected to be untagged. This needs to be one of the values in the  \"NetworkIDs\" list.
 	NetworkUntagged string `json:"NetworkUntagged"`
 	ISCSIConfig *UpdateHostIscsiConfig `json:"ISCSIConfig,omitempty"`
-	// The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. Pre-allocated IP addresses are optional, but required when updating a host containing Pre-allocated IP addresses.
+	// The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. Pre-allocated IP addresses are optional, but required when updating a host containing pre-allocated IP addresses.
 	PreAllocatedIPs []string `json:"PreAllocatedIPs"`
 	// The map of Service Network (Provider) ID to Provider MAC address.   The Service Network must be a provider network provisioned to this host. Any Service Networks not included here will default to the physical MAC learned during machine discovery.
 	ServiceNetsProviderMAC map[string]string `json:"ServiceNetsProviderMAC"`

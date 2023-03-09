@@ -45,7 +45,7 @@ allOf:
         description: >-
           The list of pre-allocated IP addresses corresponding to the list of NetworkIDs.
           Pre-allocated IP addresses are optional, but required when updating a host
-          containing Pre-allocated IP addresses.
+          containing pre-allocated IP addresses.
         items:
           type: string
       ServiceNetsProviderMAC:

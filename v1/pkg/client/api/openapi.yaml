@@ -4853,7 +4853,7 @@ components:
       - Custom
       example: Custom
       type: string
-    DiskPartition:
+    DiskPartitions:
       description: Disk partition to be created on the host.
       properties:
         Device:
@@ -4875,7 +4875,9 @@ components:
         TableType:
           $ref: '#/components/schemas/PartitionTable'
         Partitions:
-          $ref: '#/components/schemas/Partition'
+          items:
+            $ref: '#/components/schemas/Partition'
+          type: array
       required:
       - Description
       - Device
@@ -6117,7 +6119,7 @@ components:
         PreAllocatedIPs:
           description: The list of pre-allocated IP addresses corresponding to the
             list of NetworkIDs. Pre-allocated IP addresses are optional, but required
-            when updating a host containing Pre-allocated IP addresses.
+            when updating a host containing pre-allocated IP addresses.
           items:
             type: string
           type: array
@@ -6438,7 +6440,7 @@ components:
         DeviceLayouts:
           description: Device partitioning information.
           items:
-            $ref: '#/components/schemas/DiskPartition'
+            $ref: '#/components/schemas/DiskPartitions'
           type: array
         PermittedProjects:
           description: List of projects allowed to use this OS service image.

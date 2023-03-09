@@ -107,7 +107,7 @@ Class | Method | HTTP request | Description
  - [BootMethod](docs/BootMethod.md)
  - [ClassifierOperator](docs/ClassifierOperator.md)
  - [Country](docs/Country.md)
- - [DiskPartition](docs/DiskPartition.md)
+ - [DiskPartitions](docs/DiskPartitions.md)
  - [Encoding](docs/Encoding.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [FileInfo](docs/FileInfo.md)
