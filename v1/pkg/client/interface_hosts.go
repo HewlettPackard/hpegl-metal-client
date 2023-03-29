@@ -101,6 +101,15 @@ type HostsAPI interface {
 	*/
 	PowerReset(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
 	/*
+	   Reimage Reimage Host by ID
+	   Re-deploys a host to the associated machine. Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
+	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	     - @param hostId ID of Host to reimage
+
+	   @return Host
+	*/
+	Reimage(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
+	/*
 	   Replace Replace Host by ID
 	   Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
