@@ -375,7 +375,7 @@ Name | Type | Description  | Notes
 
 Reimage Host by ID
 
-Re-deploys a host to the associated machine. Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
+Re-deploys a host to the same machine. Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
 
 ### Required Parameters
 
