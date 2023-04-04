@@ -47,5 +47,6 @@ const (
 	HOSTSUBSTATE_RELEASE_WITH_PROBLEM HostSubstate = "Release With Problem"
 	HOSTSUBSTATE_SET_BOOT_DISK HostSubstate = "Set Boot Disk"
 	HOSTSUBSTATE_SNAP_LOG HostSubstate = "Snap Log"
+	HOSTSUBSTATE_SNAP_LOG_OF_FAILURE HostSubstate = "Snap Log of Failure"
 	HOSTSUBSTATE_UPDATE HostSubstate = "Update"
 )
