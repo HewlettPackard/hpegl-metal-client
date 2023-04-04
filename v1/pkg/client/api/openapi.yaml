@@ -3595,6 +3595,7 @@ components:
       - Release With Problem
       - Set Boot Disk
       - Snap Log
+      - Snap Log of Failure
       - Update
       example: Complete
       type: string
