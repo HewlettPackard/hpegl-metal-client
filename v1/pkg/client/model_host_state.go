@@ -26,6 +26,7 @@ const (
 	HOSTSTATE_CONNECTING HostState = "Connecting"
 	HOSTSTATE_BOOTING HostState = "Booting"
 	HOSTSTATE_READY HostState = "Ready"
+	HOSTSTATE_REIMAGING_PREP HostState = "Reimaging Prep"
 	HOSTSTATE_REPLACING HostState = "Replacing"
 	HOSTSTATE_RELEASING HostState = "Releasing"
 	HOSTSTATE_ALLOCATING HostState = "Allocating"

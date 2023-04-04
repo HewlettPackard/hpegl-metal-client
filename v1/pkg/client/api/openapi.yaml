@@ -1172,6 +1172,54 @@ paths:
       tags:
       - hosts
     summary: Set a specific host to attempt HDD boot
+  /hosts/{hostId}/reimage:
+    post:
+      description: Re-deploys a host to the same machine. Only the Host OS is reinstalled,
+        IP addresses, volumes, etc are not changed. The host must be powered off.  The
+        host must also be in the Ready state.
+      operationId: reimage
+      parameters:
+      - description: ID of Host to reimage
+        in: path
+        name: hostId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Reimage Host by ID
+      tags:
+      - hosts
+    summary: Reimage a specific host
   /hosts/{hostId}/replace:
     post:
       description: Re-deploys a host with a new machine that satisfies the current
@@ -3506,6 +3554,7 @@ components:
       - Connecting
       - Booting
       - Ready
+      - Reimaging Prep
       - Replacing
       - Releasing
       - Allocating
