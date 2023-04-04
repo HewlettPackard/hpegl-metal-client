@@ -11,6 +11,7 @@ enum:
   - Connecting
   - Booting
   - Ready
+  - Reimaging Prep
   - Replacing
   - Releasing
   - Allocating
