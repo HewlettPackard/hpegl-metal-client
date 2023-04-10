@@ -5871,7 +5871,7 @@ components:
           type: array
       required:
       - Limits
-      - PermittedImages
+      - PermittedOSImages
       - PermittedSites
       - Profile
       - Resources

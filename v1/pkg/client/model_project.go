@@ -31,5 +31,5 @@ type Project struct {
 	// Array listing the permitted site IDs
 	PermittedSites []string `json:"PermittedSites"`
 	// Array listing the permitted OS service images.
-	PermittedOSImages []string `json:"PermittedOSImages,omitempty"`
+	PermittedOSImages []string `json:"PermittedOSImages"`
 }

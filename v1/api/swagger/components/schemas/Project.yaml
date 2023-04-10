@@ -6,7 +6,7 @@ allOf:
       - Limits
       - Resources
       - PermittedSites
-      - PermittedImages
+      - PermittedOSImages
     properties:
       Profile:
         description: Profile is a generalized description of a team.
