@@ -69,7 +69,7 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
 *ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
-*ServiceApi* | [**Add**](docs/ServiceApi.md#add) | **Post** /services | Create a new OS service image
+*ServicesApi* | [**Add**](docs/ServicesApi.md#add) | **Post** /services | Create a new OS service image
 *ServicesApi* | [**Delete**](docs/ServicesApi.md#delete) | **Delete** /services/{serviceId} | Delete an OS service image
 *ServicesApi* | [**GetByID**](docs/ServicesApi.md#getbyid) | **Get** /services/{serviceId} | Retrieve an OS service image
 *ServicesApi* | [**List**](docs/ServicesApi.md#list) | **Get** /services | List of all OS service images within an tenant

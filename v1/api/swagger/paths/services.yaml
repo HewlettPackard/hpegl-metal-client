@@ -26,7 +26,7 @@ get:
 
 post:
   tags:
-    - service
+    - services
   summary: Create a new OS service image
   description: >-
     Adds a new OS service image that can be referenced during host creation.

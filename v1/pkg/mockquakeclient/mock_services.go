@@ -39,6 +39,22 @@ func (m *MockServicesAPI) EXPECT() *MockServicesAPIMockRecorder {
 	return m.recorder
 }
 
+// Add mocks base method.
+func (m *MockServicesAPI) Add(ctx context.Context, fileName *os.File, localVarOptionals *client.ServicesApiAddOpts) (client.OsServiceImage, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Add", ctx, fileName, localVarOptionals)
+	ret0, _ := ret[0].(client.OsServiceImage)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// Add indicates an expected call of Add.
+func (mr *MockServicesAPIMockRecorder) Add(ctx, fileName, localVarOptionals interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockServicesAPI)(nil).Add), ctx, fileName, localVarOptionals)
+}
+
 // Delete mocks base method.
 func (m *MockServicesAPI) Delete(ctx context.Context, serviceId string) (*http.Response, error) {
 	m.ctrl.T.Helper()

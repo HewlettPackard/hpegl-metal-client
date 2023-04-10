@@ -71,7 +71,7 @@ tags:
   name: allocation
 - description: |
     Operations related to OS service images.
-  name: images
+  name: services
 paths:
   /version:
     get:
@@ -2504,7 +2504,7 @@ paths:
       - BearerAuth: []
       summary: Create a new OS service image
       tags:
-      - service
+      - services
   /services/{serviceId}:
     delete:
       description: Deletes the OS service image with the matching ID. Note that Hoster
