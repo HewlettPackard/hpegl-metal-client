@@ -27,7 +27,7 @@ get:
       $ref: ../components/responses/NotFound.yaml
     '500':
       $ref: ../components/responses/InternalError.yaml
-post:
+put:
   tags:
     - services
   summary: Update an OS service image by its ID

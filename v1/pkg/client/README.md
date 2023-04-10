@@ -73,7 +73,7 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**Delete**](docs/ServicesApi.md#delete) | **Delete** /services/{serviceId} | Delete an OS service image
 *ServicesApi* | [**GetByID**](docs/ServicesApi.md#getbyid) | **Get** /services/{serviceId} | Retrieve an OS service image
 *ServicesApi* | [**List**](docs/ServicesApi.md#list) | **Get** /services | List of all OS service images within an tenant
-*ServicesApi* | [**Update**](docs/ServicesApi.md#update) | **Post** /services/{serviceId} | Update an OS service image by its ID
+*ServicesApi* | [**Update**](docs/ServicesApi.md#update) | **Put** /services/{serviceId} | Update an OS service image by its ID
 *SshkeysApi* | [**Add**](docs/SshkeysApi.md#add) | **Post** /sshkeys | Add a new SSH Key
 *SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID

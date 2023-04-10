@@ -2595,7 +2595,7 @@ paths:
       summary: Retrieve an OS service image
       tags:
       - services
-    post:
+    put:
       description: Updates an OS service image with a matching ID. Note that Hoster
         or BMaaS Access Owner role is required for this operation.
       operationId: Service_update

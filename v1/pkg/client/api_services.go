@@ -606,7 +606,7 @@ Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access
 */
 func (a *ServicesApiService) Update(ctx _context.Context, serviceId string, fileName *os.File) (OsServiceImage, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string

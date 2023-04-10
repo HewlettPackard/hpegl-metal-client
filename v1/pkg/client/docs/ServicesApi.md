@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**Delete**](ServicesApi.md#Delete) | **Delete** /services/{serviceId} | Delete an OS service image
 [**GetByID**](ServicesApi.md#GetByID) | **Get** /services/{serviceId} | Retrieve an OS service image
 [**List**](ServicesApi.md#List) | **Get** /services | List of all OS service images within an tenant
-[**Update**](ServicesApi.md#Update) | **Post** /services/{serviceId} | Update an OS service image by its ID
+[**Update**](ServicesApi.md#Update) | **Put** /services/{serviceId} | Update an OS service image by its ID
 
 
 
