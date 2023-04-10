@@ -50,6 +50,7 @@ Class | Method | HTTP request | Description
 *HostsApi* | [**PowerOff**](docs/HostsApi.md#poweroff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 *HostsApi* | [**PowerOn**](docs/HostsApi.md#poweron) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
 *HostsApi* | [**PowerReset**](docs/HostsApi.md#powerreset) | **Post** /hosts/{hostId}/powerreset | Reset Host by ID
+*HostsApi* | [**Reimage**](docs/HostsApi.md#reimage) | **Post** /hosts/{hostId}/reimage | Reimage Host by ID
 *HostsApi* | [**Replace**](docs/HostsApi.md#replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 *HostsApi* | [**Update**](docs/HostsApi.md#update) | **Put** /hosts/{hostId} | Update an existing Host
 *ImagesApi* | [**Add**](docs/ImagesApi.md#add) | **Post** /images | Create a new OS image

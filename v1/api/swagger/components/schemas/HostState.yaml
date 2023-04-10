@@ -4,11 +4,14 @@ enum:
   - Deleting
   - Deleted
   - Failed
+  - Force Deleting
   - Updating Connections
   - Imaging
+  - Imaging Prep
   - Connecting
   - Booting
   - Ready
+  - Reimaging Prep
   - Replacing
   - Releasing
   - Allocating

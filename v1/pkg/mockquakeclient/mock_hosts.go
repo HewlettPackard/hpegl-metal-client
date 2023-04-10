@@ -197,6 +197,22 @@ func (mr *MockHostsAPIMockRecorder) PowerReset(ctx, hostId interface{}) *gomock.
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PowerReset", reflect.TypeOf((*MockHostsAPI)(nil).PowerReset), ctx, hostId)
 }
 
+// Reimage mocks base method.
+func (m *MockHostsAPI) Reimage(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Reimage", ctx, hostId)
+	ret0, _ := ret[0].(client.Host)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// Reimage indicates an expected call of Reimage.
+func (mr *MockHostsAPIMockRecorder) Reimage(ctx, hostId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Reimage", reflect.TypeOf((*MockHostsAPI)(nil).Reimage), ctx, hostId)
+}
+
 // Replace mocks base method.
 func (m *MockHostsAPI) Replace(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
 	m.ctrl.T.Helper()

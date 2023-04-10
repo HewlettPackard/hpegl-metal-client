@@ -121,6 +121,8 @@ paths:
     $ref: paths/hosts@{hostId}@bootpxe.yaml
   /hosts/{hostId}/boothdd:
     $ref: paths/hosts@{hostId}@boothdd.yaml
+  /hosts/{hostId}/reimage:
+    $ref: paths/hosts@{hostId}@reimage.yaml
   /hosts/{hostId}/replace:
     $ref: paths/hosts@{hostId}@replace.yaml
   /available-resources:
