@@ -15,5 +15,5 @@ import (
 )
 // MultiPartFile An machine OS service image file.
 type MultiPartFile struct {
-	FileName *os.File `json:"FileName"`
+	FileName *os.File `json:"fileName"`
 }

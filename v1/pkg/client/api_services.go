@@ -79,7 +79,7 @@ func (a *ServicesApiService) Add(ctx _context.Context, fileName *os.File, localV
 	if localVarOptionals != nil && localVarOptionals.Spaceid.IsSet() {
 		localVarHeaderParams["spaceid"] = parameterToString(localVarOptionals.Spaceid.Value(), "")
 	}
-	localVarFormFileName = "FileName"
+	localVarFormFileName = "fileName"
 	localVarFile := fileName
 	if localVarFile != nil {
 		fbs, _ := _ioutil.ReadAll(localVarFile)
@@ -639,7 +639,7 @@ func (a *ServicesApiService) Update(ctx _context.Context, serviceId string, file
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarFormFileName = "FileName"
+	localVarFormFileName = "fileName"
 	localVarFile := fileName
 	if localVarFile != nil {
 		fbs, _ := _ioutil.ReadAll(localVarFile)

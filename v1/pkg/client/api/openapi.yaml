@@ -3552,12 +3552,12 @@ components:
     MultiPartFile:
       description: An machine OS service image file.
       properties:
-        FileName:
+        fileName:
           example: myGMI.yml
           format: binary
           type: string
       required:
-      - FileName
+      - fileName
       type: object
     ResourceBase:
       properties:
