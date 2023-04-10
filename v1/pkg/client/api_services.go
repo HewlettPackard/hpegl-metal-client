@@ -17,8 +17,8 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
-	"os"
 	"github.com/antihax/optional"
+	"os"
 )
 
 // Linger please
@@ -26,171 +26,16 @@ var (
 	_ _context.Context
 )
 
-// ImagesApiService ImagesApi service
-type ImagesApiService service
-
-// ImagesApiAddOpts Optional parameters for the method 'Add'
-type ImagesApiAddOpts struct {
-    Spaceid optional.String
-}
+// ServicesApiService ServicesApi service
+type ServicesApiService service
 
 /*
-Add Create a new OS image
-Adds a new OS Image that can be referenced during host creation. If GreenLake IAM issued token is used for authentication, then it is required  to pass either &#39;spaceid&#39; header or &#39;Space&#39; header.  Note that Hoster or BMaaS Access Owner role is required for this operation.
+Delete Delete an OS service image
+Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param fileName
- * @param optional nil or *ImagesApiAddOpts - Optional Parameters:
- * @param "Spaceid" (optional.String) -  GreenLake space ID
-@return OsServiceImage
+ * @param serviceId ID of OS service image to delete
 */
-func (a *ImagesApiService) Add(ctx _context.Context, fileName *os.File, localVarOptionals *ImagesApiAddOpts) (OsServiceImage, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  OsServiceImage
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images"
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"multipart/form-data"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if localVarOptionals != nil && localVarOptionals.Spaceid.IsSet() {
-		localVarHeaderParams["spaceid"] = parameterToString(localVarOptionals.Spaceid.Value(), "")
-	}
-	localVarFormFileName = "FileName"
-	localVarFile := fileName
-	if localVarFile != nil {
-		fbs, _ := _ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["Membership"] = key
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v OsServiceImage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-/*
-Delete Delete an OS image
-Deletes the OS image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param imageId ID of OS image to delete
-*/
-func (a *ImagesApiService) Delete(ctx _context.Context, imageId string) (*_nethttp.Response, error) {
+func (a *ServicesApiService) Delete(ctx _context.Context, serviceId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -200,8 +45,8 @@ func (a *ImagesApiService) Delete(ctx _context.Context, imageId string) (*_netht
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images/{imageId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath := a.client.cfg.BasePath + "/services/{serviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", _neturl.QueryEscape(parameterToString(serviceId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -303,13 +148,13 @@ func (a *ImagesApiService) Delete(ctx _context.Context, imageId string) (*_netht
 }
 
 /*
-GetByID Retrieve an OS image
-Returns a single OS Image object with its matching ID.
+GetByID Retrieve an OS service image
+Returns a single OS service image object with its matching ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param imageId ID of OS image to return
+ * @param serviceId ID of OS service image to return
 @return OsServiceImage
 */
-func (a *ImagesApiService) GetByID(ctx _context.Context, imageId string) (OsServiceImage, *_nethttp.Response, error) {
+func (a *ServicesApiService) GetByID(ctx _context.Context, serviceId string) (OsServiceImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -320,8 +165,8 @@ func (a *ImagesApiService) GetByID(ctx _context.Context, imageId string) (OsServ
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images/{imageId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath := a.client.cfg.BasePath + "/services/{serviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", _neturl.QueryEscape(parameterToString(serviceId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -453,22 +298,22 @@ func (a *ImagesApiService) GetByID(ctx _context.Context, imageId string) (OsServ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ImagesApiListOpts Optional parameters for the method 'List'
-type ImagesApiListOpts struct {
+// ServicesApiListOpts Optional parameters for the method 'List'
+type ServicesApiListOpts struct {
     Spaceid optional.String
     Space optional.String
 }
 
 /*
-List List of all OS Images within an tenant
-Returns an array of all OS images objects that have been created. If GreenLake IAM issued token is used for authentication,  then it is required to pass &#39;spaceid&#39; header
+List List of all OS service images within an tenant
+Returns an array of all OS service images objects that have been created. If GreenLake IAM issued token is used for authentication,  then it is required to pass &#39;spaceid&#39; header
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *ImagesApiListOpts - Optional Parameters:
+ * @param optional nil or *ServicesApiListOpts - Optional Parameters:
  * @param "Spaceid" (optional.String) -  GreenLake space ID
  * @param "Space" (optional.String) -  GreenLake space name
 @return []OsServiceImage
 */
-func (a *ImagesApiService) List(ctx _context.Context, localVarOptionals *ImagesApiListOpts) ([]OsServiceImage, *_nethttp.Response, error) {
+func (a *ServicesApiService) List(ctx _context.Context, localVarOptionals *ServicesApiListOpts) ([]OsServiceImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -479,7 +324,7 @@ func (a *ImagesApiService) List(ctx _context.Context, localVarOptionals *ImagesA
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images"
+	localVarPath := a.client.cfg.BasePath + "/services"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -597,14 +442,14 @@ func (a *ImagesApiService) List(ctx _context.Context, localVarOptionals *ImagesA
 }
 
 /*
-Update Update an OS image by its ID
-Updates an OS Image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
+Update Update an OS service image by its ID
+Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param imageId ID of OS image to update
+ * @param serviceId ID of OS service image to update
  * @param fileName
 @return OsServiceImage
 */
-func (a *ImagesApiService) Update(ctx _context.Context, imageId string, fileName *os.File) (OsServiceImage, *_nethttp.Response, error) {
+func (a *ServicesApiService) Update(ctx _context.Context, serviceId string, fileName *os.File) (OsServiceImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -615,8 +460,8 @@ func (a *ImagesApiService) Update(ctx _context.Context, imageId string, fileName
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/images/{imageId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"imageId"+"}", _neturl.QueryEscape(parameterToString(imageId, "")) , -1)
+	localVarPath := a.client.cfg.BasePath + "/services/{serviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", _neturl.QueryEscape(parameterToString(serviceId, "")) , -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

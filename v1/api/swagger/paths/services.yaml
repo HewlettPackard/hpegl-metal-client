@@ -1,12 +1,12 @@
 get:
   tags:
-    - images
-  summary: List of all OS Images within an tenant 
+    - services
+  summary: List of all OS service images within an tenant 
   description: >-
-    Returns an array of all OS images objects that have been created.
+    Returns an array of all OS service images objects that have been created.
     If GreenLake IAM issued token is used for authentication, 
     then it is required to pass 'spaceid' header
-  operationId: Images_list
+  operationId: Services_list
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/Space.yaml
@@ -26,14 +26,14 @@ get:
 
 post:
   tags:
-    - images
-  summary: Create a new OS image
+    - service
+  summary: Create a new OS service image
   description: >-
-    Adds a new OS Image that can be referenced during host creation.
+    Adds a new OS service image that can be referenced during host creation.
     If GreenLake IAM issued token is used for authentication, then it is required 
     to pass either 'spaceid' header or 'Space' header. 
     Note that Hoster or BMaaS Access Owner role is required for this operation.
-  operationId: Image_add
+  operationId: Service_add
   security:
     - BearerAuth: []
       Membership: []

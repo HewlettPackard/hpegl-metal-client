@@ -1,14 +1,14 @@
 get:
   tags:
-    - images
-  summary: Retrieve an OS image
+    - services
+  summary: Retrieve an OS service image
   description: >-
-    Returns a single OS Image object with its matching ID.
-  operationId: Image_getByID
+    Returns a single OS service image object with its matching ID.
+  operationId: Service_getByID
   parameters:
-    - name: imageId
+    - name: serviceId
       in: path
-      description: ID of OS image to return
+      description: ID of OS service image to return
       required: true
       schema:
         type: string
@@ -29,20 +29,20 @@ get:
       $ref: ../components/responses/InternalError.yaml
 post:
   tags:
-    - images
-  summary: Update an OS image by its ID
+    - services
+  summary: Update an OS service image by its ID
   description: >-
-    Updates an OS Image with a matching ID.
+    Updates an OS service image with a matching ID.
     Note that Hoster or BMaaS Access Owner role is required for this operation.
-  operationId: Image_update
+  operationId: Service_update
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
   parameters:
-    - name: imageId
+    - name: serviceId
       in: path
-      description: ID of OS image to update
+      description: ID of OS service image to update
       required: true
       schema:
         type: string
@@ -74,20 +74,20 @@ post:
       $ref: ../components/responses/InternalError.yaml
 delete:
   tags:
-    - images
-  summary: Delete an OS image
+    - services
+  summary: Delete an OS service image
   description: >-
-    Deletes the OS image with the matching ID.
+    Deletes the OS service image with the matching ID.
     Note that Hoster or BMaaS Access Owner role is required for this operation.
-  operationId: Image_delete
+  operationId: Service_delete
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
   parameters:
-    - name: imageId
+    - name: serviceId
       in: path
-      description: ID of OS image to delete
+      description: ID of OS service image to delete
       required: true
       schema:
         type: string

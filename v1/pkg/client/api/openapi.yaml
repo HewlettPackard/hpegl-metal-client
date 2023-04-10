@@ -2404,12 +2404,12 @@ paths:
       summary: Get storage allocation
       tags:
       - allocation
-  /images:
+  /services:
     get:
-      description: Returns an array of all OS images objects that have been created.
-        If GreenLake IAM issued token is used for authentication,  then it is required
-        to pass 'spaceid' header
-      operationId: Images_list
+      description: Returns an array of all OS service images objects that have been
+        created. If GreenLake IAM issued token is used for authentication,  then it
+        is required to pass 'spaceid' header
+      operationId: Services_list
       parameters:
       - description: GreenLake space ID
         example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
@@ -2444,15 +2444,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: List of all OS Images within an tenant
+      summary: List of all OS service images within an tenant
       tags:
-      - images
+      - services
     post:
-      description: Adds a new OS Image that can be referenced during host creation.
-        If GreenLake IAM issued token is used for authentication, then it is required  to
-        pass either 'spaceid' header or 'Space' header.  Note that Hoster or BMaaS
-        Access Owner role is required for this operation.
-      operationId: Image_add
+      description: Adds a new OS service image that can be referenced during host
+        creation. If GreenLake IAM issued token is used for authentication, then it
+        is required  to pass either 'spaceid' header or 'Space' header.  Note that
+        Hoster or BMaaS Access Owner role is required for this operation.
+      operationId: Service_add
       parameters:
       - description: GreenLake space ID
         example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
@@ -2502,18 +2502,18 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      summary: Create a new OS image
+      summary: Create a new OS service image
       tags:
-      - images
-  /images/{imageId}:
+      - service
+  /services/{serviceId}:
     delete:
-      description: Deletes the OS image with the matching ID. Note that Hoster or
-        BMaaS Access Owner role is required for this operation.
-      operationId: Image_delete
+      description: Deletes the OS service image with the matching ID. Note that Hoster
+        or BMaaS Access Owner role is required for this operation.
+      operationId: Service_delete
       parameters:
-      - description: ID of OS image to delete
+      - description: ID of OS service image to delete
         in: path
-        name: imageId
+        name: serviceId
         required: true
         schema:
           type: string
@@ -2548,16 +2548,16 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      summary: Delete an OS image
+      summary: Delete an OS service image
       tags:
-      - images
+      - services
     get:
-      description: Returns a single OS Image object with its matching ID.
-      operationId: Image_getByID
+      description: Returns a single OS service image object with its matching ID.
+      operationId: Service_getByID
       parameters:
-      - description: ID of OS image to return
+      - description: ID of OS service image to return
         in: path
-        name: imageId
+        name: serviceId
         required: true
         schema:
           type: string
@@ -2592,17 +2592,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Retrieve an OS image
+      summary: Retrieve an OS service image
       tags:
-      - images
+      - services
     post:
-      description: Updates an OS Image with a matching ID. Note that Hoster or BMaaS
-        Access Owner role is required for this operation.
-      operationId: Image_update
+      description: Updates an OS service image with a matching ID. Note that Hoster
+        or BMaaS Access Owner role is required for this operation.
+      operationId: Service_update
       parameters:
-      - description: ID of OS image to update
+      - description: ID of OS service image to update
         in: path
-        name: imageId
+        name: serviceId
         required: true
         schema:
           type: string
@@ -2660,9 +2660,9 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      summary: Update an OS image by its ID
+      summary: Update an OS service image by its ID
       tags:
-      - images
+      - services
 components:
   schemas:
     Version:

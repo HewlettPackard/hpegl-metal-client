@@ -53,11 +53,6 @@ Class | Method | HTTP request | Description
 *HostsApi* | [**Reimage**](docs/HostsApi.md#reimage) | **Post** /hosts/{hostId}/reimage | Reimage Host by ID
 *HostsApi* | [**Replace**](docs/HostsApi.md#replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 *HostsApi* | [**Update**](docs/HostsApi.md#update) | **Put** /hosts/{hostId} | Update an existing Host
-*ImagesApi* | [**Add**](docs/ImagesApi.md#add) | **Post** /images | Create a new OS image
-*ImagesApi* | [**Delete**](docs/ImagesApi.md#delete) | **Delete** /images/{imageId} | Delete an OS image
-*ImagesApi* | [**GetByID**](docs/ImagesApi.md#getbyid) | **Get** /images/{imageId} | Retrieve an OS image
-*ImagesApi* | [**List**](docs/ImagesApi.md#list) | **Get** /images | List of all OS Images within an tenant
-*ImagesApi* | [**Update**](docs/ImagesApi.md#update) | **Post** /images/{imageId} | Update an OS image by its ID
 *IppoolsApi* | [**AllocateIPs**](docs/IppoolsApi.md#allocateips) | **Post** /ippools/{ippoolId}/allocation | Allocate IPs from the pool
 *IppoolsApi* | [**GetByID**](docs/IppoolsApi.md#getbyid) | **Get** /ippools/{ippoolId} | Retrieve IP pool by ID
 *IppoolsApi* | [**List**](docs/IppoolsApi.md#list) | **Get** /ippools | List all ip pools in project
@@ -74,6 +69,11 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
 *ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
+*ServiceApi* | [**Add**](docs/ServiceApi.md#add) | **Post** /services | Create a new OS service image
+*ServicesApi* | [**Delete**](docs/ServicesApi.md#delete) | **Delete** /services/{serviceId} | Delete an OS service image
+*ServicesApi* | [**GetByID**](docs/ServicesApi.md#getbyid) | **Get** /services/{serviceId} | Retrieve an OS service image
+*ServicesApi* | [**List**](docs/ServicesApi.md#list) | **Get** /services | List of all OS service images within an tenant
+*ServicesApi* | [**Update**](docs/ServicesApi.md#update) | **Post** /services/{serviceId} | Update an OS service image by its ID
 *SshkeysApi* | [**Add**](docs/SshkeysApi.md#add) | **Post** /sshkeys | Add a new SSH Key
 *SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID

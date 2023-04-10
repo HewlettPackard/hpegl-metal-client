@@ -157,10 +157,10 @@ paths:
     $ref: paths/allocation@server.yaml
   /allocation/storage:
     $ref: paths/allocation@storage.yaml
-  /images:
-    $ref: paths/images.yaml
-  /images/{imageId}:
-    $ref: paths/images@{imageId}.yaml
+  /services:
+    $ref: paths/services.yaml
+  /services/{serviceId}:
+    $ref: paths/services@{serviceId}.yaml
 
 components:
   securitySchemes:
