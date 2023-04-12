@@ -2460,6 +2460,12 @@ paths:
         name: spaceid
         schema:
           type: string
+      - description: GreenLake space name
+        example: Default
+        in: header
+        name: Space
+        schema:
+          type: string
       requestBody:
         content:
           multipart/form-data:

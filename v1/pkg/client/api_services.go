@@ -32,6 +32,7 @@ type ServicesApiService service
 // ServicesApiAddOpts Optional parameters for the method 'Add'
 type ServicesApiAddOpts struct {
     Spaceid optional.String
+    Space optional.String
 }
 
 /*
@@ -41,6 +42,7 @@ Adds a new OS service image that can be referenced during host creation. If Gree
  * @param fileName
  * @param optional nil or *ServicesApiAddOpts - Optional Parameters:
  * @param "Spaceid" (optional.String) -  GreenLake space ID
+ * @param "Space" (optional.String) -  GreenLake space name
 @return OsServiceImage
 */
 func (a *ServicesApiService) Add(ctx _context.Context, fileName *os.File, localVarOptionals *ServicesApiAddOpts) (OsServiceImage, *_nethttp.Response, error) {
@@ -78,6 +80,9 @@ func (a *ServicesApiService) Add(ctx _context.Context, fileName *os.File, localV
 	}
 	if localVarOptionals != nil && localVarOptionals.Spaceid.IsSet() {
 		localVarHeaderParams["spaceid"] = parameterToString(localVarOptionals.Spaceid.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.Space.IsSet() {
+		localVarHeaderParams["Space"] = parameterToString(localVarOptionals.Space.Value(), "")
 	}
 	localVarFormFileName = "fileName"
 	localVarFile := fileName

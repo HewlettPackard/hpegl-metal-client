@@ -40,6 +40,7 @@ post:
     - BearerAuth: []
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
+    - $ref: ../components/parameters/Space.yaml
   requestBody:
     required: true
     description: Yaml file describing the OS service image.

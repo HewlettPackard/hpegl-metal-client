@@ -19,6 +19,7 @@ type ServicesAPI interface {
 	     - @param fileName
 	     - @param optional nil or *ServicesApiAddOpts - Optional Parameters:
 	     - @param "Spaceid" (optional.String) -  GreenLake space ID
+	     - @param "Space" (optional.String) -  GreenLake space name
 
 	   @return OsServiceImage
 	*/
