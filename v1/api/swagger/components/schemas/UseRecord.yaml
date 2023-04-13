@@ -1,4 +1,12 @@
 type: object
+required: 
+  - Base
+  - HostID
+  - RackID
+  - DeviceID
+  - External
+  - Usage
+  - AllocatedBy
 properties:
   Base:
     type: string

@@ -1,5 +1,11 @@
 type: object
 description: Entry describing an available imaging service
+required: 
+  - ID
+  - Category
+  - Flavor
+  - Version
+  - Description
 properties:
   ID:
     type: string

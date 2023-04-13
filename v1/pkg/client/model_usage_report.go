@@ -13,7 +13,7 @@ package client
 // UsageReport The composite usage report
 type UsageReport struct {
 	// list of Host usage entries for the report window
-	Hosts []HostUsageEntry `json:"Hosts,omitempty"`
+	Hosts []HostUsageEntry `json:"Hosts"`
 	// list of Volume usage entries for the report window
-	Volumes []VolumeUsageEntry `json:"Volumes,omitempty"`
+	Volumes []VolumeUsageEntry `json:"Volumes"`
 }

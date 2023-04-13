@@ -1,4 +1,9 @@
 type: object
+required: 
+  - StorageID
+  - UserName
+  - Ticket
+  - TicketExpiryTime
 properties:
   StorageID:
     type: string
@@ -14,4 +19,3 @@ properties:
   TicketExpiryTime:
     type: string
     description: Ticket expiry time to help client to refresh the ticket.
-

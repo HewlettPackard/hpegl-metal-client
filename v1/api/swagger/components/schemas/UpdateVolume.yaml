@@ -1,0 +1,12 @@
+allOf:
+  - $ref: ./UpdateResourceBase.yaml
+  - type: object
+    required: 
+      - Capacity
+    properties:
+      Capacity:
+        type: integer
+        format: int64
+        example: 10485760
+        minimum: 0
+        description: The size of the volume in KiB

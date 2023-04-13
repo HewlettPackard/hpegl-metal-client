@@ -1,0 +1,21 @@
+type: object
+description: >-
+  Indicates custom operations to be executed within the host life cycle.
+required:
+  - ImagingPrepSteps
+  - MaintenanceSteps
+properties:
+  ImagingPrepSteps:
+    type: array
+    items:
+      $ref: UserOp.yaml
+    description: >-
+      Allows setting operations to be executed before host imaging. 
+      If a firmware update operation is defined, Firmware Baseline must be set.
+  MaintenanceSteps:
+    type: array
+    items:
+      $ref: UserOp.yaml
+    description: >-
+      Allows setting operations to be executed during host maintenance. 
+      If a firmware update operation is defined, Firmware Baseline must be set.

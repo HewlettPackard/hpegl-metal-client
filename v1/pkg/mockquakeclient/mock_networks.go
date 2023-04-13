@@ -102,9 +102,9 @@ func (mr *MockNetworksAPIMockRecorder) List(ctx interface{}) *gomock.Call {
 }
 
 // Update mocks base method.
-func (m *MockNetworksAPI) Update(ctx context.Context, networkId string, network client.Network) (client.Network, *http.Response, error) {
+func (m *MockNetworksAPI) Update(ctx context.Context, networkId string, updateNetwork client.UpdateNetwork) (client.Network, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, networkId, network)
+	ret := m.ctrl.Call(m, "Update", ctx, networkId, updateNetwork)
 	ret0, _ := ret[0].(client.Network)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -112,7 +112,7 @@ func (m *MockNetworksAPI) Update(ctx context.Context, networkId string, network 
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockNetworksAPIMockRecorder) Update(ctx, networkId, network interface{}) *gomock.Call {
+func (mr *MockNetworksAPIMockRecorder) Update(ctx, networkId, updateNetwork interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockNetworksAPI)(nil).Update), ctx, networkId, network)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockNetworksAPI)(nil).Update), ctx, networkId, updateNetwork)
 }

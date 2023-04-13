@@ -13,12 +13,12 @@ package client
 // FlavorDesc Describes the details of machine size or volume flavor
 type FlavorDesc struct {
 	// Groups flavors together to make finding a specific flavor easier
-	Collection string `json:"Collection,omitempty"`
-	Banner1 string `json:"Banner1,omitempty"`
-	Banner2 string `json:"Banner2,omitempty"`
-	Bullets []string `json:"Bullets,omitempty"`
+	Collection string `json:"Collection"`
+	Banner1 string `json:"Banner1"`
+	Banner2 string `json:"Banner2"`
+	Bullets []string `json:"Bullets"`
 	// URI to more information about the specific machine size or volume flavor
-	InfoLink string `json:"InfoLink,omitempty"`
+	InfoLink string `json:"InfoLink"`
 	// Supplemental tooltip text to use in GUIs
-	Tooltip string `json:"Tooltip,omitempty"`
+	Tooltip string `json:"Tooltip"`
 }

@@ -12,11 +12,11 @@
 package client
 // MachineSizeInfo struct for MachineSizeInfo
 type MachineSizeInfo struct {
-	Name string `json:"Name,omitempty"`
-	ProjectsUsed int32 `json:"ProjectsUsed,omitempty"`
-	OtherUsed int32 `json:"OtherUsed,omitempty"`
-	Available int32 `json:"Available,omitempty"`
-	ID string `json:"ID,omitempty"`
+	Name string `json:"Name"`
+	ProjectsUsed int32 `json:"ProjectsUsed"`
+	OtherUsed int32 `json:"OtherUsed"`
+	Available int32 `json:"Available"`
+	ID string `json:"ID"`
 	// True if the usage of this machine size is restricted  to selected projects, false if the machine size is available to anyone. 
-	Restricted bool `json:"Restricted,omitempty"`
+	Restricted bool `json:"Restricted"`
 }

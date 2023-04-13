@@ -1,5 +1,17 @@
 type: object
 description: Description of the details about a pre-existing volume
+required: 
+  - ID
+  - Name
+  - Description
+  - FlavorID
+  - Capacity
+  - Shareable
+  - LocationID
+  - DiscoveryIP
+  - TargetIQN
+  - State
+  - Status
 properties:
   ID:
     type: string

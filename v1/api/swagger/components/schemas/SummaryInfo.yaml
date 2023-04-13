@@ -1,4 +1,13 @@
 type: object
+required: 
+  - Locations
+  - NumHosts
+  - NumVolumes
+  - TotalStorageGB
+  - NumOK
+  - NumWarning
+  - NumCritical
+  - NumUnknown
 properties:
   Locations:
     type: array
@@ -25,4 +34,4 @@ properties:
     description: Number of projects with Critical health summary status
   NumUnknown:
     type: integer
-    description: Number of projects with Unknown health summary status                             
+    description: Number of projects with Unknown health summary status

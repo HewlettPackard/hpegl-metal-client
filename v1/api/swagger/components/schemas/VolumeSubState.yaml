@@ -6,4 +6,3 @@ enum:
   - idle
   - update-requested
   - updating
-

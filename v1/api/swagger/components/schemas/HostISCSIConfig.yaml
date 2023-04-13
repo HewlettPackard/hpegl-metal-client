@@ -2,6 +2,9 @@ type: object
 nullable: true
 required:
   - InitiatorName
+  - CHAPSecret
+  - CHAPUser
+  - ISCSIDiscoveryAddress
 properties:
   InitiatorName:
     type: string

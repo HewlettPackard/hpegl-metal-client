@@ -1,0 +1,8 @@
+type: string
+enum:
+  - sha256sum
+  - sha512sum
+description: >-
+  The algorithm used to generate the Image Signature. 
+  Currently sha256sum and sha512sum are supported.
+example: sha512sum

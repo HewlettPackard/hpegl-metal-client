@@ -2,6 +2,10 @@ description: >-
   An entry describing the amount of storage available to create volumes of a
   specific flavor
 type: object
+required: 
+  - FlavorID
+  - LocationID
+  - Capacity
 properties:
   FlavorID:
     type: string

@@ -1,4 +1,11 @@
 type: object
+required: 
+  - Alert
+  - State
+  - Substate
+  - Message
+  - Time
+  - Ack
 properties:
   Alert:
     type: string

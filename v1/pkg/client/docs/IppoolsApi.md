@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> IpPool Update(ctx, ippoolId, ipPool)
+> IpPool Update(ctx, ippoolId, updateIpPool)
 
 Update IP pool by ID
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ippoolId** | **string**| ID of IP pool to update | 
-**ipPool** | [**IpPool**](IpPool.md)| Update IPPool | 
+**updateIpPool** | [**UpdateIpPool**](UpdateIpPool.md)| Update IPPool | 
 
 ### Return type
 

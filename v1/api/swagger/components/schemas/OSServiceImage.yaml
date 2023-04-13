@@ -1,0 +1,101 @@
+allOf:
+  - $ref: ./ResourceBase.yaml
+  - type: object
+    required:
+      - Description
+      - Category
+      - Flavor
+      - Version
+      - Origin
+      - Timeout
+      - DeviceLayouts
+      - PermittedProjects
+      - Files
+      - Info
+      - Approach
+      - AssumedBootMethod
+      - NoSwitchLAG
+      - BondMode
+      - FWBaselineID
+      - UserDefinedSteps
+      - Classifiers
+    properties:
+      Description:
+        type: string
+        example: Description of the image
+      Category:
+        type: string
+        example: linux
+        description: >-
+          A high level classification of the service. 
+      Flavor:
+        type: string
+        example: ubuntu
+        description: >-
+          An high level description of the OS image type. 
+      Version:
+        type: string
+        example: "20.04.5"
+        description: >-
+          A specific version of the service flavor.
+      Origin:
+        $ref: OSServiceImageOrigin.yaml
+      Timeout:
+        type: integer
+        format: int64
+        example: 1000
+        description: >- 
+          Maximum amount of time in seconds for the service to complete its work. 
+          This time includes the amount of time to download the service image if necessary.
+      DeviceLayouts:
+        type: array
+        items: 
+          $ref: DiskPartitions.yaml
+        description: >- 
+          Device partitioning information.
+      PermittedProjects:
+        type: array
+        items: 
+          type: string
+        description: >- 
+          List of projects allowed to use this OS service image.
+      Files:
+        type: array
+        items: 
+          $ref: FileInfo.yaml
+        description: >-
+          Files and relative information for this OS service image.
+      Info:
+        type: array
+        items: 
+          $ref: PassedInfo.yaml
+        description: >-
+          Defines a list of embedded contents to be attached to this OS service image in form of files.
+      Approach:
+        $ref: OSServiceImageApproach.yaml
+      AssumedBootMethod:
+        $ref: BootMethod.yaml
+      NoSwitchLAG:
+        type: boolean
+        example: false
+        description: >-
+          Indicates if a LAG needs to be created on the switch connecting the host
+          with this OS service image.
+      BondMode:
+        $ref: BondMode.yaml
+      FWBaselineID:
+        type: string
+        format: uuid
+        description: >-
+          Unique id of the firmware baseline to be applied by the firmware update operation 
+          in Maintenance Steps and Imaging Prep Steps.
+        example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+      UserDefinedSteps:
+        $ref: UserDefinedSteps.yaml
+      Classifiers:
+        type: array
+        items:
+          $ref: MachineClassifier.yaml
+        description: >-
+          Allows setting of restricted use for this service by machine attributes. 
+          If rules are not defined, this OS service image is available to be installed on any machine.

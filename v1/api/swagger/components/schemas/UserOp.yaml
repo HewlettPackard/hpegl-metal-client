@@ -1,0 +1,23 @@
+type: object
+description: >-
+  Describes a user operation.
+required:
+  - ID
+  - Operation
+  - Description
+  - Parameters
+properties: 
+  ID:
+    type: string
+    format: uuid
+    description: >-
+      Unique ID of this user operation.
+    example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+  Operation:
+    $ref: UserOpEnum.yaml
+  Description:
+    type: string
+  Parameters:
+    type: array
+    items: 
+      $ref: OpArg.yaml

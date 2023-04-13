@@ -1,0 +1,20 @@
+type: object
+description: >-
+  Describes a machine classifier attribute rule.
+required:
+  - Attribute
+  - Value
+  - Operator
+properties:
+  Attribute: 
+    type: string
+    description: The machine attribute.
+    example: model
+  Value: 
+    type: string
+    description: The value for the attribute.
+    example: Gen10
+  Operator:
+    $ref: ClassifierOperator.yaml
+    description: >-
+      Describes the operator used for comparison.

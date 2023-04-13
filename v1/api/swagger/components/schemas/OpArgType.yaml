@@ -1,0 +1,9 @@
+type: string
+enum: 
+  - String
+  - Integer
+  - Version
+  - URL
+example: Integer
+description: >-
+  Defines allowed types for an operation argument.

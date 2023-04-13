@@ -3,6 +3,10 @@ description: >
   Description of a specific volume flavor offering.  A volume flavor will
   typically refer to a specific level of performance and durability as defined
   in the Details
+required: 
+  - ID
+  - Name
+  - Details
 properties:
   ID:
     type: string

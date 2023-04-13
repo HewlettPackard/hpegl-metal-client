@@ -3,11 +3,18 @@ allOf:
   - type: object
     required:
       - Description
+      - IPVersion
+      - NetworkID
+      - BaseIP
+      - Netmask
       - DefaultRoute
+      - Sources
+      - UseRecords
       - DNS
       - Proxy
       - NoProxy
       - NTP
+      - Pool
     properties:
       Description:
         type: string

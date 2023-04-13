@@ -13,15 +13,15 @@ package client
 // ServiceServerInfo Server allocation information for a service type.
 type ServiceServerInfo struct {
 	// Service type consuming the resource
-	ServiceType string `json:"ServiceType,omitempty"`
+	ServiceType string `json:"ServiceType"`
 	// Allocated number of servers.
-	AllocatedCount int32 `json:"AllocatedCount,omitempty"`
+	AllocatedCount int32 `json:"AllocatedCount"`
 	// Total available CPU cores.
-	CoresCapacity int32 `json:"CoresCapacity,omitempty"`
+	CoresCapacity int32 `json:"CoresCapacity"`
 	// Total allocated CPU cores.
-	CoresAllocated int32 `json:"CoresAllocated,omitempty"`
+	CoresAllocated int32 `json:"CoresAllocated"`
 	// Total available memory in GiB.
-	RAMCapacity float64 `json:"RAMCapacity,omitempty"`
+	RAMCapacity float64 `json:"RAMCapacity"`
 	// Total allocated memory in GiB.
-	RAMAllocated float64 `json:"RAMAllocated,omitempty"`
+	RAMAllocated float64 `json:"RAMAllocated"`
 }

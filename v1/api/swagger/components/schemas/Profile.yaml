@@ -1,4 +1,13 @@
 type: object
+required: 
+  - TeamName
+  - TeamDesc
+  - Company
+  - Address
+  - Email
+  - EmailVerified
+  - PhoneNumber
+  - PhoneVerified
 properties:
   TeamName:
     type: string

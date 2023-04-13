@@ -1,0 +1,65 @@
+get:
+  tags:
+    - services
+  summary: List of all OS service images within an tenant 
+  description: >-
+    Returns an array of all OS service images objects that have been created.
+    If GreenLake IAM issued token is used for authentication, 
+    then it is required to pass 'spaceid' header
+  operationId: Services_list
+  parameters:
+    - $ref: ../components/parameters/SpaceID.yaml
+    - $ref: ../components/parameters/Space.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/OSServiceImage.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+
+post:
+  tags:
+    - services
+  summary: Create a new OS service image
+  description: >-
+    Adds a new OS service image that can be referenced during host creation.
+    If GreenLake IAM issued token is used for authentication, then it is required 
+    to pass either 'spaceid' header or 'Space' header. 
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
+  operationId: Service_add
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - $ref: ../components/parameters/SpaceID.yaml
+    - $ref: ../components/parameters/Space.yaml
+  requestBody:
+    required: true
+    description: Yaml file describing the OS service image.
+    content:
+      multipart/form-data:
+        schema:
+          $ref: ../components/schemas/MultiPartFile.yaml
+  responses:
+    '201':
+      description: created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/OSServiceImage.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

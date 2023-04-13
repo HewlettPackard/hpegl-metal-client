@@ -1,0 +1,29 @@
+type: string
+enum: 
+  - Reset Server
+  - Power On
+  - Power Off
+  - Boot Service OS
+  - Re-Discover
+  - Burn-In Server
+  - Erase Drive
+  - Update Firmware
+  - Set BIOS Parameters
+  - Set RAID0 Boot Volume
+  - Set RAID1 Boot Volume
+  - Clear RAID Configuration
+  - Pause
+  - Update BMC Firmware
+  - Discover
+  - Update BMC License
+  - Update Server FW from ISO
+  - Reset Server BIOS to Factory Default
+  - Connect L3 Underlay
+  - Configure Smart IO
+  - Clean up Control Plane
+  - Init BMC
+  - Encrypt Boot Volume
+  - Clear BMC Logs
+example: Boot Service OS
+description: >-
+  Defines user operation for a machine.

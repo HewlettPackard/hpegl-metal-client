@@ -13,26 +13,26 @@ package client
 // HostNetworkConnection struct for HostNetworkConnection
 type HostNetworkConnection struct {
 	// Name of the network connection
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name"`
 	// Unique ID corresponding to a network in the local data center
-	NetworkID string `json:"NetworkID,omitempty"`
+	NetworkID string `json:"NetworkID"`
 	// IP address for the network connection
-	IP string `json:"IP,omitempty"`
+	IP string `json:"IP"`
 	// The IP subnet address
-	Subnet string `json:"Subnet,omitempty"`
-	Netmask string `json:"Netmask,omitempty"`
+	Subnet string `json:"Subnet"`
+	Netmask string `json:"Netmask"`
 	// The IP subnet gateway address
-	Gateway string `json:"Gateway,omitempty"`
+	Gateway string `json:"Gateway"`
 	// List of DNS servers for the IP subnet
-	DNS []string `json:"DNS,omitempty"`
+	DNS []string `json:"DNS"`
 	// VLAN ID of the network
-	VLAN int32 `json:"VLAN,omitempty"`
+	VLAN int32 `json:"VLAN"`
 	// VNI ID of the network
-	VNI int32 `json:"VNI,omitempty"`
+	VNI int32 `json:"VNI"`
 	// True if the network is untagged
-	Untagged bool `json:"Untagged,omitempty"`
+	Untagged bool `json:"Untagged"`
 	// Optional web-proxy for external internet access should the IP subnet actually be behind a firewall
-	Proxy string `json:"Proxy,omitempty"`
+	Proxy string `json:"Proxy"`
 	// Addresses or CIDRs for which proxy requests are not made
-	NoProxy string `json:"NoProxy,omitempty"`
+	NoProxy string `json:"NoProxy"`
 }

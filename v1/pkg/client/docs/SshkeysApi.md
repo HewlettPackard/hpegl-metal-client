@@ -146,7 +146,7 @@ This endpoint does not need any parameter.
 
 ## Update
 
-> SshKey Update(ctx, sshkeyId, sshKey)
+> SshKey Update(ctx, sshkeyId, updateSshKey)
 
 Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **sshkeyId** | **string**| ID of sshkey to update | 
-**sshKey** | [**SshKey**](SshKey.md)| Updated SSH key | 
+**updateSshKey** | [**UpdateSshKey**](UpdateSshKey.md)| Updated SSH key | 
 
 ### Return type
 

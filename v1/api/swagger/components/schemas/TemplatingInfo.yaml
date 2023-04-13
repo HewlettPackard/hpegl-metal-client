@@ -1,0 +1,9 @@
+type: string
+enum: 
+  - hostdef-v1
+  - hostdef-v2
+example: hostdef-v2
+description: >-
+  It defines the source object and schema used as input to the template. 
+  If go text templating is used, then the TemplatingInfo refers to a specific 
+  Go struct that would be passed to fill-in the template.

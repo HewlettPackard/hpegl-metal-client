@@ -13,13 +13,13 @@ package client
 // VolumeUsageEntryAllOf struct for VolumeUsageEntryAllOf
 type VolumeUsageEntryAllOf struct {
 	// Name of the volume
-	VolumeName string `json:"VolumeName,omitempty"`
+	VolumeName string `json:"VolumeName"`
 	// Unique ID of the volume
-	VolumeID string `json:"VolumeID,omitempty"`
+	VolumeID string `json:"VolumeID"`
 	// Name of the volume flavor used when creating the volume
-	FlavorName string `json:"FlavorName,omitempty"`
+	FlavorName string `json:"FlavorName"`
 	// Unique ID of the volume flavor used when creating the volume
-	FlavorID string `json:"FlavorID,omitempty"`
+	FlavorID string `json:"FlavorID"`
 	// The size of the volume in MB
-	Capacity int64 `json:"Capacity,omitempty"`
+	Capacity int64 `json:"Capacity"`
 }

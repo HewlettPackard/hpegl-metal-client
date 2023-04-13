@@ -1,0 +1,10 @@
+type: object
+description: >-
+  An machine OS service image file.
+required:
+  - fileName
+properties: 
+  fileName:
+    type: string
+    format: binary
+    example: myGMI.yml

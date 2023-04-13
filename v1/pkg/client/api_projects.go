@@ -575,10 +575,10 @@ Update Update a project by its ID
 Updates a project with a matching ID. Only Project &#39;Name&#39;, &#39;Profile&#39; and &#39;Limits&#39; can be updated with this operation. Note that Hoster or BMaaS Access Owner role is required for this operation.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId ID of project to update
- * @param project Project parameters to update an existing Project
+ * @param updateProject Project parameters to update an existing Project
 @return Project
 */
-func (a *ProjectsApiService) Update(ctx _context.Context, projectId string, project Project) (Project, *_nethttp.Response, error) {
+func (a *ProjectsApiService) Update(ctx _context.Context, projectId string, updateProject UpdateProject) (Project, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -614,7 +614,7 @@ func (a *ProjectsApiService) Update(ctx _context.Context, projectId string, proj
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &project
+	localVarPostBody = &updateProject
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

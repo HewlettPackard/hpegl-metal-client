@@ -12,16 +12,16 @@
 package client
 // ProjectInfo struct for ProjectInfo
 type ProjectInfo struct {
-	ID string `json:"ID,omitempty"`
-	Name string `json:"Name,omitempty"`
-	Description string `json:"Description,omitempty"`
-	NumHosts int32 `json:"NumHosts,omitempty"`
-	NumVolumes int32 `json:"NumVolumes,omitempty"`
-	TotalStorageGB int32 `json:"TotalStorageGB,omitempty"`
-	Status string `json:"Status,omitempty"`
+	ID string `json:"ID"`
+	Name string `json:"Name"`
+	Description string `json:"Description"`
+	NumHosts int32 `json:"NumHosts"`
+	NumVolumes int32 `json:"NumVolumes"`
+	TotalStorageGB int32 `json:"TotalStorageGB"`
+	Status string `json:"Status"`
 	// Number of project networks
-	NumNetworks int32 `json:"NumNetworks,omitempty"`
-	SummaryStatus HealthStatus `json:"SummaryStatus,omitempty"`
+	NumNetworks int32 `json:"NumNetworks"`
+	SummaryStatus HealthStatus `json:"SummaryStatus"`
 	// Locations where project resources exist
-	Locations []LocationInfo `json:"Locations,omitempty"`
+	Locations []LocationInfo `json:"Locations"`
 }

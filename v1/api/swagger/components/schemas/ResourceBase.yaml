@@ -3,6 +3,8 @@ required:
   - ID
   - ETag
   - Name
+  - Created
+  - Modified
 properties:
   ID:
     type: string

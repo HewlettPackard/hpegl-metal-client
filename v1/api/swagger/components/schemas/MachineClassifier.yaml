@@ -1,0 +1,15 @@
+type: object
+description: >-
+  Describes a classifier via a list of rules.
+required:
+  - Name
+  - Rules
+properties: 
+  Name:
+    type: string
+  Rules:
+    type: array
+    items:
+      $ref: MachineClassifierRule.yaml
+    description: >-
+      A list of machine classifier rules.

@@ -103,9 +103,9 @@ func (mr *MockIPPoolsAPIMockRecorder) ReturnIPs(ctx, ippoolId, requestBody inter
 }
 
 // Update mocks base method.
-func (m *MockIPPoolsAPI) Update(ctx context.Context, ippoolId string, ipPool client.IpPool) (client.IpPool, *http.Response, error) {
+func (m *MockIPPoolsAPI) Update(ctx context.Context, ippoolId string, updateIpPool client.UpdateIpPool) (client.IpPool, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, ippoolId, ipPool)
+	ret := m.ctrl.Call(m, "Update", ctx, ippoolId, updateIpPool)
 	ret0, _ := ret[0].(client.IpPool)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -113,7 +113,7 @@ func (m *MockIPPoolsAPI) Update(ctx context.Context, ippoolId string, ipPool cli
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockIPPoolsAPIMockRecorder) Update(ctx, ippoolId, ipPool interface{}) *gomock.Call {
+func (mr *MockIPPoolsAPIMockRecorder) Update(ctx, ippoolId, updateIpPool interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockIPPoolsAPI)(nil).Update), ctx, ippoolId, ipPool)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockIPPoolsAPI)(nil).Update), ctx, ippoolId, updateIpPool)
 }

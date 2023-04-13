@@ -1,6 +1,12 @@
 allOf:
   - $ref: ./UsageEntryBase.yaml
   - type: object
+    required: 
+      - VolumeName
+      - VolumeID
+      - FlavorName
+      - FlavorID
+      - Capacity
     properties:
       VolumeName:
         type: string
