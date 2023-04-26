@@ -19,4 +19,8 @@ type LocationInfo struct {
 	Region string `json:"Region"`
 	// Data center descriptor
 	DataCenter string `json:"DataCenter"`
+	// Indicates whether or not the fabric dedicated for private networks requires VLAN ID.
+	PrivateNetworkVIDRequired bool `json:"PrivateNetworkVIDRequired"`
+	// Indicates whether or not the fabric dedicated for private networks requires VNI ID.
+	PrivateNetworkVNIRequired bool `json:"PrivateNetworkVNIRequired"`
 }
