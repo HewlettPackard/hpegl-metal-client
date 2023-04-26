@@ -2787,15 +2787,15 @@ components:
           TotalStorageGB: 1
           Locations:
           - DataCenter: FTC1
-            PrivateNetworkVNIRequired: true
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            PrivateNetworkVIDRequired: true
+            PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
-            PrivateNetworkVNIRequired: true
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            PrivateNetworkVIDRequired: true
+            PrivateNetworkVIDSupport: true
           NumHosts: 0
           ID: ID
           NumNetworks: 5
@@ -2806,15 +2806,15 @@ components:
           TotalStorageGB: 1
           Locations:
           - DataCenter: FTC1
-            PrivateNetworkVNIRequired: true
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            PrivateNetworkVIDRequired: true
+            PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
-            PrivateNetworkVNIRequired: true
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            PrivateNetworkVIDRequired: true
+            PrivateNetworkVIDSupport: true
           NumHosts: 0
           ID: ID
           NumNetworks: 5
@@ -2827,15 +2827,15 @@ components:
           TotalStorageGB: 1
           Locations:
           - DataCenter: FTC1
-            PrivateNetworkVNIRequired: true
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            PrivateNetworkVIDRequired: true
+            PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
-            PrivateNetworkVNIRequired: true
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            PrivateNetworkVIDRequired: true
+            PrivateNetworkVIDSupport: true
           NumHosts: 4
           NumCritical: 6
       properties:
@@ -3164,15 +3164,15 @@ components:
           Flavor: ubuntu
         Locations:
         - DataCenter: FTC1
-          PrivateNetworkVNIRequired: true
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          PrivateNetworkVIDRequired: true
+          PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
-          PrivateNetworkVNIRequired: true
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          PrivateNetworkVIDRequired: true
+          PrivateNetworkVIDSupport: true
         StorageInventory:
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 1
@@ -3844,15 +3844,15 @@ components:
         TotalStorageGB: 1
         Locations:
         - DataCenter: FTC1
-          PrivateNetworkVNIRequired: true
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          PrivateNetworkVIDRequired: true
+          PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
-          PrivateNetworkVNIRequired: true
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          PrivateNetworkVIDRequired: true
+          PrivateNetworkVIDSupport: true
         NumHosts: 0
         ID: ID
         NumNetworks: 5
@@ -3959,15 +3959,15 @@ components:
         TotalStorageGB: 1
         Locations:
         - DataCenter: FTC1
-          PrivateNetworkVNIRequired: true
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          PrivateNetworkVIDRequired: true
+          PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
-          PrivateNetworkVNIRequired: true
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          PrivateNetworkVIDRequired: true
+          PrivateNetworkVIDSupport: true
         NumHosts: 4
         NumCritical: 6
       properties:
@@ -4281,10 +4281,10 @@ components:
         and data center description strings
       example:
         DataCenter: FTC1
-        PrivateNetworkVNIRequired: true
+        PrivateNetworkVNISupport: true
         Region: Central
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        PrivateNetworkVIDRequired: true
+        PrivateNetworkVIDSupport: true
       properties:
         ID:
           description: Unique ID for data center location
@@ -4300,20 +4300,20 @@ components:
           description: Data center descriptor
           example: FTC1
           type: string
-        PrivateNetworkVIDRequired:
+        PrivateNetworkVIDSupport:
           description: Indicates whether or not the fabric dedicated for private networks
-            requires VLAN ID.
+            supports VLAN ID.
           type: boolean
-        PrivateNetworkVNIRequired:
+        PrivateNetworkVNISupport:
           description: Indicates whether or not the fabric dedicated for private networks
-            requires VNI ID.
+            supports VNI ID.
           type: boolean
       required:
       - Country
       - DataCenter
       - ID
-      - PrivateNetworkVIDRequired
-      - PrivateNetworkVNIRequired
+      - PrivateNetworkVIDSupport
+      - PrivateNetworkVNISupport
       - Region
       type: object
     AvailableNetwork:
