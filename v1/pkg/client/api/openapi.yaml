@@ -3402,10 +3402,12 @@ components:
         NewIPPool:
           $ref: '#/components/schemas/NewIPPool'
         VLAN:
-          description: VLAN ID of the network
+          description: Optional VLAN ID of the network. If not specified, it is allocated
+            from reserved pool.
           type: integer
         VNI:
-          description: VNI ID of the network
+          description: Optional VNI ID of the network. If not specified, it is allocated
+            from reserved pool if required.
           type: integer
       required:
       - LocationID

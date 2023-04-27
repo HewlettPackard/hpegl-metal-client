@@ -25,7 +25,7 @@ properties:
       be created and used for IP allocations.
   VLAN:
     type: integer
-    description: VLAN ID of the network
+    description: Optional VLAN ID of the network. If not specified, it is allocated from reserved pool.
   VNI:
     type: integer
-    description: VNI ID of the network
+    description: Optional VNI ID of the network. If not specified, it is allocated from reserved pool if required.

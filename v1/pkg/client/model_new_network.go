@@ -20,8 +20,8 @@ type NewNetwork struct {
 	HostUse NetworkHostUse `json:"HostUse,omitempty"`
 	Purpose NetworkPurpose `json:"Purpose,omitempty"`
 	NewIPPool *NewIpPool `json:"NewIPPool,omitempty"`
-	// VLAN ID of the network
+	// Optional VLAN ID of the network. If not specified, it is allocated from reserved pool.
 	VLAN int32 `json:"VLAN,omitempty"`
-	// VNI ID of the network
+	// Optional VNI ID of the network. If not specified, it is allocated from reserved pool if required.
 	VNI int32 `json:"VNI,omitempty"`
 }
