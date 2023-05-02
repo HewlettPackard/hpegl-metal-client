@@ -7,6 +7,8 @@ required:
   - Country
   - Region
   - DataCenter
+  - PrivateNetworkVIDSupport
+  - PrivateNetworkVNISupport
 properties:
   ID:
     type: string
@@ -22,3 +24,9 @@ properties:
     type: string
     example: FTC1
     description: Data center descriptor
+  PrivateNetworkVIDSupport:
+    type: boolean
+    description: Indicates whether or not the fabric dedicated for private networks supports VLAN ID.
+  PrivateNetworkVNISupport:
+    type: boolean
+    description: Indicates whether or not the fabric dedicated for private networks supports VNI ID.
