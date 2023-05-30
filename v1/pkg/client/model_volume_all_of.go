@@ -24,8 +24,10 @@ type VolumeAllOf struct {
 	State VolumeState `json:"State"`
 	SubState VolumeSubState `json:"SubState"`
 	Status VolumeStatus `json:"Status"`
-	// The map of label name to label value for the host.
+	// The map of label name to label value for the resource.
 	Labels map[string]string `json:"Labels"`
+	// The map of label name to label value for the resource.
+	UserLabels map[string]string `json:"UserLabels"`
 	// Serial number of the volume.
 	WWN string `json:"WWN"`
 }

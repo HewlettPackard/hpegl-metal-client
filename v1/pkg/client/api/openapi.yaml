@@ -2921,6 +2921,8 @@ components:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         NodeID: Node21
+        UserLabels:
+          region: us-west-2
         NetworkIDs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3041,9 +3043,19 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for this host.
+          description: |-
+            The map of service specified label name to label value for this host.
+            Setting this field is restricted by role.
           example:
             serviceType: BMaaS
+          type: object
+        UserLabels:
+          additionalProperties:
+            type: string
+          description: The map of user specified label name to label value for this
+            host.
+          example:
+            region: us-west-2
           type: object
       required:
       - LocationID
@@ -3260,6 +3272,8 @@ components:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        UserLabels:
+          region: us-west-2
         Labels:
           serviceType: BMaaS
         Name: NewVolumeName
@@ -3295,9 +3309,19 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for this volume.
+          description: |-
+            The map of service specified label name to label value for this volume.
+            Setting this field is restricted by role.
           example:
             serviceType: BMaaS
+          type: object
+        UserLabels:
+          additionalProperties:
+            type: string
+          description: The map of user specified label name to label value for this
+            volume.
+          example:
+            region: us-west-2
           type: object
       required:
       - Capacity
@@ -4185,7 +4209,7 @@ components:
     Labels:
       additionalProperties:
         type: string
-      description: The map of label name to label value for the host.
+      description: The map of label name to label value for the resource.
       example:
         serviceType: BMaaS
       type: object
@@ -6159,7 +6183,14 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for the host.
+          description: The map of label name to label value for the resource.
+          example:
+            serviceType: BMaaS
+          type: object
+        UserLabels:
+          additionalProperties:
+            type: string
+          description: The map of label name to label value for the resource.
           example:
             serviceType: BMaaS
           type: object
@@ -6195,6 +6226,7 @@ components:
       - SubstateTime
       - SummaryStatus
       - UserData
+      - UserLabels
       - Workflow
     UpdateHost_allOf:
       properties:
@@ -6243,13 +6275,34 @@ components:
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
           type: object
+        Labels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of service specified label name to label value for this host.
+            Setting this field is restricted by role.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            serviceType: BMaaS
+          type: object
+        UserLabels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of user specified label name to label value for this host.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            region: us-west-2
+          type: object
       required:
       - Description
+      - Labels
       - NetworkForDefaultRoute
       - NetworkIDs
       - NetworkUntagged
       - PreAllocatedIPs
       - ServiceNetsProviderMAC
+      - UserLabels
     Volume_allOf:
       properties:
         Description:
@@ -6285,7 +6338,14 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for the host.
+          description: The map of label name to label value for the resource.
+          example:
+            serviceType: BMaaS
+          type: object
+        UserLabels:
+          additionalProperties:
+            type: string
+          description: The map of label name to label value for the resource.
           example:
             serviceType: BMaaS
           type: object
@@ -6302,6 +6362,7 @@ components:
       - State
       - Status
       - SubState
+      - UserLabels
       - WWN
     UpdateVolume_allOf:
       properties:
@@ -6311,8 +6372,29 @@ components:
           format: int64
           minimum: 0
           type: integer
+        Labels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of service specified label name to label value for this host.
+            Setting this field is restricted by role.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            serviceType: BMaaS
+          type: object
+        UserLabels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of user specified label name to label value for this host.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            region: us-west-2
+          type: object
       required:
       - Capacity
+      - Labels
+      - UserLabels
     VolumeAttachment_allOf:
       properties:
         VolumeID:

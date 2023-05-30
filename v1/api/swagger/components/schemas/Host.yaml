@@ -34,6 +34,7 @@ allOf:
       - Workflow
       - SummaryStatus
       - Labels
+      - UserLabels
     properties:
       Description:
         type: string
@@ -191,3 +192,5 @@ allOf:
         description: Host health summary status
       Labels:
         $ref: ./Labels.yaml
+      UserLabels:
+        $ref: ./Labels.yaml  

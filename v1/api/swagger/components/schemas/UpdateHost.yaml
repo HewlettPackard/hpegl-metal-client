@@ -8,6 +8,8 @@ allOf:
       - NetworkUntagged
       - PreAllocatedIPs
       - ServiceNetsProviderMAC
+      - Labels
+      - UserLabels
     properties:
       Description:
         type: string
@@ -59,3 +61,25 @@ allOf:
           during machine discovery.
         example:
           046b6c7f-0b8a-43b9-b35d-6489e6daee91: a2:c8:93:15:2a:76
+      Labels:
+        type: object
+        additionalProperties:
+          type: string
+        description: >-
+          The map of service specified label name to label value for this host.
+
+          Setting this field is restricted by role.
+
+          At minimum, this field should be set to the values specified during create.
+        example:
+          serviceType: BMaaS
+      UserLabels:
+        type: object
+        additionalProperties:
+          type: string
+        description: >-
+          The map of user specified label name to label value for this host.
+
+          At minimum, this field should be set to the values specified during create.
+        example:
+          region: us-west-2

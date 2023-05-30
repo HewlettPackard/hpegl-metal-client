@@ -11,6 +11,7 @@ allOf:
       - SubState
       - Status
       - Labels
+      - UserLabels
       - WWN
     properties:
       Description:
@@ -46,6 +47,8 @@ allOf:
       Status:
         $ref: ./VolumeStatus.yaml
       Labels:
+        $ref: ./Labels.yaml
+      UserLabels:
         $ref: ./Labels.yaml
       WWN:
         type: string
