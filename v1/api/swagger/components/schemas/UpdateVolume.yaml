@@ -17,7 +17,7 @@ allOf:
         additionalProperties:
           type: string
         description: >-
-          The map of service specified label name to label value for this host.
+          The map of service specified label name to label value for this volume.
 
           Setting this field is restricted by role.
 
@@ -29,7 +29,7 @@ allOf:
         additionalProperties:
           type: string
         description: >-
-          The map of user specified label name to label value for this host.
+          The map of user specified label name to label value for this volume.
 
           At minimum, this field should be set to the values specified during create.
         example:
