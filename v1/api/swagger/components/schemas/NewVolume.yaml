@@ -42,7 +42,7 @@ properties:
     description: >-
       The map of service/user specified label name to label value for this volume.
       
-      Setting this field is restricted by role.
+      Setting service labels is restricted by role.
     example:
       serviceType: BMaaS
       region: us-west-2

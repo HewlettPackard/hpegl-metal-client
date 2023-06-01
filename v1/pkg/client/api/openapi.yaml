@@ -3044,7 +3044,7 @@ components:
             type: string
           description: |-
             The map of service/user specified label name to label value for this host.
-            Setting this field is restricted by role.
+            Setting service labels is restricted by role.
           example:
             serviceType: BMaaS
             region: us-west-2
@@ -3302,7 +3302,7 @@ components:
             type: string
           description: |-
             The map of service/user specified label name to label value for this volume.
-            Setting this field is restricted by role.
+            Setting service labels is restricted by role.
           example:
             serviceType: BMaaS
             region: us-west-2
@@ -6256,7 +6256,7 @@ components:
             type: string
           description: |-
             The map of service/user specified label name to label value for this host.
-            Setting this field is restricted by role.
+            Setting service labels is restricted by role.
             At minimum, this field should be set to the values specified during create.
           example:
             serviceType: BMaaS
@@ -6336,7 +6336,7 @@ components:
             type: string
           description: |-
             The map of service/user specified label name to label value for this volume.
-            Setting this field is restricted by role.
+            Setting service labels is restricted by role.
             At minimum, this field should be set to the values specified during create.
           example:
             serviceType: BMaaS

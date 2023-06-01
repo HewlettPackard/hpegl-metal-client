@@ -24,6 +24,6 @@ type UpdateHostAllOf struct {
 	PreAllocatedIPs []string `json:"PreAllocatedIPs"`
 	// The map of Service Network (Provider) ID to Provider MAC address.   The Service Network must be a provider network provisioned to this host. Any Service Networks not included here will default to the physical MAC learned during machine discovery.
 	ServiceNetsProviderMAC map[string]string `json:"ServiceNetsProviderMAC"`
-	// The map of service/user specified label name to label value for this host. Setting this field is restricted by role. At minimum, this field should be set to the values specified during create.
+	// The map of service/user specified label name to label value for this host. Setting service labels is restricted by role. At minimum, this field should be set to the values specified during create.
 	Labels map[string]string `json:"Labels"`
 }

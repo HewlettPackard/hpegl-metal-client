@@ -190,4 +190,4 @@ allOf:
         $ref: ./HealthStatus.yaml
         description: Host health summary status
       Labels:
-        $ref: ./Labels.yaml  
+        $ref: ./Labels.yaml
