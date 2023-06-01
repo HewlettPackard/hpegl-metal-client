@@ -4,7 +4,6 @@ allOf:
     required: 
       - Capacity
       - Labels
-      - UserLabels
     properties:
       Capacity:
         type: integer
@@ -17,20 +16,11 @@ allOf:
         additionalProperties:
           type: string
         description: >-
-          The map of service specified label name to label value for this volume.
+          The map of service/user specified label name to label value for this volume.
 
           Setting this field is restricted by role.
 
           At minimum, this field should be set to the values specified during create.
         example:
           serviceType: BMaaS
-      UserLabels:
-        type: object
-        additionalProperties:
-          type: string
-        description: >-
-          The map of user specified label name to label value for this volume.
-
-          At minimum, this field should be set to the values specified during create.
-        example:
           region: us-west-2

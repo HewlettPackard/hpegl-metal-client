@@ -36,7 +36,6 @@ Name | Type | Description | Notes
 **Workflow** | **string** | The current workflow the host is in | 
 **SummaryStatus** | [**HealthStatus**](HealthStatus.md) |  | 
 **Labels** | **map[string]string** | The map of label name to label value for the resource. | 
-**UserLabels** | **map[string]string** | The map of label name to label value for the resource. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

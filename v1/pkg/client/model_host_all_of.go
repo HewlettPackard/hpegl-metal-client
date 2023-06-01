@@ -68,6 +68,4 @@ type HostAllOf struct {
 	SummaryStatus HealthStatus `json:"SummaryStatus"`
 	// The map of label name to label value for the resource.
 	Labels map[string]string `json:"Labels"`
-	// The map of label name to label value for the resource.
-	UserLabels map[string]string `json:"UserLabels"`
 }
