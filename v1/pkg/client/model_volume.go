@@ -37,7 +37,7 @@ type Volume struct {
 	State VolumeState `json:"State"`
 	SubState VolumeSubState `json:"SubState"`
 	Status VolumeStatus `json:"Status"`
-	// The map of label name to label value for the host.
+	// The map of label name to label value for the resource.
 	Labels map[string]string `json:"Labels"`
 	// Serial number of the volume.
 	WWN string `json:"WWN"`

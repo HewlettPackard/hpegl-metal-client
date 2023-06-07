@@ -39,6 +39,10 @@ properties:
     type: object
     additionalProperties:
       type: string
-    description: The map of label name to label value for this volume.
+    description: >-
+      The map of service/user specified label name to label value for this volume.
+      
+      Setting service labels is restricted by role.
     example:
       serviceType: BMaaS
+      region: us-west-2

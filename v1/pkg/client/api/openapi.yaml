@@ -2898,6 +2898,7 @@ components:
         MachineSizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Labels:
           serviceType: BMaaS
+          region: us-west-2
         PreAllocatedIPs:
         - 10.0.0.4
         - 10.0.0.8
@@ -3041,9 +3042,12 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for this host.
+          description: |-
+            The map of service/user specified label name to label value for this host.
+            Setting service labels is restricted by role.
           example:
             serviceType: BMaaS
+            region: us-west-2
           type: object
       required:
       - LocationID
@@ -3262,6 +3266,7 @@ components:
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Labels:
           serviceType: BMaaS
+          region: us-west-2
         Name: NewVolumeName
       properties:
         Name:
@@ -3295,9 +3300,12 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for this volume.
+          description: |-
+            The map of service/user specified label name to label value for this volume.
+            Setting service labels is restricted by role.
           example:
             serviceType: BMaaS
+            region: us-west-2
           type: object
       required:
       - Capacity
@@ -4185,7 +4193,7 @@ components:
     Labels:
       additionalProperties:
         type: string
-      description: The map of label name to label value for the host.
+      description: The map of label name to label value for the resource.
       example:
         serviceType: BMaaS
       type: object
@@ -6159,7 +6167,7 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for the host.
+          description: The map of label name to label value for the resource.
           example:
             serviceType: BMaaS
           type: object
@@ -6243,8 +6251,20 @@ components:
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
           type: object
+        Labels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of service/user specified label name to label value for this host.
+            Setting service labels is restricted by role.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            serviceType: BMaaS
+            region: us-west-2
+          type: object
       required:
       - Description
+      - Labels
       - NetworkForDefaultRoute
       - NetworkIDs
       - NetworkUntagged
@@ -6285,7 +6305,7 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for the host.
+          description: The map of label name to label value for the resource.
           example:
             serviceType: BMaaS
           type: object
@@ -6311,8 +6331,20 @@ components:
           format: int64
           minimum: 0
           type: integer
+        Labels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of service/user specified label name to label value for this volume.
+            Setting service labels is restricted by role.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            serviceType: BMaaS
+            region: us-west-2
+          type: object
       required:
       - Capacity
+      - Labels
     VolumeAttachment_allOf:
       properties:
         VolumeID:

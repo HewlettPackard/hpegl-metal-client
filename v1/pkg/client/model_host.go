@@ -76,6 +76,6 @@ type Host struct {
 	// The current workflow the host is in
 	Workflow string `json:"Workflow"`
 	SummaryStatus HealthStatus `json:"SummaryStatus"`
-	// The map of label name to label value for the host.
+	// The map of label name to label value for the resource.
 	Labels map[string]string `json:"Labels"`
 }

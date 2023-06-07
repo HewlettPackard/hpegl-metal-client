@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **ISCSIConfig** | Pointer to [**UpdateHostIscsiConfig**](UpdateHostISCSIConfig.md) |  | [optional] 
 **PreAllocatedIPs** | **[]string** | The list of pre-allocated IP addresses corresponding to the list of NetworkIDs. Pre-allocated IP addresses are optional, but required when updating a host containing pre-allocated IP addresses. | 
 **ServiceNetsProviderMAC** | **map[string]string** | The map of Service Network (Provider) ID to Provider MAC address.   The Service Network must be a provider network provisioned to this host. Any Service Networks not included here will default to the physical MAC learned during machine discovery. | 
+**Labels** | **map[string]string** | The map of service/user specified label name to label value for this host. Setting service labels is restricted by role. At minimum, this field should be set to the values specified during create. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

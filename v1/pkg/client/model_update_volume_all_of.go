@@ -14,4 +14,6 @@ package client
 type UpdateVolumeAllOf struct {
 	// The size of the volume in KiB
 	Capacity int64 `json:"Capacity"`
+	// The map of service/user specified label name to label value for this volume. Setting service labels is restricted by role. At minimum, this field should be set to the values specified during create.
+	Labels map[string]string `json:"Labels"`
 }

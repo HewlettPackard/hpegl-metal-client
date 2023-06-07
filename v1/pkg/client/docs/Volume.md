@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **State** | [**VolumeState**](VolumeState.md) |  | 
 **SubState** | [**VolumeSubState**](VolumeSubState.md) |  | 
 **Status** | [**VolumeStatus**](VolumeStatus.md) |  | 
-**Labels** | **map[string]string** | The map of label name to label value for the host. | 
+**Labels** | **map[string]string** | The map of label name to label value for the resource. | 
 **WWN** | **string** | Serial number of the volume. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

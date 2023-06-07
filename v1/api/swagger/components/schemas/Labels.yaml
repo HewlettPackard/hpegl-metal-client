@@ -3,4 +3,4 @@ additionalProperties:
   type: string
 example:
   serviceType: BMaaS
-description: The map of label name to label value for the host.
+description: The map of label name to label value for the resource.

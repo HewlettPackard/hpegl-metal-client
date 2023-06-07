@@ -3,6 +3,7 @@ allOf:
   - type: object
     required: 
       - Capacity
+      - Labels
     properties:
       Capacity:
         type: integer
@@ -10,3 +11,16 @@ allOf:
         example: 10485760
         minimum: 0
         description: The size of the volume in KiB
+      Labels:
+        type: object
+        additionalProperties:
+          type: string
+        description: >-
+          The map of service/user specified label name to label value for this volume.
+
+          Setting service labels is restricted by role.
+
+          At minimum, this field should be set to the values specified during create.
+        example:
+          serviceType: BMaaS
+          region: us-west-2
