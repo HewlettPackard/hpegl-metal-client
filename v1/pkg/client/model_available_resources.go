@@ -30,4 +30,6 @@ type AvailableResources struct {
 	StorageInventory []StorageInventory `json:"StorageInventory"`
 	// Array listing pre-defined SSH keys that could be referenced when creating a Host
 	SSHKeys []SshKeyEntry `json:"SSHKeys"`
+	// Array listing the available storage pools
+	StoragePools []StoragePool `json:"StoragePools"`
 }

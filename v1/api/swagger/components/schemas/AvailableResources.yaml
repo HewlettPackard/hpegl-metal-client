@@ -1,6 +1,6 @@
 type: object
-required: 
-  - Images 
+required:
+  - Images
   - Locations
   - Networks
   - MachineSizes
@@ -9,6 +9,7 @@ required:
   - MachineInventory
   - StorageInventory
   - SSHKeys
+  - StoragePools
 properties:
   Images:
     type: array
@@ -61,3 +62,8 @@ properties:
       a Host
     items:
       $ref: ./SSHKeyEntry.yaml
+  StoragePools:
+    type: array
+    description: Array listing the available storage pools
+    items:
+      $ref: ./StoragePool.yaml

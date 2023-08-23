@@ -10,20 +10,14 @@
  */
 
 package client
-// NewVolume struct for NewVolume
-type NewVolume struct {
+// StoragePool Description of a storage pool. 
+type StoragePool struct {
+	// Storage pool unique ID
+	ID string `json:"ID"`
+	// User-visible name for a storage pool
 	Name string `json:"Name"`
-	Description string `json:"Description,omitempty"`
-	// Adds a new volume to the project.  This object requires the LocationID and is used when a new volume is created independently from the host creation therefore requiring a specified location.
-	FlavorID string `json:"FlavorID"`
-	// The size of the volume in GiB
-	Capacity int64 `json:"Capacity"`
-	// Indicates if the volume can be attached to multiple hosts
-	Shareable bool `json:"Shareable,omitempty"`
-	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
-	LocationID string `json:"LocationID"`
-	// The map of service/user specified label name to label value for this volume. Setting service labels is restricted by role.
-	Labels map[string]string `json:"Labels,omitempty"`
-	// The storage pool is one of those listed by the StoragePools array returned as part of the get /available-resources call that are available to create volumes of the specified flavor and location.
-	StoragePoolID string `json:"StoragePoolID,omitempty"`
+	// The location ID of the data center where the storage pool exists
+	LocationID string `json:"LocationID,omitempty"`
+	// Total capacity available (in GiB) to create new volumes in the storage pool
+	Capacity int64 `json:"Capacity,omitempty"`
 }

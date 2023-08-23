@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **MachineInventory** | [**[]MachineInventory**](MachineInventory.md) | Array listing the number of machines of each size in each location | 
 **StorageInventory** | [**[]StorageInventory**](StorageInventory.md) | Array providing information on the amount of available storage of each flavor in each location | 
 **SSHKeys** | [**[]SshKeyEntry**](SSHKeyEntry.md) | Array listing pre-defined SSH keys that could be referenced when creating a Host | 
+**StoragePools** | [**[]StoragePool**](StoragePool.md) | Array listing the available storage pools | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

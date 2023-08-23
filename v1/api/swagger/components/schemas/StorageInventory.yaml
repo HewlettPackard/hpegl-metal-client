@@ -2,10 +2,11 @@ description: >-
   An entry describing the amount of storage available to create volumes of a
   specific flavor
 type: object
-required: 
+required:
   - FlavorID
   - LocationID
   - Capacity
+  - StoragePoolID
 properties:
   FlavorID:
     type: string
@@ -21,3 +22,7 @@ properties:
     description: >-
       Total capacity available (in GiB) to create new volumes of the indicated
       flavor at the indicated location
+  StoragePoolID:
+    type: string
+    format: uuid
+    description: Unique ID of the storage pool as listed in the StoragePools array

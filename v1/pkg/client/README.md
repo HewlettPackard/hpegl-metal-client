@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
  - [SshKeyAllOf](docs/SshKeyAllOf.md)
  - [SshKeyEntry](docs/SshKeyEntry.md)
  - [StorageInventory](docs/StorageInventory.md)
+ - [StoragePool](docs/StoragePool.md)
  - [SummaryInfo](docs/SummaryInfo.md)
  - [Target](docs/Target.md)
  - [Templating](docs/Templating.md)

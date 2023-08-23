@@ -1,9 +1,10 @@
 allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
-    required: 
+    required:
       - Description
       - FlavorID
+      - StoragePoolID
       - Capacity
       - Shareable
       - LocationID
@@ -21,6 +22,12 @@ allOf:
         format: uuid
         description: >-
           The VolumeFlavorID matching an entry in the VolumeFlavors array
+          returned as part of the get /available-resources call
+      StoragePoolID:
+        type: string
+        format: uuid
+        description: >-
+          The storage pool ID matching an entry in the StoragePools array
           returned as part of the get /available-resources call
       Capacity:
         type: integer

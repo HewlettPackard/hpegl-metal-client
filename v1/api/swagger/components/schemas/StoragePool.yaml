@@ -1,0 +1,23 @@
+type: object
+description: >
+  Description of a storage pool.
+required:
+  - ID
+  - Name
+properties:
+  ID:
+    type: string
+    format: uuid
+    description: Storage pool unique ID
+  Name:
+    type: string
+    description: User-visible name for a storage pool
+  LocationID:
+    type: string
+    format: uuid
+    description: The location ID of the data center where the storage pool exists
+  Capacity:
+    type: integer
+    format: int64
+    description: >-
+      Total capacity available (in GiB) to create new volumes in the storage pool

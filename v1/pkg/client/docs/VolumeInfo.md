@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** | User-provided name for the volume | 
 **Description** | **string** | User-provided description of the volume | 
 **FlavorID** | **string** | The ID of the volume flavor requested when creating the volume | 
+**StoragePoolID** | **string** | The ID of the storage pool where volume resides | 
 **Capacity** | **int64** | The size of the volume in KiB | 
 **Shareable** | **bool** | Indicates if the volume can be attached to multiple hosts | 
 **LocationID** | **string** | The location ID of the data center where the volume exists | 

@@ -1,10 +1,11 @@
 type: object
 description: Description of the details about a pre-existing volume
-required: 
+required:
   - ID
   - Name
   - Description
   - FlavorID
+  - StoragePoolID
   - Capacity
   - Shareable
   - LocationID
@@ -30,6 +31,10 @@ properties:
     type: string
     format: uuid
     description: The ID of the volume flavor requested when creating the volume
+  StoragePoolID:
+    type: string
+    format: uuid
+    description: The ID of the storage pool where volume resides
   Capacity:
     type: integer
     format: int64

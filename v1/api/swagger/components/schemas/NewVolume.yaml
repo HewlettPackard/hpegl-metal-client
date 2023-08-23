@@ -41,8 +41,15 @@ properties:
       type: string
     description: >-
       The map of service/user specified label name to label value for this volume.
-      
+
       Setting service labels is restricted by role.
     example:
       serviceType: BMaaS
       region: us-west-2
+  StoragePoolID:
+    type: string
+    format: uuid
+    description: >-
+      The storage pool is one of those listed by the StoragePools array returned
+      as part of the get /available-resources call that are available to create
+      volumes of the specified flavor and location.
