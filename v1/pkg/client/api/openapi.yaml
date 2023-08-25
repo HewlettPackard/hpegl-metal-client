@@ -4637,7 +4637,7 @@ components:
       type: object
     StoragePool:
       description: |
-        Description of a storage pool.
+        An entry describing a storage pool.
       example:
         Capacity: 5
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91

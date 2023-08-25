@@ -10,7 +10,7 @@
  */
 
 package client
-// StoragePool Description of a storage pool. 
+// StoragePool An entry describing a storage pool. 
 type StoragePool struct {
 	// Storage pool unique ID
 	ID string `json:"ID"`

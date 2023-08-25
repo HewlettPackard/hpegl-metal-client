@@ -1,6 +1,6 @@
 type: object
 description: >
-  Description of a storage pool.
+  An entry describing a storage pool.
 required:
   - ID
   - Name
