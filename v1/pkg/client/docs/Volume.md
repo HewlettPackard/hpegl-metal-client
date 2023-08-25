@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Modified** | [**time.Time**](time.Time.md) | Time when the resource was last modified in the database | 
 **Description** | **string** |  | 
 **FlavorID** | **string** | The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the get /available-resources call | 
+**StoragePoolID** | **string** | The storage pool ID matching an entry in the StoragePools array returned as part of the get /available-resources call | 
 **Capacity** | **int64** | The size of the volume in KiB | 
 **Shareable** | **bool** | Indicates if the volume can be attached to multiple hosts | 
 **LocationID** | **string** | The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host. | 

@@ -18,4 +18,6 @@ type StorageInventory struct {
 	LocationID string `json:"LocationID"`
 	// Total capacity available (in GiB) to create new volumes of the indicated flavor at the indicated location
 	Capacity int64 `json:"Capacity"`
+	// Unique ID of the storage pool as listed in the StoragePools array
+	StoragePoolID string `json:"StoragePoolID"`
 }

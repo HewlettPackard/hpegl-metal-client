@@ -20,6 +20,8 @@ type VolumeInfo struct {
 	Description string `json:"Description"`
 	// The ID of the volume flavor requested when creating the volume
 	FlavorID string `json:"FlavorID"`
+	// The ID of the storage pool where volume resides
+	StoragePoolID string `json:"StoragePoolID"`
 	// The size of the volume in KiB
 	Capacity int64 `json:"Capacity"`
 	// Indicates if the volume can be attached to multiple hosts

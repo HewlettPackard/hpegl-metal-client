@@ -15,6 +15,8 @@ type VolumeAllOf struct {
 	Description string `json:"Description"`
 	// The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the get /available-resources call
 	FlavorID string `json:"FlavorID"`
+	// The storage pool ID matching an entry in the StoragePools array returned as part of the get /available-resources call
+	StoragePoolID string `json:"StoragePoolID"`
 	// The size of the volume in KiB
 	Capacity int64 `json:"Capacity"`
 	// Indicates if the volume can be attached to multiple hosts
