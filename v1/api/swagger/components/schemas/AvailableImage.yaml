@@ -4,6 +4,7 @@ required:
   - ID
   - Category
   - Flavor
+  - Name
   - Version
   - Description
 properties:
@@ -23,6 +24,10 @@ properties:
     description: >-
       Second-level grouping of imaging services.  Typically references a
       specific OS or application.
+  Name:
+    type: string
+    example: HPE VMaaS VMware ESXi
+    description: Name of imaging service.
   Version:
     type: string
     example: '18.04'
