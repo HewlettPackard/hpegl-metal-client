@@ -36,6 +36,8 @@ type Volume struct {
 	Shareable bool `json:"Shareable"`
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
 	LocationID string `json:"LocationID"`
+	// The optional volume collection ID matching an entry in the VolumeCollections array returned as part of the get /available-resources call
+	VolumeCollectionID string `json:"VolumeCollectionID,omitempty"`
 	State VolumeState `json:"State"`
 	SubState VolumeSubState `json:"SubState"`
 	Status VolumeStatus `json:"Status"`

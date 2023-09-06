@@ -1,0 +1,19 @@
+---
+type: object
+description: Volume collection within a data center location
+required:
+  - ID
+  - Name
+  - Description
+properties:
+  ID:
+    type: string
+    format: uuid
+    description: The ID of the volume collection resource that can be used while
+      creating a volume
+  Name:
+    type: string
+    description: The name of the volume collection resource
+  Description:
+    type: string
+    description: The description of the volume collection resource

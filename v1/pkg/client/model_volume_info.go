@@ -28,6 +28,8 @@ type VolumeInfo struct {
 	Shareable bool `json:"Shareable"`
 	// The location ID of the data center where the volume exists
 	LocationID string `json:"LocationID"`
+	// The ID of volume collection of which this volume is a member
+	VolumeCollectionID string `json:"VolumeCollectionID"`
 	// The discovery IP for the iSCSI volume
 	DiscoveryIP string `json:"DiscoveryIP"`
 	// The target IQN for the iSCSI volume

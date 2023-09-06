@@ -10,28 +10,12 @@
  */
 
 package client
-// AvailableResources struct for AvailableResources
-type AvailableResources struct {
-	// Array listing the available host imaging services
-	Images []AvailableImage `json:"Images"`
-	// Array listing the data center locations with available resources
-	Locations []LocationInfo `json:"Locations"`
-	// Array listing the networks available for host connections
-	Networks []AvailableNetwork `json:"Networks"`
-	// Array listing the available machine (server) sizes
-	MachineSizes []MachineSize `json:"MachineSizes"`
-	// Array listing the available volume flavors
-	VolumeFlavors []VolumeFlavor `json:"VolumeFlavors"`
-	// Array listing the existing project volumes that could be attached to a host
-	Volumes []VolumeInfo `json:"Volumes"`
-	// Array listing the number of machines of each size in each location
-	MachineInventory []MachineInventory `json:"MachineInventory"`
-	// Array providing information on the amount of available storage of each flavor in each location
-	StorageInventory []StorageInventory `json:"StorageInventory"`
-	// Array listing pre-defined SSH keys that could be referenced when creating a Host
-	SSHKeys []SshKeyEntry `json:"SSHKeys"`
-	// Array listing the available storage pools
-	StoragePools []StoragePool `json:"StoragePools"`
-	// Array listing the available volume collections
-	VolumeCollections []VolumeCollection `json:"VolumeCollections,omitempty"`
+// VolumeCollection Volume collection within a data center location
+type VolumeCollection struct {
+	// The ID of the volume collection resource that can be used while creating a volume
+	ID string `json:"ID"`
+	// The name of the volume collection resource
+	Name string `json:"Name"`
+	// The description of the volume collection resource
+	Description string `json:"Description"`
 }
