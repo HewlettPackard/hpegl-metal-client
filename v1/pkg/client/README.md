@@ -215,6 +215,7 @@ Class | Method | HTTP request | Description
  - [VolumeAttachHostUuid](docs/VolumeAttachHostUuid.md)
  - [VolumeAttachment](docs/VolumeAttachment.md)
  - [VolumeAttachmentAllOf](docs/VolumeAttachmentAllOf.md)
+ - [VolumeCollection](docs/VolumeCollection.md)
  - [VolumeFlavor](docs/VolumeFlavor.md)
  - [VolumeFlavorsInfo](docs/VolumeFlavorsInfo.md)
  - [VolumeInfo](docs/VolumeInfo.md)

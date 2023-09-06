@@ -9,6 +9,7 @@ required:
   - Capacity
   - Shareable
   - LocationID
+  - VolumeCollectionID
   - DiscoveryIP
   - TargetIQN
   - State
@@ -47,6 +48,10 @@ properties:
     type: string
     format: uuid
     description: The location ID of the data center where the volume exists
+  VolumeCollectionID:
+    type: string
+    format: uuid
+    description: The ID of volume collection of which this volume is a member
   DiscoveryIP:
     type: string
     description: The discovery IP for the iSCSI volume
