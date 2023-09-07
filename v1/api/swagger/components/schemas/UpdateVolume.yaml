@@ -4,7 +4,6 @@ allOf:
     required: 
       - Capacity
       - Labels
-      - VolumeCollectionID
     properties:
       Capacity:
         type: integer

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **StorageInventory** | [**[]StorageInventory**](StorageInventory.md) | Array providing information on the amount of available storage of each flavor in each location | 
 **SSHKeys** | [**[]SshKeyEntry**](SSHKeyEntry.md) | Array listing pre-defined SSH keys that could be referenced when creating a Host | 
 **StoragePools** | [**[]StoragePool**](StoragePool.md) | Array listing the available storage pools | 
-**VolumeCollections** | [**[]VolumeCollection**](VolumeCollection.md) | Array listing the available volume collections | [optional] 
+**VolumeCollections** | [**[]VolumeCollection**](VolumeCollection.md) | Array listing the available volume collections | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

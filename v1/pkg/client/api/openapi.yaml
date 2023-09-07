@@ -3287,6 +3287,7 @@ components:
       - SSHKeys
       - StorageInventory
       - StoragePools
+      - VolumeCollections
       - VolumeFlavors
       - Volumes
       type: object
@@ -6498,7 +6499,6 @@ components:
       required:
       - Capacity
       - Labels
-      - VolumeCollectionID
     VolumeAttachment_allOf:
       properties:
         VolumeID:

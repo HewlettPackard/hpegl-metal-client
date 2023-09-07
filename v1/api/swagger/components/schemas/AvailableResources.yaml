@@ -10,6 +10,7 @@ required:
   - StorageInventory
   - SSHKeys
   - StoragePools
+  - VolumeCollections
 properties:
   Images:
     type: array

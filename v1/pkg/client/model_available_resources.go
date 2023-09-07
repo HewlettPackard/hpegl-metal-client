@@ -33,5 +33,5 @@ type AvailableResources struct {
 	// Array listing the available storage pools
 	StoragePools []StoragePool `json:"StoragePools"`
 	// Array listing the available volume collections
-	VolumeCollections []VolumeCollection `json:"VolumeCollections,omitempty"`
+	VolumeCollections []VolumeCollection `json:"VolumeCollections"`
 }
