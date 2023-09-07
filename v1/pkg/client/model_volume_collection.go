@@ -10,30 +10,12 @@
  */
 
 package client
-// VolumeInfo Description of the details about a pre-existing volume
-type VolumeInfo struct {
-	// Unique ID for the volume.  Referenced if the volume is to be attached to a new Host 
+// VolumeCollection Volume collection within a data center location
+type VolumeCollection struct {
+	// The ID of the volume collection resource that can be used while creating a volume
 	ID string `json:"ID"`
-	// User-provided name for the volume
+	// The name of the volume collection resource
 	Name string `json:"Name"`
-	// User-provided description of the volume
+	// The description of the volume collection resource
 	Description string `json:"Description"`
-	// The ID of the volume flavor requested when creating the volume
-	FlavorID string `json:"FlavorID"`
-	// The ID of the storage pool where volume resides
-	StoragePoolID string `json:"StoragePoolID"`
-	// The size of the volume in KiB
-	Capacity int64 `json:"Capacity"`
-	// Indicates if the volume can be attached to multiple hosts
-	Shareable bool `json:"Shareable"`
-	// The location ID of the data center where the volume exists
-	LocationID string `json:"LocationID"`
-	// The ID of volume collection of which this volume is a member
-	VolumeCollectionID string `json:"VolumeCollectionID"`
-	// The discovery IP for the iSCSI volume
-	DiscoveryIP string `json:"DiscoveryIP"`
-	// The target IQN for the iSCSI volume
-	TargetIQN string `json:"TargetIQN"`
-	State VolumeState `json:"State"`
-	Status VolumeStatus `json:"Status"`
 }

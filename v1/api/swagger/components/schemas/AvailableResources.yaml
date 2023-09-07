@@ -10,6 +10,7 @@ required:
   - StorageInventory
   - SSHKeys
   - StoragePools
+  - VolumeCollections
 properties:
   Images:
     type: array
@@ -67,3 +68,8 @@ properties:
     description: Array listing the available storage pools
     items:
       $ref: ./StoragePool.yaml
+  VolumeCollections:
+    type: array
+    description: Array listing the available volume collections
+    items:
+      $ref: ./VolumeCollection.yaml
