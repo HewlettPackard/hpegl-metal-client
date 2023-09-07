@@ -3353,10 +3353,9 @@ components:
           format: uuid
           type: string
         VolumeCollectionID:
-          description: The  optional volume collection is one of those listed by the
-            VolumeCollections  array returned as part of the get /available-resources
-            call that are available to create volumes of the specified flavor and
-            location.
+          description: 'The  optional volume collection is one of those listed by
+            the VolumeCollections  array returned as part of the get /available-resources
+            call '
           format: uuid
           type: string
       required:
@@ -4287,10 +4286,9 @@ components:
           format: uuid
           type: string
         VolumeCollectionID:
-          description: The  optional volume collection is one of those listed by the
-            VolumeCollections  array returned as part of the get /available-resources
-            call that are available to create volumes of the specified flavor and
-            location.
+          description: 'The  optional volume collection is one of those listed by
+            the VolumeCollections  array returned as part of the get /available-resources
+            call '
           format: uuid
           type: string
       type: object
@@ -6481,6 +6479,11 @@ components:
           format: int64
           minimum: 0
           type: integer
+        VolumeCollectionID:
+          description: The volume collection the volume is a part of
+          example: 90be909e-4609-40f5-9630-f24910dc8591
+          format: uuid
+          type: string
         Labels:
           additionalProperties:
             type: string
@@ -6495,6 +6498,7 @@ components:
       required:
       - Capacity
       - Labels
+      - VolumeCollectionID
     VolumeAttachment_allOf:
       properties:
         VolumeID:
