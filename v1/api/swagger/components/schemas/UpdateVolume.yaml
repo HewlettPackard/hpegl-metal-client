@@ -11,6 +11,11 @@ allOf:
         example: 10485760
         minimum: 0
         description: The size of the volume in KiB
+      VolumeCollectionID:
+        type: string
+        format: uuid
+        example: 90be909e-4609-40f5-9630-f24910dc8591
+        description: The volume collection the volume is a part of
       Labels:
         type: object
         additionalProperties:

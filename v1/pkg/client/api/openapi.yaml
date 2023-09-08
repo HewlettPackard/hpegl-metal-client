@@ -2909,12 +2909,14 @@ components:
           Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 10
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: NewVolumeName
         - Shareable: true
           Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 10
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: NewVolumeName
         ServiceNetsProviderMAC:
@@ -3087,25 +3089,27 @@ components:
           Name: Private
         Volumes:
         - TargetIQN: TargetIQN
+          Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: MyVolume
           Shareable: true
           DiscoveryIP: DiscoveryIP
-          Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
-          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Name: MyVolume
         - TargetIQN: TargetIQN
+          Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: MyVolume
           Shareable: true
           DiscoveryIP: DiscoveryIP
-          Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
-          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Name: MyVolume
         MachineSizes:
         - Details:
             Banner2: Banner2 value
@@ -3192,6 +3196,13 @@ components:
           Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        VolumeCollections:
+        - Description: Description
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: Name
+        - Description: Description
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: Name
         SSHKeys:
         - ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Key: |
@@ -3264,6 +3275,11 @@ components:
           items:
             $ref: '#/components/schemas/StoragePool'
           type: array
+        VolumeCollections:
+          description: Array listing the available volume collections
+          items:
+            $ref: '#/components/schemas/VolumeCollection'
+          type: array
       required:
       - Images
       - Locations
@@ -3273,6 +3289,7 @@ components:
       - SSHKeys
       - StorageInventory
       - StoragePools
+      - VolumeCollections
       - VolumeFlavors
       - Volumes
       type: object
@@ -3287,6 +3304,7 @@ components:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Labels:
           serviceType: BMaaS
           region: us-west-2
@@ -3335,6 +3353,12 @@ components:
           description: The storage pool is one of those listed by the StoragePools
             array returned as part of the get /available-resources call that are available
             to create volumes of the specified flavor and location.
+          format: uuid
+          type: string
+        VolumeCollectionID:
+          description: 'The  optional volume collection is one of those listed by
+            the VolumeCollections  array returned as part of the get /available-resources
+            call '
           format: uuid
           type: string
       required:
@@ -4233,6 +4257,7 @@ components:
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
+        VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: NewVolumeName
       properties:
@@ -4261,6 +4286,12 @@ components:
           description: The storage pool is one of those listed by the StoragePools
             array returned as part of the get /available-resources call that are available
             to create volumes of the specified flavor and location.
+          format: uuid
+          type: string
+        VolumeCollectionID:
+          description: 'The  optional volume collection is one of those listed by
+            the VolumeCollections  array returned as part of the get /available-resources
+            call '
           format: uuid
           type: string
       type: object
@@ -4490,15 +4521,16 @@ components:
       description: Description of the details about a pre-existing volume
       example:
         TargetIQN: TargetIQN
+        Description: Description
+        LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Name: MyVolume
         Shareable: true
         DiscoveryIP: DiscoveryIP
-        Description: Description
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 0
-        LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Name: MyVolume
       properties:
         ID:
           description: |
@@ -4532,6 +4564,10 @@ components:
           description: The location ID of the data center where the volume exists
           format: uuid
           type: string
+        VolumeCollectionID:
+          description: The ID of volume collection of which this volume is a member
+          format: uuid
+          type: string
         DiscoveryIP:
           description: The discovery IP for the iSCSI volume
           type: string
@@ -4555,6 +4591,7 @@ components:
       - Status
       - StoragePoolID
       - TargetIQN
+      - VolumeCollectionID
       type: object
     MachineInventory:
       description: An entry describing the number of machines of a particular machine
@@ -4669,6 +4706,29 @@ components:
           format: int64
           type: integer
       required:
+      - ID
+      - Name
+      type: object
+    VolumeCollection:
+      description: Volume collection within a data center location
+      example:
+        Description: Description
+        ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Name: Name
+      properties:
+        ID:
+          description: The ID of the volume collection resource that can be used while
+            creating a volume
+          format: uuid
+          type: string
+        Name:
+          description: The name of the volume collection resource
+          type: string
+        Description:
+          description: The description of the volume collection resource
+          type: string
+      required:
+      - Description
       - ID
       - Name
       type: object
@@ -6386,6 +6446,12 @@ components:
             as their attached Host.
           format: uuid
           type: string
+        VolumeCollectionID:
+          description: The optional volume collection ID matching an entry in the
+            VolumeCollections array returned as part of the get /available-resources
+            call
+          format: uuid
+          type: string
         State:
           $ref: '#/components/schemas/VolumeState'
         SubState:
@@ -6422,6 +6488,11 @@ components:
           format: int64
           minimum: 0
           type: integer
+        VolumeCollectionID:
+          description: The volume collection the volume is a part of
+          example: 90be909e-4609-40f5-9630-f24910dc8591
+          format: uuid
+          type: string
         Labels:
           additionalProperties:
             type: string

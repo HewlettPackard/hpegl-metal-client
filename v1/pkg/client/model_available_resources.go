@@ -32,4 +32,6 @@ type AvailableResources struct {
 	SSHKeys []SshKeyEntry `json:"SSHKeys"`
 	// Array listing the available storage pools
 	StoragePools []StoragePool `json:"StoragePools"`
+	// Array listing the available volume collections
+	VolumeCollections []VolumeCollection `json:"VolumeCollections"`
 }

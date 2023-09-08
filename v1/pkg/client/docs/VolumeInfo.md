@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Capacity** | **int64** | The size of the volume in KiB | 
 **Shareable** | **bool** | Indicates if the volume can be attached to multiple hosts | 
 **LocationID** | **string** | The location ID of the data center where the volume exists | 
+**VolumeCollectionID** | **string** | The ID of volume collection of which this volume is a member | 
 **DiscoveryIP** | **string** | The discovery IP for the iSCSI volume | 
 **TargetIQN** | **string** | The target IQN for the iSCSI volume | 
 **State** | [**VolumeState**](VolumeState.md) |  | 
