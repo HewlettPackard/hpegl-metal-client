@@ -3198,9 +3198,11 @@ components:
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         VolumeCollections:
         - Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Name
         - Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Name
         SSHKeys:
@@ -4713,6 +4715,7 @@ components:
       description: Volume collection within a data center location
       example:
         Description: Description
+        LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: Name
       properties:
@@ -4723,6 +4726,11 @@ components:
           type: string
         Name:
           description: The name of the volume collection resource
+          type: string
+        LocationID:
+          description: The location ID of the data center where the volume collection
+            resides
+          format: uuid
           type: string
         Description:
           description: The description of the volume collection resource
