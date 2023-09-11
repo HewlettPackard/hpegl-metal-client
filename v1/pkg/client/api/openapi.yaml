@@ -3169,11 +3169,13 @@ components:
           Version: "18.04"
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Flavor: ubuntu
+          Name: HPE Ubuntu 18.04
         - Category: Linux
           Description: ubuntu OS also including Docker runtime
           Version: "18.04"
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Flavor: ubuntu
+          Name: HPE Ubuntu 18.04
         Locations:
         - DataCenter: FTC1
           PrivateNetworkVNISupport: true
@@ -4321,6 +4323,7 @@ components:
         Version: "18.04"
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Flavor: ubuntu
+        Name: HPE Ubuntu 18.04
       properties:
         ID:
           description: Unique ID for imaging service
@@ -4336,6 +4339,10 @@ components:
             a specific OS or application.
           example: ubuntu
           type: string
+        Name:
+          description: Name of imaging service.
+          example: HPE Ubuntu 18.04
+          type: string
         Version:
           description: Specific version of a imaging service flavor.
           example: "18.04"
@@ -4350,6 +4357,7 @@ components:
       - Description
       - Flavor
       - ID
+      - Name
       - Version
       type: object
     LocationInfo:
