@@ -4,6 +4,7 @@ description: Volume collection within a data center location
 required:
   - ID
   - Name
+  - LocationID
   - Description
 properties:
   ID:
@@ -14,6 +15,10 @@ properties:
   Name:
     type: string
     description: The name of the volume collection resource
+  LocationID:
+    type: string
+    format: uuid
+    description: The location ID of the data center where the volume collection resides
   Description:
     type: string
     description: The description of the volume collection resource
