@@ -4,6 +4,7 @@ description: Volume collection within a data center location
 required:
   - ID
   - Name
+  - LocationID
   - Description
 properties:
   ID:

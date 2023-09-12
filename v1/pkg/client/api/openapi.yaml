@@ -4738,6 +4738,7 @@ components:
       required:
       - Description
       - ID
+      - LocationID
       - Name
       type: object
     VolumeState:

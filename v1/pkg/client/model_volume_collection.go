@@ -17,7 +17,7 @@ type VolumeCollection struct {
 	// The name of the volume collection resource
 	Name string `json:"Name"`
 	// The location ID of the data center where the volume collection resides
-	LocationID string `json:"LocationID,omitempty"`
+	LocationID string `json:"LocationID"`
 	// The description of the volume collection resource
 	Description string `json:"Description"`
 }
