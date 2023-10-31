@@ -5,6 +5,7 @@ post:
   summary: Reimage Host by ID
   description: >-
     Re-deploys a host to the same machine.
+    WARNING -- all drives will be erased!
     Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed.
     The host must be powered off.  The host must also be in the Ready state.
   operationId: reimage
