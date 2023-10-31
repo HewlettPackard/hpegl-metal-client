@@ -1177,7 +1177,7 @@ paths:
     summary: Set a specific host to attempt HDD boot
   /hosts/{hostId}/reimage:
     post:
-      description: Re-deploys a host to the same machine. Warning, all drives will
+      description: Re-deploys a host to the same machine. WARNING -- all drives will
         be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are
         not changed. The host must be powered off.  The host must also be in the Ready
         state.
@@ -1227,9 +1227,10 @@ paths:
   /hosts/{hostId}/replace:
     post:
       description: Re-deploys a host with a new machine that satisfies the current
-        host settings. Only the machine is replaced, IP addresses, volumes, etc are
-        not changed. The host must be powered off.  The host must also be in the Ready
-        state or in the Failed state and in the Replace or Maintenace workflow.
+        host settings. WARNING -- all drives will be erased! Only the machine is replaced,
+        IP addresses, volumes, etc are not changed. The host must be powered off.  The
+        host must also be in the Ready state or in the Failed state and in the Replace
+        or Maintenace workflow.
       operationId: replace
       parameters:
       - description: ID of Host to replace

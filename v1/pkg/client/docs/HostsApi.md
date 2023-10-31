@@ -375,7 +375,7 @@ Name | Type | Description  | Notes
 
 Reimage Host by ID
 
-Re-deploys a host to the same machine. Warning, all drives will be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
+Re-deploys a host to the same machine. WARNING -- all drives will be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
 
 ### Required Parameters
 
@@ -409,7 +409,7 @@ Name | Type | Description  | Notes
 
 Replace Host by ID
 
-Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
+Re-deploys a host with a new machine that satisfies the current host settings. WARNING -- all drives will be erased! Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
 
 ### Required Parameters
 
