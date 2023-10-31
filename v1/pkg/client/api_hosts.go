@@ -1506,7 +1506,7 @@ func (a *HostsApiService) PowerReset(ctx _context.Context, hostId string) (Host,
 
 /*
 Reimage Reimage Host by ID
-Re-deploys a host to the same machine. Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
+Re-deploys a host to the same machine. Warning, all drives will be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param hostId ID of Host to reimage
 @return Host
