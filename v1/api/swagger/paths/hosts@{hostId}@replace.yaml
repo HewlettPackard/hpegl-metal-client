@@ -5,6 +5,7 @@ post:
   summary: Replace Host by ID
   description: >-
     Re-deploys a host with a new machine that satisfies the current host settings.
+    WARNING -- all drives will be erased!
     Only the machine is replaced, IP addresses, volumes, etc are not changed.
     The host must be powered off.  The host must also be in the Ready state or in
     the Failed state and in the Replace or Maintenace workflow.
