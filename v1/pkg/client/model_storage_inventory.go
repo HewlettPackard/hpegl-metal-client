@@ -20,4 +20,6 @@ type StorageInventory struct {
 	Capacity int64 `json:"Capacity"`
 	// Unique ID of the storage pool as listed in the StoragePools array
 	StoragePoolID string `json:"StoragePoolID"`
+	// IDs of the volume collections for this flavor as listed in the Volume collections array
+	VolumeCollectionIDs []string `json:"VolumeCollectionIDs,omitempty"`
 }

@@ -3194,16 +3194,28 @@ components:
           Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
         VolumeCollections:
-        - Description: Description
+        - StoragePoolIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          Description: Description
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Name
-        - Description: Description
+        - StoragePoolIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          Description: Description
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: Name
@@ -4631,6 +4643,9 @@ components:
         Capacity: 1
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        VolumeCollectionIDs:
+        - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+        - a6d87f06-c141-4a26-a9df-4803dc446a83
       properties:
         FlavorID:
           description: Unique ID of a volume flavor as listed in the the VolumeFlavors
@@ -4651,6 +4666,16 @@ components:
             array
           format: uuid
           type: string
+        VolumeCollectionIDs:
+          description: IDs of the volume collections for this flavor as listed in
+            the Volume collections array
+          example:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          items:
+            format: uuid
+            type: string
+          type: array
       required:
       - Capacity
       - FlavorID
@@ -4716,6 +4741,9 @@ components:
     VolumeCollection:
       description: Volume collection within a data center location
       example:
+        StoragePoolIDs:
+        - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+        - a6d87f06-c141-4a26-a9df-4803dc446a83
         Description: Description
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4737,6 +4765,16 @@ components:
         Description:
           description: The description of the volume collection resource
           type: string
+        StoragePoolIDs:
+          description: IDs of the storage pools that are valid for this volume collection
+            as listed in the Storage Pools array
+          example:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          items:
+            format: uuid
+            type: string
+          type: array
       required:
       - Description
       - ID
