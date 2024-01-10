@@ -20,4 +20,6 @@ type VolumeCollection struct {
 	LocationID string `json:"LocationID"`
 	// The description of the volume collection resource
 	Description string `json:"Description"`
+	// Pool IDs that are valid for this volume collection
+	PoolIDs []string `json:"PoolIDs,omitempty"`
 }
