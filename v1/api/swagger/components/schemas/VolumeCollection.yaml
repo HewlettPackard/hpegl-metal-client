@@ -23,7 +23,7 @@ properties:
     type: string
     description: The description of the volume collection resource
   StoragePoolIDs: 
-    description: IDs of the valid storage pools that are valid for this volume collection as listed in the Storage Pools array
+    description: IDs of the storage pools that are valid for this volume collection as listed in the Storage Pools array
     type: array
     items:
       type: string

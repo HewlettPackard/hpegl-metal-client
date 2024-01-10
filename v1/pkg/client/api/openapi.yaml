@@ -4766,8 +4766,8 @@ components:
           description: The description of the volume collection resource
           type: string
         StoragePoolIDs:
-          description: IDs of the valid storage pools that are valid for this volume
-            collection as listed in the Storage Pools array
+          description: IDs of the storage pools that are valid for this volume collection
+            as listed in the Storage Pools array
           example:
           - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
           - a6d87f06-c141-4a26-a9df-4803dc446a83
