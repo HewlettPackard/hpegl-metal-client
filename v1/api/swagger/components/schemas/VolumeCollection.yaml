@@ -22,3 +22,12 @@ properties:
   Description:
     type: string
     description: The description of the volume collection resource
+  PoolIDs:
+    description: Pool IDs that are valid for this volume collection
+    type: array
+    items:
+      type: string
+      format: uuid
+    example:
+      - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+      - a6d87f06-c141-4a26-a9df-4803dc446a83
