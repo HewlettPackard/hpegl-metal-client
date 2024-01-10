@@ -27,7 +27,7 @@ properties:
     format: uuid
     description: Unique ID of the storage pool as listed in the StoragePools array
   VolumeCollectionIDs:
-    description: IDs of the volume collections for this flavour as listed in the Volume collections array
+    description: IDs of the volume collections for this flavor as listed in the Volume collections array
     type: array
     items:
       type: string

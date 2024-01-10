@@ -4667,7 +4667,7 @@ components:
           format: uuid
           type: string
         VolumeCollectionIDs:
-          description: IDs of the volume collections for this flavour as listed in
+          description: IDs of the volume collections for this flavor as listed in
             the Volume collections array
           example:
           - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
