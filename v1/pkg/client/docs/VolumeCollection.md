@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The name of the volume collection resource | 
 **LocationID** | **string** | The location ID of the data center where the volume collection resides | 
 **Description** | **string** | The description of the volume collection resource | 
-**PoolIDs** | **[]string** | Pool IDs that are valid for this volume collection | [optional] 
+**StoragePoolIDs** | **[]string** | IDs of the valid storage pools that are valid for this volume collection as listed in the Storage Pools array | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
