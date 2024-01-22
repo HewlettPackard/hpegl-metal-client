@@ -78,4 +78,6 @@ type Host struct {
 	SummaryStatus HealthStatus `json:"SummaryStatus"`
 	// The map of label name to label value for the resource.
 	Labels map[string]string `json:"Labels"`
+	// FC host port world wide port numbers
+	WWPNs []string `json:"WWPNs"`
 }

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **UserData** | **string** | User-provided data to be attached to the image configuration data. | [optional] 
 **NodeID** | **string** | User-provided data to represent the identity of the host within an application environment. For example, this could be set to represent the Kubernetes node ID if the host is provisioned as a Kubernetes node. | [optional] 
 **Labels** | **map[string]string** | The map of service/user specified label name to label value for this host. Setting service labels is restricted by role. | [optional] 
+**WWPNs** | **[]string** | FC host port world wide port numbers | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
