@@ -2894,8 +2894,8 @@ components:
         NetworkUntagged: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
         UserData: UserData
         WWPNs:
-        - WWPNs
-        - WWPNs
+        - 18:31:01:02:ad:f2:a8:e5
+        - 19:31:01:02:ad:f2:a8:e5
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         VolumeIDs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3059,7 +3059,10 @@ components:
             region: us-west-2
           type: object
         WWPNs:
-          description: FC host port world wide port numbers
+          description: FC host port world wide port names
+          example:
+          - 18:31:01:02:ad:f2:a8:e5
+          - 19:31:01:02:ad:f2:a8:e5
           items:
             type: string
           type: array
@@ -6374,7 +6377,10 @@ components:
             serviceType: BMaaS
           type: object
         WWPNs:
-          description: FC host port world wide port numbers
+          description: FC host port world wide port names
+          example:
+          - 18:31:01:02:ad:f2:a8:e5
+          - 19:31:01:02:ad:f2:a8:e5
           items:
             type: string
           type: array

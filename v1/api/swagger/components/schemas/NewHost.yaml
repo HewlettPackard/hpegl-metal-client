@@ -154,3 +154,6 @@ properties:
     description: FC host port world wide port names
     items:
       type: string
+    example:
+      - 18:31:01:02:ad:f2:a8:e5
+      - 19:31:01:02:ad:f2:a8:e5
