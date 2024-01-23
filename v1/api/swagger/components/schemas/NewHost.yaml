@@ -151,6 +151,6 @@ properties:
       region: us-west-2
   WWPNs:
     type: array
-    description: FC host port world wide port numbers
+    description: FC host port world wide port names
     items:
       type: string
