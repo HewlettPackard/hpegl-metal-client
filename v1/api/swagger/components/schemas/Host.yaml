@@ -194,9 +194,9 @@ allOf:
         $ref: ./Labels.yaml
       WWPNs:
         type: array
-        description: FC host port world wide port names
+        description: FC HBA world wide port names
         items:
           type: string
         example:
-          - 18:31:01:02:ad:f2:a8:e5
-          - 19:31:01:02:ad:f2:a8:e5
+          - 20:31:01:02:ad:f2:a8:e5
+          - 21:31:01:02:ad:f2:a8:e5

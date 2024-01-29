@@ -45,6 +45,6 @@ type NewHost struct {
 	NodeID string `json:"NodeID,omitempty"`
 	// The map of service/user specified label name to label value for this host. Setting service labels is restricted by role.
 	Labels map[string]string `json:"Labels,omitempty"`
-	// FC host port world wide port names
+	// FC HBA world wide port names
 	WWPNs []string `json:"WWPNs,omitempty"`
 }
