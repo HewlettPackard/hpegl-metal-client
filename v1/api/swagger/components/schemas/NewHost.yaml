@@ -149,3 +149,11 @@ properties:
     example:
       serviceType: BMaaS
       region: us-west-2
+  WWPNs:
+    type: array
+    description: FC HBA world wide port names
+    items:
+      type: string
+    example:
+      - 20:31:01:02:ad:f2:a8:e5
+      - 21:31:01:02:ad:f2:a8:e5
