@@ -58,9 +58,6 @@ tags:
     Operations related to listing information that is needed to construct create host and create volume calls. This provides a detailed information about the OS imaging options,  the machine size (a.k.a. Compute Instance Type) options, the storage volume options,  data center locations, and such that are needed when creating hosts and volumes.
   name: available-resources
 - description: |
-    Operations related to retrieving information about resource usage within the project.
-  name: usage-reports
-- description: |
     Operations related to listing information related to projects.
   name: projects-info
 - description: |
@@ -2034,58 +2031,6 @@ paths:
       tags:
       - networks
     summary: Operations on a single network
-  /usage-reports:
-    get:
-      description: |
-        Creates and returns a usage report based on the parameters passed in the request body
-      operationId: UsageReport_get
-      parameters:
-      - description: Start of the billing period
-        in: query
-        name: start
-        required: true
-        schema:
-          type: string
-      - description: End of the billing period, default to now if omitted
-        in: query
-        name: end
-        required: false
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UsageReport'
-          description: success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: invalid content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: unauthorized
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: invalid input
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: internal error
-      summary: Get a usage report
-      tags:
-      - usage-reports
   /ippools:
     get:
       description: Returns an array of all ip pool objects defined within the project.
@@ -3506,30 +3451,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/UpdateResourceBase'
       - $ref: '#/components/schemas/UpdateNetwork_allOf'
-    UsageReport:
-      description: The composite usage report
-      example:
-        Hosts:
-        - null
-        - null
-        Volumes:
-        - null
-        - null
-      properties:
-        Hosts:
-          description: list of Host usage entries for the report window
-          items:
-            $ref: '#/components/schemas/HostUsageEntry'
-          type: array
-        Volumes:
-          description: list of Volume usage entries for the report window
-          items:
-            $ref: '#/components/schemas/VolumeUsageEntry'
-          type: array
-      required:
-      - Hosts
-      - Volumes
-      type: object
     IPPool:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
@@ -4970,14 +4891,6 @@ components:
       - IPVersion
       - Netmask
       type: object
-    HostUsageEntry:
-      allOf:
-      - $ref: '#/components/schemas/UsageEntryBase'
-      - $ref: '#/components/schemas/HostUsageEntry_allOf'
-    VolumeUsageEntry:
-      allOf:
-      - $ref: '#/components/schemas/UsageEntryBase'
-      - $ref: '#/components/schemas/VolumeUsageEntry_allOf'
     IPVer:
       description: |
         Describes the IP version
@@ -5785,60 +5698,6 @@ components:
       required:
       - HostIPAddress
       - InitiatorName
-      type: object
-    UsageEntryBase:
-      properties:
-        ProjectID:
-          description: Project ID that contained the host
-          format: uuid
-          type: string
-        LocationID:
-          description: The location ID is the data center location of the resource.  The
-            LocationID must be one of those provided by the LocationInfo array returned
-            as part of the get /available-resources call.  The locations are typically
-            described by country, region, and data center.
-          format: uuid
-          type: string
-        Allocated:
-          description: Timestamp of when resource (machine or storage) was allocated
-          format: date-time
-          type: string
-        Ready:
-          description: Timestamp of when resource (host or volume) was ready for use
-          format: date-time
-          type: string
-        Freed:
-          description: Timestamp of when resource (machine or storage) was freed
-          format: date-time
-          type: string
-        UsageStart:
-          description: The start of the usage reporting window or when the resource
-            was allocated
-          format: date-time
-          type: string
-        UsageEnd:
-          description: The end of the usage reporting window or when the resource
-            was freed
-          format: date-time
-          type: string
-        UsageHours:
-          description: The difference between the UsageEnd and UsageStart rounded
-            up to the UsageHours
-          format: int64
-          type: integer
-        Error:
-          description: Description of error that affected the usage reporting
-          type: string
-      required:
-      - Allocated
-      - Error
-      - Freed
-      - LocationID
-      - ProjectID
-      - Ready
-      - UsageEnd
-      - UsageHours
-      - UsageStart
       type: object
     IPRange:
       properties:
@@ -6875,54 +6734,6 @@ components:
       - Timeout
       - UserDefinedSteps
       - Version
-    HostUsageEntry_allOf:
-      properties:
-        MachineSizeName:
-          description: Name of the MachineSize requested when host was created
-          example: HPE-Large
-          type: string
-        MachineSizeID:
-          description: Unique ID of the MachineSize requested when host was created
-          format: uuid
-          type: string
-        HostName:
-          description: Name of the associated Host
-          type: string
-        HostID:
-          description: Unique ID of the associated Host
-          format: uuid
-          type: string
-      required:
-      - HostID
-      - HostName
-      - MachineSizeID
-      - MachineSizeName
-    VolumeUsageEntry_allOf:
-      properties:
-        VolumeName:
-          description: Name of the volume
-          type: string
-        VolumeID:
-          description: Unique ID of the volume
-          format: uuid
-          type: string
-        FlavorName:
-          description: Name of the volume flavor used when creating the volume
-          type: string
-        FlavorID:
-          description: Unique ID of the volume flavor used when creating the volume
-          format: uuid
-          type: string
-        Capacity:
-          description: The size of the volume in MB
-          format: int64
-          type: integer
-      required:
-      - Capacity
-      - FlavorID
-      - FlavorName
-      - VolumeID
-      - VolumeName
   securitySchemes:
     BearerAuth:
       bearerFormat: JWT
