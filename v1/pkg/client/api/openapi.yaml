@@ -2838,9 +2838,6 @@ components:
         Description: Description of new Host
         NetworkUntagged: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
         UserData: UserData
-        WWPNs:
-        - 20:31:01:02:ad:f2:a8:e5
-        - 21:31:01:02:ad:f2:a8:e5
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         VolumeIDs:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3003,14 +3000,6 @@ components:
             serviceType: BMaaS
             region: us-west-2
           type: object
-        WWPNs:
-          description: FC HBA world wide port names
-          example:
-          - 20:31:01:02:ad:f2:a8:e5
-          - 21:31:01:02:ad:f2:a8:e5
-          items:
-            type: string
-          type: array
       required:
       - LocationID
       - MachineSizeID
