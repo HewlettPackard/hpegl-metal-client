@@ -51,8 +51,7 @@ api_files:
 
 # fixup invokes a script to generate interfaces for all of the
 # generated client types to allow consumers to use mocks to test their code that
-# interacts with Quake via the client and adds copyrights to all the generated
-# files.
+# interacts with Quake via the client and adds copyrights to all the generated files.
 .PHONY: fixup
 fixup: api_files vendor
 	@bash fixup_generated_files.bash ${OUTPUT_DIR}
