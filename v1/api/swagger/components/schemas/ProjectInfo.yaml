@@ -1,4 +1,15 @@
 type: object
+required: 
+  - ID
+  - Name
+  - Description
+  - NumHosts
+  - NumVolumes
+  - TotalStorageGB
+  - Status
+  - NumNetworks
+  - SummaryStatus
+  - Locations
 properties:
   ID:
     type: string

@@ -1,0 +1,63 @@
+type: object
+description: >-
+  Information about the file associated with the OS service image.
+required:
+  - ID
+  - Path
+  - FileSize
+  - DownloadTimeout
+  - Signature
+  - Algorithm
+  - Expand
+  - DisplayURL
+  - SecureURL
+properties:
+  ID:
+    type: string
+    format: uuid
+    description: >-
+      Unique ID of this FileInfo.
+    example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+  Path:
+    type: string
+    description: >-
+      Depending upon the service approach, this is either
+      the mount-path where the file should be placed or 
+      the relative URL where it should be served.
+    example: image.tgz
+  FileSize:
+    type: integer
+    description: >- 
+      Size of the files in bytes.
+    example: 934960345
+  DownloadTimeout:
+    type: integer
+    format: int64
+    description: >-
+      Maximum amount of time in seconds to download the Service image.
+    example: 32000
+  Signature:
+    type: string
+    description: >-
+      The signature (checksum) of the image to download. 
+      This ensure the integrity and authenticity of the images downloaded.
+    example: 5260deb631d6a9f29bca14043d406bea36d704677dff4cae1a4d48dc568406eb
+  Algorithm:
+    $ref: Algorithm.yaml
+  Expand:
+    type: boolean
+    description: >-
+      Indicates if the file is compressed and should be expanded 
+      using the filename suffix in the Path as a guide.
+    example: true
+  DisplayURL:
+    type: string
+    description: >-
+      URL of the file that should be returned in REST response or used for display purpose.
+      The file is downloaded from this URL only when SecureURL is not set.
+    example: s3://bmmas-images20210506193558893900000003/images/linux/ubuntu/18.04-20220404/v2-kiwi-ubuntu18.04-15616.04_appliance.x86_64-1.16.4.tar.gz
+  SecureURL: 
+    type: string
+    description: >-
+      URL of the file that should be kept secret. 
+      If this field is set, it will be used for accessing the file and DisplayURL will be ignored.

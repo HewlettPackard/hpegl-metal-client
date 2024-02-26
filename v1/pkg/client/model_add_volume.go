@@ -20,4 +20,8 @@ type AddVolume struct {
 	Capacity int64 `json:"Capacity,omitempty"`
 	// Indicates if the volume can be attached to multiple hosts
 	Shareable bool `json:"Shareable,omitempty"`
+	// The storage pool is one of those listed by the StoragePools array returned as part of the get /available-resources call that are available to create volumes of the specified flavor and location.
+	StoragePoolID string `json:"StoragePoolID,omitempty"`
+	// The  optional volume collection is one of those listed by the VolumeCollections  array returned as part of the get /available-resources call 
+	VolumeCollectionID string `json:"VolumeCollectionID,omitempty"`
 }

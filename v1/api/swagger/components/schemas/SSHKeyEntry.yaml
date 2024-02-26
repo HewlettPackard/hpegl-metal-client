@@ -1,5 +1,9 @@
 type: object
 description: An entry listing an SSH key that is available for use when creating HostState
+required: 
+  - ID
+  - Name
+  - Key
 properties:
   ID:
     type: string

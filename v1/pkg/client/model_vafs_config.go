@@ -13,11 +13,11 @@ package client
 // VafsConfig struct for VafsConfig
 type VafsConfig struct {
 	// Storage identifier for an array or a SDS
-	StorageID string `json:"StorageID,omitempty"`
+	StorageID string `json:"StorageID"`
 	// Storage array or SDS user
-	UserName string `json:"UserName,omitempty"`
+	UserName string `json:"UserName"`
 	// SDS token acquired by login into the SDS for a given user. This is required by the FUSE client to mount volumes on host.
-	Ticket string `json:"Ticket,omitempty"`
+	Ticket string `json:"Ticket"`
 	// Ticket expiry time to help client to refresh the ticket.
-	TicketExpiryTime string `json:"TicketExpiryTime,omitempty"`
+	TicketExpiryTime string `json:"TicketExpiryTime"`
 }

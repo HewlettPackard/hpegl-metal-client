@@ -13,7 +13,7 @@ package client
 // IpSource struct for IpSource
 type IpSource struct {
 	// Base address for the IP source
-	Base string `json:"Base,omitempty"`
+	Base string `json:"Base"`
 	// Number of IPs to count from the base
-	Count int32 `json:"Count,omitempty"`
+	Count int32 `json:"Count"`
 }

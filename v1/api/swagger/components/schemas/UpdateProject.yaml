@@ -1,0 +1,25 @@
+allOf:
+  - $ref: ./UpdateResourceBase.yaml
+  - type: object
+    required:
+      - Profile
+      - Limits
+      - PermittedOSImages
+    properties:
+      Profile:
+        description: Profile is a generalized description of a team
+        $ref: ./UpdateProfile.yaml
+      Limits:
+        description: >-
+          Project Limits place general constraints on a project in terms of
+          server and storage
+        $ref: ./UpdateLimits.yaml
+      PermittedOSImages:
+        description: Array listing the permitted OS service images.
+        type: array
+        items:
+          type: string
+          format: uuid
+        example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c

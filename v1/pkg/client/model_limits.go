@@ -21,5 +21,5 @@ type Limits struct {
 	// Maximum number of private networks to allow
 	PrivateNetworks int32 `json:"PrivateNetworks"`
 	// Map of instance type ID to maximum number of hosts that can be created with that instance type
-	InstanceTypes map[string]int32 `json:"InstanceTypes,omitempty"`
+	InstanceTypes map[string]int32 `json:"InstanceTypes"`
 }

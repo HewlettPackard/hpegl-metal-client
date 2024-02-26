@@ -1,0 +1,9 @@
+type: string
+enum: 
+  - gpt
+  - dos
+  - sun
+  - sgi
+example: gpt
+description: >-
+  Defines the type of partition table.

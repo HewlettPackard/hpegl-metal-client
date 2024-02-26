@@ -58,9 +58,6 @@ tags:
     Operations related to listing information that is needed to construct create host and create volume calls. This provides a detailed information about the OS imaging options,  the machine size (a.k.a. Compute Instance Type) options, the storage volume options,  data center locations, and such that are needed when creating hosts and volumes.
   name: available-resources
 - description: |
-    Operations related to retrieving information about resource usage within the project.
-  name: usage-reports
-- description: |
     Operations related to listing information related to projects.
   name: projects-info
 - description: |
@@ -69,6 +66,9 @@ tags:
 - description: |
     Operations related to listing information about allocation by servers and storage.
   name: allocation
+- description: |
+    Operations related to OS service images.
+  name: services
 paths:
   /version:
     get:
@@ -326,7 +326,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Project'
+              $ref: '#/components/schemas/UpdateProject'
         description: Project parameters to update an existing Project
         required: true
       responses:
@@ -604,7 +604,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SSHKey'
+              $ref: '#/components/schemas/UpdateSSHKey'
         description: Updated SSH key
         required: true
       responses:
@@ -843,7 +843,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Host'
+              $ref: '#/components/schemas/UpdateHost'
         description: Updated Host
         required: true
       responses:
@@ -1172,12 +1172,62 @@ paths:
       tags:
       - hosts
     summary: Set a specific host to attempt HDD boot
+  /hosts/{hostId}/reimage:
+    post:
+      description: Re-deploys a host to the same machine. WARNING -- all drives will
+        be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are
+        not changed. The host must be powered off.  The host must also be in the Ready
+        state.
+      operationId: reimage
+      parameters:
+      - description: ID of Host to reimage
+        in: path
+        name: hostId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Reimage Host by ID
+      tags:
+      - hosts
+    summary: Reimage a specific host
   /hosts/{hostId}/replace:
     post:
       description: Re-deploys a host with a new machine that satisfies the current
-        host settings. Only the machine is replaced, IP addresses, volumes, etc are
-        not changed. The host must be powered off.  The host must also be in the Ready
-        state or in the Failed state and in the Replace or Maintenace workflow.
+        host settings. WARNING -- all drives will be erased! Only the machine is replaced,
+        IP addresses, volumes, etc are not changed. The host must be powered off.  The
+        host must also be in the Ready state or in the Failed state and in the Replace
+        or Maintenace workflow.
       operationId: replace
       parameters:
       - description: ID of Host to replace
@@ -1439,11 +1489,18 @@ paths:
         \ can be updated with a value greater than the existing one to expand the\
         \ volume. \n"
       operationId: Volume_update
+      parameters:
+      - description: ID of volume to return
+        in: path
+        name: volumeId
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Volume'
+              $ref: '#/components/schemas/UpdateVolume'
         description: Volume object with its ID and Capacity in GiB indicating the
           expanded size to be specified.
         required: true
@@ -1924,7 +1981,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Network'
+              $ref: '#/components/schemas/UpdateNetwork'
         description: Updated network
         required: true
       responses:
@@ -1974,58 +2031,6 @@ paths:
       tags:
       - networks
     summary: Operations on a single network
-  /usage-reports:
-    get:
-      description: |
-        Creates and returns a usage report based on the parameters passed in the request body
-      operationId: UsageReport_get
-      parameters:
-      - description: Start of the billing period
-        in: query
-        name: start
-        required: true
-        schema:
-          type: string
-      - description: End of the billing period, default to now if omitted
-        in: query
-        name: end
-        required: false
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UsageReport'
-          description: success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: invalid content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: unauthorized
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: invalid input
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: internal error
-      summary: Get a usage report
-      tags:
-      - usage-reports
   /ippools:
     get:
       description: Returns an array of all ip pool objects defined within the project.
@@ -2114,7 +2119,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IPPool'
+              $ref: '#/components/schemas/UpdateIPPool'
         description: Update IPPool
         required: true
       responses:
@@ -2346,6 +2351,271 @@ paths:
       summary: Get storage allocation
       tags:
       - allocation
+  /services:
+    get:
+      description: Returns an array of all OS service images objects that have been
+        created. If GreenLake IAM issued token is used for authentication,  then it
+        is required to pass 'spaceid' header
+      operationId: Services_list
+      parameters:
+      - description: GreenLake space ID
+        example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
+        in: header
+        name: spaceid
+        schema:
+          type: string
+      - description: GreenLake space name
+        example: Default
+        in: header
+        name: Space
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OSServiceImage'
+                type: array
+          description: success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: List of all OS service images within an tenant
+      tags:
+      - services
+    post:
+      description: Adds a new OS service image that can be referenced during host
+        creation. If GreenLake IAM issued token is used for authentication, then it
+        is required  to pass either 'spaceid' header or 'Space' header.  Note that
+        Hoster or BMaaS Access Owner role is required for this operation.
+      operationId: Service_add
+      parameters:
+      - description: GreenLake space ID
+        example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
+        in: header
+        name: spaceid
+        schema:
+          type: string
+      - description: GreenLake space name
+        example: Default
+        in: header
+        name: Space
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MultiPartFile'
+        description: Yaml file describing the OS service image.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OSServiceImage'
+          description: created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid input
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
+      summary: Create a new OS service image
+      tags:
+      - services
+  /services/{serviceId}:
+    delete:
+      description: Deletes the OS service image with the matching ID. Note that Hoster
+        or BMaaS Access Owner role is required for this operation.
+      operationId: Service_delete
+      parameters:
+      - description: ID of OS service image to delete
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
+      summary: Delete an OS service image
+      tags:
+      - services
+    get:
+      description: Returns a single OS service image object with its matching ID.
+      operationId: Service_getByID
+      parameters:
+      - description: ID of OS service image to return
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OSServiceImage'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Retrieve an OS service image
+      tags:
+      - services
+    put:
+      description: Updates an OS service image with a matching ID. Note that Hoster
+        or BMaaS Access Owner role is required for this operation.
+      operationId: Service_update
+      parameters:
+      - description: ID of OS service image to update
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MultiPartFile'
+        description: Yaml file describing the OS service image.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OSServiceImage'
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: invalid input
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: conflict
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      security:
+      - BearerAuth: []
+        Membership: []
+      - BearerAuth: []
+      summary: Update an OS service image by its ID
+      tags:
+      - services
 components:
   schemas:
     Version:
@@ -2355,6 +2625,8 @@ components:
         Build:
           example: 0.8.6-dev-218-g0b3b1ad
           type: string
+      required:
+      - Build
       type: object
     ErrorResponse:
       properties:
@@ -2392,6 +2664,9 @@ components:
           PhoneNumber: PhoneNumber
           PhoneVerified: true
           TeamName: TeamName
+        PermittedOSImages:
+        - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - 91eec8b5-6460-4532-aad1-47b983edb63c
         Name: Project foobar
       properties:
         Name:
@@ -2410,11 +2685,24 @@ components:
             format: uuid
             type: string
           type: array
+        PermittedOSImages:
+          description: Array listing the permitted OS service images.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
       required:
       - Limits
       - Name
       - Profile
       type: object
+    UpdateProject:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateProject_allOf'
     ProjectsInfo:
       example:
         MachineSizes:
@@ -2446,11 +2734,15 @@ components:
           TotalStorageGB: 1
           Locations:
           - DataCenter: FTC1
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            PrivateNetworkVIDSupport: true
           NumHosts: 0
           ID: ID
           NumNetworks: 5
@@ -2461,11 +2753,15 @@ components:
           TotalStorageGB: 1
           Locations:
           - DataCenter: FTC1
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            PrivateNetworkVIDSupport: true
           NumHosts: 0
           ID: ID
           NumNetworks: 5
@@ -2478,11 +2774,15 @@ components:
           TotalStorageGB: 1
           Locations:
           - DataCenter: FTC1
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
+            PrivateNetworkVNISupport: true
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            PrivateNetworkVIDSupport: true
           NumHosts: 4
           NumCritical: 6
       properties:
@@ -2500,6 +2800,11 @@ components:
           type: array
         Summary:
           $ref: '#/components/schemas/SummaryInfo'
+      required:
+      - MachineSizes
+      - Projects
+      - Summary
+      - VolumeFlavors
       type: object
     SSHKey:
       allOf:
@@ -2519,6 +2824,10 @@ components:
       - Key
       - Name
       type: object
+    UpdateSSHKey:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/SSHKey_allOf'
     Host:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
@@ -2536,6 +2845,7 @@ components:
         MachineSizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Labels:
           serviceType: BMaaS
+          region: us-west-2
         PreAllocatedIPs:
         - 10.0.0.4
         - 10.0.0.8
@@ -2546,11 +2856,15 @@ components:
           Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 10
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: NewVolumeName
         - Shareable: true
           Description: Description of New Volume
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 10
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Name: NewVolumeName
         ServiceNetsProviderMAC:
           "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
@@ -2679,9 +2993,12 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for this host.
+          description: |-
+            The map of service/user specified label name to label value for this host.
+            Setting service labels is restricted by role.
           example:
             serviceType: BMaaS
+            region: us-west-2
           type: object
       required:
       - LocationID
@@ -2692,6 +3009,10 @@ components:
       - SSHKeyIDs
       - ServiceID
       type: object
+    UpdateHost:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateHost_allOf'
     AvailableResources:
       example:
         Networks:
@@ -2715,23 +3036,27 @@ components:
           Name: Private
         Volumes:
         - TargetIQN: TargetIQN
+          Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: MyVolume
           Shareable: true
           DiscoveryIP: DiscoveryIP
-          Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
-          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Name: MyVolume
         - TargetIQN: TargetIQN
+          Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: MyVolume
           Shareable: true
           DiscoveryIP: DiscoveryIP
-          Description: Description
           FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 0
-          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          Name: MyVolume
         MachineSizes:
         - Details:
             Banner2: Banner2 value
@@ -2791,25 +3116,54 @@ components:
           Version: "18.04"
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Flavor: ubuntu
+          Name: HPE Ubuntu 18.04
         - Category: Linux
           Description: ubuntu OS also including Docker runtime
           Version: "18.04"
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Flavor: ubuntu
+          Name: HPE Ubuntu 18.04
         Locations:
         - DataCenter: FTC1
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          PrivateNetworkVIDSupport: true
         StorageInventory:
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
         - FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Capacity: 1
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          VolumeCollectionIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+        VolumeCollections:
+        - StoragePoolIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: Name
+        - StoragePoolIDs:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          Description: Description
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: Name
         SSHKeys:
         - ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Key: |
@@ -2819,6 +3173,15 @@ components:
           Key: |
             'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxv1C5uOeG9BBjfQbum9GupGthTFcifS4FNYxZ2ZakN9UcpD05L2lKp4OI6mfCfciOhJ9SHduZWJFM0pYfC99hIsPAHhEwWOjh3/rHKxB/U4RYN4VFWM+ShDv92+k0Hse73HhuiHKVtmRj/fltAeCFm/mPlL+McMYFhFYMIK8b/spKpXxdEBCSowHPGIn3yi0ivPWhC4wcIa9jDIela/a0t/oDnYTeIp2WMLDbpZyQsGHmKopAAvb+83JhwytQMVTI/g5pMerbqPyxKtWaWDVDtpQ7O8G877T5U3kkl4jLLOJywxrvLrfHh1UNdNvPmvRFd+ct9Q5ugj5CIMJHqWTj Joe@Laptop.local'
           Name: ExampleKey
+        StoragePools:
+        - Capacity: 5
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: Name
+        - Capacity: 5
+          LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          Name: Name
       properties:
         Images:
           description: Array listing the available host imaging services
@@ -2868,6 +3231,28 @@ components:
           items:
             $ref: '#/components/schemas/SSHKeyEntry'
           type: array
+        StoragePools:
+          description: Array listing the available storage pools
+          items:
+            $ref: '#/components/schemas/StoragePool'
+          type: array
+        VolumeCollections:
+          description: Array listing the available volume collections
+          items:
+            $ref: '#/components/schemas/VolumeCollection'
+          type: array
+      required:
+      - Images
+      - Locations
+      - MachineInventory
+      - MachineSizes
+      - Networks
+      - SSHKeys
+      - StorageInventory
+      - StoragePools
+      - VolumeCollections
+      - VolumeFlavors
+      - Volumes
       type: object
     Volume:
       allOf:
@@ -2880,8 +3265,11 @@ components:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Labels:
           serviceType: BMaaS
+          region: us-west-2
+        StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: NewVolumeName
       properties:
         Name:
@@ -2915,16 +3303,35 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for this volume.
+          description: |-
+            The map of service/user specified label name to label value for this volume.
+            Setting service labels is restricted by role.
           example:
             serviceType: BMaaS
+            region: us-west-2
           type: object
+        StoragePoolID:
+          description: The storage pool is one of those listed by the StoragePools
+            array returned as part of the get /available-resources call that are available
+            to create volumes of the specified flavor and location.
+          format: uuid
+          type: string
+        VolumeCollectionID:
+          description: 'The  optional volume collection is one of those listed by
+            the VolumeCollections  array returned as part of the get /available-resources
+            call '
+          format: uuid
+          type: string
       required:
       - Capacity
       - FlavorID
       - LocationID
       - Name
       type: object
+    UpdateVolume:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateVolume_allOf'
     VolumeAttachHostUUID:
       properties:
         HostID:
@@ -2970,6 +3377,7 @@ components:
       - $ref: '#/components/schemas/Network_allOf'
     NewNetwork:
       example:
+        VNI: 6
         Description: Private network for intra-cluster communication
         NewIPPool:
           NoProxy: localhost,15.10.0.10,test.com
@@ -2993,6 +3401,7 @@ components:
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         HostUse: Default
         Purpose: Storage
+        VLAN: 0
         Name: Private2
       properties:
         Name:
@@ -3015,35 +3424,30 @@ components:
           $ref: '#/components/schemas/NetworkPurpose'
         NewIPPool:
           $ref: '#/components/schemas/NewIPPool'
+        VLAN:
+          description: Optional VLAN ID of the network. If not specified, it is allocated
+            from reserved pool.
+          type: integer
+        VNI:
+          description: Optional VNI ID of the network. If not specified, it is allocated
+            from reserved pool if required.
+          type: integer
       required:
       - LocationID
       - Name
       type: object
-    UsageReport:
-      description: The composite usage report
-      example:
-        Hosts:
-        - null
-        - null
-        Volumes:
-        - null
-        - null
-      properties:
-        Hosts:
-          description: list of Host usage entries for the report window
-          items:
-            $ref: '#/components/schemas/HostUsageEntry'
-          type: array
-        Volumes:
-          description: list of Volume usage entries for the report window
-          items:
-            $ref: '#/components/schemas/VolumeUsageEntry'
-          type: array
-      type: object
+    UpdateNetwork:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateNetwork_allOf'
     IPPool:
       allOf:
       - $ref: '#/components/schemas/ResourceBase'
       - $ref: '#/components/schemas/IPPool_allOf'
+    UpdateIPPool:
+      allOf:
+      - $ref: '#/components/schemas/UpdateResourceBase'
+      - $ref: '#/components/schemas/UpdateIPPool_allOf'
     IPAllocation:
       example:
         Usage: Allocated IP for external storage
@@ -3114,6 +3518,13 @@ components:
           items:
             $ref: '#/components/schemas/ServiceServerInfo'
           type: array
+      required:
+      - AllocationInfo
+      - Available
+      - InstanceFamily
+      - InstanceType
+      - ResourceType
+      - Total
       type: object
     AllocationStorage:
       description: Allocation of storage for each PCE service.
@@ -3157,6 +3568,27 @@ components:
           items:
             $ref: '#/components/schemas/ServiceStorageInfo'
           type: array
+      required:
+      - AllocationInfo
+      - Available
+      - InstanceFamily
+      - InstanceType
+      - ResourceType
+      - Total
+      type: object
+    OSServiceImage:
+      allOf:
+      - $ref: '#/components/schemas/ResourceBase'
+      - $ref: '#/components/schemas/OSServiceImage_allOf'
+    MultiPartFile:
+      description: An machine OS service image file.
+      properties:
+        fileName:
+          example: myGMI.yml
+          format: binary
+          type: string
+      required:
+      - fileName
       type: object
     ResourceBase:
       properties:
@@ -3187,8 +3619,10 @@ components:
           format: date-time
           type: string
       required:
+      - Created
       - ETag
       - ID
+      - Modified
       - Name
       type: object
     Profile:
@@ -3230,6 +3664,15 @@ components:
         PhoneVerified:
           description: Currently always false
           type: boolean
+      required:
+      - Address
+      - Company
+      - Email
+      - EmailVerified
+      - PhoneNumber
+      - PhoneVerified
+      - TeamDesc
+      - TeamName
       type: object
     Limits:
       example:
@@ -3267,6 +3710,7 @@ components:
           type: object
       required:
       - Hosts
+      - InstanceTypes
       - PrivateNetworks
       - VolumeCapacity
       - Volumes
@@ -3297,6 +3741,101 @@ components:
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
           type: object
+      required:
+      - Hosts
+      - InstanceTypes
+      - PrivateNetworks
+      - VolumeCapacity
+      - Volumes
+      type: object
+    UpdateResourceBase:
+      properties:
+        ID:
+          description: Unique ID for the resource instance as generated by the Metal
+            service
+          format: uuid
+          type: string
+        ETag:
+          description: Used to determine whether the DB entry has changed since it
+            was last read. This value is updated each time the resource is updated.  Client
+            must send this value unchanged for any update operation.
+          format: uuid
+          type: string
+        Name:
+          description: Common name for the resource instance. Must be 128 or fewer
+            printable characters
+          example: My Object Name
+          type: string
+      required:
+      - ETag
+      - ID
+      - Name
+      type: object
+    UpdateProfile:
+      properties:
+        TeamName:
+          description: Name of the Project Team. Must not be empty, maximum 128 printable
+            characters
+          type: string
+        TeamDesc:
+          description: Optional description of the Project Team, maximum 256 printable
+            characters
+          type: string
+        Company:
+          description: Optional name of the company, maximum 256 printable characters
+          type: string
+        Address:
+          description: Optional address of the company, maximum 256 printable characters
+          type: string
+        Email:
+          description: Optional email address of the contact person for the team,
+            maximum 256 printable characters
+          type: string
+        EmailVerified:
+          description: Currently always false
+          type: boolean
+        PhoneNumber:
+          description: Optional phone number of the contact person for the team, maximum
+            32 printable characters
+          type: string
+        PhoneVerified:
+          description: Currently always false
+          type: boolean
+      required:
+      - TeamName
+      type: object
+    UpdateLimits:
+      properties:
+        Hosts:
+          description: Maximum number of hosts to allow
+          minimum: 0
+          type: integer
+        Volumes:
+          description: Maximum number of volumes to allow
+          minimum: 0
+          type: integer
+        VolumeCapacity:
+          description: Maximum capacity to allow in TiB
+          format: int64
+          minimum: 0
+          type: integer
+        PrivateNetworks:
+          description: Maximum number of private networks to allow
+          minimum: 0
+          type: integer
+        InstanceTypes:
+          additionalProperties:
+            type: integer
+          description: Map of instance type ID to maximum number of hosts that can
+            be created with that instance type
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee90": 1
+          type: object
+      required:
+      - Hosts
+      - PrivateNetworks
+      - VolumeCapacity
+      - Volumes
       type: object
     ProjectInfo:
       example:
@@ -3306,11 +3845,15 @@ components:
         TotalStorageGB: 1
         Locations:
         - DataCenter: FTC1
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          PrivateNetworkVIDSupport: true
         NumHosts: 0
         ID: ID
         NumNetworks: 5
@@ -3343,6 +3886,17 @@ components:
           items:
             $ref: '#/components/schemas/LocationInfo'
           type: array
+      required:
+      - Description
+      - ID
+      - Locations
+      - Name
+      - NumHosts
+      - NumNetworks
+      - NumVolumes
+      - Status
+      - SummaryStatus
+      - TotalStorageGB
       type: object
     MachineSizeInfo:
       example:
@@ -3368,6 +3922,13 @@ components:
           description: |
             True if the usage of this machine size is restricted  to selected projects, false if the machine size is available to anyone.
           type: boolean
+      required:
+      - Available
+      - ID
+      - Name
+      - OtherUsed
+      - ProjectsUsed
+      - Restricted
       type: object
     VolumeFlavorsInfo:
       example:
@@ -3384,6 +3945,11 @@ components:
           type: integer
         Available:
           type: integer
+      required:
+      - Available
+      - Name
+      - OtherUsed
+      - ProjectsUsed
       type: object
     SummaryInfo:
       example:
@@ -3394,11 +3960,15 @@ components:
         TotalStorageGB: 1
         Locations:
         - DataCenter: FTC1
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
+          PrivateNetworkVNISupport: true
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          PrivateNetworkVIDSupport: true
         NumHosts: 4
         NumCritical: 6
       properties:
@@ -3428,6 +3998,15 @@ components:
         NumUnknown:
           description: Number of projects with Unknown health summary status
           type: integer
+      required:
+      - Locations
+      - NumCritical
+      - NumHosts
+      - NumOK
+      - NumUnknown
+      - NumVolumes
+      - NumWarning
+      - TotalStorageGB
       type: object
     SSHKeyValue:
       description: SSH key value
@@ -3452,6 +4031,9 @@ components:
         ISCSIDiscoveryAddress:
           type: string
       required:
+      - CHAPSecret
+      - CHAPUser
+      - ISCSIDiscoveryAddress
       - InitiatorName
       type: object
     HostConnection:
@@ -3484,6 +4066,12 @@ components:
           items:
             $ref: '#/components/schemas/HostNetworkConnection'
           type: array
+      required:
+      - HA
+      - Name
+      - Networks
+      - Ports
+      - Speed
       type: object
     HostPowerState:
       description: Current power status of the underlaying physical server (machine)
@@ -3506,6 +4094,7 @@ components:
       - Connecting
       - Booting
       - Ready
+      - Reimaging Prep
       - Replacing
       - Releasing
       - Allocating
@@ -3547,6 +4136,7 @@ components:
       - Release With Problem
       - Set Boot Disk
       - Snap Log
+      - Snap Log of Failure
       - Update
       example: Complete
       type: string
@@ -3576,6 +4166,13 @@ components:
           description: Used to acknowledge the alert so that the UI can list only
             unacknowledged alerts
           type: boolean
+      required:
+      - Ack
+      - Alert
+      - Message
+      - State
+      - Substate
+      - Time
       type: object
     HealthStatus:
       enum:
@@ -3584,12 +4181,21 @@ components:
       - Critical
       - Unknown
       type: string
+    Labels:
+      additionalProperties:
+        type: string
+      description: The map of label name to label value for the resource.
+      example:
+        serviceType: BMaaS
+      type: object
     AddVolume:
       example:
         Shareable: true
         Description: Description of New Volume
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 10
+        VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Name: NewVolumeName
       properties:
         Name:
@@ -3613,6 +4219,38 @@ components:
         Shareable:
           description: Indicates if the volume can be attached to multiple hosts
           type: boolean
+        StoragePoolID:
+          description: The storage pool is one of those listed by the StoragePools
+            array returned as part of the get /available-resources call that are available
+            to create volumes of the specified flavor and location.
+          format: uuid
+          type: string
+        VolumeCollectionID:
+          description: 'The  optional volume collection is one of those listed by
+            the VolumeCollections  array returned as part of the get /available-resources
+            call '
+          format: uuid
+          type: string
+      type: object
+    UpdateHostISCSIConfig:
+      nullable: true
+      properties:
+        InitiatorName:
+          description: |
+            Fully qualified iSCSI intiator name of this host. This is generated when a host is created and the information is pushed to the new host
+          type: string
+        CHAPSecret:
+          description: |
+            CHAP secret as generated by the system when attaching a volume.   Visible in VolumeAttachment object.
+          type: string
+        CHAPUser:
+          description: |
+            CHAP user as generated by the system when attaching a volume.   Visible in VolumeAttachment object.
+          type: string
+        ISCSIDiscoveryAddress:
+          type: string
+      required:
+      - InitiatorName
       type: object
     AvailableImage:
       description: Entry describing an available imaging service
@@ -3622,6 +4260,7 @@ components:
         Version: "18.04"
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Flavor: ubuntu
+        Name: HPE Ubuntu 18.04
       properties:
         ID:
           description: Unique ID for imaging service
@@ -3637,6 +4276,10 @@ components:
             a specific OS or application.
           example: ubuntu
           type: string
+        Name:
+          description: Name of imaging service.
+          example: HPE Ubuntu 18.04
+          type: string
         Version:
           description: Specific version of a imaging service flavor.
           example: "18.04"
@@ -3646,14 +4289,23 @@ components:
             to the OS
           example: ubuntu OS also including Docker runtime
           type: string
+      required:
+      - Category
+      - Description
+      - Flavor
+      - ID
+      - Name
+      - Version
       type: object
     LocationInfo:
       description: Entry on data center with its location ID and country, region,
         and data center description strings
       example:
         DataCenter: FTC1
+        PrivateNetworkVNISupport: true
         Region: Central
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        PrivateNetworkVIDSupport: true
       properties:
         ID:
           description: Unique ID for data center location
@@ -3669,6 +4321,21 @@ components:
           description: Data center descriptor
           example: FTC1
           type: string
+        PrivateNetworkVIDSupport:
+          description: Indicates whether or not the fabric dedicated for private networks
+            supports VLAN ID.
+          type: boolean
+        PrivateNetworkVNISupport:
+          description: Indicates whether or not the fabric dedicated for private networks
+            supports VNI ID.
+          type: boolean
+      required:
+      - Country
+      - DataCenter
+      - ID
+      - PrivateNetworkVIDSupport
+      - PrivateNetworkVNISupport
+      - Region
       type: object
     AvailableNetwork:
       description: Entry of a network available within a data center location
@@ -3715,6 +4382,16 @@ components:
           description: VNI ID of the network
           example: 15006
           type: integer
+      required:
+      - Description
+      - HostUse
+      - ID
+      - IPPoolID
+      - LocationID
+      - Name
+      - Purpose
+      - VLAN
+      - VNI
       type: object
     MachineSize:
       description: Description of a specific machine size offering
@@ -3741,6 +4418,10 @@ components:
           type: string
         Details:
           $ref: '#/components/schemas/FlavorDesc'
+      required:
+      - Details
+      - ID
+      - Name
       type: object
     VolumeFlavor:
       description: |
@@ -3768,19 +4449,25 @@ components:
           type: string
         Details:
           $ref: '#/components/schemas/FlavorDesc'
+      required:
+      - Details
+      - ID
+      - Name
       type: object
     VolumeInfo:
       description: Description of the details about a pre-existing volume
       example:
         TargetIQN: TargetIQN
+        Description: Description
+        LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Name: MyVolume
         Shareable: true
         DiscoveryIP: DiscoveryIP
-        Description: Description
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 0
-        LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        VolumeCollectionID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        Name: MyVolume
       properties:
         ID:
           description: |
@@ -3798,6 +4485,10 @@ components:
           description: The ID of the volume flavor requested when creating the volume
           format: uuid
           type: string
+        StoragePoolID:
+          description: The ID of the storage pool where volume resides
+          format: uuid
+          type: string
         Capacity:
           description: The size of the volume in KiB
           format: int64
@@ -3810,6 +4501,10 @@ components:
           description: The location ID of the data center where the volume exists
           format: uuid
           type: string
+        VolumeCollectionID:
+          description: The ID of volume collection of which this volume is a member
+          format: uuid
+          type: string
         DiscoveryIP:
           description: The discovery IP for the iSCSI volume
           type: string
@@ -3820,6 +4515,20 @@ components:
           $ref: '#/components/schemas/VolumeState'
         Status:
           $ref: '#/components/schemas/VolumeStatus'
+      required:
+      - Capacity
+      - Description
+      - DiscoveryIP
+      - FlavorID
+      - ID
+      - LocationID
+      - Name
+      - Shareable
+      - State
+      - Status
+      - StoragePoolID
+      - TargetIQN
+      - VolumeCollectionID
       type: object
     MachineInventory:
       description: An entry describing the number of machines of a particular machine
@@ -3842,6 +4551,10 @@ components:
             size at the indicated location
           minimum: 0
           type: integer
+      required:
+      - LocationID
+      - Number
+      - SizeID
       type: object
     StorageInventory:
       description: An entry describing the amount of storage available to create volumes
@@ -3850,6 +4563,10 @@ components:
         FlavorID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Capacity: 1
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        StoragePoolID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        VolumeCollectionIDs:
+        - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+        - a6d87f06-c141-4a26-a9df-4803dc446a83
       properties:
         FlavorID:
           description: Unique ID of a volume flavor as listed in the the VolumeFlavors
@@ -3865,6 +4582,26 @@ components:
             the indicated flavor at the indicated location
           format: int64
           type: integer
+        StoragePoolID:
+          description: Unique ID of the storage pool as listed in the StoragePools
+            array
+          format: uuid
+          type: string
+        VolumeCollectionIDs:
+          description: IDs of the volume collections for this flavor as listed in
+            the Volume collections array
+          example:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - Capacity
+      - FlavorID
+      - LocationID
+      - StoragePoolID
       type: object
     SSHKeyEntry:
       description: An entry listing an SSH key that is available for use when creating
@@ -3888,6 +4625,82 @@ components:
           example: |
             'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxv1C5uOeG9BBjfQbum9GupGthTFcifS4FNYxZ2ZakN9UcpD05L2lKp4OI6mfCfciOhJ9SHduZWJFM0pYfC99hIsPAHhEwWOjh3/rHKxB/U4RYN4VFWM+ShDv92+k0Hse73HhuiHKVtmRj/fltAeCFm/mPlL+McMYFhFYMIK8b/spKpXxdEBCSowHPGIn3yi0ivPWhC4wcIa9jDIela/a0t/oDnYTeIp2WMLDbpZyQsGHmKopAAvb+83JhwytQMVTI/g5pMerbqPyxKtWaWDVDtpQ7O8G877T5U3kkl4jLLOJywxrvLrfHh1UNdNvPmvRFd+ct9Q5ugj5CIMJHqWTj Joe@Laptop.local'
           type: string
+      required:
+      - ID
+      - Key
+      - Name
+      type: object
+    StoragePool:
+      description: |
+        An entry describing a storage pool.
+      example:
+        Capacity: 5
+        LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Name: Name
+      properties:
+        ID:
+          description: Storage pool unique ID
+          format: uuid
+          type: string
+        Name:
+          description: User-visible name for a storage pool
+          type: string
+        LocationID:
+          description: The location ID of the data center where the storage pool exists
+          format: uuid
+          type: string
+        Capacity:
+          description: Total capacity available (in GiB) to create new volumes in
+            the storage pool
+          format: int64
+          type: integer
+      required:
+      - ID
+      - Name
+      type: object
+    VolumeCollection:
+      description: Volume collection within a data center location
+      example:
+        StoragePoolIDs:
+        - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+        - a6d87f06-c141-4a26-a9df-4803dc446a83
+        Description: Description
+        LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        Name: Name
+      properties:
+        ID:
+          description: The ID of the volume collection resource that can be used while
+            creating a volume
+          format: uuid
+          type: string
+        Name:
+          description: The name of the volume collection resource
+          type: string
+        LocationID:
+          description: The location ID of the data center where the volume collection
+            resides
+          format: uuid
+          type: string
+        Description:
+          description: The description of the volume collection resource
+          type: string
+        StoragePoolIDs:
+          description: IDs of the storage pools that are valid for this volume collection
+            as listed in the Storage Pools array
+          example:
+          - 7dc2567a-9756-40b9-ab9f-ba66492fb3f7
+          - a6d87f06-c141-4a26-a9df-4803dc446a83
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - Description
+      - ID
+      - LocationID
+      - Name
       type: object
     VolumeState:
       description: Current volume state expressed as a string enum value (new, allocating,
@@ -3945,6 +4758,11 @@ components:
         TicketExpiryTime:
           description: Ticket expiry time to help client to refresh the ticket.
           type: string
+      required:
+      - StorageID
+      - Ticket
+      - TicketExpiryTime
+      - UserName
       type: object
     ProtocolParameters:
       example:
@@ -4062,14 +4880,6 @@ components:
       - IPVersion
       - Netmask
       type: object
-    HostUsageEntry:
-      allOf:
-      - $ref: '#/components/schemas/UsageEntryBase'
-      - $ref: '#/components/schemas/HostUsageEntry_allOf'
-    VolumeUsageEntry:
-      allOf:
-      - $ref: '#/components/schemas/UsageEntryBase'
-      - $ref: '#/components/schemas/VolumeUsageEntry_allOf'
     IPVer:
       description: |
         Describes the IP version
@@ -4142,6 +4952,9 @@ components:
           description: Number of IPs to count from the base
           example: 1
           type: integer
+      required:
+      - Base
+      - Count
       type: object
     UseRecord:
       properties:
@@ -4171,6 +4984,14 @@ components:
         AllocatedBy:
           description: User which performed the allocation of the record
           type: string
+      required:
+      - AllocatedBy
+      - Base
+      - DeviceID
+      - External
+      - HostID
+      - RackID
+      - Usage
       type: object
     Pool:
       properties:
@@ -4181,6 +5002,9 @@ components:
           type: array
         Stats:
           $ref: '#/components/schemas/IPPoolStats'
+      required:
+      - Fragments
+      - Stats
       type: object
     ServiceServerInfo:
       description: Server allocation information for a service type.
@@ -4213,6 +5037,13 @@ components:
           description: Total allocated memory in GiB.
           format: double
           type: number
+      required:
+      - AllocatedCount
+      - CoresAllocated
+      - CoresCapacity
+      - RAMAllocated
+      - RAMCapacity
+      - ServiceType
       type: object
     ServiceStorageInfo:
       description: Storage allocation information for service type.
@@ -4234,6 +5065,198 @@ components:
           format: float
           minimum: 0.0
           type: number
+      required:
+      - AllocatedCapacity
+      - AllocatedCount
+      - ServiceType
+      type: object
+    OSServiceImageOrigin:
+      description: |
+        Indicates the origin of the OS service image.
+      enum:
+      - HPE
+      - Custom
+      example: Custom
+      type: string
+    DiskPartitions:
+      description: Disk partition to be created on the host.
+      properties:
+        Device:
+          description: Indicates the device name of the disk of the form /dev/sdX
+            as known by the os e.g. /dev/sda This is the default device that will
+            be used to deploy the OS Image to the host. The default value may be overridden
+            when creating the host by a UUID/NAA/EUI  logical volume ID (BootDeviceID).
+          example: /dev/sda
+          type: string
+        Description:
+          type: string
+        StartOffset:
+          description: StartOffset is the offset from the start of the disk to the
+            first partition,  if zero a default of 1 MiB (2048 sectors) will be used,
+            units bytes.
+          example: 0
+          format: int64
+          type: integer
+        TableType:
+          $ref: '#/components/schemas/PartitionTable'
+        Partitions:
+          items:
+            $ref: '#/components/schemas/Partition'
+          type: array
+      required:
+      - Description
+      - Device
+      - Partitions
+      - StartOffset
+      - TableType
+      type: object
+    FileInfo:
+      description: Information about the file associated with the OS service image.
+      properties:
+        ID:
+          description: Unique ID of this FileInfo.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
+        Path:
+          description: Depending upon the service approach, this is either the mount-path
+            where the file should be placed or  the relative URL where it should be
+            served.
+          example: image.tgz
+          type: string
+        FileSize:
+          description: Size of the files in bytes.
+          example: 934960345
+          type: integer
+        DownloadTimeout:
+          description: Maximum amount of time in seconds to download the Service image.
+          example: 32000
+          format: int64
+          type: integer
+        Signature:
+          description: The signature (checksum) of the image to download.  This ensure
+            the integrity and authenticity of the images downloaded.
+          example: 5260deb631d6a9f29bca14043d406bea36d704677dff4cae1a4d48dc568406eb
+          type: string
+        Algorithm:
+          $ref: '#/components/schemas/Algorithm'
+        Expand:
+          description: Indicates if the file is compressed and should be expanded  using
+            the filename suffix in the Path as a guide.
+          example: true
+          type: boolean
+        DisplayURL:
+          description: URL of the file that should be returned in REST response or
+            used for display purpose. The file is downloaded from this URL only when
+            SecureURL is not set.
+          example: s3://bmmas-images20210506193558893900000003/images/linux/ubuntu/18.04-20220404/v2-kiwi-ubuntu18.04-15616.04_appliance.x86_64-1.16.4.tar.gz
+          type: string
+        SecureURL:
+          description: URL of the file that should be kept secret.  If this field
+            is set, it will be used for accessing the file and DisplayURL will be
+            ignored.
+          type: string
+      required:
+      - Algorithm
+      - DisplayURL
+      - DownloadTimeout
+      - Expand
+      - FileSize
+      - ID
+      - Path
+      - SecureURL
+      - Signature
+      type: object
+    PassedInfo:
+      description: Defines embedded contents to be attached to this OS service image
+        if from files.
+      properties:
+        Contents:
+          description: String encoded with file content.
+          type: string
+        Encoding:
+          $ref: '#/components/schemas/Encoding'
+        Templating:
+          $ref: '#/components/schemas/Templating'
+        TemplatingInput:
+          $ref: '#/components/schemas/TemplatingInfo'
+        Target:
+          $ref: '#/components/schemas/Target'
+        Path:
+          description: File path and name within location.
+          example: /etc/cloud/cloud.cfg.d/92_datasource.cfg
+          type: string
+      required:
+      - Contents
+      - Encoding
+      - Path
+      - Target
+      - Templating
+      - TemplatingInput
+      type: object
+    OSServiceImageApproach:
+      description: Indicates how the service image is installed.  The "Service Client"
+        approach installs the OS image by booting a GLM service OS,  that then runs
+        the GLM Service Client to deploy and setup a TGZ root file system image.  The
+        "Virtual Media" approach uses an OS .ISO installer image and OS automation
+        files  (e.g. kickstart and cloud-init files) mounted over iLO virtual media.
+      enum:
+      - svc-client
+      - vmedia
+      example: vmedia
+      type: string
+    BootMethod:
+      description: Indicates how the service expects the machine to be booted.
+      enum:
+      - pxe
+      - uefi-shell
+      - svc-os
+      - na
+      example: na
+      type: string
+    BondMode:
+      description: Specifies the policy indicating how bonding slaves are used during
+        network transmission.
+      enum:
+      - ""
+      - none
+      - balance-xor
+      - balance-tlb
+      example: none
+      type: string
+    UserDefinedSteps:
+      description: Indicates custom operations to be executed within the host life
+        cycle.
+      properties:
+        ImagingPrepSteps:
+          description: Allows setting operations to be executed before host imaging.  If
+            a firmware update operation is defined, Firmware Baseline must be set.
+          items:
+            $ref: '#/components/schemas/UserOp'
+          type: array
+        MaintenanceSteps:
+          description: Allows setting operations to be executed during host maintenance.  If
+            a firmware update operation is defined, Firmware Baseline must be set.
+          items:
+            $ref: '#/components/schemas/UserOp'
+          type: array
+      required:
+      - ImagingPrepSteps
+      - MaintenanceSteps
+      type: object
+    MachineClassifier:
+      description: Describes a classifier via a list of rules.
+      properties:
+        Name:
+          type: string
+        Rules:
+          description: A list of machine classifier rules.
+          items:
+            $ref: '#/components/schemas/MachineClassifierRule'
+          type: array
+      required:
+      - Name
+      - Rules
       type: object
     HostServerPort:
       properties:
@@ -4245,6 +5268,9 @@ components:
           description: Hardware address for the Ethernet interface (MAC)
           example: 5c:b9:01:95:64:a0
           type: string
+      required:
+      - HWAddr
+      - Name
       type: object
     HostNetworkConnection:
       properties:
@@ -4320,6 +5346,19 @@ components:
           description: Addresses or CIDRs for which proxy requests are not made
           example: localhost,15.10.0.10,test.com
           type: string
+      required:
+      - DNS
+      - Gateway
+      - IP
+      - Name
+      - Netmask
+      - NetworkID
+      - NoProxy
+      - Proxy
+      - Subnet
+      - Untagged
+      - VLAN
+      - VNI
       type: object
     Country:
       enum:
@@ -4606,6 +5645,13 @@ components:
         Tooltip:
           description: Supplemental tooltip text to use in GUIs
           type: string
+      required:
+      - Banner1
+      - Banner2
+      - Bullets
+      - Collection
+      - InfoLink
+      - Tooltip
       type: object
     ProtocolKind:
       description: The protocol to be used to attach the volume
@@ -4642,50 +5688,6 @@ components:
       - HostIPAddress
       - InitiatorName
       type: object
-    UsageEntryBase:
-      properties:
-        ProjectID:
-          description: Project ID that contained the host
-          format: uuid
-          type: string
-        LocationID:
-          description: The location ID is the data center location of the resource.  The
-            LocationID must be one of those provided by the LocationInfo array returned
-            as part of the get /available-resources call.  The locations are typically
-            described by country, region, and data center.
-          format: uuid
-          type: string
-        Allocated:
-          description: Timestamp of when resource (machine or storage) was allocated
-          format: date-time
-          type: string
-        Ready:
-          description: Timestamp of when resource (host or volume) was ready for use
-          format: date-time
-          type: string
-        Freed:
-          description: Timestamp of when resource (machine or storage) was freed
-          format: date-time
-          type: string
-        UsageStart:
-          description: The start of the usage reporting window or when the resource
-            was allocated
-          format: date-time
-          type: string
-        UsageEnd:
-          description: The end of the usage reporting window or when the resource
-            was freed
-          format: date-time
-          type: string
-        UsageHours:
-          description: The difference between the UsageEnd and UsageStart rounded
-            up to the UsageHours
-          format: int64
-          type: integer
-        Error:
-          description: Description of error that affected the usage reporting
-          type: string
-      type: object
     IPRange:
       properties:
         Base:
@@ -4706,6 +5708,12 @@ components:
           description: Base address of the Source the IPRange was allocated from
           example: 10.128.0.0
           type: string
+      required:
+      - Base
+      - Count
+      - DefaultRoute
+      - Netmask
+      - SourceBase
       type: object
     IPPoolStats:
       properties:
@@ -4721,7 +5729,291 @@ components:
           description: Number of allocated IPs
           format: int32
           type: integer
+      required:
+      - Available
+      - InUse
+      - Total
       type: object
+    PartitionTable:
+      description: Defines the type of partition table.
+      enum:
+      - gpt
+      - dos
+      - sun
+      - sgi
+      example: gpt
+      type: string
+    Partition:
+      description: It describes a disk partition.
+      properties:
+        Type:
+          $ref: '#/components/schemas/PartitionType'
+        Formula:
+          $ref: '#/components/schemas/PartitionFormula'
+        Name:
+          description: Name is an optional name for the partition, only usable with
+            GPT partition table types.
+          example: My Partition
+          type: string
+        MountPoint:
+          description: Where to mount the partition, it must be set for partitions
+            that are filesystem types.
+          example: /
+          type: string
+        PartitionID:
+          description: A partitionID may be explicitly set for the partition and this
+            allows for out-of-order partitions in the table (like VMWare).  If zero,
+            sequential partitions are created starting at 1. Gaps in the partition
+            ID numbering is also allowable (VMWare).
+          example: 1
+          format: int64
+          type: integer
+        Bootable:
+          description: Identify a bootable partition.
+          example: false
+          type: boolean
+        MakeOptions:
+          description: Provide options for the partition's creation.
+          items:
+            type: string
+          type: array
+        MountOptions:
+          description: Provide options for the patition mount. If empty, "defaults"
+            will be used for filesystem partition types. MountOptions will be placed
+            in the "options" field for the partition in /etc/fstab.
+          example: errors=remount-ro
+          type: string
+      required:
+      - Bootable
+      - Formula
+      - MakeOptions
+      - MountOptions
+      - MountPoint
+      - Name
+      - PartitionID
+      - Type
+      type: object
+    Algorithm:
+      description: The algorithm used to generate the Image Signature.  Currently
+        sha256sum and sha512sum are supported.
+      enum:
+      - sha256sum
+      - sha512sum
+      example: sha512sum
+      type: string
+    Encoding:
+      description: Describes how a file's contents may be encoded.
+      enum:
+      - base64
+      - hex
+      - none
+      example: base64
+      type: string
+    Templating:
+      description: Indicates whether templating is used in contents.
+      enum:
+      - none
+      - go-text-template
+      example: go-text-template
+      type: string
+    TemplatingInfo:
+      description: It defines the source object and schema used as input to the template.  If
+        go text templating is used, then the TemplatingInfo refers to a specific  Go
+        struct that would be passed to fill-in the template.
+      enum:
+      - hostdef-v1
+      - hostdef-v2
+      example: hostdef-v2
+      type: string
+    Target:
+      description: Indicates where the passed info is expected to land once converted
+        to a file when combined with path.
+      enum:
+      - vmedia-floppy
+      - vmedia-cd
+      - hdd
+      example: vmedia-floppy
+      type: string
+    UserOp:
+      description: Describes a user operation.
+      properties:
+        ID:
+          description: Unique ID of this user operation.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
+        Operation:
+          $ref: '#/components/schemas/UserOpEnum'
+        Description:
+          type: string
+        Parameters:
+          items:
+            $ref: '#/components/schemas/OpArg'
+          type: array
+      required:
+      - Description
+      - ID
+      - Operation
+      - Parameters
+      type: object
+    MachineClassifierRule:
+      allOf:
+      - $ref: '#/components/schemas/AttributeRule'
+      description: Describes a machine classifier rule in form of attribute and subattributes
+        rule.
+      properties:
+        SubAttributeRules:
+          items:
+            $ref: '#/components/schemas/AttributeRule'
+          type: array
+      required:
+      - SubAttributeRules
+      type: object
+    PartitionType:
+      description: It defines the available partition types. This should be defined
+        to correspond to target OS known partition types (as known by name on that
+        OS).
+      enum:
+      - swap
+      - ext2
+      - ext3
+      - ext4
+      - xfs
+      - btrfs
+      - vfat
+      - bios
+      - basic
+      - lvm
+      - luks
+      - vmdiag
+      - vmfs
+      example: ext2
+      type: string
+    PartitionFormula:
+      description: It provide partition size information.
+      properties:
+        Equation:
+          description: Represents a partition size in MiB.  As a special case a size
+            of 0 can be specified that will equate to the remaining space on the disk.
+          example: 500M
+          type: string
+        MinSize:
+          description: It causes the value computed by formula execution to be rounded
+            up to MinSize; if MinSize is non-zero. Multipliers like M and G maybe
+            used, e.g. 1M == (1024*1024)bytes. An empty string means zero bytes.  If
+            no multiplier is specified M is assumed.
+          example: 1M
+          type: string
+        MaxSize:
+          description: MaxSize causes the value computed by formula execution to be
+            rounded up to MaxSize; if MaxSize is non-zero. Multipliers like M, G and
+            T maybe used, e.g. 1M == (1024*1024)bytes. An empty string means zero
+            bytes.  If no multiplier is specified M is assumed. Equations may also
+            be used e.g. 25%disk means MaxSize will cause any partition  to never
+            exceed 25% of device capacity.
+          type: string
+      required:
+      - Equation
+      - MaxSize
+      - MinSize
+      type: object
+    UserOpEnum:
+      description: Defines user operation for a machine.
+      enum:
+      - Reset Server
+      - Power On
+      - Power Off
+      - Boot Service OS
+      - Re-Discover
+      - Burn-In Server
+      - Erase Drive
+      - Update Firmware
+      - Set BIOS Parameters
+      - Set RAID0 Boot Volume
+      - Set RAID1 Boot Volume
+      - Clear RAID Configuration
+      - Pause
+      - Update BMC Firmware
+      - Discover
+      - Update BMC License
+      - Update Server FW from ISO
+      - Reset Server BIOS to Factory Default
+      - Connect L3 Underlay
+      - Configure Smart IO
+      - Clean up Control Plane
+      - Init BMC
+      - Encrypt Boot Volume
+      - Clear BMC Logs
+      example: Boot Service OS
+      type: string
+    OpArg:
+      description: User operation argument.
+      properties:
+        Name:
+          type: string
+        Value:
+          type: string
+        Description:
+          type: string
+        Type:
+          $ref: '#/components/schemas/OpArgType'
+        SecureValue:
+          description: Value of the argument that should be kept secret.
+          type: string
+      required:
+      - Description
+      - Name
+      - SecureValue
+      - Type
+      - Value
+      type: object
+    AttributeRule:
+      description: Describes a machine classifier attribute rule.
+      properties:
+        Attribute:
+          description: The machine attribute.
+          example: model
+          type: string
+        Value:
+          description: The value for the attribute.
+          example: Gen10
+          type: string
+        Operator:
+          $ref: '#/components/schemas/ClassifierOperator'
+      required:
+      - Attribute
+      - Operator
+      - Value
+      type: object
+    OpArgType:
+      description: Defines allowed types for an operation argument.
+      enum:
+      - String
+      - Integer
+      - Version
+      - URL
+      example: Integer
+      type: string
+    ClassifierOperator:
+      description: The operator used for comparison.
+      enum:
+      - contains
+      - containsnocase
+      - omits
+      - omitsnocase
+      - startswith
+      - startswithnocase
+      - endswith
+      - endswithnocase
+      - ==
+      - '!='
+      - <
+      - <=
+      - '>'
+      - '>='
+      - match
+      example: contains
+      type: string
     Project_allOf:
       properties:
         Profile:
@@ -4739,8 +6031,39 @@ components:
             format: uuid
             type: string
           type: array
+        PermittedOSImages:
+          description: Array listing the permitted OS service images.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
       required:
       - Limits
+      - PermittedOSImages
+      - PermittedSites
+      - Profile
+      - Resources
+    UpdateProject_allOf:
+      properties:
+        Profile:
+          $ref: '#/components/schemas/UpdateProfile'
+        Limits:
+          $ref: '#/components/schemas/UpdateLimits'
+        PermittedOSImages:
+          description: Array listing the permitted OS service images.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - Limits
+      - PermittedOSImages
       - Profile
     SSHKey_allOf:
       properties:
@@ -4897,15 +6220,118 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for the host.
+          description: The map of label name to label value for the resource.
           example:
             serviceType: BMaaS
           type: object
+        WWPNs:
+          description: FC HBA world wide port names
+          example:
+          - 20:31:01:02:ad:f2:a8:e5
+          - 21:31:01:02:ad:f2:a8:e5
+          items:
+            type: string
+          type: array
       required:
+      - Alert
+      - AlertInfo
+      - Connections
+      - Deleted
       - Description
+      - ISCSIConfig
+      - Labels
+      - LocationID
+      - MachineID
+      - MachineSizeID
+      - MachineSizeName
       - NetworkForDefaultRoute
       - NetworkIDs
       - NetworkUntagged
+      - NodeID
+      - PortalCommOkay
+      - PowerStatus
+      - PreAllocatedIPs
+      - Progress
+      - SSHAuthorizedKeys
+      - SSHKeyIDs
+      - ServiceFlavor
+      - ServiceID
+      - ServiceNetsProviderMAC
+      - ServiceVersion
+      - State
+      - StateTime
+      - Substate
+      - SubstateTime
+      - SummaryStatus
+      - UserData
+      - WWPNs
+      - Workflow
+    UpdateHost_allOf:
+      properties:
+        Description:
+          example: Description of Host
+          type: string
+        NetworkIDs:
+          description: The list of IDs corresponding to the networks that were provisioned
+            to the host. These networks are among those listed in the Networks array
+            returned by the get /available-resources call.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
+        NetworkForDefaultRoute:
+          description: The host's default network ID. This needs to be one of the
+            values in the  "NetworkIDs" list.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          format: uuid
+          type: string
+        NetworkUntagged:
+          description: ID of the network selected to be untagged. This needs to be
+            one of the values in the  "NetworkIDs" list.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
+        ISCSIConfig:
+          $ref: '#/components/schemas/UpdateHostISCSIConfig'
+        PreAllocatedIPs:
+          description: The list of pre-allocated IP addresses corresponding to the
+            list of NetworkIDs. Pre-allocated IP addresses are optional, but required
+            when updating a host containing pre-allocated IP addresses.
+          items:
+            type: string
+          type: array
+        ServiceNetsProviderMAC:
+          additionalProperties:
+            type: string
+          description: The map of Service Network (Provider) ID to Provider MAC address.   The
+            Service Network must be a provider network provisioned to this host. Any
+            Service Networks not included here will default to the physical MAC learned
+            during machine discovery.
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee91": a2:c8:93:15:2a:76
+          type: object
+        Labels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of service/user specified label name to label value for this host.
+            Setting service labels is restricted by role.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            serviceType: BMaaS
+            region: us-west-2
+          type: object
+      required:
+      - Description
+      - Labels
+      - NetworkForDefaultRoute
+      - NetworkIDs
+      - NetworkUntagged
+      - PreAllocatedIPs
+      - ServiceNetsProviderMAC
     Volume_allOf:
       properties:
         Description:
@@ -4913,6 +6339,11 @@ components:
           type: string
         FlavorID:
           description: The VolumeFlavorID matching an entry in the VolumeFlavors array
+            returned as part of the get /available-resources call
+          format: uuid
+          type: string
+        StoragePoolID:
+          description: The storage pool ID matching an entry in the StoragePools array
             returned as part of the get /available-resources call
           format: uuid
           type: string
@@ -4932,6 +6363,12 @@ components:
             as their attached Host.
           format: uuid
           type: string
+        VolumeCollectionID:
+          description: The optional volume collection ID matching an entry in the
+            VolumeCollections array returned as part of the get /available-resources
+            call
+          format: uuid
+          type: string
         State:
           $ref: '#/components/schemas/VolumeState'
         SubState:
@@ -4941,13 +6378,52 @@ components:
         Labels:
           additionalProperties:
             type: string
-          description: The map of label name to label value for the volume.
+          description: The map of label name to label value for the resource.
           example:
             serviceType: BMaaS
           type: object
         WWN:
           description: Serial number of the volume.
           type: string
+      required:
+      - Capacity
+      - Description
+      - FlavorID
+      - Labels
+      - LocationID
+      - Shareable
+      - State
+      - Status
+      - StoragePoolID
+      - SubState
+      - WWN
+    UpdateVolume_allOf:
+      properties:
+        Capacity:
+          description: The size of the volume in KiB
+          example: 10485760
+          format: int64
+          minimum: 0
+          type: integer
+        VolumeCollectionID:
+          description: The volume collection the volume is a part of
+          example: 90be909e-4609-40f5-9630-f24910dc8591
+          format: uuid
+          type: string
+        Labels:
+          additionalProperties:
+            type: string
+          description: |-
+            The map of service/user specified label name to label value for this volume.
+            Setting service labels is restricted by role.
+            At minimum, this field should be set to the values specified during create.
+          example:
+            serviceType: BMaaS
+            region: us-west-2
+          type: object
+      required:
+      - Capacity
+      - Labels
     VolumeAttachment_allOf:
       properties:
         VolumeID:
@@ -4997,6 +6473,18 @@ components:
           description: File share specific configuration parameters
           nullable: true
           type: object
+      required:
+      - CHAPSecret
+      - CHAPUserName
+      - FSConfig
+      - HostID
+      - HostIPAddress
+      - IQN
+      - LUN
+      - State
+      - VolumeID
+      - VolumeTargetIPAddress
+      - VolumeTargetIQN
     Network_allOf:
       properties:
         LocationID:
@@ -5021,6 +6509,27 @@ components:
         VNI:
           description: VNI ID of the network
           type: integer
+      required:
+      - Description
+      - HostUse
+      - IPPoolID
+      - LocationID
+      - Purpose
+      - VLAN
+      - VNI
+    UpdateNetwork_allOf:
+      properties:
+        Description:
+          example: Private network for intra-cluster communication
+          type: string
+        HostUse:
+          $ref: '#/components/schemas/NetworkHostUse'
+        Purpose:
+          $ref: '#/components/schemas/NetworkPurpose'
+      required:
+      - Description
+      - HostUse
+      - Purpose
     IPPool_allOf:
       properties:
         Description:
@@ -5074,49 +6583,146 @@ components:
         Pool:
           $ref: '#/components/schemas/Pool'
       required:
+      - BaseIP
+      - DNS
+      - DefaultRoute
+      - Description
+      - IPVersion
+      - NTP
+      - Netmask
+      - NetworkID
+      - NoProxy
+      - Pool
+      - Proxy
+      - Sources
+      - UseRecords
+    UpdateIPPool_allOf:
+      properties:
+        Description:
+          example: Description of IP pool
+          type: string
+        DefaultRoute:
+          example: 10.128.0.1
+          type: string
+        DNS:
+          description: List of DNS servers for the IP pool
+          items:
+            example: 8.8.8.8
+            type: string
+          type: array
+        Proxy:
+          description: Optional web-proxy for external internet access should the
+            pool actually be behind a firewall
+          example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
+          type: string
+        NoProxy:
+          description: Addresses or CIDRs for which proxy requests are not made
+          example: localhost,15.10.0.10,test.com
+          type: string
+        NTP:
+          description: List of NTP servers for the IP pool
+          items:
+            example: 15.0.0.1
+            type: string
+          type: array
+      required:
       - DNS
       - DefaultRoute
       - Description
       - NTP
       - NoProxy
       - Proxy
-    HostUsageEntry_allOf:
+    OSServiceImage_allOf:
       properties:
-        MachineSizeName:
-          description: Name of the MachineSize requested when host was created
-          example: HPE-Large
+        Description:
+          example: Description of the image
           type: string
-        MachineSizeID:
-          description: Unique ID of the MachineSize requested when host was created
-          format: uuid
+        Category:
+          description: 'A high level classification of the service. '
+          example: linux
           type: string
-        HostName:
-          description: Name of the associated Host
+        Flavor:
+          description: 'An high level description of the OS image type. '
+          example: ubuntu
           type: string
-        HostID:
-          description: Unique ID of the associated Host
-          format: uuid
+        Version:
+          description: A specific version of the service flavor.
+          example: 20.04.5
           type: string
-    VolumeUsageEntry_allOf:
-      properties:
-        VolumeName:
-          description: Name of the volume
-          type: string
-        VolumeID:
-          description: Unique ID of the volume
-          format: uuid
-          type: string
-        FlavorName:
-          description: Name of the volume flavor used when creating the volume
-          type: string
-        FlavorID:
-          description: Unique ID of the volume flavor used when creating the volume
-          format: uuid
-          type: string
-        Capacity:
-          description: The size of the volume in MB
+        Origin:
+          $ref: '#/components/schemas/OSServiceImageOrigin'
+        Timeout:
+          description: Maximum amount of time in seconds for the service to complete
+            its work.  This time includes the amount of time to download the service
+            image if necessary.
+          example: 1000
           format: int64
           type: integer
+        DeviceLayouts:
+          description: Device partitioning information.
+          items:
+            $ref: '#/components/schemas/DiskPartitions'
+          type: array
+        PermittedProjects:
+          description: List of projects allowed to use this OS service image.
+          items:
+            type: string
+          type: array
+        Files:
+          description: Files and relative information for this OS service image.
+          items:
+            $ref: '#/components/schemas/FileInfo'
+          type: array
+        Info:
+          description: Defines a list of embedded contents to be attached to this
+            OS service image in form of files.
+          items:
+            $ref: '#/components/schemas/PassedInfo'
+          type: array
+        Approach:
+          $ref: '#/components/schemas/OSServiceImageApproach'
+        AssumedBootMethod:
+          $ref: '#/components/schemas/BootMethod'
+        NoSwitchLAG:
+          description: Indicates if a LAG needs to be created on the switch connecting
+            the host with this OS service image.
+          example: false
+          type: boolean
+        BondMode:
+          $ref: '#/components/schemas/BondMode'
+        FWBaselineID:
+          description: Unique id of the firmware baseline to be applied by the firmware
+            update operation  in Maintenance Steps and Imaging Prep Steps.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
+        UserDefinedSteps:
+          $ref: '#/components/schemas/UserDefinedSteps'
+        Classifiers:
+          description: Allows setting of restricted use for this service by machine
+            attributes.  If rules are not defined, this OS service image is available
+            to be installed on any machine.
+          items:
+            $ref: '#/components/schemas/MachineClassifier'
+          type: array
+      required:
+      - Approach
+      - AssumedBootMethod
+      - BondMode
+      - Category
+      - Classifiers
+      - Description
+      - DeviceLayouts
+      - FWBaselineID
+      - Files
+      - Flavor
+      - Info
+      - NoSwitchLAG
+      - Origin
+      - PermittedProjects
+      - Timeout
+      - UserDefinedSteps
+      - Version
   securitySchemes:
     BearerAuth:
       bearerFormat: JWT

@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> Project Update(ctx, projectId, project)
+> Project Update(ctx, projectId, updateProject)
 
 Update a project by its ID
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **projectId** | **string**| ID of project to update | 
-**project** | [**Project**](Project.md)| Project parameters to update an existing Project | 
+**updateProject** | [**UpdateProject**](UpdateProject.md)| Project parameters to update an existing Project | 
 
 ### Return type
 

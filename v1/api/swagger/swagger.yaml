@@ -75,10 +75,6 @@ tags:
       create volume calls. This provides a detailed information about the OS imaging options, 
       the machine size (a.k.a. Compute Instance Type) options, the storage volume options, 
       data center locations, and such that are needed when creating hosts and volumes.
-  - name: usage-reports
-    description: >
-      Operations related to retrieving information about resource usage within
-      the project.
   - name: projects-info
     description: |
       Operations related to listing information related to projects.
@@ -88,6 +84,9 @@ tags:
   - name: allocation
     description: |
       Operations related to listing information about allocation by servers and storage.
+  - name: services
+    description: |
+      Operations related to OS service images.
 
 paths:
   /version:
@@ -118,6 +117,8 @@ paths:
     $ref: paths/hosts@{hostId}@bootpxe.yaml
   /hosts/{hostId}/boothdd:
     $ref: paths/hosts@{hostId}@boothdd.yaml
+  /hosts/{hostId}/reimage:
+    $ref: paths/hosts@{hostId}@reimage.yaml
   /hosts/{hostId}/replace:
     $ref: paths/hosts@{hostId}@replace.yaml
   /available-resources:
@@ -138,8 +139,6 @@ paths:
     $ref: paths/networks.yaml
   /networks/{networkId}:
     $ref: paths/networks@{networkId}.yaml
-  /usage-reports:
-    $ref: paths/usage-reports.yaml
   /ippools:
     $ref: paths/ippools.yaml
   /ippools/{ippoolId}:
@@ -152,6 +151,10 @@ paths:
     $ref: paths/allocation@server.yaml
   /allocation/storage:
     $ref: paths/allocation@storage.yaml
+  /services:
+    $ref: paths/services.yaml
+  /services/{serviceId}:
+    $ref: paths/services@{serviceId}.yaml
 
 components:
   securitySchemes:

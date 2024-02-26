@@ -1,0 +1,12 @@
+allOf:
+  - $ref: AttributeRule.yaml
+type: object
+required:
+  - SubAttributeRules
+properties:
+  SubAttributeRules:
+    type: array
+    items:
+      $ref: AttributeRule.yaml
+description: >-
+  Describes a machine classifier rule in form of attribute and subattributes rule.

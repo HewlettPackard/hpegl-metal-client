@@ -1,0 +1,104 @@
+get:
+  tags:
+    - services
+  summary: Retrieve an OS service image
+  description: >-
+    Returns a single OS service image object with its matching ID.
+  operationId: Service_getByID
+  parameters:
+    - name: serviceId
+      in: path
+      description: ID of OS service image to return
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/OSServiceImage.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+put:
+  tags:
+    - services
+  summary: Update an OS service image by its ID
+  description: >-
+    Updates an OS service image with a matching ID.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
+  operationId: Service_update
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: serviceId
+      in: path
+      description: ID of OS service image to update
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    description: Yaml file describing the OS service image.
+    content:
+      multipart/form-data:
+        schema:
+          $ref: ../components/schemas/MultiPartFile.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/OSServiceImage.yaml
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '405':
+      $ref: ../components/responses/InvalidInput.yaml
+    '409':
+      $ref: ../components/responses/Conflict.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml
+delete:
+  tags:
+    - services
+  summary: Delete an OS service image
+  description: >-
+    Deletes the OS service image with the matching ID.
+    Note that Hoster or BMaaS Access Owner role is required for this operation.
+  operationId: Service_delete
+  security:
+    - BearerAuth: []
+      Membership: []
+    - BearerAuth: []
+  parameters:
+    - name: serviceId
+      in: path
+      description: ID of OS service image to delete
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: success
+    '400':
+      $ref: ../components/responses/InvalidContent.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '500':
+      $ref: ../components/responses/InternalError.yaml

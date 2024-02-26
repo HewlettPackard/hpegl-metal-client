@@ -101,8 +101,17 @@ type HostsAPI interface {
 	*/
 	PowerReset(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
 	/*
+	   Reimage Reimage Host by ID
+	   Re-deploys a host to the same machine. WARNING -- all drives will be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
+	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	     - @param hostId ID of Host to reimage
+
+	   @return Host
+	*/
+	Reimage(ctx _context.Context, hostId string) (Host, *_nethttp.Response, error)
+	/*
 	   Replace Replace Host by ID
-	   Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
+	   Re-deploys a host with a new machine that satisfies the current host settings. WARNING -- all drives will be erased! Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to replace
 
@@ -114,9 +123,9 @@ type HostsAPI interface {
 	   Updates the Host with the matching ID.  Update is permitted only if the host is in the &#39;Ready&#39; or &#39;Connection Updating Failed&#39; state.  Only the Host &#39;Description&#39;, &#39;Networks&#39;, &#39;NetworkForDefaultRoute&#39;, &#39;NetworkUntagged&#39; and &#39;ISCSIConfig:InitiatorName&#39; can be updated. &#39;ISCSIConfig:InitiatorName&#39; can be updated only if the host has no volumes attached.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of host to update
-	     - @param host Updated Host
+	     - @param updateHost Updated Host
 
 	   @return Host
 	*/
-	Update(ctx _context.Context, hostId string, host Host) (Host, *_nethttp.Response, error)
+	Update(ctx _context.Context, hostId string, updateHost UpdateHost) (Host, *_nethttp.Response, error)
 }

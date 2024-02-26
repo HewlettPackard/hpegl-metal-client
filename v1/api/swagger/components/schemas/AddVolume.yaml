@@ -22,3 +22,16 @@ properties:
   Shareable:
     type: boolean
     description: Indicates if the volume can be attached to multiple hosts
+  StoragePoolID:
+    type: string
+    format: uuid
+    description: >-
+      The storage pool is one of those listed by the StoragePools array returned
+      as part of the get /available-resources call that are available to create
+      volumes of the specified flavor and location.
+  VolumeCollectionID:
+    type: string
+    format: uuid
+    description: >-
+      The  optional volume collection is one of those listed by the VolumeCollections 
+      array returned as part of the get /available-resources call 

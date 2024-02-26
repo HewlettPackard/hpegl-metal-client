@@ -1,0 +1,7 @@
+type: string
+enum: 
+  - none
+  - go-text-template
+example: go-text-template
+description: >-
+  Indicates whether templating is used in contents.

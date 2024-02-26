@@ -13,9 +13,9 @@ package client
 // MachineInventory An entry describing the number of machines of a particular machine size at a specific location
 type MachineInventory struct {
 	// Unique ID of the data center location
-	LocationID string `json:"LocationID,omitempty"`
+	LocationID string `json:"LocationID"`
 	// ID of a MachineSize as listed in the MachineSizes array
-	SizeID string `json:"SizeID,omitempty"`
+	SizeID string `json:"SizeID"`
 	// The number of machines in inventory with indicated machine size at the indicated location
-	Number int32 `json:"Number,omitempty"`
+	Number int32 `json:"Number"`
 }

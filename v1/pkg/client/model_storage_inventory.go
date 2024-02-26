@@ -13,9 +13,13 @@ package client
 // StorageInventory An entry describing the amount of storage available to create volumes of a specific flavor
 type StorageInventory struct {
 	// Unique ID of a volume flavor as listed in the the VolumeFlavors array
-	FlavorID string `json:"FlavorID,omitempty"`
+	FlavorID string `json:"FlavorID"`
 	// Unique ID of a data center location
-	LocationID string `json:"LocationID,omitempty"`
+	LocationID string `json:"LocationID"`
 	// Total capacity available (in GiB) to create new volumes of the indicated flavor at the indicated location
-	Capacity int64 `json:"Capacity,omitempty"`
+	Capacity int64 `json:"Capacity"`
+	// Unique ID of the storage pool as listed in the StoragePools array
+	StoragePoolID string `json:"StoragePoolID"`
+	// IDs of the volume collections for this flavor as listed in the Volume collections array
+	VolumeCollectionIDs []string `json:"VolumeCollectionIDs,omitempty"`
 }

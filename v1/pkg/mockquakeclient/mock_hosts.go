@@ -197,6 +197,22 @@ func (mr *MockHostsAPIMockRecorder) PowerReset(ctx, hostId interface{}) *gomock.
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PowerReset", reflect.TypeOf((*MockHostsAPI)(nil).PowerReset), ctx, hostId)
 }
 
+// Reimage mocks base method.
+func (m *MockHostsAPI) Reimage(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Reimage", ctx, hostId)
+	ret0, _ := ret[0].(client.Host)
+	ret1, _ := ret[1].(*http.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// Reimage indicates an expected call of Reimage.
+func (mr *MockHostsAPIMockRecorder) Reimage(ctx, hostId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Reimage", reflect.TypeOf((*MockHostsAPI)(nil).Reimage), ctx, hostId)
+}
+
 // Replace mocks base method.
 func (m *MockHostsAPI) Replace(ctx context.Context, hostId string) (client.Host, *http.Response, error) {
 	m.ctrl.T.Helper()
@@ -214,9 +230,9 @@ func (mr *MockHostsAPIMockRecorder) Replace(ctx, hostId interface{}) *gomock.Cal
 }
 
 // Update mocks base method.
-func (m *MockHostsAPI) Update(ctx context.Context, hostId string, host client.Host) (client.Host, *http.Response, error) {
+func (m *MockHostsAPI) Update(ctx context.Context, hostId string, updateHost client.UpdateHost) (client.Host, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, hostId, host)
+	ret := m.ctrl.Call(m, "Update", ctx, hostId, updateHost)
 	ret0, _ := ret[0].(client.Host)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -224,7 +240,7 @@ func (m *MockHostsAPI) Update(ctx context.Context, hostId string, host client.Ho
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockHostsAPIMockRecorder) Update(ctx, hostId, host interface{}) *gomock.Call {
+func (mr *MockHostsAPIMockRecorder) Update(ctx, hostId, updateHost interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockHostsAPI)(nil).Update), ctx, hostId, host)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockHostsAPI)(nil).Update), ctx, hostId, updateHost)
 }

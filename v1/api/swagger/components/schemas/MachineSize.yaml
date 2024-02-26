@@ -1,5 +1,9 @@
 type: object
 description: Description of a specific machine size offering
+required: 
+  - ID
+  - Name
+  - Details
 properties:
   ID:
     type: string

@@ -53,9 +53,9 @@ type IPPoolsAPI interface {
 	   Update a single ip pool with matching ID. &#39;DefaultRoute&#39; can only be updated if ip pool is not currently in-use.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param ippoolId ID of IP pool to update
-	     - @param ipPool Update IPPool
+	     - @param updateIpPool Update IPPool
 
 	   @return IpPool
 	*/
-	Update(ctx _context.Context, ippoolId string, ipPool IpPool) (IpPool, *_nethttp.Response, error)
+	Update(ctx _context.Context, ippoolId string, updateIpPool UpdateIpPool) (IpPool, *_nethttp.Response, error)
 }

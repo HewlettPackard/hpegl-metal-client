@@ -1,0 +1,28 @@
+type: object
+description: >-
+  It provide partition size information.
+required:
+  - Equation
+  - MinSize
+  - MaxSize
+properties:
+  Equation:
+    type: string
+    description: >-
+      Represents a partition size in MiB. 
+      As a special case a size of 0 can be specified that will equate to the remaining space on the disk.
+    example: 500M
+  MinSize:
+    type: string
+    description: >-
+      It causes the value computed by formula execution to be rounded up to MinSize; if MinSize is non-zero.
+      Multipliers like M and G maybe used, e.g. 1M == (1024*1024)bytes. An empty string means zero bytes. 
+      If no multiplier is specified M is assumed.
+    example: 1M
+  MaxSize:
+    type: string
+    description: >-
+      MaxSize causes the value computed by formula execution to be rounded up to MaxSize; if MaxSize is non-zero.
+      Multipliers like M, G and T maybe used, e.g. 1M == (1024*1024)bytes. An empty string means zero bytes. 
+      If no multiplier is specified M is assumed. Equations may also be used e.g. 25%disk means MaxSize will cause any partition 
+      to never exceed 25% of device capacity.

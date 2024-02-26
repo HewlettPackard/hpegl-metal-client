@@ -3,9 +3,38 @@ allOf:
   - type: object
     required:
       - Description
+      - ServiceID
+      - ServiceFlavor
+      - ServiceVersion
+      - LocationID
+      - MachineSizeName
+      - MachineSizeID
+      - MachineID
+      - SSHKeyIDs
+      - SSHAuthorizedKeys
       - NetworkIDs
       - NetworkForDefaultRoute
       - NetworkUntagged
+      - PreAllocatedIPs
+      - ServiceNetsProviderMAC
+      - UserData
+      - NodeID
+      - ISCSIConfig
+      - Connections
+      - Deleted
+      - PortalCommOkay
+      - PowerStatus
+      - State
+      - Substate
+      - StateTime
+      - SubstateTime
+      - Progress
+      - Alert
+      - AlertInfo
+      - Workflow
+      - SummaryStatus
+      - Labels
+      - WWPNs
     properties:
       Description:
         type: string
@@ -162,9 +191,12 @@ allOf:
         $ref: ./HealthStatus.yaml
         description: Host health summary status
       Labels:
-        type: object
-        additionalProperties:
+        $ref: ./Labels.yaml
+      WWPNs:
+        type: array
+        description: FC HBA world wide port names
+        items:
           type: string
-        description: The map of label name to label value for the host.
         example:
-          serviceType: BMaaS
+          - 20:31:01:02:ad:f2:a8:e5
+          - 21:31:01:02:ad:f2:a8:e5

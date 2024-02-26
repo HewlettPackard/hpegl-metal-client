@@ -12,20 +12,24 @@
 package client
 // VolumeAllOf struct for VolumeAllOf
 type VolumeAllOf struct {
-	Description string `json:"Description,omitempty"`
+	Description string `json:"Description"`
 	// The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the get /available-resources call
-	FlavorID string `json:"FlavorID,omitempty"`
+	FlavorID string `json:"FlavorID"`
+	// The storage pool ID matching an entry in the StoragePools array returned as part of the get /available-resources call
+	StoragePoolID string `json:"StoragePoolID"`
 	// The size of the volume in KiB
-	Capacity int64 `json:"Capacity,omitempty"`
+	Capacity int64 `json:"Capacity"`
 	// Indicates if the volume can be attached to multiple hosts
-	Shareable bool `json:"Shareable,omitempty"`
+	Shareable bool `json:"Shareable"`
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
-	LocationID string `json:"LocationID,omitempty"`
-	State VolumeState `json:"State,omitempty"`
-	SubState VolumeSubState `json:"SubState,omitempty"`
-	Status VolumeStatus `json:"Status,omitempty"`
-	// The map of label name to label value for the volume.
-	Labels map[string]string `json:"Labels,omitempty"`
+	LocationID string `json:"LocationID"`
+	// The optional volume collection ID matching an entry in the VolumeCollections array returned as part of the get /available-resources call
+	VolumeCollectionID string `json:"VolumeCollectionID,omitempty"`
+	State VolumeState `json:"State"`
+	SubState VolumeSubState `json:"SubState"`
+	Status VolumeStatus `json:"Status"`
+	// The map of label name to label value for the resource.
+	Labels map[string]string `json:"Labels"`
 	// Serial number of the volume.
-	WWN string `json:"WWN,omitempty"`
+	WWN string `json:"WWN"`
 }

@@ -14,7 +14,9 @@ package client
 type ProjectAllOf struct {
 	Profile Profile `json:"Profile"`
 	Limits Limits `json:"Limits"`
-	Resources ProjectResources `json:"Resources,omitempty"`
+	Resources ProjectResources `json:"Resources"`
 	// Array listing the permitted site IDs
-	PermittedSites []string `json:"PermittedSites,omitempty"`
+	PermittedSites []string `json:"PermittedSites"`
+	// Array listing the permitted OS service images.
+	PermittedOSImages []string `json:"PermittedOSImages"`
 }

@@ -12,8 +12,8 @@
 package client
 // ProjectsInfo struct for ProjectsInfo
 type ProjectsInfo struct {
-	Projects []ProjectInfo `json:"Projects,omitempty"`
-	MachineSizes []MachineSizeInfo `json:"MachineSizes,omitempty"`
-	VolumeFlavors []VolumeFlavorsInfo `json:"VolumeFlavors,omitempty"`
-	Summary SummaryInfo `json:"Summary,omitempty"`
+	Projects []ProjectInfo `json:"Projects"`
+	MachineSizes []MachineSizeInfo `json:"MachineSizes"`
+	VolumeFlavors []VolumeFlavorsInfo `json:"VolumeFlavors"`
+	Summary SummaryInfo `json:"Summary"`
 }

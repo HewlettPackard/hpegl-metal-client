@@ -13,6 +13,6 @@ package client
 // Pool struct for Pool
 type Pool struct {
 	// List of fragments for the IP pool
-	Fragments []IpRange `json:"Fragments,omitempty"`
-	Stats IpPoolStats `json:"Stats,omitempty"`
+	Fragments []IpRange `json:"Fragments"`
+	Stats IpPoolStats `json:"Stats"`
 }

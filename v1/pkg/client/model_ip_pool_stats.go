@@ -13,9 +13,9 @@ package client
 // IpPoolStats struct for IpPoolStats
 type IpPoolStats struct {
 	// Total number of IPs (pool capacity)
-	Total int32 `json:"Total,omitempty"`
+	Total int32 `json:"Total"`
 	// Number of non allocated IPs
-	Available int32 `json:"Available,omitempty"`
+	Available int32 `json:"Available"`
 	// Number of allocated IPs
-	InUse int32 `json:"InUse,omitempty"`
+	InUse int32 `json:"InUse"`
 }

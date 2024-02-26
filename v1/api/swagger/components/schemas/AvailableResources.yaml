@@ -1,4 +1,16 @@
 type: object
+required:
+  - Images
+  - Locations
+  - Networks
+  - MachineSizes
+  - VolumeFlavors
+  - Volumes
+  - MachineInventory
+  - StorageInventory
+  - SSHKeys
+  - StoragePools
+  - VolumeCollections
 properties:
   Images:
     type: array
@@ -51,3 +63,13 @@ properties:
       a Host
     items:
       $ref: ./SSHKeyEntry.yaml
+  StoragePools:
+    type: array
+    description: Array listing the available storage pools
+    items:
+      $ref: ./StoragePool.yaml
+  VolumeCollections:
+    type: array
+    description: Array listing the available volume collections
+    items:
+      $ref: ./VolumeCollection.yaml

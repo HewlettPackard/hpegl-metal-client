@@ -1,0 +1,19 @@
+type: string
+enum: 
+  - swap
+  - ext2
+  - ext3
+  - ext4
+  - xfs
+  - btrfs
+  - vfat
+  - bios
+  - basic 
+  - lvm   
+  - luks  
+  - vmdiag
+  - vmfs  
+example: ext2
+description: >-
+  It defines the available partition types. This should be defined to correspond to
+  target OS known partition types (as known by name on that OS).

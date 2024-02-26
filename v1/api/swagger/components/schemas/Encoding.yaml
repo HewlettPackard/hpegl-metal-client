@@ -1,0 +1,7 @@
+type: string
+enum: 
+  - base64
+  - hex
+  - none
+example: base64
+description: Describes how a file's contents may be encoded.

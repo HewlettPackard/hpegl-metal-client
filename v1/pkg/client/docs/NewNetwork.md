@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **HostUse** | [**NetworkHostUse**](NetworkHostUse.md) |  | [optional] 
 **Purpose** | [**NetworkPurpose**](NetworkPurpose.md) |  | [optional] 
 **NewIPPool** | Pointer to [**NewIpPool**](NewIPPool.md) |  | [optional] 
+**VLAN** | **int32** | Optional VLAN ID of the network. If not specified, it is allocated from reserved pool. | [optional] 
+**VNI** | **int32** | Optional VNI ID of the network. If not specified, it is allocated from reserved pool if required. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

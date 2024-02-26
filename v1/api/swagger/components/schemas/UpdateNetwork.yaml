@@ -1,0 +1,15 @@
+allOf:
+  - $ref: ./UpdateResourceBase.yaml
+  - type: object
+    required: 
+      - Description
+      - HostUse
+      - Purpose
+    properties:
+      Description:
+        type: string
+        example: Private network for intra-cluster communication
+      HostUse:
+        $ref: ./NetworkHostUse.yaml
+      Purpose:
+        $ref: ./NetworkPurpose.yaml

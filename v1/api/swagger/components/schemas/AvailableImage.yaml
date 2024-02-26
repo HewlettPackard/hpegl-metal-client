@@ -1,5 +1,12 @@
 type: object
 description: Entry describing an available imaging service
+required: 
+  - ID
+  - Category
+  - Flavor
+  - Name
+  - Version
+  - Description
 properties:
   ID:
     type: string
@@ -17,6 +24,10 @@ properties:
     description: >-
       Second-level grouping of imaging services.  Typically references a
       specific OS or application.
+  Name:
+    type: string
+    example: HPE Ubuntu 18.04
+    description: Name of imaging service.
   Version:
     type: string
     example: '18.04'

@@ -1,4 +1,10 @@
 type: object
+required: 
+  - Name
+  - Ports
+  - HA
+  - Speed
+  - Networks
 properties:
   Name:
     type: string

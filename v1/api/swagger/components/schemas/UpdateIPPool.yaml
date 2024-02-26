@@ -1,0 +1,39 @@
+allOf:
+  - $ref: ./UpdateResourceBase.yaml
+  - type: object
+    required:
+      - Description
+      - DefaultRoute
+      - DNS
+      - Proxy
+      - NoProxy
+      - NTP
+    properties:
+      Description:
+        type: string
+        example: Description of IP pool
+      DefaultRoute:
+        type: string
+        example: 10.128.0.1
+      DNS:
+        type: array
+        items:
+          type: string
+          example: 8.8.8.8
+        description: List of DNS servers for the IP pool
+      Proxy:
+        type: string
+        example: http://proxy.firewall.com:8080/ or http://user:password@proxy.firewall.com:8080
+        description: >-
+          Optional web-proxy for external internet access should the pool
+          actually be behind a firewall
+      NoProxy:
+        type: string
+        example: localhost,15.10.0.10,test.com
+        description: Addresses or CIDRs for which proxy requests are not made
+      NTP:
+        type: array
+        items:
+          type: string
+          example: 15.0.0.1
+        description: List of NTP servers for the IP pool

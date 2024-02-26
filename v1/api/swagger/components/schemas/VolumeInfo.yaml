@@ -1,5 +1,19 @@
 type: object
 description: Description of the details about a pre-existing volume
+required:
+  - ID
+  - Name
+  - Description
+  - FlavorID
+  - StoragePoolID
+  - Capacity
+  - Shareable
+  - LocationID
+  - VolumeCollectionID
+  - DiscoveryIP
+  - TargetIQN
+  - State
+  - Status
 properties:
   ID:
     type: string
@@ -18,6 +32,10 @@ properties:
     type: string
     format: uuid
     description: The ID of the volume flavor requested when creating the volume
+  StoragePoolID:
+    type: string
+    format: uuid
+    description: The ID of the storage pool where volume resides
   Capacity:
     type: integer
     format: int64
@@ -30,6 +48,10 @@ properties:
     type: string
     format: uuid
     description: The location ID of the data center where the volume exists
+  VolumeCollectionID:
+    type: string
+    format: uuid
+    description: The ID of volume collection of which this volume is a member
   DiscoveryIP:
     type: string
     description: The discovery IP for the iSCSI volume

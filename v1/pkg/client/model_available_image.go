@@ -13,13 +13,15 @@ package client
 // AvailableImage Entry describing an available imaging service
 type AvailableImage struct {
 	// Unique ID for imaging service
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID"`
 	// Top-level grouping of imaging services that may reference an OS or application type
-	Category string `json:"Category,omitempty"`
+	Category string `json:"Category"`
 	// Second-level grouping of imaging services.  Typically references a specific OS or application.
-	Flavor string `json:"Flavor,omitempty"`
+	Flavor string `json:"Flavor"`
+	// Name of imaging service.
+	Name string `json:"Name"`
 	// Specific version of a imaging service flavor.
-	Version string `json:"Version,omitempty"`
+	Version string `json:"Version"`
 	// Additional image information for additional services added to the OS
-	Description string `json:"Description,omitempty"`
+	Description string `json:"Description"`
 }

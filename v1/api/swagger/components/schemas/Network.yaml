@@ -1,6 +1,14 @@
 allOf:
   - $ref: ./ResourceBase.yaml
   - type: object
+    required: 
+      - LocationID
+      - Description
+      - HostUse
+      - Purpose
+      - IPPoolID
+      - VLAN
+      - VNI
     properties:
       LocationID:
         $ref: ./LocationID.yaml

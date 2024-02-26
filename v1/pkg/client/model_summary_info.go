@@ -13,19 +13,19 @@ package client
 // SummaryInfo struct for SummaryInfo
 type SummaryInfo struct {
 	// Locations where resources exist for all listed projects
-	Locations []LocationInfo `json:"Locations,omitempty"`
+	Locations []LocationInfo `json:"Locations"`
 	// Number of hosts for all listed projects
-	NumHosts int32 `json:"NumHosts,omitempty"`
+	NumHosts int32 `json:"NumHosts"`
 	// Number of volumes for all listed projects
-	NumVolumes int32 `json:"NumVolumes,omitempty"`
+	NumVolumes int32 `json:"NumVolumes"`
 	// Total storage for all listed projects
-	TotalStorageGB int32 `json:"TotalStorageGB,omitempty"`
+	TotalStorageGB int32 `json:"TotalStorageGB"`
 	// Number of projects with OK health summary status
-	NumOK int32 `json:"NumOK,omitempty"`
+	NumOK int32 `json:"NumOK"`
 	// Number of projects with Warning health summary status
-	NumWarning int32 `json:"NumWarning,omitempty"`
+	NumWarning int32 `json:"NumWarning"`
 	// Number of projects with Critical health summary status
-	NumCritical int32 `json:"NumCritical,omitempty"`
+	NumCritical int32 `json:"NumCritical"`
 	// Number of projects with Unknown health summary status
-	NumUnknown int32 `json:"NumUnknown,omitempty"`
+	NumUnknown int32 `json:"NumUnknown"`
 }

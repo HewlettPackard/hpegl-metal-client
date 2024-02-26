@@ -12,5 +12,5 @@
 package client
 // Version struct for Version
 type Version struct {
-	Build string `json:"Build,omitempty"`
+	Build string `json:"Build"`
 }

@@ -1,5 +1,15 @@
 type: object
 description: Entry of a network available within a data center location
+required: 
+  - ID
+  - Name
+  - LocationID
+  - Description
+  - HostUse
+  - Purpose
+  - IPPoolID
+  - VLAN
+  - VNI
 properties:
   ID:
     type: string

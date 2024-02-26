@@ -1,0 +1,9 @@
+type: string
+enum:
+  - pxe
+  - uefi-shell
+  - svc-os
+  - na
+example: na
+description: >-
+  Indicates how the service expects the machine to be booted.

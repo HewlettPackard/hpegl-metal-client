@@ -4,6 +4,7 @@ required:
   - Volumes
   - VolumeCapacity
   - PrivateNetworks
+  - InstanceTypes
 properties:
   Hosts:
     type: integer

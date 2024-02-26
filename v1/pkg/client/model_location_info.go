@@ -13,10 +13,14 @@ package client
 // LocationInfo Entry on data center with its location ID and country, region, and data center description strings
 type LocationInfo struct {
 	// Unique ID for data center location
-	ID string `json:"ID,omitempty"`
-	Country Country `json:"Country,omitempty"`
+	ID string `json:"ID"`
+	Country Country `json:"Country"`
 	// Region within the indicated country
-	Region string `json:"Region,omitempty"`
+	Region string `json:"Region"`
 	// Data center descriptor
-	DataCenter string `json:"DataCenter,omitempty"`
+	DataCenter string `json:"DataCenter"`
+	// Indicates whether or not the fabric dedicated for private networks supports VLAN ID.
+	PrivateNetworkVIDSupport bool `json:"PrivateNetworkVIDSupport"`
+	// Indicates whether or not the fabric dedicated for private networks supports VNI ID.
+	PrivateNetworkVNISupport bool `json:"PrivateNetworkVNISupport"`
 }

@@ -13,9 +13,9 @@ package client
 // SshKeyEntry An entry listing an SSH key that is available for use when creating HostState
 type SshKeyEntry struct {
 	// Unique ID of the SSH key entry
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID"`
 	// Name or description of the stored SSH key
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name"`
 	// SSH key value
-	Key string `json:"Key,omitempty"`
+	Key string `json:"Key"`
 }

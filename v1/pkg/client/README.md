@@ -50,6 +50,7 @@ Class | Method | HTTP request | Description
 *HostsApi* | [**PowerOff**](docs/HostsApi.md#poweroff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 *HostsApi* | [**PowerOn**](docs/HostsApi.md#poweron) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
 *HostsApi* | [**PowerReset**](docs/HostsApi.md#powerreset) | **Post** /hosts/{hostId}/powerreset | Reset Host by ID
+*HostsApi* | [**Reimage**](docs/HostsApi.md#reimage) | **Post** /hosts/{hostId}/reimage | Reimage Host by ID
 *HostsApi* | [**Replace**](docs/HostsApi.md#replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 *HostsApi* | [**Update**](docs/HostsApi.md#update) | **Put** /hosts/{hostId} | Update an existing Host
 *IppoolsApi* | [**AllocateIPs**](docs/IppoolsApi.md#allocateips) | **Post** /ippools/{ippoolId}/allocation | Allocate IPs from the pool
@@ -68,12 +69,16 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
 *ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
+*ServicesApi* | [**Add**](docs/ServicesApi.md#add) | **Post** /services | Create a new OS service image
+*ServicesApi* | [**Delete**](docs/ServicesApi.md#delete) | **Delete** /services/{serviceId} | Delete an OS service image
+*ServicesApi* | [**GetByID**](docs/ServicesApi.md#getbyid) | **Get** /services/{serviceId} | Retrieve an OS service image
+*ServicesApi* | [**List**](docs/ServicesApi.md#list) | **Get** /services | List of all OS service images within an tenant
+*ServicesApi* | [**Update**](docs/ServicesApi.md#update) | **Put** /services/{serviceId} | Update an OS service image by its ID
 *SshkeysApi* | [**Add**](docs/SshkeysApi.md#add) | **Post** /sshkeys | Add a new SSH Key
 *SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID
 *SshkeysApi* | [**List**](docs/SshkeysApi.md#list) | **Get** /sshkeys | List all sshkeys in project
 *SshkeysApi* | [**Update**](docs/SshkeysApi.md#update) | **Put** /sshkeys/{sshkeyId} | Update an existing SSH Key.  Only &#39;Name&#39; or &#39;Key&#39; fields can be changed.
-*UsageReportsApi* | [**Get**](docs/UsageReportsApi.md#get) | **Get** /usage-reports | Get a usage report
 *VersionApi* | [**Get**](docs/VersionApi.md#get) | **Get** /version | Get api server build version
 *VolumeAttachmentsApi* | [**Add**](docs/VolumeAttachmentsApi.md#add) | **Post** /volume-attachments | Create a new VolumeAttachment
 *VolumeAttachmentsApi* | [**Delete**](docs/VolumeAttachmentsApi.md#delete) | **Delete** /volume-attachments/{attachmentId} | Delete a VolumeAttachment
@@ -91,13 +96,21 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AddVolume](docs/AddVolume.md)
+ - [Algorithm](docs/Algorithm.md)
  - [Allocation](docs/Allocation.md)
  - [AllocationStorage](docs/AllocationStorage.md)
+ - [AttributeRule](docs/AttributeRule.md)
  - [AvailableImage](docs/AvailableImage.md)
  - [AvailableNetwork](docs/AvailableNetwork.md)
  - [AvailableResources](docs/AvailableResources.md)
+ - [BondMode](docs/BondMode.md)
+ - [BootMethod](docs/BootMethod.md)
+ - [ClassifierOperator](docs/ClassifierOperator.md)
  - [Country](docs/Country.md)
+ - [DiskPartitions](docs/DiskPartitions.md)
+ - [Encoding](docs/Encoding.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [FileInfo](docs/FileInfo.md)
  - [FlavorDesc](docs/FlavorDesc.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Host](docs/Host.md)
@@ -110,8 +123,6 @@ Class | Method | HTTP request | Description
  - [HostServerPort](docs/HostServerPort.md)
  - [HostState](docs/HostState.md)
  - [HostSubstate](docs/HostSubstate.md)
- - [HostUsageEntry](docs/HostUsageEntry.md)
- - [HostUsageEntryAllOf](docs/HostUsageEntryAllOf.md)
  - [IpAllocation](docs/IpAllocation.md)
  - [IpPool](docs/IpPool.md)
  - [IpPoolAllOf](docs/IpPoolAllOf.md)
@@ -122,9 +133,12 @@ Class | Method | HTTP request | Description
  - [IscsiParameters](docs/IscsiParameters.md)
  - [Limits](docs/Limits.md)
  - [LocationInfo](docs/LocationInfo.md)
+ - [MachineClassifier](docs/MachineClassifier.md)
+ - [MachineClassifierRule](docs/MachineClassifierRule.md)
  - [MachineInventory](docs/MachineInventory.md)
  - [MachineSize](docs/MachineSize.md)
  - [MachineSizeInfo](docs/MachineSizeInfo.md)
+ - [MultiPartFile](docs/MultiPartFile.md)
  - [Netmask](docs/Netmask.md)
  - [Network](docs/Network.md)
  - [NetworkAllOf](docs/NetworkAllOf.md)
@@ -137,6 +151,17 @@ Class | Method | HTTP request | Description
  - [NewSshKey](docs/NewSshKey.md)
  - [NewVolume](docs/NewVolume.md)
  - [NewVolumeAttachment](docs/NewVolumeAttachment.md)
+ - [OpArg](docs/OpArg.md)
+ - [OpArgType](docs/OpArgType.md)
+ - [OsServiceImage](docs/OsServiceImage.md)
+ - [OsServiceImageAllOf](docs/OsServiceImageAllOf.md)
+ - [OsServiceImageApproach](docs/OsServiceImageApproach.md)
+ - [OsServiceImageOrigin](docs/OsServiceImageOrigin.md)
+ - [Partition](docs/Partition.md)
+ - [PartitionFormula](docs/PartitionFormula.md)
+ - [PartitionTable](docs/PartitionTable.md)
+ - [PartitionType](docs/PartitionType.md)
+ - [PassedInfo](docs/PassedInfo.md)
  - [Pool](docs/Pool.md)
  - [Profile](docs/Profile.md)
  - [Project](docs/Project.md)
@@ -153,10 +178,30 @@ Class | Method | HTTP request | Description
  - [SshKeyAllOf](docs/SshKeyAllOf.md)
  - [SshKeyEntry](docs/SshKeyEntry.md)
  - [StorageInventory](docs/StorageInventory.md)
+ - [StoragePool](docs/StoragePool.md)
  - [SummaryInfo](docs/SummaryInfo.md)
- - [UsageEntryBase](docs/UsageEntryBase.md)
- - [UsageReport](docs/UsageReport.md)
+ - [Target](docs/Target.md)
+ - [Templating](docs/Templating.md)
+ - [TemplatingInfo](docs/TemplatingInfo.md)
+ - [UpdateHost](docs/UpdateHost.md)
+ - [UpdateHostAllOf](docs/UpdateHostAllOf.md)
+ - [UpdateHostIscsiConfig](docs/UpdateHostIscsiConfig.md)
+ - [UpdateIpPool](docs/UpdateIpPool.md)
+ - [UpdateIpPoolAllOf](docs/UpdateIpPoolAllOf.md)
+ - [UpdateLimits](docs/UpdateLimits.md)
+ - [UpdateNetwork](docs/UpdateNetwork.md)
+ - [UpdateNetworkAllOf](docs/UpdateNetworkAllOf.md)
+ - [UpdateProfile](docs/UpdateProfile.md)
+ - [UpdateProject](docs/UpdateProject.md)
+ - [UpdateProjectAllOf](docs/UpdateProjectAllOf.md)
+ - [UpdateResourceBase](docs/UpdateResourceBase.md)
+ - [UpdateSshKey](docs/UpdateSshKey.md)
+ - [UpdateVolume](docs/UpdateVolume.md)
+ - [UpdateVolumeAllOf](docs/UpdateVolumeAllOf.md)
  - [UseRecord](docs/UseRecord.md)
+ - [UserDefinedSteps](docs/UserDefinedSteps.md)
+ - [UserOp](docs/UserOp.md)
+ - [UserOpEnum](docs/UserOpEnum.md)
  - [VaStateEnum](docs/VaStateEnum.md)
  - [VafsConfig](docs/VafsConfig.md)
  - [Version](docs/Version.md)
@@ -165,14 +210,13 @@ Class | Method | HTTP request | Description
  - [VolumeAttachHostUuid](docs/VolumeAttachHostUuid.md)
  - [VolumeAttachment](docs/VolumeAttachment.md)
  - [VolumeAttachmentAllOf](docs/VolumeAttachmentAllOf.md)
+ - [VolumeCollection](docs/VolumeCollection.md)
  - [VolumeFlavor](docs/VolumeFlavor.md)
  - [VolumeFlavorsInfo](docs/VolumeFlavorsInfo.md)
  - [VolumeInfo](docs/VolumeInfo.md)
  - [VolumeState](docs/VolumeState.md)
  - [VolumeStatus](docs/VolumeStatus.md)
  - [VolumeSubState](docs/VolumeSubState.md)
- - [VolumeUsageEntry](docs/VolumeUsageEntry.md)
- - [VolumeUsageEntryAllOf](docs/VolumeUsageEntryAllOf.md)
 
 
 ## Documentation For Authorization

@@ -16,12 +16,12 @@ import (
 // HostAlertInfo struct for HostAlertInfo
 type HostAlertInfo struct {
 	// Identifies the type of alert
-	Alert string `json:"Alert,omitempty"`
-	State HostState `json:"State,omitempty"`
-	Substate HostSubstate `json:"Substate,omitempty"`
+	Alert string `json:"Alert"`
+	State HostState `json:"State"`
+	Substate HostSubstate `json:"Substate"`
 	// Provides some detailed description about the Alert
-	Message string `json:"Message,omitempty"`
-	Time time.Time `json:"Time,omitempty"`
+	Message string `json:"Message"`
+	Time time.Time `json:"Time"`
 	// Used to acknowledge the alert so that the UI can list only unacknowledged alerts
-	Ack bool `json:"Ack,omitempty"`
+	Ack bool `json:"Ack"`
 }

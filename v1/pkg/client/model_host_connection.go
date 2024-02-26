@@ -12,11 +12,11 @@
 package client
 // HostConnection struct for HostConnection
 type HostConnection struct {
-	Name string `json:"Name,omitempty"`
-	Ports []HostServerPort `json:"Ports,omitempty"`
+	Name string `json:"Name"`
+	Ports []HostServerPort `json:"Ports"`
 	// Indicates whether the network connection should be a link aggregation group (LAG)
-	HA bool `json:"HA,omitempty"`
+	HA bool `json:"HA"`
 	// The speed of the physical connection from the server to the top of rack switch
-	Speed string `json:"Speed,omitempty"`
-	Networks []HostNetworkConnection `json:"Networks,omitempty"`
+	Speed string `json:"Speed"`
+	Networks []HostNetworkConnection `json:"Networks"`
 }

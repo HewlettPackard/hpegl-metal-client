@@ -1,4 +1,8 @@
 type: object
+required: 
+  - Total
+  - Available
+  - InUse
 properties:
   Total:
     type: integer

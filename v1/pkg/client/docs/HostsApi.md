@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**PowerOff**](HostsApi.md#PowerOff) | **Post** /hosts/{hostId}/poweroff | Power off Host by ID
 [**PowerOn**](HostsApi.md#PowerOn) | **Post** /hosts/{hostId}/poweron | Power on Host by ID
 [**PowerReset**](HostsApi.md#PowerReset) | **Post** /hosts/{hostId}/powerreset | Reset Host by ID
+[**Reimage**](HostsApi.md#Reimage) | **Post** /hosts/{hostId}/reimage | Reimage Host by ID
 [**Replace**](HostsApi.md#Replace) | **Post** /hosts/{hostId}/replace | Replace Host by ID
 [**Update**](HostsApi.md#Update) | **Put** /hosts/{hostId} | Update an existing Host
 
@@ -368,13 +369,47 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## Reimage
+
+> Host Reimage(ctx, hostId)
+
+Reimage Host by ID
+
+Re-deploys a host to the same machine. WARNING -- all drives will be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostId** | **string**| ID of Host to reimage | 
+
+### Return type
+
+[**Host**](Host.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## Replace
 
 > Host Replace(ctx, hostId)
 
 Replace Host by ID
 
-Re-deploys a host with a new machine that satisfies the current host settings. Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
+Re-deploys a host with a new machine that satisfies the current host settings. WARNING -- all drives will be erased! Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off.  The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
 
 ### Required Parameters
 
@@ -404,7 +439,7 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> Host Update(ctx, hostId, host)
+> Host Update(ctx, hostId, updateHost)
 
 Update an existing Host
 
@@ -417,7 +452,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **hostId** | **string**| ID of host to update | 
-**host** | [**Host**](Host.md)| Updated Host | 
+**updateHost** | [**UpdateHost**](UpdateHost.md)| Updated Host | 
 
 ### Return type
 
