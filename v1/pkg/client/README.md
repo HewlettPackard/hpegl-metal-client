@@ -79,7 +79,6 @@ Class | Method | HTTP request | Description
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID
 *SshkeysApi* | [**List**](docs/SshkeysApi.md#list) | **Get** /sshkeys | List all sshkeys in project
 *SshkeysApi* | [**Update**](docs/SshkeysApi.md#update) | **Put** /sshkeys/{sshkeyId} | Update an existing SSH Key.  Only &#39;Name&#39; or &#39;Key&#39; fields can be changed.
-*UsageReportsApi* | [**Get**](docs/UsageReportsApi.md#get) | **Get** /usage-reports | Get a usage report
 *VersionApi* | [**Get**](docs/VersionApi.md#get) | **Get** /version | Get api server build version
 *VolumeAttachmentsApi* | [**Add**](docs/VolumeAttachmentsApi.md#add) | **Post** /volume-attachments | Create a new VolumeAttachment
 *VolumeAttachmentsApi* | [**Delete**](docs/VolumeAttachmentsApi.md#delete) | **Delete** /volume-attachments/{attachmentId} | Delete a VolumeAttachment
@@ -124,8 +123,6 @@ Class | Method | HTTP request | Description
  - [HostServerPort](docs/HostServerPort.md)
  - [HostState](docs/HostState.md)
  - [HostSubstate](docs/HostSubstate.md)
- - [HostUsageEntry](docs/HostUsageEntry.md)
- - [HostUsageEntryAllOf](docs/HostUsageEntryAllOf.md)
  - [IpAllocation](docs/IpAllocation.md)
  - [IpPool](docs/IpPool.md)
  - [IpPoolAllOf](docs/IpPoolAllOf.md)
@@ -201,8 +198,6 @@ Class | Method | HTTP request | Description
  - [UpdateSshKey](docs/UpdateSshKey.md)
  - [UpdateVolume](docs/UpdateVolume.md)
  - [UpdateVolumeAllOf](docs/UpdateVolumeAllOf.md)
- - [UsageEntryBase](docs/UsageEntryBase.md)
- - [UsageReport](docs/UsageReport.md)
  - [UseRecord](docs/UseRecord.md)
  - [UserDefinedSteps](docs/UserDefinedSteps.md)
  - [UserOp](docs/UserOp.md)
@@ -215,14 +210,13 @@ Class | Method | HTTP request | Description
  - [VolumeAttachHostUuid](docs/VolumeAttachHostUuid.md)
  - [VolumeAttachment](docs/VolumeAttachment.md)
  - [VolumeAttachmentAllOf](docs/VolumeAttachmentAllOf.md)
+ - [VolumeCollection](docs/VolumeCollection.md)
  - [VolumeFlavor](docs/VolumeFlavor.md)
  - [VolumeFlavorsInfo](docs/VolumeFlavorsInfo.md)
  - [VolumeInfo](docs/VolumeInfo.md)
  - [VolumeState](docs/VolumeState.md)
  - [VolumeStatus](docs/VolumeStatus.md)
  - [VolumeSubState](docs/VolumeSubState.md)
- - [VolumeUsageEntry](docs/VolumeUsageEntry.md)
- - [VolumeUsageEntryAllOf](docs/VolumeUsageEntryAllOf.md)
 
 
 ## Documentation For Authorization

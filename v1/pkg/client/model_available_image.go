@@ -18,6 +18,8 @@ type AvailableImage struct {
 	Category string `json:"Category"`
 	// Second-level grouping of imaging services.  Typically references a specific OS or application.
 	Flavor string `json:"Flavor"`
+	// Name of imaging service.
+	Name string `json:"Name"`
 	// Specific version of a imaging service flavor.
 	Version string `json:"Version"`
 	// Additional image information for additional services added to the OS

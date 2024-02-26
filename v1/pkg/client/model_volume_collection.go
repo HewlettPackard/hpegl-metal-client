@@ -10,14 +10,16 @@
  */
 
 package client
-// HostUsageEntryAllOf struct for HostUsageEntryAllOf
-type HostUsageEntryAllOf struct {
-	// Name of the MachineSize requested when host was created
-	MachineSizeName string `json:"MachineSizeName"`
-	// Unique ID of the MachineSize requested when host was created
-	MachineSizeID string `json:"MachineSizeID"`
-	// Name of the associated Host
-	HostName string `json:"HostName"`
-	// Unique ID of the associated Host
-	HostID string `json:"HostID"`
+// VolumeCollection Volume collection within a data center location
+type VolumeCollection struct {
+	// The ID of the volume collection resource that can be used while creating a volume
+	ID string `json:"ID"`
+	// The name of the volume collection resource
+	Name string `json:"Name"`
+	// The location ID of the data center where the volume collection resides
+	LocationID string `json:"LocationID"`
+	// The description of the volume collection resource
+	Description string `json:"Description"`
+	// IDs of the storage pools that are valid for this volume collection as listed in the Storage Pools array
+	StoragePoolIDs []string `json:"StoragePoolIDs,omitempty"`
 }

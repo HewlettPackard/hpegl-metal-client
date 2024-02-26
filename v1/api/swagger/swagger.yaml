@@ -75,10 +75,6 @@ tags:
       create volume calls. This provides a detailed information about the OS imaging options, 
       the machine size (a.k.a. Compute Instance Type) options, the storage volume options, 
       data center locations, and such that are needed when creating hosts and volumes.
-  - name: usage-reports
-    description: >
-      Operations related to retrieving information about resource usage within
-      the project.
   - name: projects-info
     description: |
       Operations related to listing information related to projects.
@@ -143,8 +139,6 @@ paths:
     $ref: paths/networks.yaml
   /networks/{networkId}:
     $ref: paths/networks@{networkId}.yaml
-  /usage-reports:
-    $ref: paths/usage-reports.yaml
   /ippools:
     $ref: paths/ippools.yaml
   /ippools/{ippoolId}:

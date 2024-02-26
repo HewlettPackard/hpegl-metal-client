@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Capacity** | **int64** | The size of the volume in KiB | 
 **Shareable** | **bool** | Indicates if the volume can be attached to multiple hosts | 
 **LocationID** | **string** | The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host. | 
+**VolumeCollectionID** | **string** | The optional volume collection ID matching an entry in the VolumeCollections array returned as part of the get /available-resources call | [optional] 
 **State** | [**VolumeState**](VolumeState.md) |  | 
 **SubState** | [**VolumeSubState**](VolumeSubState.md) |  | 
 **Status** | [**VolumeStatus**](VolumeStatus.md) |  | 

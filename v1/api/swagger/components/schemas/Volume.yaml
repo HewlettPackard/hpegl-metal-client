@@ -46,6 +46,12 @@ allOf:
           of those listed by the LocationInfo array returned as part of the get
           /available-resources call. Any volumes must be in the same location as
           their attached Host.
+      VolumeCollectionID:
+        type: string
+        format: uuid
+        description: >-
+          The optional volume collection ID matching an entry in the VolumeCollections array
+          returned as part of the get /available-resources call
       State:
         $ref: ./VolumeState.yaml
       SubState:
