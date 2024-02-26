@@ -5,7 +5,7 @@ go 1.21.0
 require (
 	github.com/antihax/optional v1.0.0
 	github.com/golang/mock v1.6.0
-	github.com/vburenin/ifacemaker v1.2.0
+	github.com/vburenin/ifacemaker v1.2.1
 	golang.org/x/oauth2 v0.0.0-20220718184931-c8730f7fcb92
 )
 
