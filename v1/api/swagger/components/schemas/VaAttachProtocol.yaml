@@ -1,0 +1,9 @@
+description: >-
+  Current volume attachment protocol expressed as a string enum value (iscsi, nvmetcp, fuse, fc)
+type: string
+enum:
+  - iscsi
+  - nvmetcp
+  - fuse
+  - fc
+ 

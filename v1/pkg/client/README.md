@@ -202,6 +202,7 @@ Class | Method | HTTP request | Description
  - [UserDefinedSteps](docs/UserDefinedSteps.md)
  - [UserOp](docs/UserOp.md)
  - [UserOpEnum](docs/UserOpEnum.md)
+ - [VaAttachProtocol](docs/VaAttachProtocol.md)
  - [VaStateEnum](docs/VaStateEnum.md)
  - [VafsConfig](docs/VafsConfig.md)
  - [Version](docs/Version.md)

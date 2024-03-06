@@ -4764,6 +4764,15 @@ components:
       - TicketExpiryTime
       - UserName
       type: object
+    VaAttachProtocol:
+      description: Current volume attachment protocol expressed as a string enum value
+        (iscsi, nvmetcp, fuse, fc)
+      enum:
+      - iscsi
+      - nvmetcp
+      - fuse
+      - fc
+      type: string
     ProtocolParameters:
       example:
         ISCSI:
@@ -6473,7 +6482,10 @@ components:
           description: File share specific configuration parameters
           nullable: true
           type: object
+        AttachProtocol:
+          $ref: '#/components/schemas/VaAttachProtocol'
       required:
+      - AttachProtocol
       - CHAPSecret
       - CHAPUserName
       - FSConfig

@@ -13,6 +13,7 @@ allOf:
       - VolumeTargetIPAddress
       - State
       - FSConfig
+      - AttachProtocol
     properties:
       VolumeID:
         type: string
@@ -63,3 +64,5 @@ allOf:
         type: object
         allOf:
         - $ref: ./VAFSConfig.yaml
+      AttachProtocol:
+        $ref: ./VaAttachProtocol.yaml
