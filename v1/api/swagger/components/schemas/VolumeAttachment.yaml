@@ -65,4 +65,4 @@ allOf:
         allOf:
         - $ref: ./VAFSConfig.yaml
       AttachProtocol:
-        $ref: ./VaAttachProtocol.yaml
+        $ref: ./ProtocolParameters.yaml

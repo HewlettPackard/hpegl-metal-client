@@ -3,3 +3,4 @@ type: string
 enum:
   - unknown
   - iscsi
+  - fc

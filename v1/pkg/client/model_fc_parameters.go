@@ -10,13 +10,10 @@
  */
 
 package client
-// VaAttachProtocol Current volume attachment protocol expressed as a string enum value (iscsi, nvmetcp, fuse, fc)
-type VaAttachProtocol string
-
-// List of VaAttachProtocol
-const (
-	VAATTACHPROTOCOL_ISCSI VaAttachProtocol = "iscsi"
-	VAATTACHPROTOCOL_NVMETCP VaAttachProtocol = "nvmetcp"
-	VAATTACHPROTOCOL_FUSE VaAttachProtocol = "fuse"
-	VAATTACHPROTOCOL_FC VaAttachProtocol = "fc"
-)
+// FcParameters struct for FcParameters
+type FcParameters struct {
+	// The IP address of the host in dotted notation.
+	HostIPAddress string `json:"HostIPAddress"`
+	// FC Initiator world wide port names.
+	InitiatorName string `json:"InitiatorName"`
+}

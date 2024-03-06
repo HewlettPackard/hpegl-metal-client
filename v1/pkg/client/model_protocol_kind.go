@@ -17,4 +17,5 @@ type ProtocolKind string
 const (
 	PROTOCOLKIND_UNKNOWN ProtocolKind = "unknown"
 	PROTOCOLKIND_ISCSI ProtocolKind = "iscsi"
+	PROTOCOLKIND_FC ProtocolKind = "fc"
 )
