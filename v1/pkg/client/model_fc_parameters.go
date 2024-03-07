@@ -14,6 +14,6 @@ package client
 type FcParameters struct {
 	// The IP address of the host in dotted notation.
 	HostIPAddress string `json:"HostIPAddress"`
-	// FC Initiator world wide port names.
+	// FC Initiator name.
 	InitiatorName string `json:"InitiatorName"`
 }

@@ -11,4 +11,4 @@ properties:
     $ref: ./FCParameters.yaml
     description: >-
       The FC parameters for this attachment. This value must be specified if
-      Protocol is fc
+      Protocol is FC

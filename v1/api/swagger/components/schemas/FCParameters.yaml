@@ -10,5 +10,5 @@ properties:
   InitiatorName:
     type: string
     description: >-
-      FC Initiator world wide port names.
+      FC Initiator name.
     example: 51:40:2e:c0:17:32:9a:e8
