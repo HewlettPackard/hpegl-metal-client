@@ -33,5 +33,5 @@ type VolumeAttachmentAllOf struct {
 	State VaStateEnum `json:"State"`
 	// File share specific configuration parameters
 	FSConfig *VafsConfig `json:"FSConfig"`
-	AttachProtocol ProtocolParameters `json:"AttachProtocol"`
+	AttachProtocol ProtocolKind `json:"AttachProtocol"`
 }

@@ -3354,9 +3354,6 @@ components:
             CHAPSecret: CHAPSecret
             CHAPUserName: CHAPUserName
             InitiatorName: iqn.1234.com.hpe-initiator
-          FC:
-            HostIPAddress: 10.1.2.3
-            InitiatorName: 51:40:2e:c0:17:32:9a:e8
         Name: My Object Name
       properties:
         Name:
@@ -4767,6 +4764,13 @@ components:
       - TicketExpiryTime
       - UserName
       type: object
+    ProtocolKind:
+      description: The protocol to be used to attach the volume
+      enum:
+      - unknown
+      - iscsi
+      - fc
+      type: string
     ProtocolParameters:
       example:
         ISCSI:
@@ -4774,16 +4778,11 @@ components:
           CHAPSecret: CHAPSecret
           CHAPUserName: CHAPUserName
           InitiatorName: iqn.1234.com.hpe-initiator
-        FC:
-          HostIPAddress: 10.1.2.3
-          InitiatorName: 51:40:2e:c0:17:32:9a:e8
       properties:
         Protocol:
           $ref: '#/components/schemas/ProtocolKind'
         ISCSI:
           $ref: '#/components/schemas/ISCSIParameters'
-        FC:
-          $ref: '#/components/schemas/FCParameters'
       type: object
     LocationID:
       description: The location ID is the data center location of the resource.  The
@@ -5661,13 +5660,6 @@ components:
       - InfoLink
       - Tooltip
       type: object
-    ProtocolKind:
-      description: The protocol to be used to attach the volume
-      enum:
-      - unknown
-      - iscsi
-      - fc
-      type: string
     ISCSIParameters:
       example:
         HostIPAddress: 10.1.2.3
@@ -5692,23 +5684,6 @@ components:
         CHAPUserName:
           description: CHAPUserName is the CHAP username to use for CHAP authentication.
             If CHAPSecret is specified, CHAPUserName must also be specified.
-          type: string
-      required:
-      - HostIPAddress
-      - InitiatorName
-      type: object
-    FCParameters:
-      example:
-        HostIPAddress: 10.1.2.3
-        InitiatorName: 51:40:2e:c0:17:32:9a:e8
-      properties:
-        HostIPAddress:
-          description: The IP address of the host in dotted notation.
-          example: 10.1.2.3
-          type: string
-        InitiatorName:
-          description: FC Initiator name.
-          example: 51:40:2e:c0:17:32:9a:e8
           type: string
       required:
       - HostIPAddress
@@ -6500,7 +6475,7 @@ components:
           nullable: true
           type: object
         AttachProtocol:
-          $ref: '#/components/schemas/ProtocolParameters'
+          $ref: '#/components/schemas/ProtocolKind'
       required:
       - AttachProtocol
       - CHAPSecret

@@ -7,8 +7,3 @@ properties:
     description: >-
       The ISCSI parameters for this attachment. This value must be specified if
       Protocol is iscsi
-  FC:
-    $ref: ./FCParameters.yaml
-    description: >-
-      The FC parameters for this attachment. This value must be specified if
-      Protocol is FC

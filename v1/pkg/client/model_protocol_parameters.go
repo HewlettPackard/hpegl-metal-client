@@ -14,5 +14,4 @@ package client
 type ProtocolParameters struct {
 	Protocol ProtocolKind `json:"Protocol,omitempty"`
 	ISCSI IscsiParameters `json:"ISCSI,omitempty"`
-	FC FcParameters `json:"FC,omitempty"`
 }

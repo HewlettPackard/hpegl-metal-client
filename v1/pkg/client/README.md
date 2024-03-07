@@ -110,7 +110,6 @@ Class | Method | HTTP request | Description
  - [DiskPartitions](docs/DiskPartitions.md)
  - [Encoding](docs/Encoding.md)
  - [ErrorResponse](docs/ErrorResponse.md)
- - [FcParameters](docs/FcParameters.md)
  - [FileInfo](docs/FileInfo.md)
  - [FlavorDesc](docs/FlavorDesc.md)
  - [HealthStatus](docs/HealthStatus.md)
