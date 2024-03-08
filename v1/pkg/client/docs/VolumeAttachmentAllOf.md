@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **VolumeTargetIPAddress** | **string** | VolumeTargetIPAddress is the IPV4 address of the iSCSI volume export | 
 **State** | [**VaStateEnum**](VaStateEnum.md) |  | 
 **FSConfig** | Pointer to [**VafsConfig**](VAFSConfig.md) | File share specific configuration parameters | 
+**AttachProtocol** | [**ProtocolKind**](ProtocolKind.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
