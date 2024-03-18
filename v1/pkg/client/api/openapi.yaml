@@ -2834,7 +2834,6 @@ components:
       - $ref: '#/components/schemas/Host_allOf'
     NewHost:
       example:
-        MachineID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Description: Description of new Host
         NetworkUntagged: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
         UserData: UserData
@@ -2906,10 +2905,6 @@ components:
             the MachineInventory array provided by the get /available-resources call
             to find a location with an adequate inventory of machines with the desired
             machine size.
-          format: uuid
-          type: string
-        MachineID:
-          description: The machine ID is normally not used.
           format: uuid
           type: string
         SSHKeyIDs:
