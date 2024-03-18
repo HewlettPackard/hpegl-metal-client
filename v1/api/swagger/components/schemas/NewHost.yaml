@@ -49,10 +49,6 @@ properties:
       MachineInventory array provided by the get /available-resources call to
       find a location with an adequate inventory of machines with the desired
       machine size.
-  MachineID:
-    type: string
-    format: uuid
-    description: The machine ID is normally not used.
   SSHKeyIDs:
     type: array
     description: >-

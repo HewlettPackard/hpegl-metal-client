@@ -21,8 +21,6 @@ type NewHost struct {
 	LocationID string `json:"LocationID"`
 	// The machine size ID must be one of those listed in the MachineSizes array returned as part of the get /available-resources call.  This array provides the name and detailed description for each machine size.  Use the MachineInventory array provided by the get /available-resources call to find a location with an adequate inventory of machines with the desired machine size.
 	MachineSizeID string `json:"MachineSizeID"`
-	// The machine ID is normally not used.
-	MachineID string `json:"MachineID,omitempty"`
 	// These IDs must correspond to the IDs for SSH keys already created within the context of the project.  These SSH keys and those included as SSHAuthorizedKeys will be used together to provision SSH keys when the machine is imaged.
 	SSHKeyIDs []string `json:"SSHKeyIDs"`
 	// The list of IDs corresponding to the networks that will be provisioned to the host. These networks must be among those listed in the Networks array returned by the get /available-resources call.  This list must include the ID for any network identified by the HostUseEnum as Required.
