@@ -2696,7 +2696,7 @@ components:
             type: string
           type: array
         VolumeReplicationEnabled:
-          description: Indicates whether volume replication is enabled for this Project
+          description: Indicates whether volume replication is enabled for this Project.
           type: boolean
       required:
       - Limits
@@ -6041,7 +6041,7 @@ components:
             type: string
           type: array
         VolumeReplicationEnabled:
-          description: Indicates whether volume replication is enabled for this Project
+          description: Indicates whether volume replication is enabled for this Project.
           type: boolean
       required:
       - Limits

@@ -35,4 +35,4 @@ properties:
       - 91eec8b5-6460-4532-aad1-47b983edb63c
   VolumeReplicationEnabled:
     type: boolean
-    description: Indicates whether volume replication is enabled for this Project
+    description: Indicates whether volume replication is enabled for this Project.
