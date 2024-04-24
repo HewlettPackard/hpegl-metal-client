@@ -6049,6 +6049,7 @@ components:
       - PermittedSites
       - Profile
       - Resources
+      - VolumeReplicationEnabled
     UpdateProject_allOf:
       properties:
         Profile:
