@@ -2655,7 +2655,7 @@ components:
         PermittedSites:
         - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - 91eec8b5-6460-4532-aad1-47b983edb63c
-        ReplicationEnabled: true
+        VolumeReplicationEnabled: true
         Profile:
           TeamDesc: TeamDesc
           EmailVerified: true
@@ -2695,7 +2695,7 @@ components:
             format: uuid
             type: string
           type: array
-        ReplicationEnabled:
+        VolumeReplicationEnabled:
           description: Indicates whether volume replication is enabled for this Project
           type: boolean
       required:
@@ -6040,7 +6040,7 @@ components:
             format: uuid
             type: string
           type: array
-        ReplicationEnabled:
+        VolumeReplicationEnabled:
           description: Indicates whether volume replication is enabled for this Project
           type: boolean
       required:

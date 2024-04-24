@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Resources** | [**ProjectResources**](ProjectResources.md) |  | 
 **PermittedSites** | **[]string** | Array listing the permitted site IDs | 
 **PermittedOSImages** | **[]string** | Array listing the permitted OS service images. | 
-**ReplicationEnabled** | **bool** | Indicates whether volume replication is enabled for this Project | [optional] 
+**VolumeReplicationEnabled** | **bool** | Indicates whether volume replication is enabled for this Project | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

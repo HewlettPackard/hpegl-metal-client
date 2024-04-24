@@ -33,5 +33,5 @@ type Project struct {
 	// Array listing the permitted OS service images.
 	PermittedOSImages []string `json:"PermittedOSImages"`
 	// Indicates whether volume replication is enabled for this Project
-	ReplicationEnabled bool `json:"ReplicationEnabled,omitempty"`
+	VolumeReplicationEnabled bool `json:"VolumeReplicationEnabled,omitempty"`
 }
