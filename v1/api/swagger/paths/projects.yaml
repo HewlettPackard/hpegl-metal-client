@@ -13,6 +13,9 @@ get:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
+    - BearerAuth: []
+      Role: []
+      Workspace: []
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/Space.yaml
@@ -46,6 +49,9 @@ post:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
+    - BearerAuth: []
+      Role: []
+      Workspace: []
   parameters:
     - $ref: ../components/parameters/Space.yaml
     - $ref: ../components/parameters/SpaceID.yaml
