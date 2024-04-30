@@ -114,7 +114,7 @@ func (a *SshkeysApiService) Add(ctx _context.Context, newSshKey NewSshKey) (SshK
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -287,7 +287,7 @@ func (a *SshkeysApiService) Delete(ctx _context.Context, sshkeyId string) (*_net
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -443,7 +443,7 @@ func (a *SshkeysApiService) GetByID(ctx _context.Context, sshkeyId string) (SshK
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -615,7 +615,7 @@ func (a *SshkeysApiService) List(ctx _context.Context) ([]SshKey, *_nethttp.Resp
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -773,7 +773,7 @@ func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, update
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

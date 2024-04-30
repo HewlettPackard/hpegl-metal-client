@@ -110,7 +110,7 @@ func (a *AvailableResourcesApiService) List(ctx _context.Context) (AvailableReso
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

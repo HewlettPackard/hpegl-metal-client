@@ -121,7 +121,7 @@ func (a *AllocationApiService) GetBySite(ctx _context.Context, localVarOptionals
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -283,7 +283,7 @@ func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, localVarOp
 			} else {
 				key = auth.Key
 			}
-			localVarHeaderParams["X-WorkspaceId"] = key
+			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
