@@ -194,4 +194,4 @@ components:
         authentication
       type: apiKey
       in: header
-      name: X-WorkspaceId
+      name: X-Workspaceid
