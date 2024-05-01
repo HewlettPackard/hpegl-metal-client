@@ -6,19 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Add**](NetworksApi.md#Add) | **Post** /networks | Add a new network
 [**Delete**](NetworksApi.md#Delete) | **Delete** /networks/{networkId} | Delete a network
-[**GetByID**](NetworksApi.md#GetByID) | **Get** /networks/{networkId} | Retrieve network by ID
+[**GetByID**](NetworksApi.md#GetByID) | **Get** /networks/{networkId} | Retrieve network by ID.
 [**List**](NetworksApi.md#List) | **Get** /networks | List all networks in project
-[**Update**](NetworksApi.md#Update) | **Put** /networks/{networkId} | Update an existing network.
+[**Update**](NetworksApi.md#Update) | **Put** /networks/{networkId} | Update an existing network by ID.
 
 
 
 ## Add
 
-> Network Add(ctx, newNetwork)
+> Network Add(ctx, newNetwork, optional)
 
 Add a new network
 
-Adds a new network that can be referenced when creating a Host
+Adds a new network that can be referenced when creating a Host. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -27,6 +27,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **newNetwork** | [**NewNetwork**](NewNetwork.md)| Network that is to be added to the project | 
+ **optional** | ***AddOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a AddOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xRole** | **optional.String**| GreenLake Platform role | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -34,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -48,11 +60,11 @@ Name | Type | Description  | Notes
 
 ## Delete
 
-> Delete(ctx, networkId)
+> Delete(ctx, networkId, optional)
 
 Delete a network
 
-Deletes the network with the matching ID
+Deletes the network with the matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -61,6 +73,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **networkId** | **string**| ID of network to delete | 
+ **optional** | ***DeleteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DeleteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xRole** | **optional.String**| GreenLake Platform role | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -68,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -82,11 +106,11 @@ Name | Type | Description  | Notes
 
 ## GetByID
 
-> Network GetByID(ctx, networkId)
+> Network GetByID(ctx, networkId, optional)
 
-Retrieve network by ID
+Retrieve network by ID.
 
-Returns a single network with matching ID
+Returns a single network with matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -95,6 +119,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **networkId** | **string**| ID of network to return | 
+ **optional** | ***GetByIDOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetByIDOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xRole** | **optional.String**| GreenLake Platform role | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -102,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -116,15 +152,29 @@ Name | Type | Description  | Notes
 
 ## List
 
-> []Network List(ctx, )
+> []Network List(ctx, optional)
 
 List all networks in project
 
-Returns an array of all network objects defined within the project.
+Returns an array of all network objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xRole** | **optional.String**| GreenLake Platform role | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -132,7 +182,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -146,11 +196,11 @@ This endpoint does not need any parameter.
 
 ## Update
 
-> Network Update(ctx, networkId, updateNetwork)
+> Network Update(ctx, networkId, updateNetwork, optional)
 
-Update an existing network.
+Update an existing network by ID.
 
-
+Update an existing network by ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -160,6 +210,19 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **networkId** | **string**| ID of network to update | 
 **updateNetwork** | [**UpdateNetwork**](UpdateNetwork.md)| Updated network | 
+ **optional** | ***UpdateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a UpdateOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xRole** | **optional.String**| GreenLake Platform role | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -167,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 

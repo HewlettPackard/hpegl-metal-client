@@ -2,6 +2,9 @@ get:
   tags:
     - available-resources
   operationId: AvailableResources_list
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   summary: Get lists of available resources for creating hosts and volumes
   description: >
     Used to get lists of options that are used when creating hosts and volumes.
@@ -34,6 +37,9 @@ get:
 
     * Volumes - A list of current, existing volumes.  If the volume is in the
       the right state, it could be attached to a new Host.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   responses:
     '200':
       description: success

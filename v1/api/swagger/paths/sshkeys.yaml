@@ -4,7 +4,12 @@ get:
   summary: List all sshkeys in project
   description: >-
     Returns an array of all SSHKey objects defined within the project.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: SSHKeys_list
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -22,7 +27,10 @@ post:
   tags:
     - sshkeys
   summary: Add a new SSH Key
-  description: Adds a new SSH Key that can be referenced when creating a Host
+  description: >-
+    Adds a new SSH Key that can be referenced when creating a Host.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: SSHKey_add
   requestBody:
     required: true
@@ -31,6 +39,9 @@ post:
       application/json:
         schema:
           $ref: ../components/schemas/NewSSHKey.yaml
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '201':
       description: created

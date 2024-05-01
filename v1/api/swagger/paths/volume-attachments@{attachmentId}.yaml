@@ -3,7 +3,10 @@ get:
   tags:
     - volume-attachments
   summary: Retrieve volume attachment by ID
-  description: Returns a single volume attachment with matching ID
+  description: >- 
+    Returns a single volume attachment with matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: VolumeAttachment_getByID
   parameters:
     - name: attachmentId
@@ -12,6 +15,8 @@ get:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -31,7 +36,10 @@ delete:
   tags:
     - volume-attachments
   summary: Delete a VolumeAttachment
-  description: Deletes the VolumeAttachment with the matching ID
+  description: >- 
+    Deletes the VolumeAttachment with the matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: VolumeAttachment_delete
   parameters:
     - name: attachmentId
@@ -40,6 +48,8 @@ delete:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

@@ -2,7 +2,10 @@ get:
   tags:
     - hosts
   summary: List all Hosts in project
-  description: Returns an array of all Host objects defined within the project.
+  description: >-
+    Returns an array of all Host objects defined within the project.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Hosts_list
   parameters:
     - in: query
@@ -12,6 +15,8 @@ get:
         type: string
         enum: ["true"]
       description: Includes deleted Host objects in the response when set to "true".
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -37,6 +42,9 @@ post:
 
     The SvcFlavor, SvcVersion, LocationID, SSHKeyIDs, and Network attribute must
     all be set with appropriate ID values from the available-resources call.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Host_add
   requestBody:
     required: true
@@ -47,6 +55,9 @@ post:
       application/json:
         schema:
           $ref: ../components/schemas/NewHost.yaml
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '201':
       description: created

@@ -32,16 +32,20 @@ type ProjectsInfoApiListOpts struct {
     Space optional.String
     Spaceid optional.String
     Siteid optional.String
+    XRole optional.String
+    XWorkspaceid optional.String
 }
 
 /*
 List List of all projects info within an organization or cluster for which user is authorized.
-Returns an object with information on projects, machine sizes, and volume flavors.  The &#39;Projects&#39; list includes projects authorized for a user, and the &#39;MachineSizes&#39; and  &#39;VolumeFlavors&#39; list include only those machine sizes and volume flavors permitted for projects.  When GreenLake IAM issued token is used for authentication, it is required to  pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored.
+Returns an object with information on projects, machine sizes, and volume flavors.  The &#39;Projects&#39; list includes projects authorized for a user, and the &#39;MachineSizes&#39; and  &#39;VolumeFlavors&#39; list include only those machine sizes and volume flavors permitted for projects.  When GreenLake IAM issued token is used for authentication, it is required to  pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ProjectsInfoApiListOpts - Optional Parameters:
  * @param "Space" (optional.String) -  GreenLake space name
  * @param "Spaceid" (optional.String) -  GreenLake space ID
  * @param "Siteid" (optional.String) -  GreenLake site ID
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return ProjectsInfo
 */
 func (a *ProjectsInfoApiService) List(ctx _context.Context, localVarOptionals *ProjectsInfoApiListOpts) (ProjectsInfo, *_nethttp.Response, error) {
@@ -86,6 +90,12 @@ func (a *ProjectsInfoApiService) List(ctx _context.Context, localVarOptionals *P
 	if localVarOptionals != nil && localVarOptionals.Spaceid.IsSet() {
 		localVarHeaderParams["spaceid"] = parameterToString(localVarOptionals.Spaceid.Value(), "")
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -96,30 +106,6 @@ func (a *ProjectsInfoApiService) List(ctx _context.Context, localVarOptionals *P
 				key = auth.Key
 			}
 			localVarHeaderParams["Membership"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

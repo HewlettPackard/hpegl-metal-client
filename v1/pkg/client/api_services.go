@@ -33,16 +33,20 @@ type ServicesApiService service
 type ServicesApiAddOpts struct {
     Spaceid optional.String
     Space optional.String
+    XRole optional.String
+    XWorkspaceid optional.String
 }
 
 /*
 Add Create a new OS service image
-Adds a new OS service image that can be referenced during host creation. If GreenLake IAM issued token is used for authentication, then it is required  to pass either &#39;spaceid&#39; header or &#39;Space&#39; header.  Note that Hoster or BMaaS Access Owner role is required for this operation.
+Adds a new OS service image that can be referenced during host creation. If GreenLake Cloud Services IAM issued token is used for authentication, then it is required  to pass either &#39;spaceid&#39; header or &#39;Space&#39; header.  If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers. Note that Hoster or BMaaS Access Owner role is required for this operation.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param fileName
  * @param optional nil or *ServicesApiAddOpts - Optional Parameters:
  * @param "Spaceid" (optional.String) -  GreenLake space ID
  * @param "Space" (optional.String) -  GreenLake space name
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return OsServiceImage
 */
 func (a *ServicesApiService) Add(ctx _context.Context, fileName *os.File, localVarOptionals *ServicesApiAddOpts) (OsServiceImage, *_nethttp.Response, error) {
@@ -83,6 +87,12 @@ func (a *ServicesApiService) Add(ctx _context.Context, fileName *os.File, localV
 	}
 	if localVarOptionals != nil && localVarOptionals.Space.IsSet() {
 		localVarHeaderParams["Space"] = parameterToString(localVarOptionals.Space.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
 	}
 	localVarFormFileName = "fileName"
 	localVarFile := fileName
@@ -189,13 +199,22 @@ func (a *ServicesApiService) Add(ctx _context.Context, fileName *os.File, localV
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ServicesApiDeleteOpts Optional parameters for the method 'Delete'
+type ServicesApiDeleteOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Delete Delete an OS service image
-Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
+Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param serviceId ID of OS service image to delete
+ * @param optional nil or *ServicesApiDeleteOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
-func (a *ServicesApiService) Delete(ctx _context.Context, serviceId string) (*_nethttp.Response, error) {
+func (a *ServicesApiService) Delete(ctx _context.Context, serviceId string, localVarOptionals *ServicesApiDeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -228,6 +247,12 @@ func (a *ServicesApiService) Delete(ctx _context.Context, serviceId string) (*_n
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -307,14 +332,23 @@ func (a *ServicesApiService) Delete(ctx _context.Context, serviceId string) (*_n
 	return localVarHTTPResponse, nil
 }
 
+// ServicesApiGetByIDOpts Optional parameters for the method 'GetByID'
+type ServicesApiGetByIDOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 GetByID Retrieve an OS service image
-Returns a single OS service image object with its matching ID.
+Returns a single OS service image object with its matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param serviceId ID of OS service image to return
+ * @param optional nil or *ServicesApiGetByIDOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return OsServiceImage
 */
-func (a *ServicesApiService) GetByID(ctx _context.Context, serviceId string) (OsServiceImage, *_nethttp.Response, error) {
+func (a *ServicesApiService) GetByID(ctx _context.Context, serviceId string, localVarOptionals *ServicesApiGetByIDOpts) (OsServiceImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -349,6 +383,12 @@ func (a *ServicesApiService) GetByID(ctx _context.Context, serviceId string) (Os
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -371,30 +411,6 @@ func (a *ServicesApiService) GetByID(ctx _context.Context, serviceId string) (Os
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -486,15 +502,19 @@ func (a *ServicesApiService) GetByID(ctx _context.Context, serviceId string) (Os
 type ServicesApiListOpts struct {
     Spaceid optional.String
     Space optional.String
+    XRole optional.String
+    XWorkspaceid optional.String
 }
 
 /*
 List List of all OS service images within an tenant
-Returns an array of all OS service images objects that have been created. If GreenLake IAM issued token is used for authentication,  then it is required to pass &#39;spaceid&#39; header
+Returns an array of all OS service images objects that have been created. If GreenLake IAM issued token is used for authentication,  then it is required to pass &#39;spaceid&#39; headers. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ServicesApiListOpts - Optional Parameters:
  * @param "Spaceid" (optional.String) -  GreenLake space ID
  * @param "Space" (optional.String) -  GreenLake space name
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []OsServiceImage
 */
 func (a *ServicesApiService) List(ctx _context.Context, localVarOptionals *ServicesApiListOpts) ([]OsServiceImage, *_nethttp.Response, error) {
@@ -536,6 +556,12 @@ func (a *ServicesApiService) List(ctx _context.Context, localVarOptionals *Servi
 	if localVarOptionals != nil && localVarOptionals.Space.IsSet() {
 		localVarHeaderParams["Space"] = parameterToString(localVarOptionals.Space.Value(), "")
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -558,30 +584,6 @@ func (a *ServicesApiService) List(ctx _context.Context, localVarOptionals *Servi
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -649,15 +651,24 @@ func (a *ServicesApiService) List(ctx _context.Context, localVarOptionals *Servi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ServicesApiUpdateOpts Optional parameters for the method 'Update'
+type ServicesApiUpdateOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Update Update an OS service image by its ID
-Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation.
+Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param serviceId ID of OS service image to update
  * @param fileName
+ * @param optional nil or *ServicesApiUpdateOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return OsServiceImage
 */
-func (a *ServicesApiService) Update(ctx _context.Context, serviceId string, fileName *os.File) (OsServiceImage, *_nethttp.Response, error) {
+func (a *ServicesApiService) Update(ctx _context.Context, serviceId string, fileName *os.File, localVarOptionals *ServicesApiUpdateOpts) (OsServiceImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -691,6 +702,12 @@ func (a *ServicesApiService) Update(ctx _context.Context, serviceId string, file
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
 	}
 	localVarFormFileName = "fileName"
 	localVarFile := fileName

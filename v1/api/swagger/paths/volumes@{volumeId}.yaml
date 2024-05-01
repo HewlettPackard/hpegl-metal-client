@@ -3,7 +3,10 @@ get:
   tags:
     - volumes
   summary: Retrieve volume by ID
-  description: Returns a single volume with matching ID
+  description: >-
+    Returns a single volume with matching imaged.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Volume_getByID
   parameters:
     - name: volumeId
@@ -12,6 +15,8 @@ get:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -34,6 +39,8 @@ put:
   description: >
    Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state.
    Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume. 
+   If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+   'X-Role' and 'X-Workspaceid' headers.
   operationId: Volume_update
   parameters:
     - name: volumeId
@@ -42,6 +49,8 @@ put:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
@@ -70,7 +79,10 @@ delete:
   tags:
     - volumes
   summary: Delete a volume
-  description: Deletes the volume with the matching ID
+  description: >-
+    Deletes the volume with the matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Volume_delete
   parameters:
     - name: volumeId
@@ -79,6 +91,8 @@ delete:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

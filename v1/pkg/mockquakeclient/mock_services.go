@@ -56,24 +56,24 @@ func (mr *MockServicesAPIMockRecorder) Add(ctx, fileName, localVarOptionals inte
 }
 
 // Delete mocks base method.
-func (m *MockServicesAPI) Delete(ctx context.Context, serviceId string) (*http.Response, error) {
+func (m *MockServicesAPI) Delete(ctx context.Context, serviceId string, localVarOptionals *client.ServicesApiDeleteOpts) (*http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Delete", ctx, serviceId)
+	ret := m.ctrl.Call(m, "Delete", ctx, serviceId, localVarOptionals)
 	ret0, _ := ret[0].(*http.Response)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockServicesAPIMockRecorder) Delete(ctx, serviceId interface{}) *gomock.Call {
+func (mr *MockServicesAPIMockRecorder) Delete(ctx, serviceId, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockServicesAPI)(nil).Delete), ctx, serviceId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockServicesAPI)(nil).Delete), ctx, serviceId, localVarOptionals)
 }
 
 // GetByID mocks base method.
-func (m *MockServicesAPI) GetByID(ctx context.Context, serviceId string) (client.OsServiceImage, *http.Response, error) {
+func (m *MockServicesAPI) GetByID(ctx context.Context, serviceId string, localVarOptionals *client.ServicesApiGetByIDOpts) (client.OsServiceImage, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetByID", ctx, serviceId)
+	ret := m.ctrl.Call(m, "GetByID", ctx, serviceId, localVarOptionals)
 	ret0, _ := ret[0].(client.OsServiceImage)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -81,9 +81,9 @@ func (m *MockServicesAPI) GetByID(ctx context.Context, serviceId string) (client
 }
 
 // GetByID indicates an expected call of GetByID.
-func (mr *MockServicesAPIMockRecorder) GetByID(ctx, serviceId interface{}) *gomock.Call {
+func (mr *MockServicesAPIMockRecorder) GetByID(ctx, serviceId, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockServicesAPI)(nil).GetByID), ctx, serviceId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockServicesAPI)(nil).GetByID), ctx, serviceId, localVarOptionals)
 }
 
 // List mocks base method.
@@ -103,9 +103,9 @@ func (mr *MockServicesAPIMockRecorder) List(ctx, localVarOptionals interface{}) 
 }
 
 // Update mocks base method.
-func (m *MockServicesAPI) Update(ctx context.Context, serviceId string, fileName *os.File) (client.OsServiceImage, *http.Response, error) {
+func (m *MockServicesAPI) Update(ctx context.Context, serviceId string, fileName *os.File, localVarOptionals *client.ServicesApiUpdateOpts) (client.OsServiceImage, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, serviceId, fileName)
+	ret := m.ctrl.Call(m, "Update", ctx, serviceId, fileName, localVarOptionals)
 	ret0, _ := ret[0].(client.OsServiceImage)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -113,7 +113,7 @@ func (m *MockServicesAPI) Update(ctx context.Context, serviceId string, fileName
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockServicesAPIMockRecorder) Update(ctx, serviceId, fileName interface{}) *gomock.Call {
+func (mr *MockServicesAPIMockRecorder) Update(ctx, serviceId, fileName, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockServicesAPI)(nil).Update), ctx, serviceId, fileName)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockServicesAPI)(nil).Update), ctx, serviceId, fileName, localVarOptionals)
 }

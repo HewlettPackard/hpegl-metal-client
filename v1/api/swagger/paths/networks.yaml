@@ -2,8 +2,14 @@ get:
   tags:
     - networks
   summary: List all networks in project
-  description: Returns an array of all network objects defined within the project.
+  description: >- 
+    Returns an array of all network objects defined within the project.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Networks_list
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -21,8 +27,14 @@ post:
   tags:
     - networks
   summary: Add a new network
-  description: Adds a new network that can be referenced when creating a Host
+  description: >- 
+    Adds a new network that can be referenced when creating a Host.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Network_add
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Network that is to be added to the project

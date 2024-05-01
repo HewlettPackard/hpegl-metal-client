@@ -3,7 +3,10 @@ post:
   tags:
     - hosts
   summary: Reset Host by ID
-  description: Resets a single Host with matching ID
+  description: >-
+    Resets a single Host with matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: powerReset
   parameters:
     - name: hostId
@@ -12,6 +15,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

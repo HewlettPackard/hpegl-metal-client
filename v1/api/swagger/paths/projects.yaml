@@ -1,24 +1,25 @@
 get:
   tags:
     - projects
-  summary: List of all Projects within an organization or cluster
+  summary: List of all Projects within an GLCS space or GLP workspace.
   description: >-
     Returns an array of all Project objects that have been created. This
     includes profile information for the project and project limits on resouces
-    like hosts, private networks, volumes, and volume capacity. If GreenLake IAM issued token is
+    like hosts, private networks, volumes, and volume capacity. If GreenLake Cloud Services IAM issued token is
     used for authentication, then it is required to pass either 'Space' or
     'spaceid' header. When both are set, 'Space' header is ignored.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Projects_list
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/Space.yaml
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -40,21 +41,23 @@ post:
   description: >-
     Adds a new Project which creates an isolated space for creating Hosts,
     Volumes, and private Networks. A project is often aligned to a specific team
-    within an organization or a cluster. If GreenLake IAM issued token is used
+    within an organization or a cluster. If GreenLake Cloud Services IAM issued token is used
     for authentication, then it is required to pass either 'Space' or 'spaceid'
     header. When both are set, 'Space' header is ignored.
-    Note that Hoster or BMaaS Access Owner role is required for this operation.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
+    Note that a Hoster, BMaaS Access Owner, BMaaS Tenant Owner or Service Platform Owner role 
+    is required for this operation.
   operationId: Project_add
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
   parameters:
     - $ref: ../components/parameters/Space.yaml
     - $ref: ../components/parameters/SpaceID.yaml
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: NewProject parameters to create a new Project

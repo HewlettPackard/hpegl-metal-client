@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -27,15 +28,24 @@ var (
 // IppoolsApiService IppoolsApi service
 type IppoolsApiService service
 
+// IppoolsApiAllocateIPsOpts Optional parameters for the method 'AllocateIPs'
+type IppoolsApiAllocateIPsOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 AllocateIPs Allocate IPs from the pool
-Allocate IPs from the pool
+Allocate IPs from the pool If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param ippoolId ID of IP pool to allocate IPs
  * @param iPAllocation IPs being requested starting from an optional base IP and their usage
+ * @param optional nil or *IppoolsApiAllocateIPsOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
-func (a *IppoolsApiService) AllocateIPs(ctx _context.Context, ippoolId string, iPAllocation []IpAllocation) (IpPool, *_nethttp.Response, error) {
+func (a *IppoolsApiService) AllocateIPs(ctx _context.Context, ippoolId string, iPAllocation []IpAllocation, localVarOptionals *IppoolsApiAllocateIPsOpts) (IpPool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -70,6 +80,12 @@ func (a *IppoolsApiService) AllocateIPs(ctx _context.Context, ippoolId string, i
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &iPAllocation
 	if ctx != nil {
@@ -94,30 +110,6 @@ func (a *IppoolsApiService) AllocateIPs(ctx _context.Context, ippoolId string, i
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -205,14 +197,23 @@ func (a *IppoolsApiService) AllocateIPs(ctx _context.Context, ippoolId string, i
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// IppoolsApiGetByIDOpts Optional parameters for the method 'GetByID'
+type IppoolsApiGetByIDOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 GetByID Retrieve IP pool by ID
-Returns a single ip pool with matching ID
+Returns a single ip pool with matching imaged. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param ippoolId ID of IP pool to return
+ * @param optional nil or *IppoolsApiGetByIDOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
-func (a *IppoolsApiService) GetByID(ctx _context.Context, ippoolId string) (IpPool, *_nethttp.Response, error) {
+func (a *IppoolsApiService) GetByID(ctx _context.Context, ippoolId string, localVarOptionals *IppoolsApiGetByIDOpts) (IpPool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -247,6 +248,12 @@ func (a *IppoolsApiService) GetByID(ctx _context.Context, ippoolId string) (IpPo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -269,30 +276,6 @@ func (a *IppoolsApiService) GetByID(ctx _context.Context, ippoolId string) (IpPo
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -380,13 +363,22 @@ func (a *IppoolsApiService) GetByID(ctx _context.Context, ippoolId string) (IpPo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// IppoolsApiListOpts Optional parameters for the method 'List'
+type IppoolsApiListOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 List List all ip pools in project
-Returns an array of all ip pool objects defined within the project.
+Returns an array of all ip pool objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *IppoolsApiListOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []IpPool
 */
-func (a *IppoolsApiService) List(ctx _context.Context) ([]IpPool, *_nethttp.Response, error) {
+func (a *IppoolsApiService) List(ctx _context.Context, localVarOptionals *IppoolsApiListOpts) ([]IpPool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -419,6 +411,12 @@ func (a *IppoolsApiService) List(ctx _context.Context) ([]IpPool, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -441,30 +439,6 @@ func (a *IppoolsApiService) List(ctx _context.Context) ([]IpPool, *_nethttp.Resp
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -532,15 +506,24 @@ func (a *IppoolsApiService) List(ctx _context.Context) ([]IpPool, *_nethttp.Resp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// IppoolsApiReturnIPsOpts Optional parameters for the method 'ReturnIPs'
+type IppoolsApiReturnIPsOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 ReturnIPs Return IPs to the pool
-Return IPs to the pool
+Return IPs to the pool. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param ippoolId ID of IP pool to return IPs
  * @param requestBody IP returned to the pool
+ * @param optional nil or *IppoolsApiReturnIPsOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
-func (a *IppoolsApiService) ReturnIPs(ctx _context.Context, ippoolId string, requestBody []string) (IpPool, *_nethttp.Response, error) {
+func (a *IppoolsApiService) ReturnIPs(ctx _context.Context, ippoolId string, requestBody []string, localVarOptionals *IppoolsApiReturnIPsOpts) (IpPool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -575,6 +558,12 @@ func (a *IppoolsApiService) ReturnIPs(ctx _context.Context, ippoolId string, req
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &requestBody
 	if ctx != nil {
@@ -599,30 +588,6 @@ func (a *IppoolsApiService) ReturnIPs(ctx _context.Context, ippoolId string, req
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -710,15 +675,24 @@ func (a *IppoolsApiService) ReturnIPs(ctx _context.Context, ippoolId string, req
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// IppoolsApiUpdateOpts Optional parameters for the method 'Update'
+type IppoolsApiUpdateOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Update Update IP pool by ID
-Update a single ip pool with matching ID. &#39;DefaultRoute&#39; can only be updated if ip pool is not currently in-use.
+Update a single ip pool with matching ID. &#39;DefaultRoute&#39; can only be updated if ip pool is not currently in-use. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param ippoolId ID of IP pool to update
  * @param updateIpPool Update IPPool
+ * @param optional nil or *IppoolsApiUpdateOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
-func (a *IppoolsApiService) Update(ctx _context.Context, ippoolId string, updateIpPool UpdateIpPool) (IpPool, *_nethttp.Response, error) {
+func (a *IppoolsApiService) Update(ctx _context.Context, ippoolId string, updateIpPool UpdateIpPool, localVarOptionals *IppoolsApiUpdateOpts) (IpPool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -753,6 +727,12 @@ func (a *IppoolsApiService) Update(ctx _context.Context, ippoolId string, update
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &updateIpPool
 	if ctx != nil {
@@ -777,30 +757,6 @@ func (a *IppoolsApiService) Update(ctx _context.Context, ippoolId string, update
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

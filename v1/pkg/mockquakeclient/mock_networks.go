@@ -39,9 +39,9 @@ func (m *MockNetworksAPI) EXPECT() *MockNetworksAPIMockRecorder {
 }
 
 // Add mocks base method.
-func (m *MockNetworksAPI) Add(ctx context.Context, newNetwork client.NewNetwork) (client.Network, *http.Response, error) {
+func (m *MockNetworksAPI) Add(ctx context.Context, newNetwork client.NewNetwork, localVarOptionals *client.NetworksApiAddOpts) (client.Network, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Add", ctx, newNetwork)
+	ret := m.ctrl.Call(m, "Add", ctx, newNetwork, localVarOptionals)
 	ret0, _ := ret[0].(client.Network)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -49,30 +49,30 @@ func (m *MockNetworksAPI) Add(ctx context.Context, newNetwork client.NewNetwork)
 }
 
 // Add indicates an expected call of Add.
-func (mr *MockNetworksAPIMockRecorder) Add(ctx, newNetwork interface{}) *gomock.Call {
+func (mr *MockNetworksAPIMockRecorder) Add(ctx, newNetwork, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockNetworksAPI)(nil).Add), ctx, newNetwork)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockNetworksAPI)(nil).Add), ctx, newNetwork, localVarOptionals)
 }
 
 // Delete mocks base method.
-func (m *MockNetworksAPI) Delete(ctx context.Context, networkId string) (*http.Response, error) {
+func (m *MockNetworksAPI) Delete(ctx context.Context, networkId string, localVarOptionals *client.NetworksApiDeleteOpts) (*http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Delete", ctx, networkId)
+	ret := m.ctrl.Call(m, "Delete", ctx, networkId, localVarOptionals)
 	ret0, _ := ret[0].(*http.Response)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockNetworksAPIMockRecorder) Delete(ctx, networkId interface{}) *gomock.Call {
+func (mr *MockNetworksAPIMockRecorder) Delete(ctx, networkId, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockNetworksAPI)(nil).Delete), ctx, networkId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockNetworksAPI)(nil).Delete), ctx, networkId, localVarOptionals)
 }
 
 // GetByID mocks base method.
-func (m *MockNetworksAPI) GetByID(ctx context.Context, networkId string) (client.Network, *http.Response, error) {
+func (m *MockNetworksAPI) GetByID(ctx context.Context, networkId string, localVarOptionals *client.NetworksApiGetByIDOpts) (client.Network, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetByID", ctx, networkId)
+	ret := m.ctrl.Call(m, "GetByID", ctx, networkId, localVarOptionals)
 	ret0, _ := ret[0].(client.Network)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -80,15 +80,15 @@ func (m *MockNetworksAPI) GetByID(ctx context.Context, networkId string) (client
 }
 
 // GetByID indicates an expected call of GetByID.
-func (mr *MockNetworksAPIMockRecorder) GetByID(ctx, networkId interface{}) *gomock.Call {
+func (mr *MockNetworksAPIMockRecorder) GetByID(ctx, networkId, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockNetworksAPI)(nil).GetByID), ctx, networkId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockNetworksAPI)(nil).GetByID), ctx, networkId, localVarOptionals)
 }
 
 // List mocks base method.
-func (m *MockNetworksAPI) List(ctx context.Context) ([]client.Network, *http.Response, error) {
+func (m *MockNetworksAPI) List(ctx context.Context, localVarOptionals *client.NetworksApiListOpts) ([]client.Network, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List", ctx)
+	ret := m.ctrl.Call(m, "List", ctx, localVarOptionals)
 	ret0, _ := ret[0].([]client.Network)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -96,15 +96,15 @@ func (m *MockNetworksAPI) List(ctx context.Context) ([]client.Network, *http.Res
 }
 
 // List indicates an expected call of List.
-func (mr *MockNetworksAPIMockRecorder) List(ctx interface{}) *gomock.Call {
+func (mr *MockNetworksAPIMockRecorder) List(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockNetworksAPI)(nil).List), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockNetworksAPI)(nil).List), ctx, localVarOptionals)
 }
 
 // Update mocks base method.
-func (m *MockNetworksAPI) Update(ctx context.Context, networkId string, updateNetwork client.UpdateNetwork) (client.Network, *http.Response, error) {
+func (m *MockNetworksAPI) Update(ctx context.Context, networkId string, updateNetwork client.UpdateNetwork, localVarOptionals *client.NetworksApiUpdateOpts) (client.Network, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, networkId, updateNetwork)
+	ret := m.ctrl.Call(m, "Update", ctx, networkId, updateNetwork, localVarOptionals)
 	ret0, _ := ret[0].(client.Network)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -112,7 +112,7 @@ func (m *MockNetworksAPI) Update(ctx context.Context, networkId string, updateNe
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockNetworksAPIMockRecorder) Update(ctx, networkId, updateNetwork interface{}) *gomock.Call {
+func (mr *MockNetworksAPIMockRecorder) Update(ctx, networkId, updateNetwork, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockNetworksAPI)(nil).Update), ctx, networkId, updateNetwork)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockNetworksAPI)(nil).Update), ctx, networkId, updateNetwork, localVarOptionals)
 }

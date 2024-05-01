@@ -5,11 +5,15 @@ get:
   description: >-
     Returns an array of all OS service images objects that have been created.
     If GreenLake IAM issued token is used for authentication, 
-    then it is required to pass 'spaceid' header
+    then it is required to pass 'spaceid' headers.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Services_list
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/Space.yaml
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -30,8 +34,10 @@ post:
   summary: Create a new OS service image
   description: >-
     Adds a new OS service image that can be referenced during host creation.
-    If GreenLake IAM issued token is used for authentication, then it is required 
+    If GreenLake Cloud Services IAM issued token is used for authentication, then it is required 
     to pass either 'spaceid' header or 'Space' header. 
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
     Note that Hoster or BMaaS Access Owner role is required for this operation.
   operationId: Service_add
   security:
@@ -41,6 +47,8 @@ post:
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/Space.yaml
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Yaml file describing the OS service image.

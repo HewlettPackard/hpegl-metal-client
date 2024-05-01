@@ -1,0 +1,6 @@
+name: X-Role
+in: header
+description: GreenLake Platform role
+schema:
+  type: string
+example: metal_infra_admin

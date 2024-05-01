@@ -2,8 +2,14 @@ get:
   tags:
     - volumes
   summary: List all volumes in project
-  description: Returns an array of all volumes defined within the project.
+  description: >-
+    Returns an array of all volumes defined within the project.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Volumes_list
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -23,10 +29,15 @@ post:
     - volumes
   summary: Add a new volume
   description: >
-    Adds a new volume to the project.  Volumes may be created separately and
+    Adds a new volume to the project. Volumes may be created separately and
     then referenced in the create Host call; or volumes may be created directly
     within the create Host call.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Volume_add
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Volume that is to be added to the project

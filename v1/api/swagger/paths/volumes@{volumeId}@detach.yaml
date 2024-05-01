@@ -11,6 +11,9 @@ post:
     Note that the HostID is required in the body of the request to ensure that
     the operation is well understood and that a volume is not accidently being
     removed from the wrong host.
+    
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Volume_detach
   parameters:
     - name: volumeId
@@ -19,6 +22,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Unique ID of the Host from which a volume will be detached
