@@ -32,6 +32,10 @@ security:
   Project: []
 - BearerAuth: []
   Membership: []
+- BearerAuth: []
+  Workspace: []
+  Project: []
+  Role: []
 tags:
 - description: |
     Read-only operation to get api server build version information.
@@ -159,6 +163,9 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
+      - BearerAuth: []
+        Role: []
+        Workspace: []
       summary: List of all Projects within an GLCS space or GLP workspace.
       tags:
       - projects
@@ -240,6 +247,9 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
+      - BearerAuth: []
+        Role: []
+        Workspace: []
       summary: Create a new project
       tags:
       - projects
@@ -300,6 +310,9 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
+      - BearerAuth: []
+        Role: []
+        Workspace: []
       summary: Delete a Project
       tags:
       - projects
@@ -364,6 +377,9 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
+      - BearerAuth: []
+        Role: []
+        Workspace: []
       summary: Retrieve a project by its ID
       tags:
       - projects
@@ -447,6 +463,9 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
+      - BearerAuth: []
+        Role: []
+        Workspace: []
       summary: Update a project by its ID
       tags:
       - projects
@@ -7460,8 +7479,8 @@ components:
       scheme: bearer
       type: http
     Project:
-      description: The project ID. Required only when using GreenLake IAM issued JWT
-        for authentication
+      description: The project ID. Required only when using GreenLake Cloud Services
+        IAM issued JWT for authentication
       in: header
       name: Project
       type: apiKey
@@ -7470,4 +7489,16 @@ components:
         issued JWT for authentication
       in: header
       name: Membership
+      type: apiKey
+    Role:
+      description: The GLP IAM role. Required only when using GreenLake Platform IAM
+        issued JWT for authentication
+      in: header
+      name: X-Role
+      type: apiKey
+    Workspace:
+      description: The GLP IAM workspace ID. Required only when using GreenLake Platform
+        IAM issued JWT for authentication
+      in: header
+      name: X-Workspaceid
       type: apiKey
