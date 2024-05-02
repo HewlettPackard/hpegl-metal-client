@@ -13,9 +13,6 @@ get:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
   parameters:
     - name: projectId
       in: path
@@ -56,9 +53,6 @@ put:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
   parameters:
     - name: projectId
       in: path
@@ -109,9 +103,6 @@ delete:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
   parameters:
     - name: projectId
       in: path
