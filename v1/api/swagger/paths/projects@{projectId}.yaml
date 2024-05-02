@@ -13,6 +13,7 @@ get:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
+      Project: []
   parameters:
     - name: projectId
       in: path
@@ -53,6 +54,7 @@ put:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
+      Project: []
   parameters:
     - name: projectId
       in: path
@@ -103,6 +105,7 @@ delete:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
+      Project: []
   parameters:
     - name: projectId
       in: path
