@@ -31,4 +31,5 @@ const (
 	HOSTSTATE_RELEASING HostState = "Releasing"
 	HOSTSTATE_ALLOCATING HostState = "Allocating"
 	HOSTSTATE_MAINTENANCE HostState = "Maintenance"
+	HOSTSTATE_VOLUME_ATTACHING HostState = "Volume Attaching"
 )

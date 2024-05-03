@@ -18,7 +18,7 @@ const (
 	HOSTSUBSTATE_EMPTY HostSubstate = ""
 	HOSTSUBSTATE_ABORT_DEPLOY HostSubstate = "Abort Deploy"
 	HOSTSUBSTATE_ALLOCATE HostSubstate = "Allocate"
-	HOSTSUBSTATE_ATTACHING_VOLUMES HostSubstate = "Attaching Volumes"
+	HOSTSUBSTATE_ATTACH_VOLUMES HostSubstate = "Attach Volumes"
 	HOSTSUBSTATE_BOOT_SERVICE_OS HostSubstate = "Boot Service-OS"
 	HOSTSUBSTATE_CLEAR_LOG HostSubstate = "Clear Log"
 	HOSTSUBSTATE_COMPLETE HostSubstate = "Complete"

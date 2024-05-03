@@ -16,5 +16,6 @@ enum:
   - Releasing
   - Allocating
   - Maintenance
+  - Volume Attaching
 description: Overall host state
 example: Ready
