@@ -4104,6 +4104,7 @@ components:
     HostState:
       description: Overall host state
       enum:
+      - ""
       - New
       - Deleting
       - Deleted
@@ -4120,7 +4121,8 @@ components:
       - Releasing
       - Allocating
       - Maintenance
-      - Volume Attaching
+      - Attaching
+      - Detaching
       example: Ready
       type: string
     HostSubstate:
@@ -4138,6 +4140,7 @@ components:
       - Connect Provisioning
       - DNS Add
       - DNS Add Init
+      - DNS Delete Init
       - DNS Delete
       - Deploy
       - Detach Volumes
@@ -4148,6 +4151,7 @@ components:
       - In OS Prep
       - Init
       - Init Attach Volumes
+      - Init Detach Volumes
       - Init Maintenance
       - Init OS Prep
       - Init Off

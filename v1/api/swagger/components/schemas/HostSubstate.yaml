@@ -13,6 +13,7 @@ enum:
   - Connect Provisioning
   - DNS Add
   - DNS Add Init
+  - DNS Delete Init
   - DNS Delete
   - Deploy
   - Detach Volumes
@@ -23,6 +24,7 @@ enum:
   - In OS Prep
   - Init
   - Init Attach Volumes
+  - Init Detach Volumes
   - Init Maintenance
   - Init OS Prep
   - Init Off

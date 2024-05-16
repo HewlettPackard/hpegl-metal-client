@@ -15,6 +15,7 @@ type HostState string
 
 // List of HostState
 const (
+	HOSTSTATE_EMPTY HostState = ""
 	HOSTSTATE_NEW HostState = "New"
 	HOSTSTATE_DELETING HostState = "Deleting"
 	HOSTSTATE_DELETED HostState = "Deleted"
@@ -31,5 +32,6 @@ const (
 	HOSTSTATE_RELEASING HostState = "Releasing"
 	HOSTSTATE_ALLOCATING HostState = "Allocating"
 	HOSTSTATE_MAINTENANCE HostState = "Maintenance"
-	HOSTSTATE_VOLUME_ATTACHING HostState = "Volume Attaching"
+	HOSTSTATE_ATTACHING HostState = "Attaching"
+	HOSTSTATE_DETACHING HostState = "Detaching"
 )

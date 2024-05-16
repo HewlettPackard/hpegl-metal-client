@@ -1,5 +1,6 @@
 type: string
 enum:
+  - ''
   - New
   - Deleting
   - Deleted
@@ -16,6 +17,7 @@ enum:
   - Releasing
   - Allocating
   - Maintenance
-  - Volume Attaching
+  - Attaching
+  - Detaching
 description: Overall host state
 example: Ready
