@@ -159,6 +159,7 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
+        Project: []
       summary: List of all Projects within an GLCS space or GLP workspace.
       tags:
       - projects

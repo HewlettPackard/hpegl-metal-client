@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
