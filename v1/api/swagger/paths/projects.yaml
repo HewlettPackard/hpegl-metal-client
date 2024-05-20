@@ -15,6 +15,7 @@ get:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
+      Project: []
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/Space.yaml
