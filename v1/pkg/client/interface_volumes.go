@@ -17,7 +17,7 @@ type VolumesAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param newVolume Volume that is to be added to the project
 	     - @param optional nil or *VolumesApiAddOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Volume
@@ -30,7 +30,7 @@ type VolumesAPI interface {
 	     - @param volumeId ID of volume to attach
 	     - @param volumeAttachHostUuid Unique ID of the Host to which the volume will be attached
 	     - @param optional nil or *VolumesApiAttachOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return VolumeAttachment
@@ -42,7 +42,7 @@ type VolumesAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param volumeId ID of volume to delete
 	     - @param optional nil or *VolumesApiDeleteOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 	*/
 	Delete(ctx _context.Context, volumeId string, localVarOptionals *VolumesApiDeleteOpts) (*_nethttp.Response, error)
@@ -53,7 +53,7 @@ type VolumesAPI interface {
 	     - @param volumeId ID of volume to attach
 	     - @param volumeAttachHostUuid Unique ID of the Host from which a volume will be detached
 	     - @param optional nil or *VolumesApiDetachOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 	*/
 	Detach(ctx _context.Context, volumeId string, volumeAttachHostUuid VolumeAttachHostUuid, localVarOptionals *VolumesApiDetachOpts) (*_nethttp.Response, error)
@@ -63,7 +63,7 @@ type VolumesAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param volumeId ID of volume to return
 	     - @param optional nil or *VolumesApiGetByIDOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Volume
@@ -74,7 +74,7 @@ type VolumesAPI interface {
 	   Returns an array of all volumes defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *VolumesApiListOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return []Volume
@@ -87,7 +87,7 @@ type VolumesAPI interface {
 	     - @param volumeId ID of volume to return
 	     - @param updateVolume Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
 	     - @param optional nil or *VolumesApiUpdateOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Volume

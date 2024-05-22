@@ -40,7 +40,7 @@ Adds a new VolumeAttachment which enables a machine to use a volume. Note that t
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newVolumeAttachment NewVolumeAttachement parameters to create a new VolumeAttachment.
  * @param optional nil or *VolumeAttachmentsApiAddOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return VolumeAttachment
 */
@@ -206,7 +206,7 @@ Deletes the VolumeAttachment with the matching ID. If GreenLake Platform IAM iss
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param attachmentId ID of VolumeAttachment to delete
  * @param optional nil or *VolumeAttachmentsApiDeleteOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
 func (a *VolumeAttachmentsApiService) Delete(ctx _context.Context, attachmentId string, localVarOptionals *VolumeAttachmentsApiDeleteOpts) (*_nethttp.Response, error) {
@@ -351,7 +351,7 @@ Returns a single volume attachment with matching ID. If GreenLake Platform IAM i
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param attachmentId ID of volume attachment to return
  * @param optional nil or *VolumeAttachmentsApiGetByIDOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return VolumeAttachment
 */
@@ -516,7 +516,7 @@ List List all volume attachments in project
 Returns an array of all VolumeAttachments defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VolumeAttachmentsApiListOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []VolumeAttachment
 */

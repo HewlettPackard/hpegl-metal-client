@@ -45,7 +45,7 @@ Optional parameters are passed through a pointer to a AddOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -91,7 +91,7 @@ Optional parameters are passed through a pointer to a BootHDDOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -137,7 +137,7 @@ Optional parameters are passed through a pointer to a BootPXEOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -183,7 +183,7 @@ Optional parameters are passed through a pointer to a DeleteOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -229,7 +229,7 @@ Optional parameters are passed through a pointer to a GetByIDOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -274,7 +274,7 @@ Optional parameters are passed through a pointer to a ListOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **all** | **optional.String**| Includes deleted Host objects in the response when set to \&quot;true\&quot;. | 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -320,7 +320,7 @@ Optional parameters are passed through a pointer to a MaintenanceOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -366,7 +366,7 @@ Optional parameters are passed through a pointer to a PowerOffOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -412,7 +412,7 @@ Optional parameters are passed through a pointer to a PowerOnOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -458,7 +458,7 @@ Optional parameters are passed through a pointer to a PowerResetOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -504,7 +504,7 @@ Optional parameters are passed through a pointer to a ReimageOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -550,7 +550,7 @@ Optional parameters are passed through a pointer to a ReplaceOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -598,7 +598,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type

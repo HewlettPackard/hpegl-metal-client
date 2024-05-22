@@ -31,10 +31,10 @@ Optional parameters are passed through a pointer to a ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **space** | **optional.String**| GreenLake space name | 
- **spaceid** | **optional.String**| GreenLake space ID | 
+ **space** | **optional.String**| GreenLake Cloud Services space name | 
+ **spaceid** | **optional.String**| GreenLake Cloud Services space ID | 
  **siteid** | **optional.String**| GreenLake site ID | 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type

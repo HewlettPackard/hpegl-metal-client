@@ -17,7 +17,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param newHost Defines the configuration of the desired host. See the schema for descriptions of individual attributes.
 	     - @param optional nil or *HostsApiAddOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -29,7 +29,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to set to HDD boot
 	     - @param optional nil or *HostsApiBootHDDOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -41,7 +41,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to set to PXE boot
 	     - @param optional nil or *HostsApiBootPXEOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -53,7 +53,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to delete
 	     - @param optional nil or *HostsApiDeleteOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 	*/
 	Delete(ctx _context.Context, hostId string, localVarOptionals *HostsApiDeleteOpts) (*_nethttp.Response, error)
@@ -63,7 +63,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to return
 	     - @param optional nil or *HostsApiGetByIDOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -75,7 +75,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *HostsApiListOpts - Optional Parameters:
 	     - @param "All" (optional.String) -  Includes deleted Host objects in the response when set to \"true\".
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return []Host
@@ -87,7 +87,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to do maintenance on
 	     - @param optional nil or *HostsApiMaintenanceOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -99,7 +99,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to power off
 	     - @param optional nil or *HostsApiPowerOffOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -111,7 +111,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to power on
 	     - @param optional nil or *HostsApiPowerOnOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -123,7 +123,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to reset
 	     - @param optional nil or *HostsApiPowerResetOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -135,7 +135,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to reimage
 	     - @param optional nil or *HostsApiReimageOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -147,7 +147,7 @@ type HostsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param hostId ID of Host to replace
 	     - @param optional nil or *HostsApiReplaceOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host
@@ -160,7 +160,7 @@ type HostsAPI interface {
 	     - @param hostId ID of host to update
 	     - @param updateHost Updated Host
 	     - @param optional nil or *HostsApiUpdateOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Host

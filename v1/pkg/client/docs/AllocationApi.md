@@ -33,7 +33,7 @@ Optional parameters are passed through a pointer to a GetBySiteOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **siteID** | **optional.String**| site ID | 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
 
 ### Return type
 
@@ -77,7 +77,7 @@ Optional parameters are passed through a pointer to a StorageGetBySiteOpts struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **siteID** | **optional.String**| site ID | 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
 
 ### Return type
 

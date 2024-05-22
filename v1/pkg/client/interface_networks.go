@@ -17,7 +17,7 @@ type NetworksAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param newNetwork Network that is to be added to the project
 	     - @param optional nil or *NetworksApiAddOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Network
@@ -29,7 +29,7 @@ type NetworksAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param networkId ID of network to delete
 	     - @param optional nil or *NetworksApiDeleteOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 	*/
 	Delete(ctx _context.Context, networkId string, localVarOptionals *NetworksApiDeleteOpts) (*_nethttp.Response, error)
@@ -39,7 +39,7 @@ type NetworksAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param networkId ID of network to return
 	     - @param optional nil or *NetworksApiGetByIDOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Network
@@ -50,7 +50,7 @@ type NetworksAPI interface {
 	   Returns an array of all network objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *NetworksApiListOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return []Network
@@ -63,7 +63,7 @@ type NetworksAPI interface {
 	     - @param networkId ID of network to update
 	     - @param updateNetwork Updated network
 	     - @param optional nil or *NetworksApiUpdateOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Network

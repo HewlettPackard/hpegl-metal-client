@@ -17,7 +17,7 @@ type AllocationAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *AllocationApiGetBySiteOpts - Optional Parameters:
 	     - @param "SiteID" (optional.String) -  site ID
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 
 	   @return []Allocation
 	*/
@@ -28,7 +28,7 @@ type AllocationAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *AllocationApiStorageGetBySiteOpts - Optional Parameters:
 	     - @param "SiteID" (optional.String) -  site ID
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 
 	   @return []AllocationStorage
 	*/

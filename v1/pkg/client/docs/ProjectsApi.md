@@ -37,9 +37,9 @@ Optional parameters are passed through a pointer to a AddOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **space** | **optional.String**| GreenLake space name | 
- **spaceid** | **optional.String**| GreenLake space ID | 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **space** | **optional.String**| GreenLake Cloud Services space name | 
+ **spaceid** | **optional.String**| GreenLake Cloud Services space ID | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -85,7 +85,7 @@ Optional parameters are passed through a pointer to a DeleteOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -131,7 +131,7 @@ Optional parameters are passed through a pointer to a GetByIDOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -175,9 +175,9 @@ Optional parameters are passed through a pointer to a ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **spaceid** | **optional.String**| GreenLake space ID | 
- **space** | **optional.String**| GreenLake space name | 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **spaceid** | **optional.String**| GreenLake Cloud Services space ID | 
+ **space** | **optional.String**| GreenLake Cloud Services space name | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xRole** | **optional.String**| GreenLake Platform role | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type

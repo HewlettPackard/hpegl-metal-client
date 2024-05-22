@@ -43,9 +43,9 @@ Adds a new OS service image that can be referenced during host creation. If Gree
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param fileName
  * @param optional nil or *ServicesApiAddOpts - Optional Parameters:
- * @param "Spaceid" (optional.String) -  GreenLake space ID
- * @param "Space" (optional.String) -  GreenLake space name
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "Spaceid" (optional.String) -  GreenLake Cloud Services space ID
+ * @param "Space" (optional.String) -  GreenLake Cloud Services space name
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return OsServiceImage
 */
@@ -211,7 +211,7 @@ Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Acc
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param serviceId ID of OS service image to delete
  * @param optional nil or *ServicesApiDeleteOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
 func (a *ServicesApiService) Delete(ctx _context.Context, serviceId string, localVarOptionals *ServicesApiDeleteOpts) (*_nethttp.Response, error) {
@@ -344,7 +344,7 @@ Returns a single OS service image object with its matching ID. If GreenLake Plat
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param serviceId ID of OS service image to return
  * @param optional nil or *ServicesApiGetByIDOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return OsServiceImage
 */
@@ -511,9 +511,9 @@ List List of all OS service images within an tenant
 Returns an array of all OS service images objects that have been created. If GreenLake IAM issued token is used for authentication,  then it is required to pass &#39;spaceid&#39; headers. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ServicesApiListOpts - Optional Parameters:
- * @param "Spaceid" (optional.String) -  GreenLake space ID
- * @param "Space" (optional.String) -  GreenLake space name
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "Spaceid" (optional.String) -  GreenLake Cloud Services space ID
+ * @param "Space" (optional.String) -  GreenLake Cloud Services space name
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []OsServiceImage
 */
@@ -664,7 +664,7 @@ Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access
  * @param serviceId ID of OS service image to update
  * @param fileName
  * @param optional nil or *ServicesApiUpdateOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return OsServiceImage
 */

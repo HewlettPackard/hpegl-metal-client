@@ -40,7 +40,7 @@ Adds a new SSH Key that can be referenced when creating a Host. If GreenLake Pla
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newSshKey SSH Key that is to be added to the project
  * @param optional nil or *SshkeysApiAddOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return SshKey
 */
@@ -206,7 +206,7 @@ Deletes the SSH key with the matching ID. If GreenLake Platform IAM issued token
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sshkeyId ID of sshkey to delete
  * @param optional nil or *SshkeysApiDeleteOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
 func (a *SshkeysApiService) Delete(ctx _context.Context, sshkeyId string, localVarOptionals *SshkeysApiDeleteOpts) (*_nethttp.Response, error) {
@@ -351,7 +351,7 @@ Returns a single SSH key with matching ID. If GreenLake Platform IAM issued toke
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sshkeyId ID of sshkey to return
  * @param optional nil or *SshkeysApiGetByIDOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return SshKey
 */
@@ -516,7 +516,7 @@ List List all sshkeys in project
 Returns an array of all SSHKey objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *SshkeysApiListOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []SshKey
 */
@@ -661,7 +661,7 @@ Update a single SSH key with matching ID. Only &#39;Name&#39; or &#39;Key&#39; f
  * @param sshkeyId ID of sshkey to update
  * @param updateSshKey Updated SSH key
  * @param optional nil or *SshkeysApiUpdateOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return SshKey
 */

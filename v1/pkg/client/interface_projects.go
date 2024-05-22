@@ -17,9 +17,9 @@ type ProjectsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param newProject NewProject parameters to create a new Project
 	     - @param optional nil or *ProjectsApiAddOpts - Optional Parameters:
-	     - @param "Space" (optional.String) -  GreenLake space name
-	     - @param "Spaceid" (optional.String) -  GreenLake space ID
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "Space" (optional.String) -  GreenLake Cloud Services space name
+	     - @param "Spaceid" (optional.String) -  GreenLake Cloud Services space ID
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Project
@@ -31,7 +31,7 @@ type ProjectsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param projectId ID of project to delete
 	     - @param optional nil or *ProjectsApiDeleteOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 	*/
 	Delete(ctx _context.Context, projectId string, localVarOptionals *ProjectsApiDeleteOpts) (*_nethttp.Response, error)
@@ -41,7 +41,7 @@ type ProjectsAPI interface {
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param projectId ID of project to return
 	     - @param optional nil or *ProjectsApiGetByIDOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Project
@@ -52,9 +52,9 @@ type ProjectsAPI interface {
 	   Returns an array of all Project objects that have been created. This includes profile information for the project and project limits on resouces like hosts, private networks, volumes, and volume capacity. If GreenLake Cloud Services IAM issued token is used for authentication, then it is required to pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *ProjectsApiListOpts - Optional Parameters:
-	     - @param "Spaceid" (optional.String) -  GreenLake space ID
-	     - @param "Space" (optional.String) -  GreenLake space name
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "Spaceid" (optional.String) -  GreenLake Cloud Services space ID
+	     - @param "Space" (optional.String) -  GreenLake Cloud Services space name
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return []Project
@@ -67,7 +67,7 @@ type ProjectsAPI interface {
 	     - @param projectId ID of project to update
 	     - @param updateProject Project parameters to update an existing Project
 	     - @param optional nil or *ProjectsApiUpdateOpts - Optional Parameters:
-	     - @param "XRole" (optional.String) -  GreenLake Platform role
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
 	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Project

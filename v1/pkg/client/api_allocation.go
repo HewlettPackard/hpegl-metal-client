@@ -39,7 +39,7 @@ Returns an array of allocation information for each server instance type. Each i
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *AllocationApiGetBySiteOpts - Optional Parameters:
  * @param "SiteID" (optional.String) -  site ID
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
 @return []Allocation
 */
 func (a *AllocationApiService) GetBySite(ctx _context.Context, localVarOptionals *AllocationApiGetBySiteOpts) ([]Allocation, *_nethttp.Response, error) {
@@ -182,7 +182,7 @@ Returns an array of allocation information for each server instance type. Each i
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *AllocationApiStorageGetBySiteOpts - Optional Parameters:
  * @param "SiteID" (optional.String) -  site ID
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
 @return []AllocationStorage
 */
 func (a *AllocationApiService) StorageGetBySite(ctx _context.Context, localVarOptionals *AllocationApiStorageGetBySiteOpts) ([]AllocationStorage, *_nethttp.Response, error) {

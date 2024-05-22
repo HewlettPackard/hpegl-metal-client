@@ -41,7 +41,7 @@ Allocate IPs from the pool If GreenLake Platform IAM issued token is used for au
  * @param ippoolId ID of IP pool to allocate IPs
  * @param iPAllocation IPs being requested starting from an optional base IP and their usage
  * @param optional nil or *IppoolsApiAllocateIPsOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
@@ -209,7 +209,7 @@ Returns a single ip pool with matching imaged. If GreenLake Platform IAM issued 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param ippoolId ID of IP pool to return
  * @param optional nil or *IppoolsApiGetByIDOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
@@ -374,7 +374,7 @@ List List all ip pools in project
 Returns an array of all ip pool objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *IppoolsApiListOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []IpPool
 */
@@ -519,7 +519,7 @@ Return IPs to the pool. If GreenLake Platform IAM issued token is used for authe
  * @param ippoolId ID of IP pool to return IPs
  * @param requestBody IP returned to the pool
  * @param optional nil or *IppoolsApiReturnIPsOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
@@ -688,7 +688,7 @@ Update a single ip pool with matching ID. &#39;DefaultRoute&#39; can only be upd
  * @param ippoolId ID of IP pool to update
  * @param updateIpPool Update IPPool
  * @param optional nil or *IppoolsApiUpdateOpts - Optional Parameters:
- * @param "XRole" (optional.String) -  GreenLake Platform role
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return IpPool
 */
