@@ -17,8 +17,6 @@ enum:
   - DNS Delete
   - Deploy
   - Detach Volumes
-  - Error Recovery
-  - Fail Cleanup
   - Failed
   - In Maintenance
   - In OS Prep

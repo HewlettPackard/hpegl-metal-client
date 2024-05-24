@@ -31,8 +31,6 @@ const (
 	HOSTSUBSTATE_DNS_DELETE HostSubstate = "DNS Delete"
 	HOSTSUBSTATE_DEPLOY HostSubstate = "Deploy"
 	HOSTSUBSTATE_DETACH_VOLUMES HostSubstate = "Detach Volumes"
-	HOSTSUBSTATE_ERROR_RECOVERY HostSubstate = "Error Recovery"
-	HOSTSUBSTATE_FAIL_CLEANUP HostSubstate = "Fail Cleanup"
 	HOSTSUBSTATE_FAILED HostSubstate = "Failed"
 	HOSTSUBSTATE_IN_MAINTENANCE HostSubstate = "In Maintenance"
 	HOSTSUBSTATE_IN_OS_PREP HostSubstate = "In OS Prep"
