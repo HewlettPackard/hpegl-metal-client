@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 Delete an OS service image
 
-Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Service. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
+Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Services. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 Update an OS service image by its ID
 
-Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Service. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
+Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Services. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 

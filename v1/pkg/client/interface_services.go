@@ -28,7 +28,7 @@ type ServicesAPI interface {
 	Add(ctx _context.Context, fileName *os.File, localVarOptionals *ServicesApiAddOpts) (OsServiceImage, *_nethttp.Response, error)
 	/*
 	   Delete Delete an OS service image
-	   Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Service. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
+	   Deletes the OS service image with the matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Services. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param serviceId ID of OS service image to delete
 	     - @param optional nil or *ServicesApiDeleteOpts - Optional Parameters:
@@ -63,7 +63,7 @@ type ServicesAPI interface {
 	List(ctx _context.Context, localVarOptionals *ServicesApiListOpts) ([]OsServiceImage, *_nethttp.Response, error)
 	/*
 	   Update Update an OS service image by its ID
-	   Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Service. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
+	   Updates an OS service image with a matching ID. Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Services. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param serviceId ID of OS service image to update
 	     - @param fileName

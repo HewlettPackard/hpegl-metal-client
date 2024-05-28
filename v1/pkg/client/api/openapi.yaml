@@ -460,7 +460,7 @@ paths:
     get:
       description: |-
         Returns an object with information on projects, machine sizes, and volume flavors.  The 'Projects' list includes projects authorized for a user, and the 'MachineSizes' and  'VolumeFlavors' list include only those machine sizes and volume flavors permitted for projects.
-        When GreenLake Cloud Service IAM issued token is used for authentication, it is required to  pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+        When GreenLake Cloud Services IAM issued token is used for authentication, it is required to  pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
         If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: ProjectsInfo_list
       parameters:
@@ -2920,7 +2920,7 @@ paths:
         \ must be present in the request.\nIf the 'siteID' query parameter is present,\
         \ the information returned is specific to that site ID.\nIf GreenLake Platform\
         \ IAM issued token is used for authentication, then it is required to pass\
-        \ \n'X-Role' and 'X-Worksapceid' headers.\n"
+        \ \n'X-Role' and 'X-Workspaceid' headers.\n"
       operationId: allocation_getBySite
       parameters:
       - description: site ID
@@ -2976,7 +2976,7 @@ paths:
         \ must be present in the request.\nIf the 'siteID' query parameter is present,\
         \ the information returned is specific to that site ID.\nIf GreenLake Platform\
         \ IAM issued token is used for authentication, then it is required to pass\
-        \ \n'X-Role' and 'X-Worksapceid' headers.\n"
+        \ \n'X-Role' and 'X-Workspaceid' headers.\n"
       operationId: allocation_storage_getBySite
       parameters:
       - description: site ID
@@ -3160,7 +3160,7 @@ paths:
     delete:
       description: Deletes the OS service image with the matching ID. Note that Hoster
         or BMaaS Access Owner role is required for this operation under GreenLake
-        Cloud Service. If GreenLake Platform IAM issued token is used for authentication,
+        Cloud Services. If GreenLake Platform IAM issued token is used for authentication,
         then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Service_delete
       parameters:
@@ -3277,7 +3277,7 @@ paths:
     put:
       description: Updates an OS service image with a matching ID. Note that Hoster
         or BMaaS Access Owner role is required for this operation under GreenLake
-        Cloud Service. If GreenLake Platform IAM issued token is used for authentication,
+        Cloud Services. If GreenLake Platform IAM issued token is used for authentication,
         then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Service_update
       parameters:

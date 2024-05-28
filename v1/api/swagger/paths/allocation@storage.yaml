@@ -8,7 +8,7 @@ get:
     If the allocation data is needed for a specific project, then the 'Project' header must be present in the request.
     If the 'siteID' query parameter is present, the information returned is specific to that site ID.
     If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
-    'X-Role' and 'X-Worksapceid' headers.
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: allocation_storage_getBySite
   parameters:
     - name: siteID
