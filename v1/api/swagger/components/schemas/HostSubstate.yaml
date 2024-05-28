@@ -4,7 +4,7 @@ enum:
   - ''
   - Abort Deploy
   - Allocate
-  - Attaching Volumes
+  - Attach Volumes
   - Boot Service-OS
   - Clear Log
   - Complete
@@ -13,16 +13,16 @@ enum:
   - Connect Provisioning
   - DNS Add
   - DNS Add Init
+  - DNS Delete Init
   - DNS Delete
   - Deploy
   - Detach Volumes
-  - Error Recovery
-  - Fail Cleanup
   - Failed
   - In Maintenance
   - In OS Prep
   - Init
   - Init Attach Volumes
+  - Init Detach Volumes
   - Init Maintenance
   - Init OS Prep
   - Init Off
