@@ -3,7 +3,10 @@ post:
   tags:
     - ippools
   summary: Allocate IPs from the pool
-  description: Allocate IPs from the pool
+  description: >-
+    Allocate IPs from the pool
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: IPPool_allocateIPs
   parameters:
     - name: ippoolId
@@ -12,6 +15,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: IPs being requested starting from an optional base IP and their usage

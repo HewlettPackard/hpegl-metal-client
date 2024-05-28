@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -27,14 +28,23 @@ var (
 // VolumeAttachmentsApiService VolumeAttachmentsApi service
 type VolumeAttachmentsApiService service
 
+// VolumeAttachmentsApiAddOpts Optional parameters for the method 'Add'
+type VolumeAttachmentsApiAddOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Add Create a new VolumeAttachment
-Adds a new VolumeAttachment which enables a machine to use a volume. Note that this API is for creation of a VolumeAttachment for non-Hosts. A VolumeAttachment resource must be deleted using the &#39;DELETE /volume-attachments/{attachmentId}&#39; API. For regular hosts, a VolumeAttachment is created via the &#39;POST /volumes/{volumeId}/attach&#39; API.
+Adds a new VolumeAttachment which enables a machine to use a volume. Note that this API is for creation of a VolumeAttachment for non-Hosts. A VolumeAttachment resource must be deleted using the &#39;DELETE /volume-attachments/{attachmentId}&#39; API. For regular hosts, a VolumeAttachment is created via the &#39;POST /volumes/{volumeId}/attach&#39; API. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newVolumeAttachment NewVolumeAttachement parameters to create a new VolumeAttachment.
+ * @param optional nil or *VolumeAttachmentsApiAddOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return VolumeAttachment
 */
-func (a *VolumeAttachmentsApiService) Add(ctx _context.Context, newVolumeAttachment NewVolumeAttachment) (VolumeAttachment, *_nethttp.Response, error) {
+func (a *VolumeAttachmentsApiService) Add(ctx _context.Context, newVolumeAttachment NewVolumeAttachment, localVarOptionals *VolumeAttachmentsApiAddOpts) (VolumeAttachment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -67,6 +77,12 @@ func (a *VolumeAttachmentsApiService) Add(ctx _context.Context, newVolumeAttachm
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &newVolumeAttachment
 	if ctx != nil {
@@ -91,30 +107,6 @@ func (a *VolumeAttachmentsApiService) Add(ctx _context.Context, newVolumeAttachm
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -202,13 +194,22 @@ func (a *VolumeAttachmentsApiService) Add(ctx _context.Context, newVolumeAttachm
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// VolumeAttachmentsApiDeleteOpts Optional parameters for the method 'Delete'
+type VolumeAttachmentsApiDeleteOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Delete Delete a VolumeAttachment
-Deletes the VolumeAttachment with the matching ID
+Deletes the VolumeAttachment with the matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param attachmentId ID of VolumeAttachment to delete
+ * @param optional nil or *VolumeAttachmentsApiDeleteOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
-func (a *VolumeAttachmentsApiService) Delete(ctx _context.Context, attachmentId string) (*_nethttp.Response, error) {
+func (a *VolumeAttachmentsApiService) Delete(ctx _context.Context, attachmentId string, localVarOptionals *VolumeAttachmentsApiDeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -242,6 +243,12 @@ func (a *VolumeAttachmentsApiService) Delete(ctx _context.Context, attachmentId 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -264,30 +271,6 @@ func (a *VolumeAttachmentsApiService) Delete(ctx _context.Context, attachmentId 
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -356,14 +339,23 @@ func (a *VolumeAttachmentsApiService) Delete(ctx _context.Context, attachmentId 
 	return localVarHTTPResponse, nil
 }
 
+// VolumeAttachmentsApiGetByIDOpts Optional parameters for the method 'GetByID'
+type VolumeAttachmentsApiGetByIDOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 GetByID Retrieve volume attachment by ID
-Returns a single volume attachment with matching ID
+Returns a single volume attachment with matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param attachmentId ID of volume attachment to return
+ * @param optional nil or *VolumeAttachmentsApiGetByIDOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return VolumeAttachment
 */
-func (a *VolumeAttachmentsApiService) GetByID(ctx _context.Context, attachmentId string) (VolumeAttachment, *_nethttp.Response, error) {
+func (a *VolumeAttachmentsApiService) GetByID(ctx _context.Context, attachmentId string, localVarOptionals *VolumeAttachmentsApiGetByIDOpts) (VolumeAttachment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -398,6 +390,12 @@ func (a *VolumeAttachmentsApiService) GetByID(ctx _context.Context, attachmentId
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -420,30 +418,6 @@ func (a *VolumeAttachmentsApiService) GetByID(ctx _context.Context, attachmentId
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -531,13 +505,22 @@ func (a *VolumeAttachmentsApiService) GetByID(ctx _context.Context, attachmentId
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// VolumeAttachmentsApiListOpts Optional parameters for the method 'List'
+type VolumeAttachmentsApiListOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 List List all volume attachments in project
-Returns an array of all VolumeAttachments defined within the project.
+Returns an array of all VolumeAttachments defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *VolumeAttachmentsApiListOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []VolumeAttachment
 */
-func (a *VolumeAttachmentsApiService) List(ctx _context.Context) ([]VolumeAttachment, *_nethttp.Response, error) {
+func (a *VolumeAttachmentsApiService) List(ctx _context.Context, localVarOptionals *VolumeAttachmentsApiListOpts) ([]VolumeAttachment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -570,6 +553,12 @@ func (a *VolumeAttachmentsApiService) List(ctx _context.Context) ([]VolumeAttach
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -592,30 +581,6 @@ func (a *VolumeAttachmentsApiService) List(ctx _context.Context) ([]VolumeAttach
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

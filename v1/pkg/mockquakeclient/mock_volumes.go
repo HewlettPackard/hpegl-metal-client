@@ -39,9 +39,9 @@ func (m *MockVolumesAPI) EXPECT() *MockVolumesAPIMockRecorder {
 }
 
 // Add mocks base method.
-func (m *MockVolumesAPI) Add(ctx context.Context, newVolume client.NewVolume) (client.Volume, *http.Response, error) {
+func (m *MockVolumesAPI) Add(ctx context.Context, newVolume client.NewVolume, localVarOptionals *client.VolumesApiAddOpts) (client.Volume, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Add", ctx, newVolume)
+	ret := m.ctrl.Call(m, "Add", ctx, newVolume, localVarOptionals)
 	ret0, _ := ret[0].(client.Volume)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -49,15 +49,15 @@ func (m *MockVolumesAPI) Add(ctx context.Context, newVolume client.NewVolume) (c
 }
 
 // Add indicates an expected call of Add.
-func (mr *MockVolumesAPIMockRecorder) Add(ctx, newVolume interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) Add(ctx, newVolume, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockVolumesAPI)(nil).Add), ctx, newVolume)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockVolumesAPI)(nil).Add), ctx, newVolume, localVarOptionals)
 }
 
 // Attach mocks base method.
-func (m *MockVolumesAPI) Attach(ctx context.Context, volumeId string, volumeAttachHostUuid client.VolumeAttachHostUuid) (client.VolumeAttachment, *http.Response, error) {
+func (m *MockVolumesAPI) Attach(ctx context.Context, volumeId string, volumeAttachHostUuid client.VolumeAttachHostUuid, localVarOptionals *client.VolumesApiAttachOpts) (client.VolumeAttachment, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Attach", ctx, volumeId, volumeAttachHostUuid)
+	ret := m.ctrl.Call(m, "Attach", ctx, volumeId, volumeAttachHostUuid, localVarOptionals)
 	ret0, _ := ret[0].(client.VolumeAttachment)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -65,45 +65,45 @@ func (m *MockVolumesAPI) Attach(ctx context.Context, volumeId string, volumeAtta
 }
 
 // Attach indicates an expected call of Attach.
-func (mr *MockVolumesAPIMockRecorder) Attach(ctx, volumeId, volumeAttachHostUuid interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) Attach(ctx, volumeId, volumeAttachHostUuid, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Attach", reflect.TypeOf((*MockVolumesAPI)(nil).Attach), ctx, volumeId, volumeAttachHostUuid)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Attach", reflect.TypeOf((*MockVolumesAPI)(nil).Attach), ctx, volumeId, volumeAttachHostUuid, localVarOptionals)
 }
 
 // Delete mocks base method.
-func (m *MockVolumesAPI) Delete(ctx context.Context, volumeId string) (*http.Response, error) {
+func (m *MockVolumesAPI) Delete(ctx context.Context, volumeId string, localVarOptionals *client.VolumesApiDeleteOpts) (*http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Delete", ctx, volumeId)
+	ret := m.ctrl.Call(m, "Delete", ctx, volumeId, localVarOptionals)
 	ret0, _ := ret[0].(*http.Response)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockVolumesAPIMockRecorder) Delete(ctx, volumeId interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) Delete(ctx, volumeId, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockVolumesAPI)(nil).Delete), ctx, volumeId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockVolumesAPI)(nil).Delete), ctx, volumeId, localVarOptionals)
 }
 
 // Detach mocks base method.
-func (m *MockVolumesAPI) Detach(ctx context.Context, volumeId string, volumeAttachHostUuid client.VolumeAttachHostUuid) (*http.Response, error) {
+func (m *MockVolumesAPI) Detach(ctx context.Context, volumeId string, volumeAttachHostUuid client.VolumeAttachHostUuid, localVarOptionals *client.VolumesApiDetachOpts) (*http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Detach", ctx, volumeId, volumeAttachHostUuid)
+	ret := m.ctrl.Call(m, "Detach", ctx, volumeId, volumeAttachHostUuid, localVarOptionals)
 	ret0, _ := ret[0].(*http.Response)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Detach indicates an expected call of Detach.
-func (mr *MockVolumesAPIMockRecorder) Detach(ctx, volumeId, volumeAttachHostUuid interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) Detach(ctx, volumeId, volumeAttachHostUuid, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Detach", reflect.TypeOf((*MockVolumesAPI)(nil).Detach), ctx, volumeId, volumeAttachHostUuid)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Detach", reflect.TypeOf((*MockVolumesAPI)(nil).Detach), ctx, volumeId, volumeAttachHostUuid, localVarOptionals)
 }
 
 // GetByID mocks base method.
-func (m *MockVolumesAPI) GetByID(ctx context.Context, volumeId string) (client.Volume, *http.Response, error) {
+func (m *MockVolumesAPI) GetByID(ctx context.Context, volumeId string, localVarOptionals *client.VolumesApiGetByIDOpts) (client.Volume, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetByID", ctx, volumeId)
+	ret := m.ctrl.Call(m, "GetByID", ctx, volumeId, localVarOptionals)
 	ret0, _ := ret[0].(client.Volume)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -111,15 +111,15 @@ func (m *MockVolumesAPI) GetByID(ctx context.Context, volumeId string) (client.V
 }
 
 // GetByID indicates an expected call of GetByID.
-func (mr *MockVolumesAPIMockRecorder) GetByID(ctx, volumeId interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) GetByID(ctx, volumeId, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockVolumesAPI)(nil).GetByID), ctx, volumeId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockVolumesAPI)(nil).GetByID), ctx, volumeId, localVarOptionals)
 }
 
 // List mocks base method.
-func (m *MockVolumesAPI) List(ctx context.Context) ([]client.Volume, *http.Response, error) {
+func (m *MockVolumesAPI) List(ctx context.Context, localVarOptionals *client.VolumesApiListOpts) ([]client.Volume, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List", ctx)
+	ret := m.ctrl.Call(m, "List", ctx, localVarOptionals)
 	ret0, _ := ret[0].([]client.Volume)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -127,15 +127,15 @@ func (m *MockVolumesAPI) List(ctx context.Context) ([]client.Volume, *http.Respo
 }
 
 // List indicates an expected call of List.
-func (mr *MockVolumesAPIMockRecorder) List(ctx interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) List(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockVolumesAPI)(nil).List), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockVolumesAPI)(nil).List), ctx, localVarOptionals)
 }
 
 // Update mocks base method.
-func (m *MockVolumesAPI) Update(ctx context.Context, volumeId string, updateVolume client.UpdateVolume) (client.Volume, *http.Response, error) {
+func (m *MockVolumesAPI) Update(ctx context.Context, volumeId string, updateVolume client.UpdateVolume, localVarOptionals *client.VolumesApiUpdateOpts) (client.Volume, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, volumeId, updateVolume)
+	ret := m.ctrl.Call(m, "Update", ctx, volumeId, updateVolume, localVarOptionals)
 	ret0, _ := ret[0].(client.Volume)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -143,7 +143,7 @@ func (m *MockVolumesAPI) Update(ctx context.Context, volumeId string, updateVolu
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockVolumesAPIMockRecorder) Update(ctx, volumeId, updateVolume interface{}) *gomock.Call {
+func (mr *MockVolumesAPIMockRecorder) Update(ctx, volumeId, updateVolume, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockVolumesAPI)(nil).Update), ctx, volumeId, updateVolume)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockVolumesAPI)(nil).Update), ctx, volumeId, updateVolume, localVarOptionals)
 }

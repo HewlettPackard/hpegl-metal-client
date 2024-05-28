@@ -1,6 +1,6 @@
 name: spaceid
 in: header
-description: GreenLake space ID
+description: GreenLake Cloud Services space ID
 schema:
   type: string
 example: 95688cf9-82ff-4e32-80fc-2b0b41648dab

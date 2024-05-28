@@ -39,9 +39,9 @@ func (m *MockAvailableResourcesAPI) EXPECT() *MockAvailableResourcesAPIMockRecor
 }
 
 // List mocks base method.
-func (m *MockAvailableResourcesAPI) List(ctx context.Context) (client.AvailableResources, *http.Response, error) {
+func (m *MockAvailableResourcesAPI) List(ctx context.Context, localVarOptionals *client.AvailableResourcesApiListOpts) (client.AvailableResources, *http.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List", ctx)
+	ret := m.ctrl.Call(m, "List", ctx, localVarOptionals)
 	ret0, _ := ret[0].(client.AvailableResources)
 	ret1, _ := ret[1].(*http.Response)
 	ret2, _ := ret[2].(error)
@@ -49,7 +49,7 @@ func (m *MockAvailableResourcesAPI) List(ctx context.Context) (client.AvailableR
 }
 
 // List indicates an expected call of List.
-func (mr *MockAvailableResourcesAPIMockRecorder) List(ctx interface{}) *gomock.Call {
+func (mr *MockAvailableResourcesAPIMockRecorder) List(ctx, localVarOptionals interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockAvailableResourcesAPI)(nil).List), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockAvailableResourcesAPI)(nil).List), ctx, localVarOptionals)
 }

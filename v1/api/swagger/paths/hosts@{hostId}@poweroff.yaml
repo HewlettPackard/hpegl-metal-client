@@ -3,7 +3,10 @@ post:
   tags:
     - hosts
   summary: Power off Host by ID
-  description: Powers off a single Host with matching ID
+  description: >-
+    Powers off a single Host with matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: powerOff
   parameters:
     - name: hostId
@@ -12,6 +15,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

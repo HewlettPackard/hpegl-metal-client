@@ -1,0 +1,6 @@
+name: X-Workspaceid
+in: header
+description: GreenLake Platform workspace ID
+schema:
+  type: string
+example: 1a2ba81600dd11efa47076a3447ec4eb

@@ -13,45 +13,60 @@ import (
 type NetworksAPI interface {
 	/*
 	   Add Add a new network
-	   Adds a new network that can be referenced when creating a Host
+	   Adds a new network that can be referenced when creating a Host. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param newNetwork Network that is to be added to the project
+	     - @param optional nil or *NetworksApiAddOpts - Optional Parameters:
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
+	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Network
 	*/
-	Add(ctx _context.Context, newNetwork NewNetwork) (Network, *_nethttp.Response, error)
+	Add(ctx _context.Context, newNetwork NewNetwork, localVarOptionals *NetworksApiAddOpts) (Network, *_nethttp.Response, error)
 	/*
 	   Delete Delete a network
-	   Deletes the network with the matching ID
+	   Deletes the network with the matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param networkId ID of network to delete
+	     - @param optional nil or *NetworksApiDeleteOpts - Optional Parameters:
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
+	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 	*/
-	Delete(ctx _context.Context, networkId string) (*_nethttp.Response, error)
+	Delete(ctx _context.Context, networkId string, localVarOptionals *NetworksApiDeleteOpts) (*_nethttp.Response, error)
 	/*
-	   GetByID Retrieve network by ID
-	   Returns a single network with matching ID
+	   GetByID Retrieve network by ID.
+	   Returns a single network with matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param networkId ID of network to return
+	     - @param optional nil or *NetworksApiGetByIDOpts - Optional Parameters:
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
+	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Network
 	*/
-	GetByID(ctx _context.Context, networkId string) (Network, *_nethttp.Response, error)
+	GetByID(ctx _context.Context, networkId string, localVarOptionals *NetworksApiGetByIDOpts) (Network, *_nethttp.Response, error)
 	/*
 	   List List all networks in project
-	   Returns an array of all network objects defined within the project.
+	   Returns an array of all network objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	     - @param optional nil or *NetworksApiListOpts - Optional Parameters:
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
+	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return []Network
 	*/
-	List(ctx _context.Context) ([]Network, *_nethttp.Response, error)
+	List(ctx _context.Context, localVarOptionals *NetworksApiListOpts) ([]Network, *_nethttp.Response, error)
 	/*
-	   Update Update an existing network.
-
+	   Update Update an existing network by ID.
+	   Update an existing network by ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param networkId ID of network to update
 	     - @param updateNetwork Updated network
+	     - @param optional nil or *NetworksApiUpdateOpts - Optional Parameters:
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
+	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return Network
 	*/
-	Update(ctx _context.Context, networkId string, updateNetwork UpdateNetwork) (Network, *_nethttp.Response, error)
+	Update(ctx _context.Context, networkId string, updateNetwork UpdateNetwork, localVarOptionals *NetworksApiUpdateOpts) (Network, *_nethttp.Response, error)
 }

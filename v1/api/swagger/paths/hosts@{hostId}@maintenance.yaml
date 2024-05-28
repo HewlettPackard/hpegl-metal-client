@@ -5,8 +5,11 @@ post:
   summary: Do maintenance on a Host by ID
   description: >-
     Do maintenance on a host by executing pre-defined operations.
-    The host must be powered off.  The host must also be in the Ready state or in
+    The host must be powered off. The host must also be in the Ready state or in
     the Failed state and in the Maintenance workflow.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: maintenance
   parameters:
     - name: hostId
@@ -15,6 +18,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

@@ -6,14 +6,14 @@ get:
     Returns a single Project object with its matching ID This includes profile
     information for the project and project limits on resouces like hosts,
     private networks, volumes, and volume capacity.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Project_getByID
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
+      Project: []
   parameters:
     - name: projectId
       in: path
@@ -21,6 +21,8 @@ get:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -43,15 +45,17 @@ put:
   description: >-
     Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated
     with this operation.
-    Note that Hoster or BMaaS Access Owner role is required for this operation.
+    Note that a Hoster or BMaaS Access Owner (under GreenLake Cloud Services), or
+    BMaaS Tenant Owner or Service Platform Owner role (under GreenLake Platform) 
+    is required for this operation.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Project_update
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
+      Project: []
   parameters:
     - name: projectId
       in: path
@@ -59,6 +63,8 @@ put:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Project parameters to update an existing Project
@@ -91,15 +97,17 @@ delete:
   summary: Delete a Project
   description: >-
     Deletes the Project with the matching ID.
-    Note that Hoster or BMaaS Access Owner role is required for this operation.
+    Note that a Hoster or BMaaS Access Owner (under GreenLake Cloud Services), or
+    BMaaS Tenant Owner or Service Platform Owner role (under GreenLake Platform) 
+    is required for this operation.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Project_delete
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
+      Project: []
   parameters:
     - name: projectId
       in: path
@@ -107,6 +115,8 @@ delete:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

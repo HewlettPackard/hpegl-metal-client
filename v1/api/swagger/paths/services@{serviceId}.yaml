@@ -4,6 +4,8 @@ get:
   summary: Retrieve an OS service image
   description: >-
     Returns a single OS service image object with its matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Service_getByID
   parameters:
     - name: serviceId
@@ -12,6 +14,8 @@ get:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -33,7 +37,9 @@ put:
   summary: Update an OS service image by its ID
   description: >-
     Updates an OS service image with a matching ID.
-    Note that Hoster or BMaaS Access Owner role is required for this operation.
+    Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Services.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Service_update
   security:
     - BearerAuth: []
@@ -46,6 +52,8 @@ put:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Yaml file describing the OS service image.
@@ -78,7 +86,9 @@ delete:
   summary: Delete an OS service image
   description: >-
     Deletes the OS service image with the matching ID.
-    Note that Hoster or BMaaS Access Owner role is required for this operation.
+    Note that Hoster or BMaaS Access Owner role is required for this operation under GreenLake Cloud Services.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Service_delete
   security:
     - BearerAuth: []
@@ -91,6 +101,8 @@ delete:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

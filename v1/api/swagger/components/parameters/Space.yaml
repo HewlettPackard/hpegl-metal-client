@@ -1,6 +1,6 @@
 name: Space
 in: header
-description: GreenLake space name
+description: GreenLake Cloud Services space name
 schema:
   type: string
 example: Default

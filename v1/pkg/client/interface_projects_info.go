@@ -13,12 +13,14 @@ import (
 type ProjectsInfoAPI interface {
 	/*
 	   List List of all projects info within an organization or cluster for which user is authorized.
-	   Returns an object with information on projects, machine sizes, and volume flavors.  The &#39;Projects&#39; list includes projects authorized for a user, and the &#39;MachineSizes&#39; and  &#39;VolumeFlavors&#39; list include only those machine sizes and volume flavors permitted for projects.  When GreenLake IAM issued token is used for authentication, it is required to  pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored.
+	   Returns an object with information on projects, machine sizes, and volume flavors.  The &#39;Projects&#39; list includes projects authorized for a user, and the &#39;MachineSizes&#39; and  &#39;VolumeFlavors&#39; list include only those machine sizes and volume flavors permitted for projects. When GreenLake Cloud Services IAM issued token is used for authentication, it is required to  pass either &#39;Space&#39; or &#39;spaceid&#39; header. When both are set, &#39;Space&#39; header is ignored. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
 	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	     - @param optional nil or *ProjectsInfoApiListOpts - Optional Parameters:
-	     - @param "Space" (optional.String) -  GreenLake space name
-	     - @param "Spaceid" (optional.String) -  GreenLake space ID
+	     - @param "Space" (optional.String) -  GreenLake Cloud Services space name
+	     - @param "Spaceid" (optional.String) -  GreenLake Cloud Services space ID
 	     - @param "Siteid" (optional.String) -  GreenLake site ID
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
+	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 
 	   @return ProjectsInfo
 	*/

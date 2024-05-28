@@ -16,6 +16,7 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -26,13 +27,22 @@ var (
 // AvailableResourcesApiService AvailableResourcesApi service
 type AvailableResourcesApiService service
 
+// AvailableResourcesApiListOpts Optional parameters for the method 'List'
+type AvailableResourcesApiListOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 List Get lists of available resources for creating hosts and volumes
-Used to get lists of options that are used when creating hosts and volumes. A get /available-resources will return an object that includes the following arrays: * Images - A list of image service IDs along with their category (Linux),    flavor (ubuntu), and version (18.04)  * MachineSizes - A list of machine size IDs along with the machine size    names and detailed descriptions  * Locations - A list of location IDs along with their country, region,    and data center.  * Networks - A list of available Network IDs along with the network name,   location ID, network kind, and host usage (Required, Default, Optional)  * MachineInventory - Information about the available inventory of machines    based on location ID and machine size ID.  While this information may    change rapidly, it can be used by GUIs and systems to restrict host   creates to locations with the desired machine size.  * StorageInventory - Information about the current available storage capacity    for a specific volume flavor by site.   * VolumeFlavors - A list of volume flavor IDs along with their name and    detailed description.  * Volumes - A list of current, existing volumes.  If the volume is in the   the right state, it could be attached to a new Host. 
+Used to get lists of options that are used when creating hosts and volumes. A get /available-resources will return an object that includes the following arrays: * Images - A list of image service IDs along with their category (Linux),    flavor (ubuntu), and version (18.04)  * MachineSizes - A list of machine size IDs along with the machine size    names and detailed descriptions  * Locations - A list of location IDs along with their country, region,    and data center.  * Networks - A list of available Network IDs along with the network name,   location ID, network kind, and host usage (Required, Default, Optional)  * MachineInventory - Information about the available inventory of machines    based on location ID and machine size ID.  While this information may    change rapidly, it can be used by GUIs and systems to restrict host   creates to locations with the desired machine size.  * StorageInventory - Information about the current available storage capacity    for a specific volume flavor by site.   * VolumeFlavors - A list of volume flavor IDs along with their name and    detailed description.  * Volumes - A list of current, existing volumes.  If the volume is in the   the right state, it could be attached to a new Host.  If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers. 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *AvailableResourcesApiListOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return AvailableResources
 */
-func (a *AvailableResourcesApiService) List(ctx _context.Context) (AvailableResources, *_nethttp.Response, error) {
+func (a *AvailableResourcesApiService) List(ctx _context.Context, localVarOptionals *AvailableResourcesApiListOpts) (AvailableResources, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -65,6 +75,12 @@ func (a *AvailableResourcesApiService) List(ctx _context.Context) (AvailableReso
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -87,30 +103,6 @@ func (a *AvailableResourcesApiService) List(ctx _context.Context) (AvailableReso
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

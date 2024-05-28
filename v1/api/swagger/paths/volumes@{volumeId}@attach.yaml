@@ -7,6 +7,8 @@ post:
     This attachment will create a VolumeAttachment object that contains  details
     about the connection of the volume and will update the Host  with iSCSI
     configuration information.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Volume_attach
   parameters:
     - name: volumeId
@@ -15,6 +17,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Unique ID of the Host to which the volume will be attached

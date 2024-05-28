@@ -3,7 +3,10 @@ get:
   tags:
     - ippools
   summary: Retrieve IP pool by ID
-  description: Returns a single ip pool with matching ID
+  description: >-
+    Returns a single ip pool with matching imaged.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: IPPool_getByID
   parameters:
     - name: ippoolId
@@ -12,6 +15,8 @@ get:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -31,7 +36,10 @@ put:
   tags:
     - ippools
   summary: Update IP pool by ID
-  description: Update a single ip pool with matching ID. 'DefaultRoute' can only be updated if ip pool is not currently in-use.
+  description: >-
+    Update a single ip pool with matching ID. 'DefaultRoute' can only be updated if ip pool is not currently in-use.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: IPPool_update
   parameters:
     - name: ippoolId
@@ -40,6 +48,8 @@ put:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Update IPPool
