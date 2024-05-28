@@ -200,7 +200,7 @@ type ProjectsApiDeleteOpts struct {
 
 /*
 Delete Delete a Project
-Deletes the Project with the matching ID. Note that a Hoster, BMaaS Access Owner, BMaaS Tenant Owner or Service Platform Owner role  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
+Deletes the Project with the matching ID. Note that a Hoster or BMaaS Access Owner (under GreenLake Cloud Services), or BMaaS Tenant Owner or Service Platform Owner role (under GreenLake Platform)  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId ID of project to delete
  * @param optional nil or *ProjectsApiDeleteOpts - Optional Parameters:
@@ -664,7 +664,7 @@ type ProjectsApiUpdateOpts struct {
 
 /*
 Update Update a project by its ID
-Updates a project with a matching ID. Only Project &#39;Name&#39;, &#39;Profile&#39; and &#39;Limits&#39; can be updated with this operation. Note that a Hoster, BMaaS Access Owner, BMaaS Tenant Owner or Service Platform Owner role  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
+Updates a project with a matching ID. Only Project &#39;Name&#39;, &#39;Profile&#39; and &#39;Limits&#39; can be updated with this operation. Note that a Hoster or BMaaS Access Owner (under GreenLake Cloud Services), or BMaaS Tenant Owner or Service Platform Owner role (under GreenLake Platform)  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId ID of project to update
  * @param updateProject Project parameters to update an existing Project

@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 Delete a Project
 
-Deletes the Project with the matching ID. Note that a Hoster, BMaaS Access Owner, BMaaS Tenant Owner or Service Platform Owner role  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
+Deletes the Project with the matching ID. Note that a Hoster or BMaaS Access Owner (under GreenLake Cloud Services), or BMaaS Tenant Owner or Service Platform Owner role (under GreenLake Platform)  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 Update a project by its ID
 
-Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated with this operation. Note that a Hoster, BMaaS Access Owner, BMaaS Tenant Owner or Service Platform Owner role  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
+Updates a project with a matching ID. Only Project 'Name', 'Profile' and 'Limits' can be updated with this operation. Note that a Hoster or BMaaS Access Owner (under GreenLake Cloud Services), or BMaaS Tenant Owner or Service Platform Owner role (under GreenLake Platform)  is required for this operation. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 

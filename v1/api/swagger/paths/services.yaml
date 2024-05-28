@@ -4,7 +4,7 @@ get:
   summary: List of all OS service images within an tenant 
   description: >-
     Returns an array of all OS service images objects that have been created.
-    If GreenLake IAM issued token is used for authentication, 
+    If GreenLake Cloud Services IAM issued token is used for authentication, 
     then it is required to pass 'spaceid' headers.
     If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
     'X-Role' and 'X-Workspaceid' headers.
