@@ -3149,10 +3149,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: Create a new OS service image
       tags:
       - services
@@ -3209,10 +3205,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: Delete an OS service image
       tags:
       - services
@@ -3349,10 +3341,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: Update an OS service image by its ID
       tags:
       - services

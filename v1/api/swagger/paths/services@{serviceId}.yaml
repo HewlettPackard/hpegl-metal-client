@@ -41,10 +41,6 @@ put:
     If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
     'X-Role' and 'X-Workspaceid' headers.
   operationId: Service_update
-  security:
-    - BearerAuth: []
-      Membership: []
-    - BearerAuth: []
   parameters:
     - name: serviceId
       in: path
@@ -90,10 +86,6 @@ delete:
     If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
     'X-Role' and 'X-Workspaceid' headers.
   operationId: Service_delete
-  security:
-    - BearerAuth: []
-      Membership: []
-    - BearerAuth: []
   parameters:
     - name: serviceId
       in: path
