@@ -19,5 +19,7 @@ enum:
   - Maintenance
   - Attaching
   - Detaching
+  - ISCSI Attaching
+  - All Detaching
 description: Overall host state
 example: Ready
