@@ -35,6 +35,5 @@ const (
 	HOSTSTATE_ATTACHING HostState = "Attaching"
 	HOSTSTATE_DETACHING HostState = "Detaching"
 	HOSTSTATE_ISCSI_ATTACHING HostState = "ISCSI Attaching"
-	HOSTSTATE_ISCSI_DETACHING HostState = "ISCSI Detaching"
 	HOSTSTATE_ALL_DETACHING HostState = "All Detaching"
 )
