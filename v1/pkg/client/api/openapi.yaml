@@ -4841,6 +4841,9 @@ components:
       - Maintenance
       - Attaching
       - Detaching
+      - ISCSI Attaching
+      - ISCSI Detaching
+      - All Detaching
       example: Ready
       type: string
     HostSubstate:
