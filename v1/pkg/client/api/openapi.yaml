@@ -4829,6 +4829,8 @@ components:
       - Maintenance
       - Attaching
       - Detaching
+      - ISCSI Attaching
+      - All Detaching
       example: Ready
       type: string
     HostSubstate:
@@ -6774,6 +6776,10 @@ components:
         VolumeReplicationEnabled:
           description: Indicates whether volume replication is enabled for this Project.
           type: boolean
+        ParentID:
+          description: ID of the Parent Project (optional). Applicable to GreenLake
+            Platform (GLP) only.
+          type: string
       required:
       - Limits
       - PermittedOSImages
