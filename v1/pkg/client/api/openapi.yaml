@@ -6789,7 +6789,7 @@ components:
           description: Indicates whether volume replication is enabled for this Project.
           type: boolean
         ParentID:
-          description: If not empty, ID of the Parent Project. Applicable to GreenLake
+          description: ID of the Parent Project (optional). Applicable to GreenLake
             Platform (GLP) only.
           type: string
       required:

@@ -34,6 +34,6 @@ type Project struct {
 	PermittedOSImages []string `json:"PermittedOSImages"`
 	// Indicates whether volume replication is enabled for this Project.
 	VolumeReplicationEnabled bool `json:"VolumeReplicationEnabled"`
-	// If not empty, ID of the Parent Project. Applicable to GreenLake Platform (GLP) only.
+	// ID of the Parent Project (optional). Applicable to GreenLake Platform (GLP) only.
 	ParentID string `json:"ParentID,omitempty"`
 }
