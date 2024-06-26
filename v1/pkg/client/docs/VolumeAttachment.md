@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **State** | [**VaStateEnum**](VaStateEnum.md) |  | 
 **FSConfig** | Pointer to [**VafsConfig**](VAFSConfig.md) | File share specific configuration parameters | 
 **AttachProtocol** | [**ProtocolKind**](ProtocolKind.md) |  | 
+**WWPNs** | **[]string** | List of FC host port wwpns. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -47,4 +47,6 @@ type VolumeAttachment struct {
 	// File share specific configuration parameters
 	FSConfig *VafsConfig `json:"FSConfig"`
 	AttachProtocol ProtocolKind `json:"AttachProtocol"`
+	// List of FC host port wwpns.
+	WWPNs []string `json:"WWPNs"`
 }

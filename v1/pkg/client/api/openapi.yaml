@@ -7216,6 +7216,12 @@ components:
           type: object
         AttachProtocol:
           $ref: '#/components/schemas/ProtocolKind'
+        WWPNs:
+          description: List of FC host port wwpns.
+          items:
+            example: 20:31:01:02:ad:f2:a8:e5
+            type: string
+          type: array
       required:
       - AttachProtocol
       - CHAPSecret
@@ -7229,6 +7235,7 @@ components:
       - VolumeID
       - VolumeTargetIPAddress
       - VolumeTargetIQN
+      - WWPNs
     Network_allOf:
       properties:
         LocationID:
