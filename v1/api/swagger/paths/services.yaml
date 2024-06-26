@@ -40,10 +40,6 @@ post:
     'X-Role' and 'X-Workspaceid' headers.
     Note that Hoster or BMaaS Access Owner role is required for this operation.
   operationId: Service_add
-  security:
-    - BearerAuth: []
-      Membership: []
-    - BearerAuth: []
   parameters:
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/Space.yaml
