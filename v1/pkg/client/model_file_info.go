@@ -30,5 +30,5 @@ type FileInfo struct {
 	// URL of the file that should be kept secret.  If this field is set, it will be used for accessing the file and DisplayURL will be ignored.
 	SecureURL string `json:"SecureURL"`
 	// Indicates if the web server the file is being downloaded from should have the SSL certificate validation bypassed. Useful for downloading from an internal webserver with either self-signed or internal CA issued SSL certificate.
-	InsecureDownload bool `json:"InsecureDownload,omitempty"`
+	SkipSslVerify bool `json:"SkipSslVerify,omitempty"`
 }

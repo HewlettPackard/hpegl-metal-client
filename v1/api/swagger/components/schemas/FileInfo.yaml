@@ -61,7 +61,7 @@ properties:
     description: >-
       URL of the file that should be kept secret. 
       If this field is set, it will be used for accessing the file and DisplayURL will be ignored.
-  InsecureDownload:
+  SkipSslVerify:
     type: boolean
     description: >-
       Indicates if the web server the file is being downloaded from should have
