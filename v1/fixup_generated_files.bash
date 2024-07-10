@@ -1,5 +1,5 @@
 #! /bin/bash
-COPYRIGHT="// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP"
+COPYRIGHT="// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP"
 set -e
 
 if [ $# -ne 1 ]; then
