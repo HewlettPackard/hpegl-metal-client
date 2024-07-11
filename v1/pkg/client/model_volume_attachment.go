@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -47,4 +47,6 @@ type VolumeAttachment struct {
 	// File share specific configuration parameters
 	FSConfig *VafsConfig `json:"FSConfig"`
 	AttachProtocol ProtocolKind `json:"AttachProtocol"`
+	// List of FC host port wwpns.
+	WWPNs []string `json:"WWPNs"`
 }

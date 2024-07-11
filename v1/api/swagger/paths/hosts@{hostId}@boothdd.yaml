@@ -3,7 +3,10 @@ post:
   tags:
     - hosts
   summary: Set HDD boot order on Host by ID
-  description: Sets a single Host with matching ID to attempt HDD boot
+  description: >-
+    Sets a single Host with matching ID to attempt HDD booting.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: bootHDD
   parameters:
     - name: hostId
@@ -12,6 +15,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

@@ -16,11 +16,11 @@ Method | HTTP request | Description
 
 ## Add
 
-> Volume Add(ctx, newVolume)
+> Volume Add(ctx, newVolume, optional)
 
 Add a new volume
 
-Adds a new volume to the project.  Volumes may be created separately and then referenced in the create Host call; or volumes may be created directly within the create Host call. 
+Adds a new volume to the project. Volumes may be created separately and then referenced in the create Host call; or volumes may be created directly within the create Host call. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers. 
 
 ### Required Parameters
 
@@ -29,6 +29,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **newVolume** | [**NewVolume**](NewVolume.md)| Volume that is to be added to the project | 
+ **optional** | ***AddOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a AddOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -36,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -50,11 +62,11 @@ Name | Type | Description  | Notes
 
 ## Attach
 
-> VolumeAttachment Attach(ctx, volumeId, volumeAttachHostUuid)
+> VolumeAttachment Attach(ctx, volumeId, volumeAttachHostUuid, optional)
 
 Attach existing volume to Host
 
-Attaches the indicated volume to a host identified in the requestBody.   This attachment will create a VolumeAttachment object that contains  details about the connection of the volume and will update the Host  with iSCSI configuration information. 
+Attaches the indicated volume to a host identified in the requestBody.   This attachment will create a VolumeAttachment object that contains  details about the connection of the volume and will update the Host  with iSCSI configuration information. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers. 
 
 ### Required Parameters
 
@@ -64,6 +76,19 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **volumeId** | **string**| ID of volume to attach | 
 **volumeAttachHostUuid** | [**VolumeAttachHostUuid**](VolumeAttachHostUuid.md)| Unique ID of the Host to which the volume will be attached | 
+ **optional** | ***AttachOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a AttachOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -71,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -85,11 +110,11 @@ Name | Type | Description  | Notes
 
 ## Delete
 
-> Delete(ctx, volumeId)
+> Delete(ctx, volumeId, optional)
 
 Delete a volume
 
-Deletes the volume with the matching ID
+Deletes the volume with the matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -98,6 +123,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **volumeId** | **string**| ID of volume to delete | 
+ **optional** | ***DeleteOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DeleteOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -105,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -119,11 +156,11 @@ Name | Type | Description  | Notes
 
 ## Detach
 
-> Detach(ctx, volumeId, volumeAttachHostUuid)
+> Detach(ctx, volumeId, volumeAttachHostUuid, optional)
 
 Detach existing volume from Host
 
-Detaches the indicated volume from the host identified in the requestBody.   This detachment will delete the VolumeAttachment object that contains  details about the connection of the volume and will update the Host  to remove selected iSCSI configuration information. Note that the HostID is required in the body of the request to ensure that the operation is well understood and that a volume is not accidently being removed from the wrong host. 
+Detaches the indicated volume from the host identified in the requestBody.   This detachment will delete the VolumeAttachment object that contains  details about the connection of the volume and will update the Host  to remove selected iSCSI configuration information. Note that the HostID is required in the body of the request to ensure that the operation is well understood and that a volume is not accidently being removed from the wrong host. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers. 
 
 ### Required Parameters
 
@@ -133,6 +170,19 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **volumeId** | **string**| ID of volume to attach | 
 **volumeAttachHostUuid** | [**VolumeAttachHostUuid**](VolumeAttachHostUuid.md)| Unique ID of the Host from which a volume will be detached | 
+ **optional** | ***DetachOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DetachOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -140,7 +190,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -154,11 +204,11 @@ Name | Type | Description  | Notes
 
 ## GetByID
 
-> Volume GetByID(ctx, volumeId)
+> Volume GetByID(ctx, volumeId, optional)
 
 Retrieve volume by ID
 
-Returns a single volume with matching ID
+Returns a single volume with matching imaged. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -167,6 +217,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **volumeId** | **string**| ID of volume to return | 
+ **optional** | ***GetByIDOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetByIDOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -174,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -188,15 +250,29 @@ Name | Type | Description  | Notes
 
 ## List
 
-> []Volume List(ctx, )
+> []Volume List(ctx, optional)
 
 List all volumes in project
 
-Returns an array of all volumes defined within the project.
+Returns an array of all volumes defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -204,7 +280,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 
@@ -218,11 +294,11 @@ This endpoint does not need any parameter.
 
 ## Update
 
-> Volume Update(ctx, volumeId, updateVolume)
+> Volume Update(ctx, volumeId, updateVolume, optional)
 
 Update an existing volume
 
-Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state. Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume.  
+Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state. Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume.  If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers. 
 
 ### Required Parameters
 
@@ -232,6 +308,19 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **volumeId** | **string**| ID of volume to return | 
 **updateVolume** | [**UpdateVolume**](UpdateVolume.md)| Volume object with its ID and Capacity in GiB indicating the expanded size to be specified. | 
+ **optional** | ***UpdateOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a UpdateOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -239,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
 
 ### HTTP request headers
 

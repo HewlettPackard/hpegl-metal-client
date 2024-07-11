@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -27,14 +28,23 @@ var (
 // NetworksApiService NetworksApi service
 type NetworksApiService service
 
+// NetworksApiAddOpts Optional parameters for the method 'Add'
+type NetworksApiAddOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Add Add a new network
-Adds a new network that can be referenced when creating a Host
+Adds a new network that can be referenced when creating a Host. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newNetwork Network that is to be added to the project
+ * @param optional nil or *NetworksApiAddOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return Network
 */
-func (a *NetworksApiService) Add(ctx _context.Context, newNetwork NewNetwork) (Network, *_nethttp.Response, error) {
+func (a *NetworksApiService) Add(ctx _context.Context, newNetwork NewNetwork, localVarOptionals *NetworksApiAddOpts) (Network, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -67,6 +77,12 @@ func (a *NetworksApiService) Add(ctx _context.Context, newNetwork NewNetwork) (N
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &newNetwork
 	if ctx != nil {
@@ -91,30 +107,6 @@ func (a *NetworksApiService) Add(ctx _context.Context, newNetwork NewNetwork) (N
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -202,13 +194,22 @@ func (a *NetworksApiService) Add(ctx _context.Context, newNetwork NewNetwork) (N
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// NetworksApiDeleteOpts Optional parameters for the method 'Delete'
+type NetworksApiDeleteOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Delete Delete a network
-Deletes the network with the matching ID
+Deletes the network with the matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param networkId ID of network to delete
+ * @param optional nil or *NetworksApiDeleteOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
-func (a *NetworksApiService) Delete(ctx _context.Context, networkId string) (*_nethttp.Response, error) {
+func (a *NetworksApiService) Delete(ctx _context.Context, networkId string, localVarOptionals *NetworksApiDeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -242,6 +243,12 @@ func (a *NetworksApiService) Delete(ctx _context.Context, networkId string) (*_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -264,30 +271,6 @@ func (a *NetworksApiService) Delete(ctx _context.Context, networkId string) (*_n
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -356,14 +339,23 @@ func (a *NetworksApiService) Delete(ctx _context.Context, networkId string) (*_n
 	return localVarHTTPResponse, nil
 }
 
+// NetworksApiGetByIDOpts Optional parameters for the method 'GetByID'
+type NetworksApiGetByIDOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
-GetByID Retrieve network by ID
-Returns a single network with matching ID
+GetByID Retrieve network by ID.
+Returns a single network with matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param networkId ID of network to return
+ * @param optional nil or *NetworksApiGetByIDOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return Network
 */
-func (a *NetworksApiService) GetByID(ctx _context.Context, networkId string) (Network, *_nethttp.Response, error) {
+func (a *NetworksApiService) GetByID(ctx _context.Context, networkId string, localVarOptionals *NetworksApiGetByIDOpts) (Network, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -398,6 +390,12 @@ func (a *NetworksApiService) GetByID(ctx _context.Context, networkId string) (Ne
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -420,30 +418,6 @@ func (a *NetworksApiService) GetByID(ctx _context.Context, networkId string) (Ne
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -531,13 +505,22 @@ func (a *NetworksApiService) GetByID(ctx _context.Context, networkId string) (Ne
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// NetworksApiListOpts Optional parameters for the method 'List'
+type NetworksApiListOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 List List all networks in project
-Returns an array of all network objects defined within the project.
+Returns an array of all network objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *NetworksApiListOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []Network
 */
-func (a *NetworksApiService) List(ctx _context.Context) ([]Network, *_nethttp.Response, error) {
+func (a *NetworksApiService) List(ctx _context.Context, localVarOptionals *NetworksApiListOpts) ([]Network, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -570,6 +553,12 @@ func (a *NetworksApiService) List(ctx _context.Context) ([]Network, *_nethttp.Re
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -592,30 +581,6 @@ func (a *NetworksApiService) List(ctx _context.Context) ([]Network, *_nethttp.Re
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -683,15 +648,24 @@ func (a *NetworksApiService) List(ctx _context.Context) ([]Network, *_nethttp.Re
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-/*
-Update Update an existing network.
+// NetworksApiUpdateOpts Optional parameters for the method 'Update'
+type NetworksApiUpdateOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
 
+/*
+Update Update an existing network by ID.
+Update an existing network by ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param networkId ID of network to update
  * @param updateNetwork Updated network
+ * @param optional nil or *NetworksApiUpdateOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return Network
 */
-func (a *NetworksApiService) Update(ctx _context.Context, networkId string, updateNetwork UpdateNetwork) (Network, *_nethttp.Response, error) {
+func (a *NetworksApiService) Update(ctx _context.Context, networkId string, updateNetwork UpdateNetwork, localVarOptionals *NetworksApiUpdateOpts) (Network, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -726,6 +700,12 @@ func (a *NetworksApiService) Update(ctx _context.Context, networkId string, upda
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &updateNetwork
 	if ctx != nil {
@@ -750,30 +730,6 @@ func (a *NetworksApiService) Update(ctx _context.Context, networkId string, upda
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

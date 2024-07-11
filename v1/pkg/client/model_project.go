@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -34,4 +34,6 @@ type Project struct {
 	PermittedOSImages []string `json:"PermittedOSImages"`
 	// Indicates whether volume replication is enabled for this Project.
 	VolumeReplicationEnabled bool `json:"VolumeReplicationEnabled"`
+	// ID of the Parent Project (optional). Applicable to GreenLake Platform (GLP) only.
+	ParentID string `json:"ParentID,omitempty"`
 }

@@ -2,8 +2,14 @@ get:
   tags:
     - volume-attachments
   summary: List all volume attachments in project
-  description: Returns an array of all VolumeAttachments defined within the project.
+  description: >- 
+    Returns an array of all VolumeAttachments defined within the project.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: VolumeAttachments_list
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -27,7 +33,12 @@ post:
     this API is for creation of a VolumeAttachment for non-Hosts. A VolumeAttachment resource
     must be deleted using the 'DELETE /volume-attachments/{attachmentId}' API. For regular hosts,
     a VolumeAttachment is created via the 'POST /volumes/{volumeId}/attach' API.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: VolumeAttachments_add
+  parameters:
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: NewVolumeAttachement parameters to create a new VolumeAttachment.

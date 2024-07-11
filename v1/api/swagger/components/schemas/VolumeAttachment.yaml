@@ -14,6 +14,7 @@ allOf:
       - State
       - FSConfig
       - AttachProtocol
+      - WWPNs
     properties:
       VolumeID:
         type: string
@@ -66,3 +67,9 @@ allOf:
         - $ref: ./VAFSConfig.yaml
       AttachProtocol:
         $ref: ./ProtocolKind.yaml
+      WWPNs:
+        type: array
+        items:
+          type: string
+          example: 20:31:01:02:ad:f2:a8:e5
+        description: List of FC host port wwpns.

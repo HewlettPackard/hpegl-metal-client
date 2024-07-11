@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -18,7 +18,7 @@ const (
 	HOSTSUBSTATE_EMPTY HostSubstate = ""
 	HOSTSUBSTATE_ABORT_DEPLOY HostSubstate = "Abort Deploy"
 	HOSTSUBSTATE_ALLOCATE HostSubstate = "Allocate"
-	HOSTSUBSTATE_ATTACHING_VOLUMES HostSubstate = "Attaching Volumes"
+	HOSTSUBSTATE_ATTACH_VOLUMES HostSubstate = "Attach Volumes"
 	HOSTSUBSTATE_BOOT_SERVICE_OS HostSubstate = "Boot Service-OS"
 	HOSTSUBSTATE_CLEAR_LOG HostSubstate = "Clear Log"
 	HOSTSUBSTATE_COMPLETE HostSubstate = "Complete"
@@ -27,16 +27,16 @@ const (
 	HOSTSUBSTATE_CONNECT_PROVISIONING HostSubstate = "Connect Provisioning"
 	HOSTSUBSTATE_DNS_ADD HostSubstate = "DNS Add"
 	HOSTSUBSTATE_DNS_ADD_INIT HostSubstate = "DNS Add Init"
+	HOSTSUBSTATE_DNS_DELETE_INIT HostSubstate = "DNS Delete Init"
 	HOSTSUBSTATE_DNS_DELETE HostSubstate = "DNS Delete"
 	HOSTSUBSTATE_DEPLOY HostSubstate = "Deploy"
 	HOSTSUBSTATE_DETACH_VOLUMES HostSubstate = "Detach Volumes"
-	HOSTSUBSTATE_ERROR_RECOVERY HostSubstate = "Error Recovery"
-	HOSTSUBSTATE_FAIL_CLEANUP HostSubstate = "Fail Cleanup"
 	HOSTSUBSTATE_FAILED HostSubstate = "Failed"
 	HOSTSUBSTATE_IN_MAINTENANCE HostSubstate = "In Maintenance"
 	HOSTSUBSTATE_IN_OS_PREP HostSubstate = "In OS Prep"
 	HOSTSUBSTATE_INIT HostSubstate = "Init"
 	HOSTSUBSTATE_INIT_ATTACH_VOLUMES HostSubstate = "Init Attach Volumes"
+	HOSTSUBSTATE_INIT_DETACH_VOLUMES HostSubstate = "Init Detach Volumes"
 	HOSTSUBSTATE_INIT_MAINTENANCE HostSubstate = "Init Maintenance"
 	HOSTSUBSTATE_INIT_OS_PREP HostSubstate = "Init OS Prep"
 	HOSTSUBSTATE_INIT_OFF HostSubstate = "Init Off"

@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -27,14 +28,23 @@ var (
 // SshkeysApiService SshkeysApi service
 type SshkeysApiService service
 
+// SshkeysApiAddOpts Optional parameters for the method 'Add'
+type SshkeysApiAddOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Add Add a new SSH Key
-Adds a new SSH Key that can be referenced when creating a Host
+Adds a new SSH Key that can be referenced when creating a Host. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newSshKey SSH Key that is to be added to the project
+ * @param optional nil or *SshkeysApiAddOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return SshKey
 */
-func (a *SshkeysApiService) Add(ctx _context.Context, newSshKey NewSshKey) (SshKey, *_nethttp.Response, error) {
+func (a *SshkeysApiService) Add(ctx _context.Context, newSshKey NewSshKey, localVarOptionals *SshkeysApiAddOpts) (SshKey, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -67,6 +77,12 @@ func (a *SshkeysApiService) Add(ctx _context.Context, newSshKey NewSshKey) (SshK
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &newSshKey
 	if ctx != nil {
@@ -91,30 +107,6 @@ func (a *SshkeysApiService) Add(ctx _context.Context, newSshKey NewSshKey) (SshK
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -202,13 +194,22 @@ func (a *SshkeysApiService) Add(ctx _context.Context, newSshKey NewSshKey) (SshK
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// SshkeysApiDeleteOpts Optional parameters for the method 'Delete'
+type SshkeysApiDeleteOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
-Delete Delete an SSH key
-Deletes the SSH key with the matching ID
+Delete Delete an SSH key by ID.
+Deletes the SSH key with the matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sshkeyId ID of sshkey to delete
+ * @param optional nil or *SshkeysApiDeleteOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
-func (a *SshkeysApiService) Delete(ctx _context.Context, sshkeyId string) (*_nethttp.Response, error) {
+func (a *SshkeysApiService) Delete(ctx _context.Context, sshkeyId string, localVarOptionals *SshkeysApiDeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -242,6 +243,12 @@ func (a *SshkeysApiService) Delete(ctx _context.Context, sshkeyId string) (*_net
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -264,30 +271,6 @@ func (a *SshkeysApiService) Delete(ctx _context.Context, sshkeyId string) (*_net
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -356,14 +339,23 @@ func (a *SshkeysApiService) Delete(ctx _context.Context, sshkeyId string) (*_net
 	return localVarHTTPResponse, nil
 }
 
+// SshkeysApiGetByIDOpts Optional parameters for the method 'GetByID'
+type SshkeysApiGetByIDOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 GetByID Retrieve SSH Key by ID
-Returns a single SSH key with matching ID
+Returns a single SSH key with matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sshkeyId ID of sshkey to return
+ * @param optional nil or *SshkeysApiGetByIDOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return SshKey
 */
-func (a *SshkeysApiService) GetByID(ctx _context.Context, sshkeyId string) (SshKey, *_nethttp.Response, error) {
+func (a *SshkeysApiService) GetByID(ctx _context.Context, sshkeyId string, localVarOptionals *SshkeysApiGetByIDOpts) (SshKey, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -398,6 +390,12 @@ func (a *SshkeysApiService) GetByID(ctx _context.Context, sshkeyId string) (SshK
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -420,30 +418,6 @@ func (a *SshkeysApiService) GetByID(ctx _context.Context, sshkeyId string) (SshK
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -531,13 +505,22 @@ func (a *SshkeysApiService) GetByID(ctx _context.Context, sshkeyId string) (SshK
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// SshkeysApiListOpts Optional parameters for the method 'List'
+type SshkeysApiListOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 List List all sshkeys in project
-Returns an array of all SSHKey objects defined within the project.
+Returns an array of all SSHKey objects defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *SshkeysApiListOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []SshKey
 */
-func (a *SshkeysApiService) List(ctx _context.Context) ([]SshKey, *_nethttp.Response, error) {
+func (a *SshkeysApiService) List(ctx _context.Context, localVarOptionals *SshkeysApiListOpts) ([]SshKey, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -570,6 +553,12 @@ func (a *SshkeysApiService) List(ctx _context.Context) ([]SshKey, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -592,30 +581,6 @@ func (a *SshkeysApiService) List(ctx _context.Context) ([]SshKey, *_nethttp.Resp
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -683,15 +648,24 @@ func (a *SshkeysApiService) List(ctx _context.Context) ([]SshKey, *_nethttp.Resp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-/*
-Update Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
+// SshkeysApiUpdateOpts Optional parameters for the method 'Update'
+type SshkeysApiUpdateOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
 
+/*
+Update Update an existing SSH Key by ID.
+Update a single SSH key with matching ID. Only &#39;Name&#39; or &#39;Key&#39; fields can be changed. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param sshkeyId ID of sshkey to update
  * @param updateSshKey Updated SSH key
+ * @param optional nil or *SshkeysApiUpdateOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return SshKey
 */
-func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, updateSshKey UpdateSshKey) (SshKey, *_nethttp.Response, error) {
+func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, updateSshKey UpdateSshKey, localVarOptionals *SshkeysApiUpdateOpts) (SshKey, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -726,6 +700,12 @@ func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, update
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &updateSshKey
 	if ctx != nil {
@@ -750,30 +730,6 @@ func (a *SshkeysApiService) Update(ctx _context.Context, sshkeyId string, update
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

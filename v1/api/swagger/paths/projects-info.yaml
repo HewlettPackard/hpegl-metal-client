@@ -9,22 +9,22 @@ get:
     The 'Projects' list includes projects authorized for a user, and the 'MachineSizes' and 
     'VolumeFlavors' list include only those machine sizes and volume flavors permitted for projects.
 
-
-    When GreenLake IAM issued token is used for authentication, it is required to 
+    When GreenLake Cloud Services IAM issued token is used for authentication, it is required to 
     pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: ProjectsInfo_list
   security:
     - BearerAuth: []
       Membership: []
     - BearerAuth: []
-    - BearerAuth: []
-      Role: []
-      Workspace: []
-
   parameters:
     - $ref: ../components/parameters/Space.yaml
     - $ref: ../components/parameters/SpaceID.yaml
     - $ref: ../components/parameters/SiteID.yaml    
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

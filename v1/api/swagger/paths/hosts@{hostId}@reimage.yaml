@@ -7,7 +7,10 @@ post:
     Re-deploys a host to the same machine.
     WARNING -- all drives will be erased!
     Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed.
-    The host must be powered off.  The host must also be in the Ready state.
+    The host must be powered off. The host must also be in the Ready state.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: reimage
   parameters:
     - name: hostId
@@ -16,6 +19,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

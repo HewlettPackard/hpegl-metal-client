@@ -3,7 +3,10 @@ post:
   tags:
     - hosts
   summary: Set PXE boot order on Host by ID
-  description: Sets a single Host with matching ID to attempt PXE boot when next booting
+  description: >-
+    Sets a single Host with matching ID to attempt PXE boot when next booting.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: bootPXE
   parameters:
     - name: hostId
@@ -12,6 +15,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

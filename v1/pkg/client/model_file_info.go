@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -29,4 +29,6 @@ type FileInfo struct {
 	DisplayURL string `json:"DisplayURL"`
 	// URL of the file that should be kept secret.  If this field is set, it will be used for accessing the file and DisplayURL will be ignored.
 	SecureURL string `json:"SecureURL"`
+	// Indicates if the web server the file is being downloaded from should have the SSL certificate validation bypassed. Useful for downloading from an internal webserver with either self-signed or internal CA issued SSL certificate.
+	SkipSslVerify bool `json:"SkipSslVerify,omitempty"`
 }

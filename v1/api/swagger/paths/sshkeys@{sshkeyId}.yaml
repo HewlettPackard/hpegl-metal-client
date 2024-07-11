@@ -3,7 +3,10 @@ get:
   tags:
     - sshkeys
   summary: Retrieve SSH Key by ID
-  description: Returns a single SSH key with matching ID
+  description: >-
+    Returns a single SSH key with matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: SSHKey_getByID
   parameters:
     - name: sshkeyId
@@ -12,6 +15,8 @@ get:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -30,8 +35,11 @@ get:
 put:
   tags:
     - sshkeys
-  summary: Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
-  description: ''
+  summary: Update an existing SSH Key by ID. 
+  description: >- 
+    Update a single SSH key with matching ID. Only 'Name' or 'Key' fields can be changed.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: SSHKey_update
   parameters:
     - name: sshkeyId
@@ -40,6 +48,8 @@ put:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Updated SSH key
@@ -69,8 +79,11 @@ put:
 delete:
   tags:
     - sshkeys
-  summary: Delete an SSH key
-  description: Deletes the SSH key with the matching ID
+  summary: Delete an SSH key by ID.
+  description: >-
+    Deletes the SSH key with the matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: SSHKey_delete
   parameters:
     - name: sshkeyId
@@ -79,6 +92,8 @@ delete:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

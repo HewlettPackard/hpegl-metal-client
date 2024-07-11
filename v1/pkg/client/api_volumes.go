@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -27,14 +28,23 @@ var (
 // VolumesApiService VolumesApi service
 type VolumesApiService service
 
+// VolumesApiAddOpts Optional parameters for the method 'Add'
+type VolumesApiAddOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Add Add a new volume
-Adds a new volume to the project.  Volumes may be created separately and then referenced in the create Host call; or volumes may be created directly within the create Host call. 
+Adds a new volume to the project. Volumes may be created separately and then referenced in the create Host call; or volumes may be created directly within the create Host call. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers. 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param newVolume Volume that is to be added to the project
+ * @param optional nil or *VolumesApiAddOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return Volume
 */
-func (a *VolumesApiService) Add(ctx _context.Context, newVolume NewVolume) (Volume, *_nethttp.Response, error) {
+func (a *VolumesApiService) Add(ctx _context.Context, newVolume NewVolume, localVarOptionals *VolumesApiAddOpts) (Volume, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -67,6 +77,12 @@ func (a *VolumesApiService) Add(ctx _context.Context, newVolume NewVolume) (Volu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &newVolume
 	if ctx != nil {
@@ -91,30 +107,6 @@ func (a *VolumesApiService) Add(ctx _context.Context, newVolume NewVolume) (Volu
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -202,15 +194,24 @@ func (a *VolumesApiService) Add(ctx _context.Context, newVolume NewVolume) (Volu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// VolumesApiAttachOpts Optional parameters for the method 'Attach'
+type VolumesApiAttachOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Attach Attach existing volume to Host
-Attaches the indicated volume to a host identified in the requestBody.   This attachment will create a VolumeAttachment object that contains  details about the connection of the volume and will update the Host  with iSCSI configuration information. 
+Attaches the indicated volume to a host identified in the requestBody.   This attachment will create a VolumeAttachment object that contains  details about the connection of the volume and will update the Host  with iSCSI configuration information. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers. 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param volumeId ID of volume to attach
  * @param volumeAttachHostUuid Unique ID of the Host to which the volume will be attached
+ * @param optional nil or *VolumesApiAttachOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return VolumeAttachment
 */
-func (a *VolumesApiService) Attach(ctx _context.Context, volumeId string, volumeAttachHostUuid VolumeAttachHostUuid) (VolumeAttachment, *_nethttp.Response, error) {
+func (a *VolumesApiService) Attach(ctx _context.Context, volumeId string, volumeAttachHostUuid VolumeAttachHostUuid, localVarOptionals *VolumesApiAttachOpts) (VolumeAttachment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -245,6 +246,12 @@ func (a *VolumesApiService) Attach(ctx _context.Context, volumeId string, volume
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &volumeAttachHostUuid
 	if ctx != nil {
@@ -269,30 +276,6 @@ func (a *VolumesApiService) Attach(ctx _context.Context, volumeId string, volume
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -380,13 +363,22 @@ func (a *VolumesApiService) Attach(ctx _context.Context, volumeId string, volume
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// VolumesApiDeleteOpts Optional parameters for the method 'Delete'
+type VolumesApiDeleteOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Delete Delete a volume
-Deletes the volume with the matching ID
+Deletes the volume with the matching ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param volumeId ID of volume to delete
+ * @param optional nil or *VolumesApiDeleteOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
-func (a *VolumesApiService) Delete(ctx _context.Context, volumeId string) (*_nethttp.Response, error) {
+func (a *VolumesApiService) Delete(ctx _context.Context, volumeId string, localVarOptionals *VolumesApiDeleteOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -420,6 +412,12 @@ func (a *VolumesApiService) Delete(ctx _context.Context, volumeId string) (*_net
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -442,30 +440,6 @@ func (a *VolumesApiService) Delete(ctx _context.Context, volumeId string) (*_net
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -534,14 +508,23 @@ func (a *VolumesApiService) Delete(ctx _context.Context, volumeId string) (*_net
 	return localVarHTTPResponse, nil
 }
 
+// VolumesApiDetachOpts Optional parameters for the method 'Detach'
+type VolumesApiDetachOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Detach Detach existing volume from Host
-Detaches the indicated volume from the host identified in the requestBody.   This detachment will delete the VolumeAttachment object that contains  details about the connection of the volume and will update the Host  to remove selected iSCSI configuration information. Note that the HostID is required in the body of the request to ensure that the operation is well understood and that a volume is not accidently being removed from the wrong host. 
+Detaches the indicated volume from the host identified in the requestBody.   This detachment will delete the VolumeAttachment object that contains  details about the connection of the volume and will update the Host  to remove selected iSCSI configuration information. Note that the HostID is required in the body of the request to ensure that the operation is well understood and that a volume is not accidently being removed from the wrong host. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers. 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param volumeId ID of volume to attach
  * @param volumeAttachHostUuid Unique ID of the Host from which a volume will be detached
+ * @param optional nil or *VolumesApiDetachOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 */
-func (a *VolumesApiService) Detach(ctx _context.Context, volumeId string, volumeAttachHostUuid VolumeAttachHostUuid) (*_nethttp.Response, error) {
+func (a *VolumesApiService) Detach(ctx _context.Context, volumeId string, volumeAttachHostUuid VolumeAttachHostUuid, localVarOptionals *VolumesApiDetachOpts) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -575,6 +558,12 @@ func (a *VolumesApiService) Detach(ctx _context.Context, volumeId string, volume
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &volumeAttachHostUuid
 	if ctx != nil {
@@ -599,30 +588,6 @@ func (a *VolumesApiService) Detach(ctx _context.Context, volumeId string, volume
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -691,14 +656,23 @@ func (a *VolumesApiService) Detach(ctx _context.Context, volumeId string, volume
 	return localVarHTTPResponse, nil
 }
 
+// VolumesApiGetByIDOpts Optional parameters for the method 'GetByID'
+type VolumesApiGetByIDOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 GetByID Retrieve volume by ID
-Returns a single volume with matching ID
+Returns a single volume with matching imaged. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param volumeId ID of volume to return
+ * @param optional nil or *VolumesApiGetByIDOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return Volume
 */
-func (a *VolumesApiService) GetByID(ctx _context.Context, volumeId string) (Volume, *_nethttp.Response, error) {
+func (a *VolumesApiService) GetByID(ctx _context.Context, volumeId string, localVarOptionals *VolumesApiGetByIDOpts) (Volume, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -733,6 +707,12 @@ func (a *VolumesApiService) GetByID(ctx _context.Context, volumeId string) (Volu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -755,30 +735,6 @@ func (a *VolumesApiService) GetByID(ctx _context.Context, volumeId string) (Volu
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -866,13 +822,22 @@ func (a *VolumesApiService) GetByID(ctx _context.Context, volumeId string) (Volu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// VolumesApiListOpts Optional parameters for the method 'List'
+type VolumesApiListOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 List List all volumes in project
-Returns an array of all volumes defined within the project.
+Returns an array of all volumes defined within the project. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *VolumesApiListOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return []Volume
 */
-func (a *VolumesApiService) List(ctx _context.Context) ([]Volume, *_nethttp.Response, error) {
+func (a *VolumesApiService) List(ctx _context.Context, localVarOptionals *VolumesApiListOpts) ([]Volume, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -905,6 +870,12 @@ func (a *VolumesApiService) List(ctx _context.Context) ([]Volume, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -927,30 +898,6 @@ func (a *VolumesApiService) List(ctx _context.Context) ([]Volume, *_nethttp.Resp
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -1018,15 +965,24 @@ func (a *VolumesApiService) List(ctx _context.Context) ([]Volume, *_nethttp.Resp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// VolumesApiUpdateOpts Optional parameters for the method 'Update'
+type VolumesApiUpdateOpts struct {
+    XRole optional.String
+    XWorkspaceid optional.String
+}
+
 /*
 Update Update an existing volume
-Updates volume with matching ID. Update is permitted only when volume is in &#39;Allocated&#39; or &#39;Visible&#39; state. Only the Volume &#39;Capacity&#39; can be updated with a value greater than the existing one to expand the volume.  
+Updates volume with matching ID. Update is permitted only when volume is in &#39;Allocated&#39; or &#39;Visible&#39; state. Only the Volume &#39;Capacity&#39; can be updated with a value greater than the existing one to expand the volume.  If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers. 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param volumeId ID of volume to return
  * @param updateVolume Volume object with its ID and Capacity in GiB indicating the expanded size to be specified.
+ * @param optional nil or *VolumesApiUpdateOpts - Optional Parameters:
+ * @param "XRole" (optional.String) -  GreenLake Platform role name
+ * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return Volume
 */
-func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, updateVolume UpdateVolume) (Volume, *_nethttp.Response, error) {
+func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, updateVolume UpdateVolume, localVarOptionals *VolumesApiUpdateOpts) (Volume, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -1061,6 +1017,12 @@ func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, update
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if localVarOptionals != nil && localVarOptionals.XRole.IsSet() {
+		localVarHeaderParams["X-Role"] = parameterToString(localVarOptionals.XRole.Value(), "")
+	}
+	if localVarOptionals != nil && localVarOptionals.XWorkspaceid.IsSet() {
+		localVarHeaderParams["X-Workspaceid"] = parameterToString(localVarOptionals.XWorkspaceid.Value(), "")
+	}
 	// body params
 	localVarPostBody = &updateVolume
 	if ctx != nil {
@@ -1085,30 +1047,6 @@ func (a *VolumesApiService) Update(ctx _context.Context, volumeId string, update
 				key = auth.Key
 			}
 			localVarHeaderParams["Project"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Role"] = key
-		}
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-Workspaceid"] = key
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)

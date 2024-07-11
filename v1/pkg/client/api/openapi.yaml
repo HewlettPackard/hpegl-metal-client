@@ -32,10 +32,6 @@ security:
   Project: []
 - BearerAuth: []
   Membership: []
-- BearerAuth: []
-  Workspace: []
-  Project: []
-  Role: []
 tags:
 - description: |
     Read-only operation to get api server build version information.
@@ -107,21 +103,35 @@ paths:
     get:
       description: Returns an array of all Project objects that have been created.
         This includes profile information for the project and project limits on resouces
-        like hosts, private networks, volumes, and volume capacity. If GreenLake IAM
-        issued token is used for authentication, then it is required to pass either
-        'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+        like hosts, private networks, volumes, and volume capacity. If GreenLake Cloud
+        Services IAM issued token is used for authentication, then it is required
+        to pass either 'Space' or 'spaceid' header. When both are set, 'Space' header
+        is ignored. If GreenLake Platform IAM issued token is used for authentication,
+        then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Projects_list
       parameters:
-      - description: GreenLake space ID
+      - description: GreenLake Cloud Services space ID
         example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
         in: header
         name: spaceid
         schema:
           type: string
-      - description: GreenLake space name
+      - description: GreenLake Cloud Services space name
         example: Default
         in: header
         name: Space
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -149,31 +159,44 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      - BearerAuth: []
-        Role: []
-        Workspace: []
-      summary: List of all Projects within an organization or cluster
+        Project: []
+      summary: List of all Projects within an GLCS space or GLP workspace.
       tags:
       - projects
     post:
       description: Adds a new Project which creates an isolated space for creating
         Hosts, Volumes, and private Networks. A project is often aligned to a specific
-        team within an organization or a cluster. If GreenLake IAM issued token is
-        used for authentication, then it is required to pass either 'Space' or 'spaceid'
-        header. When both are set, 'Space' header is ignored. Note that Hoster or
-        BMaaS Access Owner role is required for this operation.
+        team within an organization or a cluster. If GreenLake Cloud Services IAM
+        issued token is used for authentication, then it is required to pass either
+        'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers. Note that a Hoster,
+        BMaaS Access Owner, BMaaS Tenant Owner or Service Platform Owner role  is
+        required for this operation.
       operationId: Project_add
       parameters:
-      - description: GreenLake space name
+      - description: GreenLake Cloud Services space name
         example: Default
         in: header
         name: Space
         schema:
           type: string
-      - description: GreenLake space ID
+      - description: GreenLake Cloud Services space ID
         example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
         in: header
         name: spaceid
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -218,22 +241,34 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      - BearerAuth: []
-        Role: []
-        Workspace: []
       summary: Create a new project
       tags:
       - projects
   /projects/{projectId}:
     delete:
-      description: Deletes the Project with the matching ID. Note that Hoster or BMaaS
-        Access Owner role is required for this operation.
+      description: Deletes the Project with the matching ID. Note that a Hoster or
+        BMaaS Access Owner (under GreenLake Cloud Services), or BMaaS Tenant Owner
+        or Service Platform Owner role (under GreenLake Platform)  is required for
+        this operation. If GreenLake Platform IAM issued token is used for authentication,
+        then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Project_delete
       parameters:
       - description: ID of project to delete
         in: path
         name: projectId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -267,22 +302,34 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      - BearerAuth: []
-        Role: []
-        Workspace: []
+        Project: []
       summary: Delete a Project
       tags:
       - projects
     get:
       description: Returns a single Project object with its matching ID This includes
         profile information for the project and project limits on resouces like hosts,
-        private networks, volumes, and volume capacity.
+        private networks, volumes, and volume capacity. If GreenLake Platform IAM
+        issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: Project_getByID
       parameters:
       - description: ID of project to return
         in: path
         name: projectId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -320,22 +367,35 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      - BearerAuth: []
-        Role: []
-        Workspace: []
+        Project: []
       summary: Retrieve a project by its ID
       tags:
       - projects
     put:
       description: Updates a project with a matching ID. Only Project 'Name', 'Profile'
-        and 'Limits' can be updated with this operation. Note that Hoster or BMaaS
-        Access Owner role is required for this operation.
+        and 'Limits' can be updated with this operation. Note that a Hoster or BMaaS
+        Access Owner (under GreenLake Cloud Services), or BMaaS Tenant Owner or Service
+        Platform Owner role (under GreenLake Platform)  is required for this operation.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Project_update
       parameters:
       - description: ID of project to update
         in: path
         name: projectId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -392,9 +452,7 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      - BearerAuth: []
-        Role: []
-        Workspace: []
+        Project: []
       summary: Update a project by its ID
       tags:
       - projects
@@ -402,17 +460,17 @@ paths:
     get:
       description: |-
         Returns an object with information on projects, machine sizes, and volume flavors.  The 'Projects' list includes projects authorized for a user, and the 'MachineSizes' and  'VolumeFlavors' list include only those machine sizes and volume flavors permitted for projects.
-
-        When GreenLake IAM issued token is used for authentication, it is required to  pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+        When GreenLake Cloud Services IAM issued token is used for authentication, it is required to  pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: ProjectsInfo_list
       parameters:
-      - description: GreenLake space name
+      - description: GreenLake Cloud Services space name
         example: Default
         in: header
         name: Space
         schema:
           type: string
-      - description: GreenLake space ID
+      - description: GreenLake Cloud Services space ID
         example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
         in: header
         name: spaceid
@@ -423,6 +481,18 @@ paths:
         in: query
         name: siteid
         required: false
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -448,9 +518,6 @@ paths:
       - BearerAuth: []
         Membership: []
       - BearerAuth: []
-      - BearerAuth: []
-        Role: []
-        Workspace: []
       summary: List of all projects info within an organization or cluster for which
         user is authorized.
       tags:
@@ -458,7 +525,22 @@ paths:
   /sshkeys:
     get:
       description: Returns an array of all SSHKey objects defined within the project.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: SSHKeys_list
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -484,8 +566,23 @@ paths:
       tags:
       - sshkeys
     post:
-      description: Adds a new SSH Key that can be referenced when creating a Host
+      description: Adds a new SSH Key that can be referenced when creating a Host.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: SSHKey_add
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -529,13 +626,27 @@ paths:
       - sshkeys
   /sshkeys/{sshkeyId}:
     delete:
-      description: Deletes the SSH key with the matching ID
+      description: Deletes the SSH key with the matching ID. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: SSHKey_delete
       parameters:
       - description: ID of sshkey to delete
         in: path
         name: sshkeyId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -565,17 +676,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Delete an SSH key
+      summary: Delete an SSH key by ID.
       tags:
       - sshkeys
     get:
-      description: Returns a single SSH key with matching ID
+      description: Returns a single SSH key with matching ID. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: SSHKey_getByID
       parameters:
       - description: ID of sshkey to return
         in: path
         name: sshkeyId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -613,13 +738,28 @@ paths:
       tags:
       - sshkeys
     put:
-      description: ""
+      description: Update a single SSH key with matching ID. Only 'Name' or 'Key'
+        fields can be changed. If GreenLake Platform IAM issued token is used for
+        authentication, then it is required to pass  'X-Role' and 'X-Workspaceid'
+        headers.
       operationId: SSHKey_update
       parameters:
       - description: ID of sshkey to update
         in: path
         name: sshkeyId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -672,13 +812,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Update an existing SSH Key.  Only 'Name' or 'Key' fields can be changed.
+      summary: Update an existing SSH Key by ID.
       tags:
       - sshkeys
     summary: Operations on a single SSH Key
   /hosts:
     get:
       description: Returns an array of all Host objects defined within the project.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Hosts_list
       parameters:
       - description: Includes deleted Host objects in the response when set to "true".
@@ -688,6 +830,18 @@ paths:
         schema:
           enum:
           - "true"
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
           type: string
       responses:
         "200":
@@ -717,7 +871,21 @@ paths:
       description: |-
         Creates a new host object which kicks off the provisioning of a physical server in accordance to the attributes provided for the Host object.  Most values for these options must be selected from the set of options provided by the get available-resources API call.
         The SvcFlavor, SvcVersion, LocationID, SSHKeyIDs, and Network attribute must all be set with appropriate ID values from the available-resources call.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Host_add
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -762,15 +930,27 @@ paths:
       - hosts
   /hosts/{hostId}:
     delete:
-      description: Deletes the Host with the matching ID.  A host in the 'Ready' state
-        must first be powered-off before a delete will be permitted.  Deletes to hosts
-        in other states is permitted regardless of the power state
+      description: |-
+        Deletes the Host with the matching ID.  A host in the 'Ready' state must first be powered-off before a delete will be permitted. Deletes to hosts in other states is permitted regardless of the power state.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Host_delete
       parameters:
       - description: ID of Host to delete
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -804,13 +984,27 @@ paths:
       tags:
       - hosts
     get:
-      description: Returns a single Host with matching ID
+      description: Returns a single Host with matching ID. If GreenLake Platform IAM
+        issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: Host_getByID
       parameters:
       - description: ID of Host to return
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -848,17 +1042,27 @@ paths:
       tags:
       - hosts
     put:
-      description: Updates the Host with the matching ID.  Update is permitted only
-        if the host is in the 'Ready' or 'Connection Updating Failed' state.  Only
-        the Host 'Description', 'Networks', 'NetworkForDefaultRoute', 'NetworkUntagged'
-        and 'ISCSIConfig:InitiatorName' can be updated. 'ISCSIConfig:InitiatorName'
-        can be updated only if the host has no volumes attached.
+      description: |-
+        Updates the Host with the matching ID.  Update is permitted only if the host is in the 'Ready' or 'Connection Updating Failed' state.  Only the Host 'Description', 'Networks', 'NetworkForDefaultRoute', 'NetworkUntagged' and 'ISCSIConfig:InitiatorName' can be updated. 'ISCSIConfig:InitiatorName' can be updated only if the host has no volumes attached.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Host_update
       parameters:
       - description: ID of host to update
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -917,15 +1121,27 @@ paths:
     summary: Operations associated with a specific host
   /hosts/{hostId}/maintenance:
     post:
-      description: Do maintenance on a host by executing pre-defined operations. The
-        host must be powered off.  The host must also be in the Ready state or in
-        the Failed state and in the Maintenance workflow.
+      description: |-
+        Do maintenance on a host by executing pre-defined operations. The host must be powered off. The host must also be in the Ready state or in the Failed state and in the Maintenance workflow.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: maintenance
       parameters:
       - description: ID of Host to do maintenance on
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -965,13 +1181,27 @@ paths:
     summary: Do maintenance on a specific host
   /hosts/{hostId}/poweron:
     post:
-      description: Powers on a single Host with matching ID
+      description: Powers on a single Host with matching ID. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: powerOn
       parameters:
       - description: ID of Host to power on
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1011,13 +1241,27 @@ paths:
     summary: Power on a specific host
   /hosts/{hostId}/poweroff:
     post:
-      description: Powers off a single Host with matching ID
+      description: Powers off a single Host with matching ID. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: powerOff
       parameters:
       - description: ID of Host to power off
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1057,13 +1301,27 @@ paths:
     summary: Power off a specific host
   /hosts/{hostId}/powerreset:
     post:
-      description: Resets a single Host with matching ID
+      description: Resets a single Host with matching ID. If GreenLake Platform IAM
+        issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: powerReset
       parameters:
       - description: ID of Host to reset
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1104,13 +1362,26 @@ paths:
   /hosts/{hostId}/bootpxe:
     post:
       description: Sets a single Host with matching ID to attempt PXE boot when next
-        booting
+        booting. If GreenLake Platform IAM issued token is used for authentication,
+        then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: bootPXE
       parameters:
       - description: ID of Host to set to PXE boot
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1150,13 +1421,27 @@ paths:
     summary: Set a specific host to attempt PXE boot
   /hosts/{hostId}/boothdd:
     post:
-      description: Sets a single Host with matching ID to attempt HDD boot
+      description: Sets a single Host with matching ID to attempt HDD booting. If
+        GreenLake Platform IAM issued token is used for authentication, then it is
+        required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: bootHDD
       parameters:
       - description: ID of Host to set to HDD boot
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1196,16 +1481,27 @@ paths:
     summary: Set a specific host to attempt HDD boot
   /hosts/{hostId}/reimage:
     post:
-      description: Re-deploys a host to the same machine. WARNING -- all drives will
-        be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are
-        not changed. The host must be powered off.  The host must also be in the Ready
-        state.
+      description: |-
+        Re-deploys a host to the same machine. WARNING -- all drives will be erased! Only the Host OS is reinstalled, IP addresses, volumes, etc are not changed. The host must be powered off. The host must also be in the Ready state.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: reimage
       parameters:
       - description: ID of Host to reimage
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1245,17 +1541,27 @@ paths:
     summary: Reimage a specific host
   /hosts/{hostId}/replace:
     post:
-      description: Re-deploys a host with a new machine that satisfies the current
-        host settings. WARNING -- all drives will be erased! Only the machine is replaced,
-        IP addresses, volumes, etc are not changed. The host must be powered off.  The
-        host must also be in the Ready state or in the Failed state and in the Replace
-        or Maintenace workflow.
+      description: |-
+        Re-deploys a host with a new machine that satisfies the current host settings. WARNING -- all drives will be erased! Only the machine is replaced, IP addresses, volumes, etc are not changed. The host must be powered off. The host must also be in the Ready state or in the Failed state and in the Replace or Maintenace workflow.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: replace
       parameters:
       - description: ID of Host to replace
         in: path
         name: hostId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1311,8 +1617,23 @@ paths:
         \ storage capacity \n  for a specific volume flavor by site. \n\n* VolumeFlavors\
         \ - A list of volume flavor IDs along with their name and \n  detailed description.\n\
         \n* Volumes - A list of current, existing volumes.  If the volume is in the\n\
-        \  the right state, it could be attached to a new Host.\n"
+        \  the right state, it could be attached to a new Host.\n\nIf GreenLake Platform\
+        \ IAM issued token is used for authentication, then it is required to pass\
+        \  'X-Role' and 'X-Workspaceid' headers.\n"
       operationId: AvailableResources_list
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -1349,8 +1670,23 @@ paths:
       - available-resources
   /volumes:
     get:
-      description: Returns an array of all volumes defined within the project.
+      description: Returns an array of all volumes defined within the project. If
+        GreenLake Platform IAM issued token is used for authentication, then it is
+        required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Volumes_list
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -1377,8 +1713,21 @@ paths:
       - volumes
     post:
       description: |
-        Adds a new volume to the project.  Volumes may be created separately and then referenced in the create Host call; or volumes may be created directly within the create Host call.
+        Adds a new volume to the project. Volumes may be created separately and then referenced in the create Host call; or volumes may be created directly within the create Host call. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Volume_add
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1422,13 +1771,27 @@ paths:
       - volumes
   /volumes/{volumeId}:
     delete:
-      description: Deletes the volume with the matching ID
+      description: Deletes the volume with the matching ID. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: Volume_delete
       parameters:
       - description: ID of volume to delete
         in: path
         name: volumeId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1462,13 +1825,27 @@ paths:
       tags:
       - volumes
     get:
-      description: Returns a single volume with matching ID
+      description: Returns a single volume with matching imaged. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: Volume_getByID
       parameters:
       - description: ID of volume to return
         in: path
         name: volumeId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1506,16 +1883,26 @@ paths:
       tags:
       - volumes
     put:
-      description: "Updates volume with matching ID. Update is permitted only when\
-        \ volume is in 'Allocated' or 'Visible' state. Only the Volume 'Capacity'\
-        \ can be updated with a value greater than the existing one to expand the\
-        \ volume. \n"
+      description: |
+        Updates volume with matching ID. Update is permitted only when volume is in 'Allocated' or 'Visible' state. Only the Volume 'Capacity' can be updated with a value greater than the existing one to expand the volume.  If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Volume_update
       parameters:
       - description: ID of volume to return
         in: path
         name: volumeId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -1570,13 +1957,25 @@ paths:
   /volumes/{volumeId}/attach:
     post:
       description: |
-        Attaches the indicated volume to a host identified in the requestBody.   This attachment will create a VolumeAttachment object that contains  details about the connection of the volume and will update the Host  with iSCSI configuration information.
+        Attaches the indicated volume to a host identified in the requestBody.   This attachment will create a VolumeAttachment object that contains  details about the connection of the volume and will update the Host  with iSCSI configuration information. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Volume_attach
       parameters:
       - description: ID of volume to attach
         in: path
         name: volumeId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -1625,12 +2024,25 @@ paths:
       description: |
         Detaches the indicated volume from the host identified in the requestBody.   This detachment will delete the VolumeAttachment object that contains  details about the connection of the volume and will update the Host  to remove selected iSCSI configuration information.
         Note that the HostID is required in the body of the request to ensure that the operation is well understood and that a volume is not accidently being removed from the wrong host.
+        If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Volume_detach
       parameters:
       - description: ID of volume to attach
         in: path
         name: volumeId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -1673,7 +2085,22 @@ paths:
   /volume-attachments:
     get:
       description: Returns an array of all VolumeAttachments defined within the project.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: VolumeAttachments_list
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -1703,8 +2130,22 @@ paths:
         Note that this API is for creation of a VolumeAttachment for non-Hosts. A
         VolumeAttachment resource must be deleted using the 'DELETE /volume-attachments/{attachmentId}'
         API. For regular hosts, a VolumeAttachment is created via the 'POST /volumes/{volumeId}/attach'
-        API.
+        API. If GreenLake Platform IAM issued token is used for authentication, then
+        it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: VolumeAttachments_add
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1748,13 +2189,27 @@ paths:
       - volume-attachments
   /volume-attachments/{attachmentId}:
     delete:
-      description: Deletes the VolumeAttachment with the matching ID
+      description: Deletes the VolumeAttachment with the matching ID. If GreenLake
+        Platform IAM issued token is used for authentication, then it is required
+        to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: VolumeAttachment_delete
       parameters:
       - description: ID of VolumeAttachment to delete
         in: path
         name: attachmentId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1788,13 +2243,27 @@ paths:
       tags:
       - volume-attachments
     get:
-      description: Returns a single volume attachment with matching ID
+      description: Returns a single volume attachment with matching ID. If GreenLake
+        Platform IAM issued token is used for authentication, then it is required
+        to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: VolumeAttachment_getByID
       parameters:
       - description: ID of volume attachment to return
         in: path
         name: attachmentId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1835,7 +2304,22 @@ paths:
   /networks:
     get:
       description: Returns an array of all network objects defined within the project.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Networks_list
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -1861,8 +2345,23 @@ paths:
       tags:
       - networks
     post:
-      description: Adds a new network that can be referenced when creating a Host
+      description: Adds a new network that can be referenced when creating a Host.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Network_add
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1906,13 +2405,27 @@ paths:
       - networks
   /networks/{networkId}:
     delete:
-      description: Deletes the network with the matching ID
+      description: Deletes the network with the matching ID. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: Network_delete
       parameters:
       - description: ID of network to delete
         in: path
         name: networkId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1946,13 +2459,27 @@ paths:
       tags:
       - networks
     get:
-      description: Returns a single network with matching ID
+      description: Returns a single network with matching ID. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: Network_getByID
       parameters:
       - description: ID of network to return
         in: path
         name: networkId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -1986,17 +2513,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Retrieve network by ID
+      summary: Retrieve network by ID.
       tags:
       - networks
     put:
-      description: ""
+      description: Update an existing network by ID. If GreenLake Platform IAM issued
+        token is used for authentication, then it is required to pass  'X-Role' and
+        'X-Workspaceid' headers.
       operationId: Network_update
       parameters:
       - description: ID of network to update
         in: path
         name: networkId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -2049,14 +2590,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      summary: Update an existing network.
+      summary: Update an existing network by ID.
       tags:
       - networks
     summary: Operations on a single network
   /ippools:
     get:
       description: Returns an array of all ip pool objects defined within the project.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: IPPool_list
+      parameters:
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2083,13 +2639,27 @@ paths:
       - ippools
   /ippools/{ippoolId}:
     get:
-      description: Returns a single ip pool with matching ID
+      description: Returns a single ip pool with matching imaged. If GreenLake Platform
+        IAM issued token is used for authentication, then it is required to pass  'X-Role'
+        and 'X-Workspaceid' headers.
       operationId: IPPool_getByID
       parameters:
       - description: ID of IP pool to return
         in: path
         name: ippoolId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -2128,13 +2698,27 @@ paths:
       - ippools
     put:
       description: Update a single ip pool with matching ID. 'DefaultRoute' can only
-        be updated if ip pool is not currently in-use.
+        be updated if ip pool is not currently in-use. If GreenLake Platform IAM issued
+        token is used for authentication, then it is required to pass  'X-Role' and
+        'X-Workspaceid' headers.
       operationId: IPPool_update
       parameters:
       - description: ID of IP pool to update
         in: path
         name: ippoolId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -2187,13 +2771,27 @@ paths:
     summary: Operations on a single IP pool
   /ippools/{ippoolId}/allocation:
     post:
-      description: Allocate IPs from the pool
+      description: Allocate IPs from the pool If GreenLake Platform IAM issued token
+        is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid'
+        headers.
       operationId: IPPool_allocateIPs
       parameters:
       - description: ID of IP pool to allocate IPs
         in: path
         name: ippoolId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -2243,13 +2841,27 @@ paths:
     summary: Operations on a single IP pool
   /ippools/{ippoolId}/return:
     post:
-      description: Return IPs to the pool
+      description: Return IPs to the pool. If GreenLake Platform IAM issued token
+        is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid'
+        headers.
       operationId: IPPool_returnIPs
       parameters:
       - description: ID of IP pool to return IPs
         in: path
         name: ippoolId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -2299,16 +2911,34 @@ paths:
     summary: Operations on a single IP pool
   /allocation/servers:
     get:
-      description: |
-        Returns an array of allocation information for each server instance type. Each instance type's allocation information is further grouped by service type.
-        When using a Metal token, the value in the 'Membership' header determines the scope of the response, i.e., Project or Hoster. However, the default scope is Tenant/Hoster when using the GL IAM token. If the allocation data is needed for a specific project, then the 'Project' header must be present in the request.
-        If the 'siteID' query parameter is present, the information returned is specific to that site ID.
+      description: "Returns an array of allocation information for each server instance\
+        \ type. Each instance type's allocation information is further grouped by\
+        \ service type.\nWhen using a Metal token, the value in the 'Membership' header\
+        \ determines the scope of the response, i.e., Project or Hoster. However,\
+        \ the default scope is Tenant/Hoster when using the GL IAM token. \nIf the\
+        \ allocation data is needed for a specific project, then the 'Project' header\
+        \ must be present in the request.\nIf the 'siteID' query parameter is present,\
+        \ the information returned is specific to that site ID.\nIf GreenLake Platform\
+        \ IAM issued token is used for authentication, then it is required to pass\
+        \ \n'X-Role' and 'X-Workspaceid' headers.\n"
       operationId: allocation_getBySite
       parameters:
       - description: site ID
         in: query
         name: siteID
         required: false
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -2337,16 +2967,34 @@ paths:
       - allocation
   /allocation/storage:
     get:
-      description: |
-        Returns an array of allocation information for each server instance type. Each instance type's allocation information is further grouped by service type.
-        When using a Metal token, the value in the 'Membership' header determines the scope of the response, i.e., Project or Hoster. However, the default scope is Tenant/Hoster when using the GL IAM token. If the allocation data is needed for a specific project, then the 'Project' header must be present in the request.
-        If the 'siteID' query parameter is present, the information returned is specific to that site ID.
+      description: "Returns an array of allocation information for each server instance\
+        \ type. Each instance type's allocation information is further grouped by\
+        \ service type.\nWhen using a Metal token, the value in the 'Membership' header\
+        \ determines the scope of the response, i.e., Project or Hoster. However,\
+        \ the default scope is Tenant/Hoster when using the GL IAM token. \nIf the\
+        \ allocation data is needed for a specific project, then the 'Project' header\
+        \ must be present in the request.\nIf the 'siteID' query parameter is present,\
+        \ the information returned is specific to that site ID.\nIf GreenLake Platform\
+        \ IAM issued token is used for authentication, then it is required to pass\
+        \ \n'X-Role' and 'X-Workspaceid' headers.\n"
       operationId: allocation_storage_getBySite
       parameters:
       - description: site ID
         in: query
         name: siteID
         required: false
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -2376,20 +3024,34 @@ paths:
   /services:
     get:
       description: Returns an array of all OS service images objects that have been
-        created. If GreenLake IAM issued token is used for authentication,  then it
-        is required to pass 'spaceid' header
+        created. If GreenLake Cloud Services IAM issued token is used for authentication,  then
+        it is required to pass 'spaceid' headers. If GreenLake Platform IAM issued
+        token is used for authentication, then it is required to pass  'X-Role' and
+        'X-Workspaceid' headers.
       operationId: Services_list
       parameters:
-      - description: GreenLake space ID
+      - description: GreenLake Cloud Services space ID
         example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
         in: header
         name: spaceid
         schema:
           type: string
-      - description: GreenLake space name
+      - description: GreenLake Cloud Services space name
         example: Default
         in: header
         name: Space
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -2418,21 +3080,35 @@ paths:
       - services
     post:
       description: Adds a new OS service image that can be referenced during host
-        creation. If GreenLake IAM issued token is used for authentication, then it
-        is required  to pass either 'spaceid' header or 'Space' header.  Note that
-        Hoster or BMaaS Access Owner role is required for this operation.
+        creation. If GreenLake Cloud Services IAM issued token is used for authentication,
+        then it is required  to pass either 'spaceid' header or 'Space' header.  If
+        GreenLake Platform IAM issued token is used for authentication, then it is
+        required to pass  'X-Role' and 'X-Workspaceid' headers. Note that Hoster or
+        BMaaS Access Owner role is required for this operation.
       operationId: Service_add
       parameters:
-      - description: GreenLake space ID
+      - description: GreenLake Cloud Services space ID
         example: 95688cf9-82ff-4e32-80fc-2b0b41648dab
         in: header
         name: spaceid
         schema:
           type: string
-      - description: GreenLake space name
+      - description: GreenLake Cloud Services space name
         example: Default
         in: header
         name: Space
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -2473,23 +3149,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: Create a new OS service image
       tags:
       - services
   /services/{serviceId}:
     delete:
       description: Deletes the OS service image with the matching ID. Note that Hoster
-        or BMaaS Access Owner role is required for this operation.
+        or BMaaS Access Owner role is required for this operation under GreenLake
+        Cloud Services. If GreenLake Platform IAM issued token is used for authentication,
+        then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Service_delete
       parameters:
       - description: ID of OS service image to delete
         in: path
         name: serviceId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -2519,21 +3205,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: Delete an OS service image
       tags:
       - services
     get:
       description: Returns a single OS service image object with its matching ID.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Service_getByID
       parameters:
       - description: ID of OS service image to return
         in: path
         name: serviceId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       responses:
@@ -2572,13 +3268,27 @@ paths:
       - services
     put:
       description: Updates an OS service image with a matching ID. Note that Hoster
-        or BMaaS Access Owner role is required for this operation.
+        or BMaaS Access Owner role is required for this operation under GreenLake
+        Cloud Services. If GreenLake Platform IAM issued token is used for authentication,
+        then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
       operationId: Service_update
       parameters:
       - description: ID of OS service image to update
         in: path
         name: serviceId
         required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
         schema:
           type: string
       requestBody:
@@ -2631,10 +3341,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: internal error
-      security:
-      - BearerAuth: []
-        Membership: []
-      - BearerAuth: []
       summary: Update an OS service image by its ID
       tags:
       - services
@@ -4104,6 +4810,7 @@ components:
     HostState:
       description: Overall host state
       enum:
+      - ""
       - New
       - Deleting
       - Deleted
@@ -4120,6 +4827,10 @@ components:
       - Releasing
       - Allocating
       - Maintenance
+      - Attaching
+      - Detaching
+      - ISCSI Attaching
+      - All Detaching
       example: Ready
       type: string
     HostSubstate:
@@ -4128,7 +4839,7 @@ components:
       - ""
       - Abort Deploy
       - Allocate
-      - Attaching Volumes
+      - Attach Volumes
       - Boot Service-OS
       - Clear Log
       - Complete
@@ -4137,16 +4848,16 @@ components:
       - Connect Provisioning
       - DNS Add
       - DNS Add Init
+      - DNS Delete Init
       - DNS Delete
       - Deploy
       - Detach Volumes
-      - Error Recovery
-      - Fail Cleanup
       - Failed
       - In Maintenance
       - In OS Prep
       - Init
       - Init Attach Volumes
+      - Init Detach Volumes
       - Init Maintenance
       - Init OS Prep
       - Init Off
@@ -5184,6 +5895,13 @@ components:
             is set, it will be used for accessing the file and DisplayURL will be
             ignored.
           type: string
+        SkipSslVerify:
+          description: Indicates if the web server the file is being downloaded from
+            should have the SSL certificate validation bypassed. Useful for downloading
+            from an internal webserver with either self-signed or internal CA issued
+            SSL certificate.
+          example: true
+          type: boolean
       required:
       - Algorithm
       - DisplayURL
@@ -6065,6 +6783,10 @@ components:
         VolumeReplicationEnabled:
           description: Indicates whether volume replication is enabled for this Project.
           type: boolean
+        ParentID:
+          description: ID of the Parent Project (optional). Applicable to GreenLake
+            Platform (GLP) only.
+          type: string
       required:
       - Limits
       - PermittedOSImages
@@ -6501,6 +7223,12 @@ components:
           type: object
         AttachProtocol:
           $ref: '#/components/schemas/ProtocolKind'
+        WWPNs:
+          description: List of FC host port wwpns.
+          items:
+            example: 20:31:01:02:ad:f2:a8:e5
+            type: string
+          type: array
       required:
       - AttachProtocol
       - CHAPSecret
@@ -6514,6 +7242,7 @@ components:
       - VolumeID
       - VolumeTargetIPAddress
       - VolumeTargetIQN
+      - WWPNs
     Network_allOf:
       properties:
         LocationID:
@@ -6759,7 +7488,7 @@ components:
       scheme: bearer
       type: http
     Project:
-      description: The project ID. Required only when using GreenLake Cloud Services
+      description: The project ID. Required only when using GreenLake Cloud Services/Platform
         IAM issued JWT for authentication
       in: header
       name: Project
@@ -6769,16 +7498,4 @@ components:
         issued JWT for authentication
       in: header
       name: Membership
-      type: apiKey
-    Role:
-      description: The GLP IAM role. Required only when using GreenLake Platform IAM
-        issued JWT for authentication
-      in: header
-      name: X-Role
-      type: apiKey
-    Workspace:
-      description: The GLP IAM workspace ID. Required only when using GreenLake Platform
-        IAM issued JWT for authentication
-      in: header
-      name: X-Workspaceid
       type: apiKey

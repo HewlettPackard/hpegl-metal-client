@@ -60,13 +60,13 @@ Class | Method | HTTP request | Description
 *IppoolsApi* | [**Update**](docs/IppoolsApi.md#update) | **Put** /ippools/{ippoolId} | Update IP pool by ID
 *NetworksApi* | [**Add**](docs/NetworksApi.md#add) | **Post** /networks | Add a new network
 *NetworksApi* | [**Delete**](docs/NetworksApi.md#delete) | **Delete** /networks/{networkId} | Delete a network
-*NetworksApi* | [**GetByID**](docs/NetworksApi.md#getbyid) | **Get** /networks/{networkId} | Retrieve network by ID
+*NetworksApi* | [**GetByID**](docs/NetworksApi.md#getbyid) | **Get** /networks/{networkId} | Retrieve network by ID.
 *NetworksApi* | [**List**](docs/NetworksApi.md#list) | **Get** /networks | List all networks in project
-*NetworksApi* | [**Update**](docs/NetworksApi.md#update) | **Put** /networks/{networkId} | Update an existing network.
+*NetworksApi* | [**Update**](docs/NetworksApi.md#update) | **Put** /networks/{networkId} | Update an existing network by ID.
 *ProjectsApi* | [**Add**](docs/ProjectsApi.md#add) | **Post** /projects | Create a new project
 *ProjectsApi* | [**Delete**](docs/ProjectsApi.md#delete) | **Delete** /projects/{projectId} | Delete a Project
 *ProjectsApi* | [**GetByID**](docs/ProjectsApi.md#getbyid) | **Get** /projects/{projectId} | Retrieve a project by its ID
-*ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an organization or cluster
+*ProjectsApi* | [**List**](docs/ProjectsApi.md#list) | **Get** /projects | List of all Projects within an GLCS space or GLP workspace.
 *ProjectsApi* | [**Update**](docs/ProjectsApi.md#update) | **Put** /projects/{projectId} | Update a project by its ID
 *ProjectsInfoApi* | [**List**](docs/ProjectsInfoApi.md#list) | **Get** /projects-info | List of all projects info within an organization or cluster for which user is authorized.
 *ServicesApi* | [**Add**](docs/ServicesApi.md#add) | **Post** /services | Create a new OS service image
@@ -75,10 +75,10 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**List**](docs/ServicesApi.md#list) | **Get** /services | List of all OS service images within an tenant
 *ServicesApi* | [**Update**](docs/ServicesApi.md#update) | **Put** /services/{serviceId} | Update an OS service image by its ID
 *SshkeysApi* | [**Add**](docs/SshkeysApi.md#add) | **Post** /sshkeys | Add a new SSH Key
-*SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key
+*SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key by ID.
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID
 *SshkeysApi* | [**List**](docs/SshkeysApi.md#list) | **Get** /sshkeys | List all sshkeys in project
-*SshkeysApi* | [**Update**](docs/SshkeysApi.md#update) | **Put** /sshkeys/{sshkeyId} | Update an existing SSH Key.  Only &#39;Name&#39; or &#39;Key&#39; fields can be changed.
+*SshkeysApi* | [**Update**](docs/SshkeysApi.md#update) | **Put** /sshkeys/{sshkeyId} | Update an existing SSH Key by ID.
 *VersionApi* | [**Get**](docs/VersionApi.md#get) | **Get** /version | Get api server build version
 *VolumeAttachmentsApi* | [**Add**](docs/VolumeAttachmentsApi.md#add) | **Post** /volume-attachments | Create a new VolumeAttachment
 *VolumeAttachmentsApi* | [**Delete**](docs/VolumeAttachmentsApi.md#delete) | **Delete** /volume-attachments/{attachmentId} | Delete a VolumeAttachment
@@ -254,36 +254,6 @@ r, err := client.Service.Operation(auth, args)
 
 
 ## Project
-
-- **Type**: API key
-
-Example
-
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-    Key: "APIKEY",
-    Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
-
-
-## Role
-
-- **Type**: API key
-
-Example
-
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-    Key: "APIKEY",
-    Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
-
-
-## Workspace
 
 - **Type**: API key
 

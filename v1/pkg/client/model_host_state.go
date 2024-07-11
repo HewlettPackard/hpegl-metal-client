@@ -1,4 +1,4 @@
-// (C) Copyright 2021-2023 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2021-2024 Hewlett Packard Enterprise Development LP
 
 /*
  * HPE GreenLake for bare metal API
@@ -15,6 +15,7 @@ type HostState string
 
 // List of HostState
 const (
+	HOSTSTATE_EMPTY HostState = ""
 	HOSTSTATE_NEW HostState = "New"
 	HOSTSTATE_DELETING HostState = "Deleting"
 	HOSTSTATE_DELETED HostState = "Deleted"
@@ -31,4 +32,8 @@ const (
 	HOSTSTATE_RELEASING HostState = "Releasing"
 	HOSTSTATE_ALLOCATING HostState = "Allocating"
 	HOSTSTATE_MAINTENANCE HostState = "Maintenance"
+	HOSTSTATE_ATTACHING HostState = "Attaching"
+	HOSTSTATE_DETACHING HostState = "Detaching"
+	HOSTSTATE_ISCSI_ATTACHING HostState = "ISCSI Attaching"
+	HOSTSTATE_ALL_DETACHING HostState = "All Detaching"
 )

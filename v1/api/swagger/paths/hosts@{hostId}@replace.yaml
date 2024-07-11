@@ -7,8 +7,11 @@ post:
     Re-deploys a host with a new machine that satisfies the current host settings.
     WARNING -- all drives will be erased!
     Only the machine is replaced, IP addresses, volumes, etc are not changed.
-    The host must be powered off.  The host must also be in the Ready state or in
+    The host must be powered off. The host must also be in the Ready state or in
     the Failed state and in the Replace or Maintenace workflow.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: replace
   parameters:
     - name: hostId
@@ -17,6 +20,8 @@ post:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

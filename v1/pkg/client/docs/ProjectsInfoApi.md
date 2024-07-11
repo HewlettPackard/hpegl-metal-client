@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 List of all projects info within an organization or cluster for which user is authorized.
 
-Returns an object with information on projects, machine sizes, and volume flavors.  The 'Projects' list includes projects authorized for a user, and the 'MachineSizes' and  'VolumeFlavors' list include only those machine sizes and volume flavors permitted for projects.  When GreenLake IAM issued token is used for authentication, it is required to  pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored.
+Returns an object with information on projects, machine sizes, and volume flavors.  The 'Projects' list includes projects authorized for a user, and the 'MachineSizes' and  'VolumeFlavors' list include only those machine sizes and volume flavors permitted for projects. When GreenLake Cloud Services IAM issued token is used for authentication, it is required to  pass either 'Space' or 'spaceid' header. When both are set, 'Space' header is ignored. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
 
 ### Required Parameters
 
@@ -31,9 +31,11 @@ Optional parameters are passed through a pointer to a ListOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **space** | **optional.String**| GreenLake space name | 
- **spaceid** | **optional.String**| GreenLake space ID | 
+ **space** | **optional.String**| GreenLake Cloud Services space name | 
+ **spaceid** | **optional.String**| GreenLake Cloud Services space ID | 
  **siteid** | **optional.String**| GreenLake site ID | 
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
 ### Return type
 
@@ -41,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Role](../README.md#Role), [Workspace](../README.md#Workspace)
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership)
 
 ### HTTP request headers
 

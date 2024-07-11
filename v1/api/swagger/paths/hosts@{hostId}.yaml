@@ -3,7 +3,10 @@ get:
   tags:
     - hosts
   summary: Retrieve Host by ID
-  description: Returns a single Host with matching ID
+  description: >-
+    Returns a single Host with matching ID.
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Host_getByID
   parameters:
     - name: hostId
@@ -12,6 +15,8 @@ get:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success
@@ -37,6 +42,9 @@ put:
     'Description', 'Networks', 'NetworkForDefaultRoute', 'NetworkUntagged' and 'ISCSIConfig:InitiatorName'
     can be updated. 'ISCSIConfig:InitiatorName' can be updated only if the host has
     no volumes attached.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Host_update
   parameters:
     - name: hostId
@@ -45,6 +53,8 @@ put:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   requestBody:
     required: true
     description: Updated Host
@@ -78,8 +88,11 @@ delete:
   summary: Delete a Host
   description: >-
     Deletes the Host with the matching ID.  A host in the 'Ready' state must
-    first be powered-off before a delete will be permitted.  Deletes to hosts in
-    other states is permitted regardless of the power state
+    first be powered-off before a delete will be permitted. Deletes to hosts in
+    other states is permitted regardless of the power state.
+
+    If GreenLake Platform IAM issued token is used for authentication, then it is required to pass 
+    'X-Role' and 'X-Workspaceid' headers.
   operationId: Host_delete
   parameters:
     - name: hostId
@@ -88,6 +101,8 @@ delete:
       required: true
       schema:
         type: string
+    - $ref: ../components/parameters/Role.yaml
+    - $ref: ../components/parameters/WorkspaceID.yaml
   responses:
     '200':
       description: success

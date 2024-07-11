@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Expand** | **bool** | Indicates if the file is compressed and should be expanded  using the filename suffix in the Path as a guide. | 
 **DisplayURL** | **string** | URL of the file that should be returned in REST response or used for display purpose. The file is downloaded from this URL only when SecureURL is not set. | 
 **SecureURL** | **string** | URL of the file that should be kept secret.  If this field is set, it will be used for accessing the file and DisplayURL will be ignored. | 
+**SkipSslVerify** | **bool** | Indicates if the web server the file is being downloaded from should have the SSL certificate validation bypassed. Useful for downloading from an internal webserver with either self-signed or internal CA issued SSL certificate. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
