@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ID** | **string** | Unique ID of this FileInfo. | 
 **Path** | **string** | Depending upon the service approach, this is either the mount-path where the file should be placed or  the relative URL where it should be served. | 
-**FileSize** | **int32** | Size of the files in bytes. | 
+**FileSize** | **int64** | Size of the files in bytes. | 
 **DownloadTimeout** | **int64** | Maximum amount of time in seconds to download the Service image. | 
 **Signature** | **string** | The signature (checksum) of the image to download.  This ensure the integrity and authenticity of the images downloaded. | 
 **Algorithm** | [**Algorithm**](Algorithm.md) |  | 

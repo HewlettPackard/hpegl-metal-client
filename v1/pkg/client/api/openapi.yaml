@@ -5866,6 +5866,7 @@ components:
         FileSize:
           description: Size of the files in bytes.
           example: 934960345
+          format: int64
           type: integer
         DownloadTimeout:
           description: Maximum amount of time in seconds to download the Service image.

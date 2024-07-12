@@ -27,6 +27,7 @@ properties:
     example: image.tgz
   FileSize:
     type: integer
+    format: int64
     description: >- 
       Size of the files in bytes.
     example: 934960345

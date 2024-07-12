@@ -17,7 +17,7 @@ type FileInfo struct {
 	// Depending upon the service approach, this is either the mount-path where the file should be placed or  the relative URL where it should be served.
 	Path string `json:"Path"`
 	// Size of the files in bytes.
-	FileSize int32 `json:"FileSize"`
+	FileSize int64 `json:"FileSize"`
 	// Maximum amount of time in seconds to download the Service image.
 	DownloadTimeout int64 `json:"DownloadTimeout"`
 	// The signature (checksum) of the image to download.  This ensure the integrity and authenticity of the images downloaded.
