@@ -5981,6 +5981,12 @@ components:
           items:
             $ref: '#/components/schemas/UserOp'
           type: array
+        ImagingCompleteSteps:
+          description: Allows setting operations to be executed after host imaging.  If
+            a firmware update operation is defined, Firmware Baseline must be set.
+          items:
+            $ref: '#/components/schemas/UserOp'
+          type: array
         MaintenanceSteps:
           description: Allows setting operations to be executed during host maintenance.  If
             a firmware update operation is defined, Firmware Baseline must be set.
@@ -5988,6 +5994,7 @@ components:
             $ref: '#/components/schemas/UserOp'
           type: array
       required:
+      - ImagingCompleteSteps
       - ImagingPrepSteps
       - MaintenanceSteps
       type: object
