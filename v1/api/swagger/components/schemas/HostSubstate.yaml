@@ -19,12 +19,14 @@ enum:
   - Detach Volumes
   - Failed
   - In Maintenance
-  - In OS Prep
+  - In Imaging Prep
+  - In Imaging Complete
   - Init
   - Init Attach Volumes
   - Init Detach Volumes
   - Init Maintenance
-  - Init OS Prep
+  - Init Imaging Prep
+  - Init Imaging Complete
   - Init Off
   - Isolate
   - Power Off
