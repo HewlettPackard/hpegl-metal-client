@@ -14,6 +14,8 @@ package client
 type UserDefinedSteps struct {
 	// Allows setting operations to be executed before host imaging.  If a firmware update operation is defined, Firmware Baseline must be set.
 	ImagingPrepSteps []UserOp `json:"ImagingPrepSteps"`
+	// Allows setting operations to be executed after host imaging.  If a firmware update operation is defined, Firmware Baseline must be set.
+	ImagingCompleteSteps []UserOp `json:"ImagingCompleteSteps"`
 	// Allows setting operations to be executed during host maintenance.  If a firmware update operation is defined, Firmware Baseline must be set.
 	MaintenanceSteps []UserOp `json:"MaintenanceSteps"`
 }
