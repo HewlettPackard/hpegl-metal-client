@@ -22,9 +22,10 @@ Name | Type | Description | Notes
 **Status** | [**VolumeStatus**](VolumeStatus.md) |  | 
 **Labels** | **map[string]string** | The map of label name to label value for the resource. | 
 **WWN** | **string** | Serial number of the volume. | 
-**ActiveSite** | **string** | The site where the remote copy role for the volume is  Primary at the time of most recent import. | 
-**CreatedSite** | **string** | The site where the volume was originally created. | 
+**ReplicationEnabled** | **bool** | Indicates whether replication is enabled for this volume. | 
 **UnmanagedVolume** | **bool** | Indicates whether the volume is a native Metal created one or an external one. | 
+**ActiveSite** | **string** | The site where the remote copy role for the volume is  Primary at the time of most recent import. | 
+**CreatedSite** | **string** | The site where the volume was originally created.       | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

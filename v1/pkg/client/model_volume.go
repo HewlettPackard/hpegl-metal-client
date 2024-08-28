@@ -47,10 +47,12 @@ type Volume struct {
 	Labels map[string]string `json:"Labels"`
 	// Serial number of the volume.
 	WWN string `json:"WWN"`
-	// The site where the remote copy role for the volume is  Primary at the time of most recent import.
-	ActiveSite string `json:"ActiveSite"`
-	// The site where the volume was originally created.
-	CreatedSite string `json:"CreatedSite"`
+	// Indicates whether replication is enabled for this volume.
+	ReplicationEnabled bool `json:"ReplicationEnabled"`
 	// Indicates whether the volume is a native Metal created one or an external one.
 	UnmanagedVolume bool `json:"UnmanagedVolume"`
+	// The site where the remote copy role for the volume is  Primary at the time of most recent import.
+	ActiveSite string `json:"ActiveSite"`
+	// The site where the volume was originally created.      
+	CreatedSite string `json:"CreatedSite"`
 }

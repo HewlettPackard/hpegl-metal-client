@@ -7150,19 +7150,22 @@ components:
         WWN:
           description: Serial number of the volume.
           type: string
+        ReplicationEnabled:
+          description: Indicates whether replication is enabled for this volume.
+          type: boolean
+        UnmanagedVolume:
+          description: Indicates whether the volume is a native Metal created one
+            or an external one.
+          type: boolean
         ActiveSite:
           description: The site where the remote copy role for the volume is  Primary
             at the time of most recent import.
           format: uuid
           type: string
         CreatedSite:
-          description: The site where the volume was originally created.
+          description: 'The site where the volume was originally created.      '
           format: uuid
           type: string
-        UnmanagedVolume:
-          description: Indicates whether the volume is a native Metal created one
-            or an external one.
-          type: boolean
       required:
       - ActiveSite
       - Capacity
@@ -7172,6 +7175,7 @@ components:
       - FlavorID
       - Labels
       - LocationID
+      - ReplicationEnabled
       - Shareable
       - State
       - Status
