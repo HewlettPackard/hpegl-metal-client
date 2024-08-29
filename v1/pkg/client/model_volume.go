@@ -32,6 +32,8 @@ type Volume struct {
 	StoragePoolID string `json:"StoragePoolID"`
 	// The size of the volume in KiB
 	Capacity int64 `json:"Capacity"`
+	// The amount of the volume currently used as reported by the array in KiB
+	CapacityUsed int64 `json:"CapacityUsed"`
 	// Indicates if the volume can be attached to multiple hosts
 	Shareable bool `json:"Shareable"`
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
@@ -45,4 +47,12 @@ type Volume struct {
 	Labels map[string]string `json:"Labels"`
 	// Serial number of the volume.
 	WWN string `json:"WWN"`
+	// Indicates whether replication is enabled for this volume.
+	ReplicationEnabled bool `json:"ReplicationEnabled"`
+	// Indicates whether the volume is a native Metal created one or an external one.
+	UnmanagedVolume bool `json:"UnmanagedVolume"`
+	// The site where the remote copy role for the volume is  Primary at the time of most recent import.
+	ActiveSite string `json:"ActiveSite"`
+	// The site where the volume was originally created.      
+	CreatedSite string `json:"CreatedSite"`
 }
