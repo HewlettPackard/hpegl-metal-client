@@ -7430,6 +7430,11 @@ components:
       - Proxy
     OSServiceImage_allOf:
       properties:
+        ProjectID:
+          description: Unique ID of the project that owns this OS service image.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
         Description:
           example: Description of the image
           type: string
@@ -7516,6 +7521,7 @@ components:
       - NoSwitchLAG
       - Origin
       - PermittedProjects
+      - ProjectID
       - Timeout
       - UserDefinedSteps
       - Version
