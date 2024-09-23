@@ -7166,12 +7166,19 @@ components:
           description: 'The site where the volume was originally created.      '
           format: uuid
           type: string
+        ExportCount:
+          description: The number of active exports for this volume
+          example: 150
+          format: int32
+          minimum: 0
+          type: integer
       required:
       - ActiveSite
       - Capacity
       - CapacityUsed
       - CreatedSite
       - Description
+      - ExportCount
       - FlavorID
       - Labels
       - LocationID

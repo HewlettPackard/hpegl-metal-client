@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **UnmanagedVolume** | **bool** | Indicates whether the volume is a native Metal created one or an external one. | 
 **ActiveSite** | **string** | The site where the remote copy role for the volume is  Primary at the time of most recent import. | 
 **CreatedSite** | **string** | The site where the volume was originally created.       | 
+**ExportCount** | **int32** | The number of active exports for this volume | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
