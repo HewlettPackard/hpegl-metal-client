@@ -7166,12 +7166,19 @@ components:
           description: 'The site where the volume was originally created.      '
           format: uuid
           type: string
+        ExportCount:
+          description: The number of active exports for this volume
+          example: 150
+          format: int32
+          minimum: 0
+          type: integer
       required:
       - ActiveSite
       - Capacity
       - CapacityUsed
       - CreatedSite
       - Description
+      - ExportCount
       - FlavorID
       - Labels
       - LocationID
@@ -7430,6 +7437,11 @@ components:
       - Proxy
     OSServiceImage_allOf:
       properties:
+        ProjectID:
+          description: Unique ID of the project that owns this OS service image.
+          example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
+          format: uuid
+          type: string
         Description:
           example: Description of the image
           type: string
@@ -7516,6 +7528,7 @@ components:
       - NoSwitchLAG
       - Origin
       - PermittedProjects
+      - ProjectID
       - Timeout
       - UserDefinedSteps
       - Version

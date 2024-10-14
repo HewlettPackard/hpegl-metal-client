@@ -25,6 +25,8 @@ type OsServiceImage struct {
 	Created time.Time `json:"Created"`
 	// Time when the resource was last modified in the database
 	Modified time.Time `json:"Modified"`
+	// Unique ID of the project that owns this OS service image.
+	ProjectID string `json:"ProjectID"`
 	Description string `json:"Description"`
 	// A high level classification of the service. 
 	Category string `json:"Category"`

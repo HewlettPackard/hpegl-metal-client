@@ -42,4 +42,6 @@ type VolumeAllOf struct {
 	ActiveSite string `json:"ActiveSite"`
 	// The site where the volume was originally created.      
 	CreatedSite string `json:"CreatedSite"`
+	// The number of active exports for this volume
+	ExportCount int32 `json:"ExportCount"`
 }
