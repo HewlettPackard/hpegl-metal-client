@@ -41,7 +41,7 @@ allOf:
       StoragePoolName:
         type: string
         description: >-
-          StoragePoolName is the name of storage pool from where the volume is allocated
+          Name of the storage pool from where the volume is allocated.
       Capacity:
         type: integer
         format: int64
