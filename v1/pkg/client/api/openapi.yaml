@@ -7106,8 +7106,7 @@ components:
           format: uuid
           type: string
         StoragePoolName:
-          description: StoragePoolName is the name of storage pool from where the
-            volume is allocated
+          description: Name of the storage pool from where the volume is allocated.
           type: string
         Capacity:
           description: The size of the volume in KiB
@@ -7133,8 +7132,8 @@ components:
           format: uuid
           type: string
         DataCenterName:
-          description: DataCenterName is the name of the datacenter where the volume
-            is created on the storage array
+          description: Name of the data center where the volume is created on the
+            storage array.
           type: string
         VolumeCollectionID:
           description: The optional volume collection ID matching an entry in the
