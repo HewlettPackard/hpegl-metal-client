@@ -12,10 +12,12 @@ Name | Type | Description | Notes
 **Description** | **string** |  | 
 **FlavorID** | **string** | The VolumeFlavorID matching an entry in the VolumeFlavors array returned as part of the get /available-resources call | 
 **StoragePoolID** | **string** | The storage pool ID matching an entry in the StoragePools array returned as part of the get /available-resources call | 
+**StoragePoolName** | **string** | StoragePoolName is the name of storage pool from where the volume is allocated | 
 **Capacity** | **int64** | The size of the volume in KiB | 
 **CapacityUsed** | **int64** | The amount of the volume currently used as reported by the array in KiB | 
 **Shareable** | **bool** | Indicates if the volume can be attached to multiple hosts | 
 **LocationID** | **string** | The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host. | 
+**DataCenterName** | **string** | DataCenterName is the name of the datacenter where the volume is created on the storage array | 
 **VolumeCollectionID** | **string** | The optional volume collection ID matching an entry in the VolumeCollections array returned as part of the get /available-resources call | [optional] 
 **State** | [**VolumeState**](VolumeState.md) |  | 
 **SubState** | [**VolumeSubState**](VolumeSubState.md) |  | 

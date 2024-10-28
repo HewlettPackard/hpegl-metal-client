@@ -5,10 +5,12 @@ allOf:
       - Description
       - FlavorID
       - StoragePoolID
+      - StoragePoolName
       - Capacity
       - CapacityUsed
       - Shareable
       - LocationID
+      - DataCenterName
       - State
       - SubState
       - Status
@@ -36,6 +38,10 @@ allOf:
         description: >-
           The storage pool ID matching an entry in the StoragePools array
           returned as part of the get /available-resources call
+      StoragePoolName:
+        type: string
+        description: >-
+          StoragePoolName is the name of storage pool from where the volume is allocated
       Capacity:
         type: integer
         format: int64
@@ -59,6 +65,10 @@ allOf:
           of those listed by the LocationInfo array returned as part of the get
           /available-resources call. Any volumes must be in the same location as
           their attached Host.
+      DataCenterName:
+        type: string
+        description: >-
+          DataCenterName is the name of the datacenter where the volume is created on the storage array
       VolumeCollectionID:
         type: string
         format: uuid
