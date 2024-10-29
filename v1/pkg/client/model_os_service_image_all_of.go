@@ -14,6 +14,7 @@ package client
 type OsServiceImageAllOf struct {
 	// Unique ID of the project that owns this OS service image.
 	ProjectID string `json:"ProjectID"`
+	DownloadHealth OsServiceImageDownloadHealth `json:"DownloadHealth"`
 	Description string `json:"Description"`
 	// A high level classification of the service. 
 	Category string `json:"Category"`

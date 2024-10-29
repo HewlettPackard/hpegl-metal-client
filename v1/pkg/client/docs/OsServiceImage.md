@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Created** | [**time.Time**](time.Time.md) | Time when the resource was created in the database | 
 **Modified** | [**time.Time**](time.Time.md) | Time when the resource was last modified in the database | 
 **ProjectID** | **string** | Unique ID of the project that owns this OS service image. | 
+**DownloadHealth** | [**OsServiceImageDownloadHealth**](OSServiceImageDownloadHealth.md) |  | 
 **Description** | **string** |  | 
 **Category** | **string** | A high level classification of the service.  | 
 **Flavor** | **string** | An high level description of the OS image type.  | 

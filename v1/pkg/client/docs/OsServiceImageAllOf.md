@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProjectID** | **string** | Unique ID of the project that owns this OS service image. | 
+**DownloadHealth** | [**OsServiceImageDownloadHealth**](OSServiceImageDownloadHealth.md) |  | 
 **Description** | **string** |  | 
 **Category** | **string** | A high level classification of the service.  | 
 **Flavor** | **string** | An high level description of the OS image type.  | 

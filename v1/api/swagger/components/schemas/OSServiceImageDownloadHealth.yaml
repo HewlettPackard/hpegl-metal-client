@@ -1,0 +1,11 @@
+type: object
+required: 
+  - DetailedDownloadHealth
+  - DownloadHealthSummary
+properties:
+  DetailedDownloadHealth:
+    $ref: OSServiceImageDetailedDownloadHealth.yaml
+  DownloadHealthSummary:
+    $ref: OSServiceImageDownloadHealthSummary.yaml
+description: >-
+  Provides download health info of the OS service image.
