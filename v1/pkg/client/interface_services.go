@@ -74,4 +74,14 @@ type ServicesAPI interface {
 	   @return OsServiceImage
 	*/
 	Update(ctx _context.Context, serviceId string, fileName *os.File, localVarOptionals *ServicesApiUpdateOpts) (OsServiceImage, *_nethttp.Response, error)
+	/*
+	   Updatehealth Trigger a request to update an OS service image health by its ID.
+	   Trigger a request to update an OS service image health by its ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  &#39;X-Role&#39; and &#39;X-Workspaceid&#39; headers.
+	     - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	     - @param serviceId ID of OS service image.
+	     - @param optional nil or *ServicesApiUpdatehealthOpts - Optional Parameters:
+	     - @param "XRole" (optional.String) -  GreenLake Platform role name
+	     - @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
+	*/
+	Updatehealth(ctx _context.Context, serviceId string, localVarOptionals *ServicesApiUpdatehealthOpts) (*_nethttp.Response, error)
 }

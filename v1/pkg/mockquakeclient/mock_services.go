@@ -117,3 +117,18 @@ func (mr *MockServicesAPIMockRecorder) Update(ctx, serviceId, fileName, localVar
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockServicesAPI)(nil).Update), ctx, serviceId, fileName, localVarOptionals)
 }
+
+// Updatehealth mocks base method.
+func (m *MockServicesAPI) Updatehealth(ctx context.Context, serviceId string, localVarOptionals *client.ServicesApiUpdatehealthOpts) (*http.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Updatehealth", ctx, serviceId, localVarOptionals)
+	ret0, _ := ret[0].(*http.Response)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Updatehealth indicates an expected call of Updatehealth.
+func (mr *MockServicesAPIMockRecorder) Updatehealth(ctx, serviceId, localVarOptionals interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Updatehealth", reflect.TypeOf((*MockServicesAPI)(nil).Updatehealth), ctx, serviceId, localVarOptionals)
+}

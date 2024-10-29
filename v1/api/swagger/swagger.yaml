@@ -155,6 +155,8 @@ paths:
     $ref: paths/services.yaml
   /services/{serviceId}:
     $ref: paths/services@{serviceId}.yaml
+  /services/{serviceId}/updatehealth:
+    $ref: paths/services@{serviceId}@updatehealth.yaml
 
 components:
   securitySchemes:
