@@ -30,6 +30,8 @@ type Volume struct {
 	FlavorID string `json:"FlavorID"`
 	// The storage pool ID matching an entry in the StoragePools array returned as part of the get /available-resources call
 	StoragePoolID string `json:"StoragePoolID"`
+	// Name of the storage pool from where the volume is allocated.
+	StoragePoolName string `json:"StoragePoolName"`
 	// The size of the volume in KiB
 	Capacity int64 `json:"Capacity"`
 	// The amount of the volume currently used as reported by the array in KiB
@@ -38,6 +40,8 @@ type Volume struct {
 	Shareable bool `json:"Shareable"`
 	// The location of the volume (and the storage array) LocationID is one of those listed by the LocationInfo array returned as part of the get /available-resources call. Any volumes must be in the same location as their attached Host.
 	LocationID string `json:"LocationID"`
+	// Name of the data center where the volume is created on the storage array.
+	DataCenterName string `json:"DataCenterName"`
 	// The optional volume collection ID matching an entry in the VolumeCollections array returned as part of the get /available-resources call
 	VolumeCollectionID string `json:"VolumeCollectionID,omitempty"`
 	State VolumeState `json:"State"`

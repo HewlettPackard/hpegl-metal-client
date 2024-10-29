@@ -7105,6 +7105,9 @@ components:
             returned as part of the get /available-resources call
           format: uuid
           type: string
+        StoragePoolName:
+          description: Name of the storage pool from where the volume is allocated.
+          type: string
         Capacity:
           description: The size of the volume in KiB
           example: 10485760
@@ -7127,6 +7130,10 @@ components:
             get /available-resources call. Any volumes must be in the same location
             as their attached Host.
           format: uuid
+          type: string
+        DataCenterName:
+          description: Name of the data center where the volume is created on the
+            storage array.
           type: string
         VolumeCollectionID:
           description: The optional volume collection ID matching an entry in the
@@ -7177,6 +7184,7 @@ components:
       - Capacity
       - CapacityUsed
       - CreatedSite
+      - DataCenterName
       - Description
       - ExportCount
       - FlavorID
@@ -7187,6 +7195,7 @@ components:
       - State
       - Status
       - StoragePoolID
+      - StoragePoolName
       - SubState
       - UnmanagedVolume
       - WWN
