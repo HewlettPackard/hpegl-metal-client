@@ -1,0 +1,9 @@
+type: string
+enum:
+  - OK
+  - Warning
+  - Critical
+  - Unknown
+example: OK
+description: >
+  Indicates the download health summary of the OS service image.

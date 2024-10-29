@@ -5866,6 +5866,19 @@ components:
       - AllocatedCount
       - ServiceType
       type: object
+    OSServiceImageDownloadHealth:
+      description: Provides download health info of the OS service image.
+      properties:
+        DetailedDownloadHealth:
+          additionalProperties:
+            $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
+          type: object
+        DownloadHealthSummary:
+          $ref: '#/components/schemas/OSServiceImageDownloadHealthSummary'
+      required:
+      - DetailedDownloadHealth
+      - DownloadHealthSummary
+      type: object
     OSServiceImageOrigin:
       description: |
         Indicates the origin of the OS service image.
@@ -6539,6 +6552,19 @@ components:
       - InUse
       - Total
       type: object
+    OSServiceImageDetailedDownloadHealth:
+      additionalProperties:
+        $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
+      type: object
+    OSServiceImageDownloadHealthSummary:
+      description: Indicates the download health summary of the OS service image.
+      enum:
+      - OK
+      - Warning
+      - Critical
+      - Unknown
+      example: OK
+      type: string
     PartitionTable:
       description: Defines the type of partition table.
       enum:
@@ -6673,6 +6699,30 @@ components:
           type: array
       required:
       - SubAttributeRules
+      type: object
+    OSServiceImageDownloadHealthDetails:
+      properties:
+        Changed:
+          description: Indicates last time this download health has been updated.
+          example: 2019-06-27T22:59:01.661Z
+          format: date-time
+          type: string
+        Details:
+          additionalProperties:
+            $ref: '#/components/schemas/OSServiceImageDownloadHealthSummary'
+          type: object
+        Reason:
+          description: Indicates the reason for the reported download health status
+            if not OK.
+          example: Service download health timed out
+          type: string
+        Summary:
+          $ref: '#/components/schemas/OSServiceImageDownloadHealthSummary'
+      required:
+      - Changed
+      - Details
+      - Reason
+      - Summary
       type: object
     PartitionType:
       description: It defines the available partition types. This should be defined
@@ -7506,6 +7556,8 @@ components:
           example: 046b6c7f-0b8a-43b9-b35d-6489e6daee92
           format: uuid
           type: string
+        DownloadHealth:
+          $ref: '#/components/schemas/OSServiceImageDownloadHealth'
         Description:
           example: Description of the image
           type: string
@@ -7585,6 +7637,7 @@ components:
       - Classifiers
       - Description
       - DeviceLayouts
+      - DownloadHealth
       - FWBaselineID
       - Files
       - Flavor
