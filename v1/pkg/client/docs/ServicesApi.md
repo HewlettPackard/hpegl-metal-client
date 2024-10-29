@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetByID**](ServicesApi.md#GetByID) | **Get** /services/{serviceId} | Retrieve an OS service image
 [**List**](ServicesApi.md#List) | **Get** /services | List of all OS service images within an tenant
 [**Update**](ServicesApi.md#Update) | **Put** /services/{serviceId} | Update an OS service image by its ID
+[**Updatehealth**](ServicesApi.md#Updatehealth) | **Put** /services/{serviceId}/updatehealth | Trigger a request to update an OS service image health by its ID.
 
 
 
@@ -239,6 +240,52 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Updatehealth
+
+> Updatehealth(ctx, serviceId, optional)
+
+Trigger a request to update an OS service image health by its ID.
+
+Trigger a request to update an OS service image health by its ID. If GreenLake Platform IAM issued token is used for authentication, then it is required to pass  'X-Role' and 'X-Workspaceid' headers.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serviceId** | **string**| ID of OS service image. | 
+ **optional** | ***UpdatehealthOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a UpdatehealthOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xRole** | **optional.String**| GreenLake Platform role name | 
+ **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth), [Membership](../README.md#Membership), [Project](../README.md#Project)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

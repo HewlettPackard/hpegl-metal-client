@@ -74,6 +74,7 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**GetByID**](docs/ServicesApi.md#getbyid) | **Get** /services/{serviceId} | Retrieve an OS service image
 *ServicesApi* | [**List**](docs/ServicesApi.md#list) | **Get** /services | List of all OS service images within an tenant
 *ServicesApi* | [**Update**](docs/ServicesApi.md#update) | **Put** /services/{serviceId} | Update an OS service image by its ID
+*ServicesApi* | [**Updatehealth**](docs/ServicesApi.md#updatehealth) | **Put** /services/{serviceId}/updatehealth | Trigger a request to update an OS service image health by its ID.
 *SshkeysApi* | [**Add**](docs/SshkeysApi.md#add) | **Post** /sshkeys | Add a new SSH Key
 *SshkeysApi* | [**Delete**](docs/SshkeysApi.md#delete) | **Delete** /sshkeys/{sshkeyId} | Delete an SSH key by ID.
 *SshkeysApi* | [**GetByID**](docs/SshkeysApi.md#getbyid) | **Get** /sshkeys/{sshkeyId} | Retrieve SSH Key by ID

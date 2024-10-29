@@ -3344,6 +3344,61 @@ paths:
       summary: Update an OS service image by its ID
       tags:
       - services
+  /services/{serviceId}/updatehealth:
+    put:
+      description: Trigger a request to update an OS service image health by its ID.
+        If GreenLake Platform IAM issued token is used for authentication, then it
+        is required to pass  'X-Role' and 'X-Workspaceid' headers.
+      operationId: Service_updatehealth
+      parameters:
+      - description: ID of OS service image.
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          type: string
+      - description: GreenLake Platform role name
+        example: metal-infra-admin
+        in: header
+        name: X-Role
+        schema:
+          type: string
+      - description: GreenLake Platform workspace ID
+        example: 1a2ba81600dd11efa47076a3447ec4eb
+        in: header
+        name: X-Workspaceid
+        schema:
+          type: string
+      responses:
+        "202":
+          description: accepted
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal error
+      summary: Trigger a request to update an OS service image health by its ID.
+      tags:
+      - services
 components:
   schemas:
     Version:
