@@ -23,4 +23,6 @@ type LocationInfo struct {
 	PrivateNetworkVIDSupport bool `json:"PrivateNetworkVIDSupport"`
 	// Indicates whether or not the fabric dedicated for private networks supports VNI ID.
 	PrivateNetworkVNISupport bool `json:"PrivateNetworkVNISupport"`
+	// Unique ID for the controller that manages the data center.
+	ControllerID string `json:"ControllerID"`
 }

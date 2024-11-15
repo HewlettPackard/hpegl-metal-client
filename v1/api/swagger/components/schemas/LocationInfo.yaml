@@ -9,6 +9,7 @@ required:
   - DataCenter
   - PrivateNetworkVIDSupport
   - PrivateNetworkVNISupport
+  - ControllerID
 properties:
   ID:
     type: string
@@ -30,3 +31,7 @@ properties:
   PrivateNetworkVNISupport:
     type: boolean
     description: Indicates whether or not the fabric dedicated for private networks supports VNI ID.
+  ControllerID:
+    type: string
+    format: uuid
+    description: Unique ID for the controller that manages the data center.
