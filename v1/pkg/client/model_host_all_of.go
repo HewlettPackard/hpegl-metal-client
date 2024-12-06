@@ -70,4 +70,12 @@ type HostAllOf struct {
 	Labels map[string]string `json:"Labels"`
 	// FC HBA world wide port names
 	WWPNs []string `json:"WWPNs"`
+	// The ID of the firmware baseline that is installed on the host.
+	InstalledFWBaselineID string `json:"InstalledFWBaselineID,omitempty"`
+	// The version of the firmware baseline that is installed on the host.
+	InstalledFWBaselineVersion string `json:"InstalledFWBaselineVersion,omitempty"`
+	// The ID of the firmware baseline that is available for the host. This field is only populated when there is a new firmware baseline available.
+	AvailableFWBaselineID string `json:"AvailableFWBaselineID,omitempty"`
+	// The version of the firmware baseline that is available for the host. This field is only populated when there is a new firmware baseline available.
+	AvailableFWBaselineVersion string `json:"AvailableFWBaselineVersion,omitempty"`
 }

@@ -200,3 +200,23 @@ allOf:
         example:
           - 20:31:01:02:ad:f2:a8:e5
           - 21:31:01:02:ad:f2:a8:e5
+      InstalledFWBaselineID:
+        type: string
+        format: uuid
+        description: >-
+          The ID of the firmware baseline that is installed on the host.
+      InstalledFWBaselineVersion:
+        type: string
+        description: >-
+          The version of the firmware baseline that is installed on the host.
+      AvailableFWBaselineID:
+        type: string
+        format: uuid
+        description: >-
+          The ID of the firmware baseline that is available for the host. This
+          field is only populated when there is a new firmware baseline available.
+      AvailableFWBaselineVersion:
+        type: string
+        description: >-
+          The version of the firmware baseline that is available for the host. This
+          field is only populated when there is a new firmware baseline available.
