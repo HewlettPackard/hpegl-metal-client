@@ -7113,6 +7113,24 @@ components:
           items:
             type: string
           type: array
+        InstalledFWBaselineID:
+          description: The ID of the firmware baseline that is installed on the host.
+          format: uuid
+          type: string
+        InstalledFWBaselineVersion:
+          description: The version of the firmware baseline that is installed on the
+            host.
+          type: string
+        AvailableFWBaselineID:
+          description: The ID of the firmware baseline that is available for the host.
+            This field is only populated when there is a new firmware baseline available.
+          format: uuid
+          type: string
+        AvailableFWBaselineVersion:
+          description: The version of the firmware baseline that is available for
+            the host. This field is only populated when there is a new firmware baseline
+            available.
+          type: string
       required:
       - Alert
       - AlertInfo
