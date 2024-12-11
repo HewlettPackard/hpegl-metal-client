@@ -35,6 +35,10 @@ allOf:
       - SummaryStatus
       - Labels
       - WWPNs
+      - FWBaselineID
+      - FWBaselineVersion
+      - AvailableFWBaselineID
+      - AvailableFWBaselineVersion
     properties:
       Description:
         type: string
@@ -200,12 +204,12 @@ allOf:
         example:
           - 20:31:01:02:ad:f2:a8:e5
           - 21:31:01:02:ad:f2:a8:e5
-      InstalledFWBaselineID:
+      FWBaselineID:
         type: string
         format: uuid
         description: >-
           The ID of the firmware baseline that is installed on the host.
-      InstalledFWBaselineVersion:
+      FWBaselineVersion:
         type: string
         description: >-
           The version of the firmware baseline that is installed on the host.

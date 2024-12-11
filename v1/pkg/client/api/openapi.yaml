@@ -7113,11 +7113,11 @@ components:
           items:
             type: string
           type: array
-        InstalledFWBaselineID:
+        FWBaselineID:
           description: The ID of the firmware baseline that is installed on the host.
           format: uuid
           type: string
-        InstalledFWBaselineVersion:
+        FWBaselineVersion:
           description: The version of the firmware baseline that is installed on the
             host.
           type: string
@@ -7134,9 +7134,13 @@ components:
       required:
       - Alert
       - AlertInfo
+      - AvailableFWBaselineID
+      - AvailableFWBaselineVersion
       - Connections
       - Deleted
       - Description
+      - FWBaselineID
+      - FWBaselineVersion
       - ISCSIConfig
       - Labels
       - LocationID
