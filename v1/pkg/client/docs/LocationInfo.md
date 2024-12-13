@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **DataCenter** | **string** | Data center descriptor | 
 **PrivateNetworkVIDSupport** | **bool** | Indicates whether or not the fabric dedicated for private networks supports VLAN ID. | 
 **PrivateNetworkVNISupport** | **bool** | Indicates whether or not the fabric dedicated for private networks supports VNI ID. | 
+**ControllerID** | **string** | Unique ID for the controller that manages the data center. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

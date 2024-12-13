@@ -42,6 +42,10 @@ Name | Type | Description | Notes
 **SummaryStatus** | [**HealthStatus**](HealthStatus.md) |  | 
 **Labels** | **map[string]string** | The map of label name to label value for the resource. | 
 **WWPNs** | **[]string** | FC HBA world wide port names | 
+**FWBaselineID** | **string** | The ID of the firmware baseline that is installed on the host. | 
+**FWBaselineVersion** | **string** | The version of the firmware baseline that is installed on the host. | 
+**AvailableFWBaselineID** | **string** | The ID of the firmware baseline that is available for the host. This field is only populated when there is a new firmware baseline available. | 
+**AvailableFWBaselineVersion** | **string** | The version of the firmware baseline that is available for the host. This field is only populated when there is a new firmware baseline available. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

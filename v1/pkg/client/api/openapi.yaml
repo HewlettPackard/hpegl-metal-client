@@ -3522,11 +3522,13 @@ components:
           Locations:
           - DataCenter: FTC1
             PrivateNetworkVNISupport: true
+            ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
             PrivateNetworkVNISupport: true
+            ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             PrivateNetworkVIDSupport: true
@@ -3541,11 +3543,13 @@ components:
           Locations:
           - DataCenter: FTC1
             PrivateNetworkVNISupport: true
+            ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
             PrivateNetworkVNISupport: true
+            ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             PrivateNetworkVIDSupport: true
@@ -3562,11 +3566,13 @@ components:
           Locations:
           - DataCenter: FTC1
             PrivateNetworkVNISupport: true
+            ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             PrivateNetworkVIDSupport: true
           - DataCenter: FTC1
             PrivateNetworkVNISupport: true
+            ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             Region: Central
             ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             PrivateNetworkVIDSupport: true
@@ -3908,11 +3914,13 @@ components:
         Locations:
         - DataCenter: FTC1
           PrivateNetworkVNISupport: true
+          ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
           PrivateNetworkVNISupport: true
+          ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           PrivateNetworkVIDSupport: true
@@ -4628,11 +4636,13 @@ components:
         Locations:
         - DataCenter: FTC1
           PrivateNetworkVNISupport: true
+          ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
           PrivateNetworkVNISupport: true
+          ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           PrivateNetworkVIDSupport: true
@@ -4743,11 +4753,13 @@ components:
         Locations:
         - DataCenter: FTC1
           PrivateNetworkVNISupport: true
+          ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           PrivateNetworkVIDSupport: true
         - DataCenter: FTC1
           PrivateNetworkVNISupport: true
+          ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Region: Central
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           PrivateNetworkVIDSupport: true
@@ -5092,6 +5104,7 @@ components:
       example:
         DataCenter: FTC1
         PrivateNetworkVNISupport: true
+        ControllerID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Region: Central
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         PrivateNetworkVIDSupport: true
@@ -5118,7 +5131,12 @@ components:
           description: Indicates whether or not the fabric dedicated for private networks
             supports VNI ID.
           type: boolean
+        ControllerID:
+          description: Unique ID for the controller that manages the data center.
+          format: uuid
+          type: string
       required:
+      - ControllerID
       - Country
       - DataCenter
       - ID
@@ -7095,12 +7113,34 @@ components:
           items:
             type: string
           type: array
+        FWBaselineID:
+          description: The ID of the firmware baseline that is installed on the host.
+          format: uuid
+          type: string
+        FWBaselineVersion:
+          description: The version of the firmware baseline that is installed on the
+            host.
+          type: string
+        AvailableFWBaselineID:
+          description: The ID of the firmware baseline that is available for the host.
+            This field is only populated when there is a new firmware baseline available.
+          format: uuid
+          type: string
+        AvailableFWBaselineVersion:
+          description: The version of the firmware baseline that is available for
+            the host. This field is only populated when there is a new firmware baseline
+            available.
+          type: string
       required:
       - Alert
       - AlertInfo
+      - AvailableFWBaselineID
+      - AvailableFWBaselineVersion
       - Connections
       - Deleted
       - Description
+      - FWBaselineID
+      - FWBaselineVersion
       - ISCSIConfig
       - Labels
       - LocationID
