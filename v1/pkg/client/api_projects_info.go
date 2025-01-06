@@ -31,7 +31,7 @@ type ProjectsInfoApiService service
 type ProjectsInfoApiListOpts struct {
     Space optional.String
     Spaceid optional.String
-    Siteid optional.String
+    Siteid optional.Interface
     XRole optional.String
     XWorkspaceid optional.String
 }
@@ -43,7 +43,7 @@ Returns an object with information on projects, machine sizes, and volume flavor
  * @param optional nil or *ProjectsInfoApiListOpts - Optional Parameters:
  * @param "Space" (optional.String) -  GreenLake Cloud Services space name
  * @param "Spaceid" (optional.String) -  GreenLake Cloud Services space ID
- * @param "Siteid" (optional.String) -  GreenLake site ID
+ * @param "Siteid" (optional.Interface of []string) -  GreenLake site ID
  * @param "XRole" (optional.String) -  GreenLake Platform role name
  * @param "XWorkspaceid" (optional.String) -  GreenLake Platform workspace ID
 @return ProjectsInfo
@@ -65,7 +65,7 @@ func (a *ProjectsInfoApiService) List(ctx _context.Context, localVarOptionals *P
 	localVarFormParams := _neturl.Values{}
 
 	if localVarOptionals != nil && localVarOptionals.Siteid.IsSet() {
-		localVarQueryParams.Add("siteid", parameterToString(localVarOptionals.Siteid.Value(), ""))
+		localVarQueryParams.Add("siteid", parameterToString(localVarOptionals.Siteid.Value(), "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

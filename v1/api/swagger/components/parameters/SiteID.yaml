@@ -3,5 +3,8 @@ in: query
 description: GreenLake site ID
 required: false
 schema:
-  type: string
+  type: array
+  items:
+    type: string
+  collectionFormat: multi
 example: 95688cf9-82ff-4e32-80fc-2b0b41648dab

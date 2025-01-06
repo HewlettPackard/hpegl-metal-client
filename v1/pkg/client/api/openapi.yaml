@@ -482,7 +482,9 @@ paths:
         name: siteid
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
       - description: GreenLake Platform role name
         example: metal-infra-admin
         in: header
@@ -6935,6 +6937,15 @@ components:
           $ref: '#/components/schemas/UpdateLimits'
         PermittedOSImages:
           description: Array listing the permitted OS service images.
+          example:
+          - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - 91eec8b5-6460-4532-aad1-47b983edb63c
+          items:
+            format: uuid
+            type: string
+          type: array
+        PermittedSites:
+          description: Array listing the permitted site IDs
           example:
           - 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           - 91eec8b5-6460-4532-aad1-47b983edb63c
