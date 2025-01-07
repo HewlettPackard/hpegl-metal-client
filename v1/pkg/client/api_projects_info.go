@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"github.com/antihax/optional"
+	"reflect"
 )
 
 // Linger please
@@ -65,7 +66,15 @@ func (a *ProjectsInfoApiService) List(ctx _context.Context, localVarOptionals *P
 	localVarFormParams := _neturl.Values{}
 
 	if localVarOptionals != nil && localVarOptionals.Siteid.IsSet() {
-		localVarQueryParams.Add("siteid", parameterToString(localVarOptionals.Siteid.Value(), "csv"))
+		t:=localVarOptionals.Siteid.Value()
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("siteid", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("siteid", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
