@@ -33,7 +33,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **space** | **optional.String**| GreenLake Cloud Services space name | 
  **spaceid** | **optional.String**| GreenLake Cloud Services space ID | 
- **siteid** | **optional.String**| GreenLake site ID | 
+ **siteid** | [**optional.Interface of []string**](string.md)| GreenLake site ID | 
  **xRole** | **optional.String**| GreenLake Platform role name | 
  **xWorkspaceid** | **optional.String**| GreenLake Platform workspace ID | 
 
