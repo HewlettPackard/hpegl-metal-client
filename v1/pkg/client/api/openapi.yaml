@@ -4893,6 +4893,7 @@ components:
       - Connecting
       - Booting
       - Ready
+      - Offline
       - Reimaging Prep
       - Replacing
       - Releasing
