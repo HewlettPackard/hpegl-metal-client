@@ -88,6 +88,6 @@ type Host struct {
 	AvailableFWBaselineID string `json:"AvailableFWBaselineID"`
 	// The version of the firmware baseline that is available for the host. This field is only populated when there is a new firmware baseline available.
 	AvailableFWBaselineVersion string `json:"AvailableFWBaselineVersion"`
-	// The serial number of the system that the host is running on.
-	SystemSerialNumber string `json:"SystemSerialNumber,omitempty"`
+	// The serial number of the host.
+	SerialNumber string `json:"SerialNumber"`
 }

@@ -7145,8 +7145,8 @@ components:
             the host. This field is only populated when there is a new firmware baseline
             available.
           type: string
-        SystemSerialNumber:
-          description: The serial number of the system that the host is running on.
+        SerialNumber:
+          description: The serial number of the host.
           type: string
       required:
       - Alert
@@ -7174,6 +7174,7 @@ components:
       - Progress
       - SSHAuthorizedKeys
       - SSHKeyIDs
+      - SerialNumber
       - ServiceFlavor
       - ServiceID
       - ServiceNetsProviderMAC
