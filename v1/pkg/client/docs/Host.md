@@ -46,6 +46,7 @@ Name | Type | Description | Notes
 **FWBaselineVersion** | **string** | The version of the firmware baseline that is installed on the host. | 
 **AvailableFWBaselineID** | **string** | The ID of the firmware baseline that is available for the host. This field is only populated when there is a new firmware baseline available. | 
 **AvailableFWBaselineVersion** | **string** | The version of the firmware baseline that is available for the host. This field is only populated when there is a new firmware baseline available. | 
+**SystemSerialNumber** | **string** | The serial number of the system that the host is running on. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

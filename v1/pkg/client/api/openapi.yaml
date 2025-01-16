@@ -7145,6 +7145,9 @@ components:
             the host. This field is only populated when there is a new firmware baseline
             available.
           type: string
+        SystemSerialNumber:
+          description: The serial number of the system that the host is running on.
+          type: string
       required:
       - Alert
       - AlertInfo

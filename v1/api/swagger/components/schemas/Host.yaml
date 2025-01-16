@@ -224,3 +224,7 @@ allOf:
         description: >-
           The version of the firmware baseline that is available for the host. This
           field is only populated when there is a new firmware baseline available.
+      SystemSerialNumber:
+        type: string
+        description: >-
+          The serial number of the system that the host is running on.
