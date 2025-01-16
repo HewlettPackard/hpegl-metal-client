@@ -39,6 +39,7 @@ allOf:
       - FWBaselineVersion
       - AvailableFWBaselineID
       - AvailableFWBaselineVersion
+      - SerialNumber
     properties:
       Description:
         type: string
@@ -224,3 +225,7 @@ allOf:
         description: >-
           The version of the firmware baseline that is available for the host. This
           field is only populated when there is a new firmware baseline available.
+      SerialNumber:
+        type: string
+        description: >-
+          The serial number of the host.
