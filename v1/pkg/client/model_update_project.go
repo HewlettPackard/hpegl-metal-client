@@ -22,4 +22,6 @@ type UpdateProject struct {
 	Limits UpdateLimits `json:"Limits"`
 	// Array listing the permitted OS service images.
 	PermittedOSImages []string `json:"PermittedOSImages"`
+	// Array listing the permitted site IDs
+	PermittedSites []string `json:"PermittedSites,omitempty"`
 }
