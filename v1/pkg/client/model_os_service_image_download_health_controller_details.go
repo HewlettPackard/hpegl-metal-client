@@ -13,12 +13,12 @@ package client
 import (
 	"time"
 )
-// OsServiceImageDownloadHealthDetails struct for OsServiceImageDownloadHealthDetails
-type OsServiceImageDownloadHealthDetails struct {
+// OsServiceImageDownloadHealthControllerDetails struct for OsServiceImageDownloadHealthControllerDetails
+type OsServiceImageDownloadHealthControllerDetails struct {
 	// Indicates last time this download health has been updated.
 	Changed time.Time `json:"Changed"`
 	// Indicates the reason for the reported download health status if not OK.
 	Reason string `json:"Reason"`
-	// High-level summary of the download health status.
+	// High-level summary of the download health status for the controller.
 	Summary OsServiceImageDownloadHealthSummary `json:"Summary"`
 }

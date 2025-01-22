@@ -158,7 +158,7 @@ Class | Method | HTTP request | Description
  - [OsServiceImageAllOf](docs/OsServiceImageAllOf.md)
  - [OsServiceImageApproach](docs/OsServiceImageApproach.md)
  - [OsServiceImageDownloadHealth](docs/OsServiceImageDownloadHealth.md)
- - [OsServiceImageDownloadHealthDetails](docs/OsServiceImageDownloadHealthDetails.md)
+ - [OsServiceImageDownloadHealthControllerDetails](docs/OsServiceImageDownloadHealthControllerDetails.md)
  - [OsServiceImageDownloadHealthSummary](docs/OsServiceImageDownloadHealthSummary.md)
  - [OsServiceImageOrigin](docs/OsServiceImageOrigin.md)
  - [Partition](docs/Partition.md)

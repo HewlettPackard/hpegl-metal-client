@@ -1,7 +1,7 @@
 type: object
 description: This is a map of controller IDs to detailed download health info.
 additionalProperties: 
-  $ref: OSServiceImageDownloadHealthDetails.yaml
+  $ref: OSServiceImageDownloadHealthControllerDetails.yaml
 example: 
     046b6c7f-0b8a-43b9-b35d-6489e6daee91:
       Summary: OK

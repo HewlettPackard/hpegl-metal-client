@@ -5941,7 +5941,7 @@ components:
       properties:
         DetailedDownloadHealth:
           additionalProperties:
-            $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
+            $ref: '#/components/schemas/OSServiceImageDownloadHealthControllerDetails'
           description: This is a map of controller IDs to detailed download health
             info.
           example:
@@ -6635,7 +6635,7 @@ components:
       type: object
     OSServiceImageDetailedDownloadHealth:
       additionalProperties:
-        $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
+        $ref: '#/components/schemas/OSServiceImageDownloadHealthControllerDetails'
       description: This is a map of controller IDs to detailed download health info.
       example:
         "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
@@ -6791,7 +6791,7 @@ components:
       required:
       - SubAttributeRules
       type: object
-    OSServiceImageDownloadHealthDetails:
+    OSServiceImageDownloadHealthControllerDetails:
       properties:
         Changed:
           description: Indicates last time this download health has been updated.
