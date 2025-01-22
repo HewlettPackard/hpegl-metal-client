@@ -1,5 +1,5 @@
 type: object
-description: This is a map of controllers ID to detailed dpwnload health info.
+description: This is a map of controllers ID to detailed download health info.
 additionalProperties: 
   $ref: OSServiceImageDownloadHealthDetails.yaml
 example: 

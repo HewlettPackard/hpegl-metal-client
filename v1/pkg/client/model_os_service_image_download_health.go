@@ -12,7 +12,7 @@
 package client
 // OsServiceImageDownloadHealth Provides download health info of the OS service image.
 type OsServiceImageDownloadHealth struct {
-	// This is a map of controllers ID to detailed dpwnload health info.
+	// This is a map of controllers ID to detailed download health info.
 	DetailedDownloadHealth map[string]OsServiceImageDownloadHealthDetails `json:"DetailedDownloadHealth"`
 	// This is a high-level summary of the download health status.
 	DownloadHealthSummary OsServiceImageDownloadHealthSummary `json:"DownloadHealthSummary"`

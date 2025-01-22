@@ -5942,7 +5942,7 @@ components:
         DetailedDownloadHealth:
           additionalProperties:
             $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
-          description: This is a map of controllers ID to detailed dpwnload health
+          description: This is a map of controllers ID to detailed download health
             info.
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
@@ -6636,7 +6636,7 @@ components:
     OSServiceImageDetailedDownloadHealth:
       additionalProperties:
         $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
-      description: This is a map of controllers ID to detailed dpwnload health info.
+      description: This is a map of controllers ID to detailed download health info.
       example:
         "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
           Summary: OK
