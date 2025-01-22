@@ -1,7 +1,6 @@
 type: object
 required: 
   - Changed
-  - Details
   - Reason
   - Summary
 properties:

@@ -3910,8 +3910,8 @@ components:
                 Reason: ""
                 Changed: 2019-06-27T22:59:01.661Z
               "91eec8b5-6460-4532-aad1-47b983edb63c":
-                Summary: OK
-                Reason: ""
+                Summary: Unknown
+                Reason: Service download health timed out
                 Changed: 2019-06-27T22:59:01.661Z
             DownloadHealthSummary: OK
           Category: Linux
@@ -3927,8 +3927,8 @@ components:
                 Reason: ""
                 Changed: 2019-06-27T22:59:01.661Z
               "91eec8b5-6460-4532-aad1-47b983edb63c":
-                Summary: OK
-                Reason: ""
+                Summary: Unknown
+                Reason: Service download health timed out
                 Changed: 2019-06-27T22:59:01.661Z
             DownloadHealthSummary: OK
           Category: Linux
@@ -5090,8 +5090,8 @@ components:
               Reason: ""
               Changed: 2019-06-27T22:59:01.661Z
             "91eec8b5-6460-4532-aad1-47b983edb63c":
-              Summary: OK
-              Reason: ""
+              Summary: Unknown
+              Reason: Service download health timed out
               Changed: 2019-06-27T22:59:01.661Z
           DownloadHealthSummary: OK
         Category: Linux
@@ -5934,15 +5934,15 @@ components:
             Reason: ""
             Changed: 2019-06-27T22:59:01.661Z
           "91eec8b5-6460-4532-aad1-47b983edb63c":
-            Summary: OK
-            Reason: ""
+            Summary: Unknown
+            Reason: Service download health timed out
             Changed: 2019-06-27T22:59:01.661Z
         DownloadHealthSummary: OK
       properties:
         DetailedDownloadHealth:
           additionalProperties:
             $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
-          description: This is a map of controllers ID to detailed download health
+          description: This is a map of controller IDs to detailed download health
             info.
           example:
             "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
@@ -5950,8 +5950,8 @@ components:
               Reason: ""
               Changed: 2019-06-27T22:59:01.661Z
             "91eec8b5-6460-4532-aad1-47b983edb63c":
-              Summary: OK
-              Reason: ""
+              Summary: Unknown
+              Reason: Service download health timed out
               Changed: 2019-06-27T22:59:01.661Z
           type: object
         DownloadHealthSummary:
@@ -6636,15 +6636,15 @@ components:
     OSServiceImageDetailedDownloadHealth:
       additionalProperties:
         $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
-      description: This is a map of controllers ID to detailed download health info.
+      description: This is a map of controller IDs to detailed download health info.
       example:
         "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
           Summary: OK
           Reason: ""
           Changed: 2019-06-27T22:59:01.661Z
         "91eec8b5-6460-4532-aad1-47b983edb63c":
-          Summary: OK
-          Reason: ""
+          Summary: Unknown
+          Reason: Service download health timed out
           Changed: 2019-06-27T22:59:01.661Z
       type: object
     OSServiceImageDownloadHealthSummary:
@@ -6807,7 +6807,6 @@ components:
           $ref: '#/components/schemas/OSServiceImageDownloadHealthSummary'
       required:
       - Changed
-      - Details
       - Reason
       - Summary
       type: object
