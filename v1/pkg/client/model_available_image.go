@@ -24,4 +24,6 @@ type AvailableImage struct {
 	Version string `json:"Version"`
 	// Additional image information for additional services added to the OS
 	Description string `json:"Description"`
+	// Provides download health info of the service.
+	DownloadHealth OsServiceImageDownloadHealth `json:"DownloadHealth"`
 }

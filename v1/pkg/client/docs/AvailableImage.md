@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of imaging service. | 
 **Version** | **string** | Specific version of a imaging service flavor. | 
 **Description** | **string** | Additional image information for additional services added to the OS | 
+**DownloadHealth** | [**OsServiceImageDownloadHealth**](.md) | Provides download health info of the service. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

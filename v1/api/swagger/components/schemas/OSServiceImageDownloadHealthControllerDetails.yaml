@@ -1,7 +1,6 @@
 type: object
 required: 
   - Changed
-  - Details
   - Reason
   - Summary
 properties:
@@ -11,14 +10,13 @@ properties:
     example: 2019-06-27T22:59:01.661Z
     description: >-
       Indicates last time this download health has been updated.
-  Details:
-    type: object
-    additionalProperties: 
-      $ref: OSServiceImageDownloadHealthSummary.yaml
   Reason:
     type: string
     example: "Service download health timed out"
     description: >-
       Indicates the reason for the reported download health status if not OK.
   Summary:
+    type: string
+    description: High-level summary of the download health status for the controller.
     $ref: OSServiceImageDownloadHealthSummary.yaml
+    example: OK

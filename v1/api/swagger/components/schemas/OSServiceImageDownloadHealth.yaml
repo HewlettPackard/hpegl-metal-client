@@ -4,8 +4,22 @@ required:
   - DownloadHealthSummary
 properties:
   DetailedDownloadHealth:
+    type: object
+    description: This is a map of controller IDs to detailed download health info.
     $ref: OSServiceImageDetailedDownloadHealth.yaml
+    example: 
+      046b6c7f-0b8a-43b9-b35d-6489e6daee91:
+        Summary: OK
+        Reason: ''
+        Changed: 2019-06-27T22:59:01.661Z
+      91eec8b5-6460-4532-aad1-47b983edb63c:
+        Summary: Unknown
+        Reason: Service download health timed out
+        Changed: 2019-06-27T22:59:01.661Z
   DownloadHealthSummary:
+    type: string
+    description: This is the summary of the OS Service image's overall download health status.
     $ref: OSServiceImageDownloadHealthSummary.yaml
+    example: OK
 description: >-
   Provides download health info of the OS service image.

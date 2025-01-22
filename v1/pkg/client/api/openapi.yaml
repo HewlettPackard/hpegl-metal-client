@@ -3903,13 +3903,35 @@ components:
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           SizeID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         Images:
-        - Category: Linux
+        - DownloadHealth:
+            DetailedDownloadHealth:
+              "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
+                Summary: OK
+                Reason: ""
+                Changed: 2019-06-27T22:59:01.661Z
+              "91eec8b5-6460-4532-aad1-47b983edb63c":
+                Summary: Unknown
+                Reason: Service download health timed out
+                Changed: 2019-06-27T22:59:01.661Z
+            DownloadHealthSummary: OK
+          Category: Linux
           Description: ubuntu OS also including Docker runtime
           Version: "18.04"
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           Flavor: ubuntu
           Name: HPE Ubuntu 18.04
-        - Category: Linux
+        - DownloadHealth:
+            DetailedDownloadHealth:
+              "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
+                Summary: OK
+                Reason: ""
+                Changed: 2019-06-27T22:59:01.661Z
+              "91eec8b5-6460-4532-aad1-47b983edb63c":
+                Summary: Unknown
+                Reason: Service download health timed out
+                Changed: 2019-06-27T22:59:01.661Z
+            DownloadHealthSummary: OK
+          Category: Linux
           Description: ubuntu OS also including Docker runtime
           Version: "18.04"
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -5061,6 +5083,17 @@ components:
     AvailableImage:
       description: Entry describing an available imaging service
       example:
+        DownloadHealth:
+          DetailedDownloadHealth:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
+              Summary: OK
+              Reason: ""
+              Changed: 2019-06-27T22:59:01.661Z
+            "91eec8b5-6460-4532-aad1-47b983edb63c":
+              Summary: Unknown
+              Reason: Service download health timed out
+              Changed: 2019-06-27T22:59:01.661Z
+          DownloadHealthSummary: OK
         Category: Linux
         Description: ubuntu OS also including Docker runtime
         Version: "18.04"
@@ -5095,9 +5128,12 @@ components:
             to the OS
           example: ubuntu OS also including Docker runtime
           type: string
+        DownloadHealth:
+          $ref: '#/components/schemas/OSServiceImageDownloadHealth'
       required:
       - Category
       - Description
+      - DownloadHealth
       - Flavor
       - ID
       - Name
@@ -5891,10 +5927,32 @@ components:
       type: object
     OSServiceImageDownloadHealth:
       description: Provides download health info of the OS service image.
+      example:
+        DetailedDownloadHealth:
+          "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
+            Summary: OK
+            Reason: ""
+            Changed: 2019-06-27T22:59:01.661Z
+          "91eec8b5-6460-4532-aad1-47b983edb63c":
+            Summary: Unknown
+            Reason: Service download health timed out
+            Changed: 2019-06-27T22:59:01.661Z
+        DownloadHealthSummary: OK
       properties:
         DetailedDownloadHealth:
           additionalProperties:
-            $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
+            $ref: '#/components/schemas/OSServiceImageDownloadHealthControllerDetails'
+          description: This is a map of controller IDs to detailed download health
+            info.
+          example:
+            "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
+              Summary: OK
+              Reason: ""
+              Changed: 2019-06-27T22:59:01.661Z
+            "91eec8b5-6460-4532-aad1-47b983edb63c":
+              Summary: Unknown
+              Reason: Service download health timed out
+              Changed: 2019-06-27T22:59:01.661Z
           type: object
         DownloadHealthSummary:
           $ref: '#/components/schemas/OSServiceImageDownloadHealthSummary'
@@ -6577,7 +6635,17 @@ components:
       type: object
     OSServiceImageDetailedDownloadHealth:
       additionalProperties:
-        $ref: '#/components/schemas/OSServiceImageDownloadHealthDetails'
+        $ref: '#/components/schemas/OSServiceImageDownloadHealthControllerDetails'
+      description: This is a map of controller IDs to detailed download health info.
+      example:
+        "046b6c7f-0b8a-43b9-b35d-6489e6daee91":
+          Summary: OK
+          Reason: ""
+          Changed: 2019-06-27T22:59:01.661Z
+        "91eec8b5-6460-4532-aad1-47b983edb63c":
+          Summary: Unknown
+          Reason: Service download health timed out
+          Changed: 2019-06-27T22:59:01.661Z
       type: object
     OSServiceImageDownloadHealthSummary:
       description: Indicates the download health summary of the OS service image.
@@ -6723,17 +6791,13 @@ components:
       required:
       - SubAttributeRules
       type: object
-    OSServiceImageDownloadHealthDetails:
+    OSServiceImageDownloadHealthControllerDetails:
       properties:
         Changed:
           description: Indicates last time this download health has been updated.
           example: 2019-06-27T22:59:01.661Z
           format: date-time
           type: string
-        Details:
-          additionalProperties:
-            $ref: '#/components/schemas/OSServiceImageDownloadHealthSummary'
-          type: object
         Reason:
           description: Indicates the reason for the reported download health status
             if not OK.
@@ -6743,7 +6807,6 @@ components:
           $ref: '#/components/schemas/OSServiceImageDownloadHealthSummary'
       required:
       - Changed
-      - Details
       - Reason
       - Summary
       type: object
