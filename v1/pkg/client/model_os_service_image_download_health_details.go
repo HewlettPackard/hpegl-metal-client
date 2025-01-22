@@ -17,8 +17,8 @@ import (
 type OsServiceImageDownloadHealthDetails struct {
 	// Indicates last time this download health has been updated.
 	Changed time.Time `json:"Changed"`
-	Details map[string]OsServiceImageDownloadHealthSummary `json:"Details"`
 	// Indicates the reason for the reported download health status if not OK.
 	Reason string `json:"Reason"`
+	// High-level summary of the download health status.
 	Summary OsServiceImageDownloadHealthSummary `json:"Summary"`
 }

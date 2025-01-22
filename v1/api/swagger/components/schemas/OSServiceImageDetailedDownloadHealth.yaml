@@ -1,3 +1,13 @@
 type: object
+description: This is a map of controllers ID to detailed dpwnload health info.
 additionalProperties: 
   $ref: OSServiceImageDownloadHealthDetails.yaml
+example: 
+    046b6c7f-0b8a-43b9-b35d-6489e6daee91:
+      Summary: OK
+      Reason: ''
+      Changed: 2019-06-27T22:59:01.661Z
+    91eec8b5-6460-4532-aad1-47b983edb63c:
+      Summary: OK
+      Reason: ''
+      Changed: 2019-06-27T22:59:01.661Z
