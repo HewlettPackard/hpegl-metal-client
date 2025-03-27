@@ -24,6 +24,7 @@ const (
 	HOSTSTATE_UPDATING_CONNECTIONS HostState = "Updating Connections"
 	HOSTSTATE_IMAGING HostState = "Imaging"
 	HOSTSTATE_IMAGING_PREP HostState = "Imaging Prep"
+	HOSTSTATE_IMAGING_COMPLETE HostState = "Imaging Complete"
 	HOSTSTATE_CONNECTING HostState = "Connecting"
 	HOSTSTATE_BOOTING HostState = "Booting"
 	HOSTSTATE_READY HostState = "Ready"
