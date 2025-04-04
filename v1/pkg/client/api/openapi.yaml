@@ -4912,6 +4912,7 @@ components:
       - Updating Connections
       - Imaging
       - Imaging Prep
+      - Imaging Complete
       - Connecting
       - Booting
       - Ready
