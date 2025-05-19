@@ -3814,6 +3814,7 @@ components:
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           Purpose: Storage
+          NoIPPool: true
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           VLAN: 200
           Name: Private
@@ -3823,6 +3824,7 @@ components:
           LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           HostUse: Default
           Purpose: Storage
+          NoIPPool: true
           ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           VLAN: 200
           Name: Private
@@ -4217,6 +4219,7 @@ components:
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         HostUse: Default
         Purpose: Storage
+        NoIPPool: true
         VLAN: 0
         Name: Private2
       properties:
@@ -4240,6 +4243,9 @@ components:
           $ref: '#/components/schemas/NetworkPurpose'
         NewIPPool:
           $ref: '#/components/schemas/NewIPPool'
+        NoIPPool:
+          description: True if the Network does not have an associated IP Pool.
+          type: boolean
         VLAN:
           description: Optional VLAN ID of the network. If not specified, it is allocated
             from reserved pool.
@@ -5195,6 +5201,7 @@ components:
         LocationID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         HostUse: Default
         Purpose: Storage
+        NoIPPool: true
         ID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         VLAN: 200
         Name: Private
@@ -5223,6 +5230,9 @@ components:
           $ref: '#/components/schemas/NetworkPurpose'
         IPPoolID:
           type: string
+        NoIPPool:
+          description: True if the Network does not have an associated IP Pool.
+          type: boolean
         VLAN:
           description: VLAN ID of the network
           example: 200
@@ -5238,6 +5248,7 @@ components:
       - IPPoolID
       - LocationID
       - Name
+      - NoIPPool
       - Purpose
       - VLAN
       - VNI
@@ -7542,6 +7553,9 @@ components:
           $ref: '#/components/schemas/NetworkPurpose'
         IPPoolID:
           type: string
+        NoIPPool:
+          description: True if the Network does not have an associated IP Pool.
+          type: boolean
         VLAN:
           description: VLAN ID of the network
           type: integer
@@ -7553,6 +7567,7 @@ components:
       - HostUse
       - IPPoolID
       - LocationID
+      - NoIPPool
       - Purpose
       - VLAN
       - VNI

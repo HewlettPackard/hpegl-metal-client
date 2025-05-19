@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **HostUse** | [**NetworkHostUse**](NetworkHostUse.md) |  | 
 **Purpose** | [**NetworkPurpose**](NetworkPurpose.md) |  | 
 **IPPoolID** | **string** |  | 
+**NoIPPool** | **bool** | True if the Network does not have an associated IP Pool. | 
 **VLAN** | **int32** | VLAN ID of the network | 
 **VNI** | **int32** | VNI ID of the network | 
 

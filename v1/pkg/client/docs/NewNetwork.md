@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **HostUse** | [**NetworkHostUse**](NetworkHostUse.md) |  | [optional] 
 **Purpose** | [**NetworkPurpose**](NetworkPurpose.md) |  | [optional] 
 **NewIPPool** | Pointer to [**NewIpPool**](NewIPPool.md) |  | [optional] 
+**NoIPPool** | **bool** | True if the Network does not have an associated IP Pool. | [optional] 
 **VLAN** | **int32** | Optional VLAN ID of the network. If not specified, it is allocated from reserved pool. | [optional] 
 **VNI** | **int32** | Optional VNI ID of the network. If not specified, it is allocated from reserved pool if required. | [optional] 
 

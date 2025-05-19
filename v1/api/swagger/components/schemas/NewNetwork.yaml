@@ -23,6 +23,9 @@ properties:
       If not specified, the network uses the default IP pool allocated from the 
       hoster/project IP Pool factory and if specified, a new custom IP Pool will 
       be created and used for IP allocations.
+  NoIPPool:
+    type: boolean
+    description: True if the Network does not have an associated IP Pool.
   VLAN:
     type: integer
     description: Optional VLAN ID of the network. If not specified, it is allocated from reserved pool.
