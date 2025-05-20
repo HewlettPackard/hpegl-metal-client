@@ -7,6 +7,7 @@ allOf:
       - HostUse
       - Purpose
       - IPPoolID
+      - NoIPPool
       - VLAN
       - VNI
     properties:
@@ -21,6 +22,9 @@ allOf:
         $ref: ./NetworkPurpose.yaml
       IPPoolID:
         type: string
+      NoIPPool:
+        type: boolean
+        description: True if the Network does not have an associated IP Pool.
       VLAN:
         type: integer
         description: VLAN ID of the network

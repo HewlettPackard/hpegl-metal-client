@@ -18,6 +18,8 @@ type NetworkAllOf struct {
 	HostUse NetworkHostUse `json:"HostUse"`
 	Purpose NetworkPurpose `json:"Purpose"`
 	IPPoolID string `json:"IPPoolID"`
+	// True if the Network does not have an associated IP Pool.
+	NoIPPool bool `json:"NoIPPool"`
 	// VLAN ID of the network
 	VLAN int32 `json:"VLAN"`
 	// VNI ID of the network
