@@ -36,3 +36,6 @@ properties:
   VolumeReplicationEnabled:
     type: boolean
     description: Indicates whether volume replication is enabled for this Project.
+  BootFromSANSupport:
+    type: boolean
+    description: Indicates whether Boot-from-SAN feature support is enabled for this Project.

@@ -18,4 +18,6 @@ type UpdateProjectAllOf struct {
 	PermittedOSImages []string `json:"PermittedOSImages"`
 	// Array listing the permitted site IDs
 	PermittedSites []string `json:"PermittedSites,omitempty"`
+	// Indicates whether Boot-from-SAN feature support is enabled for this Project.
+	BootFromSANSupport bool `json:"BootFromSANSupport"`
 }

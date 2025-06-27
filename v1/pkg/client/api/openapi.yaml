@@ -3432,6 +3432,7 @@ components:
       - $ref: '#/components/schemas/Project_allOf'
     NewProject:
       example:
+        BootFromSANSupport: true
         Limits:
           Hosts: 0
           Volumes: 0
@@ -3484,6 +3485,10 @@ components:
           type: array
         VolumeReplicationEnabled:
           description: Indicates whether volume replication is enabled for this Project.
+          type: boolean
+        BootFromSANSupport:
+          description: Indicates whether Boot-from-SAN feature support is enabled
+            for this Project.
           type: boolean
       required:
       - Limits
@@ -7000,7 +7005,12 @@ components:
           description: ID of the Parent Project (optional). Applicable to GreenLake
             Platform (GLP) only.
           type: string
+        BootFromSANSupport:
+          description: Indicates whether Boot-from-SAN feature support is enabled
+            for this Project.
+          type: boolean
       required:
+      - BootFromSANSupport
       - Limits
       - PermittedOSImages
       - PermittedSites
@@ -7031,7 +7041,12 @@ components:
             format: uuid
             type: string
           type: array
+        BootFromSANSupport:
+          description: Indicates whether Boot-from-SAN feature support is enabled
+            for this Project.
+          type: boolean
       required:
+      - BootFromSANSupport
       - Limits
       - PermittedOSImages
       - Profile

@@ -21,4 +21,6 @@ type NewProject struct {
 	PermittedOSImages []string `json:"PermittedOSImages,omitempty"`
 	// Indicates whether volume replication is enabled for this Project.
 	VolumeReplicationEnabled bool `json:"VolumeReplicationEnabled,omitempty"`
+	// Indicates whether Boot-from-SAN feature support is enabled for this Project.
+	BootFromSANSupport bool `json:"BootFromSANSupport,omitempty"`
 }

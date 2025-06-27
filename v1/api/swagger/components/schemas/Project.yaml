@@ -8,6 +8,7 @@ allOf:
       - PermittedSites
       - PermittedOSImages
       - VolumeReplicationEnabled
+      - BootFromSANSupport
     properties:
       Profile:
         description: Profile is a generalized description of a team.
@@ -44,3 +45,6 @@ allOf:
       ParentID:
         type: string
         description: ID of the Parent Project (optional). Applicable to GreenLake Platform (GLP) only.
+      BootFromSANSupport:
+        type: boolean
+        description: Indicates whether Boot-from-SAN feature support is enabled for this Project.
