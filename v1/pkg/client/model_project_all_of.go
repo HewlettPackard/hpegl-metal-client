@@ -23,4 +23,6 @@ type ProjectAllOf struct {
 	VolumeReplicationEnabled bool `json:"VolumeReplicationEnabled"`
 	// ID of the Parent Project (optional). Applicable to GreenLake Platform (GLP) only.
 	ParentID string `json:"ParentID,omitempty"`
+	// Indicates whether Boot-from-SAN feature support is enabled for this Project.
+	BootFromSANSupport bool `json:"BootFromSANSupport"`
 }
