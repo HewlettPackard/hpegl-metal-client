@@ -1,6 +1,6 @@
 module github.com/hewlettpackard/hpegl-metal-client
 
-go 1.25.8
+go 1.25.9
 
 require (
 	github.com/antihax/optional v1.0.0
